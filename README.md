@@ -1,20 +1,30 @@
-Contributors:
+## Contributors:
 
-<!-- ##
-  ##  THIS IS HOW I WANNA USE IT.
-    #  sg = sendgrid::Client.new("Myuser", "Mykey")
-    #  m = sendgrid::Mail.new()
-    #  m.to("robin@sendgrid.com")
-    #  sg.send(m)
+Using RSpec for Testing, and Guard for test automation.
 
-    ##   OR
+Clone repo, Install any deps, then run:
 
-    #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "tits@mcgee.me")
-    #  sg.send(m)
-    #
-  ##
-##  
- -->
+    guard
+
+From the base directory to watch for file changes / automate tests. 
+
+Also using Faraday to construct the email and post.   
+
+    ##
+      ##  THIS IS HOW I WANNA USE IT.
+        #  sg = sendgrid::Client.new("Myuser", "Mykey")
+        #  m = sendgrid::Mail.new()
+        #  m.to("robin@sendgrid.com")
+        #  sg.send(m)
+
+        ##   OR
+
+        #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "tits@mcgee.me")
+        #  sg.send(m)
+        #
+      ##
+    ##  
+
 
 
 # Sendgrid::Ruby
