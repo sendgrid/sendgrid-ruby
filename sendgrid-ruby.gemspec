@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.email    = 'rbin@sendgrid.com'
   gem.homepage = 'http://github.com/sendgrid/sendgrid-ruby'
 
+  gem.add_development_dependency "faraday"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "rspec-nc"

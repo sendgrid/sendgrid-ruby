@@ -1,3 +1,22 @@
+Contributors:
+
+<!-- ##
+  ##  THIS IS HOW I WANNA USE IT.
+    #  sg = sendgrid::Client.new("Myuser", "Mykey")
+    #  m = sendgrid::Mail.new()
+    #  m.to("robin@sendgrid.com")
+    #  sg.send(m)
+
+    ##   OR
+
+    #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "tits@mcgee.me")
+    #  sg.send(m)
+    #
+  ##
+##  
+ -->
+
+
 # Sendgrid::Ruby
 
 TODO: Write a gem description

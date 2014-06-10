@@ -1,3 +1,5 @@
+require "faraday"
+
 module SendGrid
   class Client
 

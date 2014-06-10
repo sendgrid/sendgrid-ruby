@@ -3,30 +3,30 @@ require "json"
 module SendGrid
   class Mail
 
-    def initialize()
-      @endpoint = "/api/mail.send.json?"
+    def initialize(to)
+      @endpoint = "/api/mail.send.json"
     end
 
-    attr_reader :to_email,
+    attr_accessor :endpoint, :to, :from, :subject, :text
 
     def add_to(to_email)
-      #add stuff
+      @to = to_email
     end
     
     def add_tos(to_emails = {})
+      @tos = Array.new(10) { iii }
+    end
+
+    def add_to_name(to_name)
       #add stuff
     end
 
-    def add_to_name(name)
-      #add stuff
-    end
-
-    def add_to_names(names = {})
+    def add_to_names(to_names = {})
       #add stuff
     end
 
     def set_from(from_email)
-      #add stuff
+      @from = from_email
     end
 
     def set_from_email(from_name)
@@ -34,20 +34,20 @@ module SendGrid
     end
 
     def set_subject(subject)
+      @subject = subject
+    end
+
+    def set_text(text)
+      @text = text
+    end
+
+    def set_html(html)
       #add stuff
     end
 
-    def set_text(text, format)
-      #add stuff
-    end
+    # def set_x_smtpapi(json{})
 
-    def set_html(html, something = {}, inject(Array.new) { |arr, a| arr.push(*a) })
-      #add stuff
-    end
-
-    def set_x_smtpapi(json{})
-
-    end
+    # end
     
     def add_bcc(bcc)
       #add stuff
@@ -79,18 +79,3 @@ module SendGrid
 
   end    
 end
-
-
-
-
-##
-  ##  THIS IS HOW I WANNA USE IT.
-    #  sg = sendgrid.Client.new("Myuser", "Mykey")
-    #  m = sendgrid.Mail.new()
-    #  m.add_to("robin@sendgrid.com")
-    #  sg.send(m)
-
-    ##   OR
-
-    #  m = sendgrid.Mail.new(:to => "me@rbin.co", :from => "tits@mcgee.me")
-    #  sg.send(m)
