@@ -19,7 +19,7 @@ Also using Faraday to construct the email and post.
 
         ##   OR
 
-        #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "tits@mcgee.me")
+        #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "email@mcgee.me")
         #  sg.send(m)
         #
       ##
