@@ -8,6 +8,8 @@ Clone repo, Install any deps, then run:
 
 From the base directory to watch for file changes / automate tests. 
 
+Uses github.com/SendGridJP/smtpapi-ruby for smtpapi lib.
+
 Also using Faraday to construct the email and post.   
 
     ##

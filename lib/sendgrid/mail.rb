@@ -1,12 +1,15 @@
-require "json"
+require 'json'
+require 'smtpapi'
 
 module SendGrid
   class Mail
 
-    attr_accessor :endpoint, :to, :from, :from_name, :subject, :text, :html, :bcc, :reply_to, :date
+    attr_accessor :endpoint, :to, :from, :from_name, :subject, :text, :html, :bcc, :reply_to, :date, :smtpapi
 
     def initialize(params = {})
       @endpoint = "/api/mail.send.json"
+      @headers = Hash.new
+      @attachments = []
     end
 
     def add_to(to_email, name=[])
@@ -63,18 +66,28 @@ module SendGrid
 
     def set_date(date)
       @date = date
-    end 
-
-    def add_files(files = {})
-      #add stuff
-    end 
-
-    def add_content(content_ids = {})
-      #add stuff
     end
 
-    def add_headers(headers = {})
-      #add stuff
+    def add_files(file)
+      @attachments.push(get_file_info(file))
+    end 
+
+    def get_file_info(file)
+      dir, basename = File::split(file)
+      extname = File::extname(file)
+      filename = File::basename(file, extname)
+      info = {
+        'dirname' => dir,
+        'basename' => basename,
+        'extension' => extname,
+        'filename' => filename
+      }
+      info['file'] = file
+      info
+    end
+
+    def add_headers(key, value)
+      @headers[key] = value
     end
 
     # def set_x_smtpapi(json{})
