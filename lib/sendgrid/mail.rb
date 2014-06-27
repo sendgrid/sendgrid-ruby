@@ -29,7 +29,7 @@ module SendGrid
       @from = from_email
     end
 
-    def set_from_email(from_name)
+    def set_from_name(from_name)
       #add stuff
     end
 
