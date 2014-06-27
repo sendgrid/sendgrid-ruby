@@ -91,9 +91,10 @@ module SendGrid
       @headers[key] = value
     end
 
-    # def set_x_smtpapi(json{})
-
-    # end   
+    def set_x_smtpapi(key, value)
+      @xsmtpapi ||= {}
+      @xsmtpapi[key] = value
+    end   
 
   end    
 end

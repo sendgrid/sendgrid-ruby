@@ -77,4 +77,6 @@ describe SendGrid::Mail do
     Time.parse(@sg.date).rfc2822.should == "Fri, 27 Jun 2014 02:54:37 -0600"
   end
 
+  # Not a file test.
+
 end

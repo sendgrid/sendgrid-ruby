@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.description = "Interact with SendGrid's API in Native Ruby"
 
   gem.authors  = ['Robin J', 'Eddie Z']
-  gem.email    = 'rbin@sendgrid.com'
+  gem.email    = 'community@sendgrid.com'
   gem.homepage = 'http://github.com/sendgrid/sendgrid-ruby'
 
   gem.add_dependency "smtpapi"
