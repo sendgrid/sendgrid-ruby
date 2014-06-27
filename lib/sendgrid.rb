@@ -19,8 +19,11 @@ module SendGrid
       conn = Faraday.new(@host)
 
       conn.post 'mail.send.json', { 
-        :name => Mail.add_to,
-        :from => Mail.add_from 
+        :to => Mail.add_to,
+        :from => Mail.add_from,
+        :subject => Mail.subject,
+        :text => Mail.text.flunk("Nope.")
+
       }
 
     end  

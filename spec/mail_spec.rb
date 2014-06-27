@@ -48,7 +48,25 @@ describe SendGrid::Mail do
 
   it 'should take text' do
     @sg.set_text "No size limits lol, <code>Pizza</code> <h1>HA!</h1>"
-    @sg.text.should == "No size limits lol, <code>Pizza</code> <h1>HA!</h1>"
+    @sg.text.should_not == "wat"
   end
+
+  it 'should take html' do
+    @sg.set_html "<h1>This is some html.</h1><p><em>Yup.</em></p>"
+    @sg.html.should_not == "lol"
+  end
+
+  it 'should allow just 1 bcc' do
+    @sg.add_bcc("me@rbin.co")
+    @sg.bcc[0].should == "me@rbin.co"
+  end
+
+  it 'should allow for multiple BCCs' do
+    @sg.add_bcc(["me@rbin.co", "me@rbin.codes", "poptarts@eddiezane.org"])
+    @sg.bcc[2].should == "me@rbin.co"
+  end
+
+
+
 
 end

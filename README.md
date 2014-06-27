@@ -17,7 +17,7 @@ Also using Faraday to construct the email and post.
         #  m.to("robin@sendgrid.com")
         #  sg.send(m)
 
-        ##   OR
+        ##   AND - I want both options!
 
         #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "email@mcgee.me")
         #  sg.send(m)
