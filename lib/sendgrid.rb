@@ -23,7 +23,6 @@ module SendGrid
         :from => Mail.add_from,
         :subject => Mail.subject,
         :text => Mail.text
-
       }
 
     end  

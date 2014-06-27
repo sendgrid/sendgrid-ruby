@@ -3,7 +3,7 @@ require "json"
 module SendGrid
   class Mail
 
-    attr_accessor :endpoint, :to, :from, :from_name, :subject, :text, :html, :bcc
+    attr_accessor :endpoint, :to, :from, :from_name, :subject, :text, :html, :bcc, :reply_to, :date
 
     def initialize(params = {})
       @endpoint = "/api/mail.send.json"
@@ -49,27 +49,20 @@ module SendGrid
       @bcc ||= Array.new
 
       if bcc_email.is_a?(Array)
-
-        bcc_email.each do
-          @bcc << bcc_email
+        bcc_email.each do |email|
+          @bcc << email
         end
-
       else  
-      @bcc << bcc_email
-    end
-
-    end
-
-    def add_bccs(bccs = {})
-      #add stuff
+        @bcc << bcc_email
+      end
     end
 
     def set_reply_to(reply_to)
-      #add stuff
+      @reply_to = reply_to
     end
 
     def set_date(date)
-      #add stuff
+      @date = date
     end 
 
     def add_files(files = {})

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'SendGrid/Mail'
+require 'time'
 
 describe SendGrid::Mail do
 
@@ -63,10 +64,17 @@ describe SendGrid::Mail do
 
   it 'should allow for multiple BCCs' do
     @sg.add_bcc(["me@rbin.co", "me@rbin.codes", "poptarts@eddiezane.org"])
-    @sg.bcc[2].should == "me@rbin.co"
+    @sg.bcc[1].should == "me@rbin.codes"
   end
 
+  it 'should allow for a reply to email' do
+    @sg.set_reply_to "nick@loonsareamazing.com"
+    @sg.reply_to.should == "nick@loonsareamazing.com"
+  end
 
-
+  it 'should take an rfc 2822 date' do
+    @sg.set_date "Fri, 27 Jun 2014 02:54:37 -0600"
+    Time.parse(@sg.date).rfc2822.should == "Fri, 27 Jun 2014 02:54:37 -0600"
+  end
 
 end
