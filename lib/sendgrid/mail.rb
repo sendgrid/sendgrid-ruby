@@ -3,26 +3,26 @@ require "json"
 module SendGrid
   class Mail
 
-    def initialize(to)
+    attr_accessor :endpoint, :to, :from, :from_name, :subject, :text
+
+    def initialize(params = {})
       @endpoint = "/api/mail.send.json"
     end
 
-    attr_accessor :endpoint, :to, :from, :subject, :text
+    def add_to(to_email, name=[])
+      @to ||= Array.new
 
-    def add_to(to_email)
-      @to = to_email
-    end
-    
-    def add_tos(to_emails = {})
-      @tos = Array.new(10) { iii }
-    end
+      if to_email.is_a?(Array)
 
-    def add_to_name(to_name)
-      #add stuff
-    end
-
-    def add_to_names(to_names = {})
-      #add stuff
+        to_email.each_with_index do |email, index|
+          obj = {email: email}
+          obj[:name] = name[index] unless name[index].nil?
+          @to << obj
+        end
+      else
+        @to << {email: to_email}
+        @to.last[:name] = name if name
+      end
     end
 
     def set_from(from_email)
@@ -30,7 +30,7 @@ module SendGrid
     end
 
     def set_from_name(from_name)
-      #add stuff
+      @from_name = from_name
     end
 
     def set_subject(subject)
