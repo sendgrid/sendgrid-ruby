@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.summary = "Official SendGrid Gem"
   gem.description = "Interact with SendGrid's API in Native Ruby"
 
-  gem.authors  = ['Robin J']
+  gem.authors  = ['Robin J', 'Eddie Z']
   gem.email    = 'rbin@sendgrid.com'
   gem.homepage = 'http://github.com/sendgrid/sendgrid-ruby'
 
