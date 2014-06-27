@@ -22,7 +22,7 @@ module SendGrid
         :to => Mail.add_to,
         :from => Mail.add_from,
         :subject => Mail.subject,
-        :text => Mail.text.flunk("Nope.")
+        :text => Mail.text
 
       }
 
