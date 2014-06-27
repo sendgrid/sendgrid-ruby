@@ -1,4 +1,5 @@
 require 'sendgrid/version'
+require 'sendgrid/mail'
 require 'faraday'
 
 module SendGrid
@@ -12,17 +13,27 @@ module SendGrid
 
     attr_reader :api_user, :api_key, :host
 
+    def send(mail)
+      @conn ||= Faraday.new(@host)
 
+      # payload = {
+        # api_user: @api_user,
+        # api_key: @api_key,
+        # from: mail.from,
+        # subject: mail.subject,
+        # text: mail.text
+      # }
 
-    def send()
+      # mail.to.each do |to|
+      # end
 
-      conn = Faraday.new(@host)
-
-      conn.post 'Mail.endpoint', { 
-        :to => Mail.add_to,
-        :from => Mail.add_from,
-        :subject => Mail.subject,
-        :text => Mail.text
+      @conn.post '/api/mail.send.json', { 
+        api_user: @api_user,
+        api_key: @api_key,
+        to: mail.to[0][:email],
+        from: mail.from,
+        subject: mail.subject,
+        text: mail.text
       }
 
     end  
