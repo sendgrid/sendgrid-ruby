@@ -1,1 +1,1 @@
-require 'SendGrid'
+require 'sendgrid-ruby'

@@ -3,30 +3,27 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sendgrid/version'
 
-Gem::Specification.new do |gem|
-  gem.name    = 'sendgrid-ruby'
-  gem.version = SendGrid::VERSION
+Gem::Specification.new do |spec|
+  spec.name        = 'sendgrid-ruby'
+  spec.version     = SendGrid::VERSION
+  spec.authors     = ['Robin Johnson', 'Eddie Zaneski']
+  spec.email       = 'community@sendgrid.com'
+  spec.summary     = 'Official SendGrid Gem'
+  spec.description = 'Interact with SendGrids API in Native Ruby'
+  spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
+  spec.license     = 'MIT'
 
-  gem.summary = "Official SendGrid Gem"
-  gem.description = "Interact with SendGrid's API in Native Ruby"
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)/)
+  spec.require_paths = ['lib']
 
-  gem.authors  = ['Robin J', 'Eddie Z']
-  gem.email    = 'community@sendgrid.com'
-  gem.homepage = 'http://github.com/sendgrid/sendgrid-ruby'
-
-  gem.add_dependency "smtpapi"
-  gem.add_dependency "faraday"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "rspec-nc"
-  gem.add_development_dependency "guard"
-  gem.add_development_dependency "guard-rspec"
-  gem.add_development_dependency "bundler", "~> 1.6"
-
-  # gem.files = Dir['Rakefile', '{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
-
-  gem.files         = `git ls-files -z`.split("\x0")
-  gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
+  spec.add_dependency 'smtpapi'
+  spec.add_dependency 'faraday'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-nc'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'bundler', '~> 1.6'
 end
