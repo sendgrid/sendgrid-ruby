@@ -4,34 +4,45 @@ require 'faraday'
 
 module SendGrid
   class Client
-    def initialize(api_user, api_key)
+    attr_reader :api_user, :api_key
+
+    def initialize(api_user, api_key, conn = nil)
       @api_user = api_user
       @api_key  = api_key
-      @host     = 'https://api.sendgrid.com'
+      conn.nil? ? @conn = create_conn : @conn = conn
     end
 
-    attr_reader :api_user, :api_key, :host
-
+    # TODO: Sort these better
     def send(mail)
-      @conn ||= Faraday.new(@host)
-
       payload = {
         api_user: @api_user,
         api_key: @api_key,
         from: mail.from,
+        fromname: (mail.from_name if mail.from_name),
         subject: mail.subject,
+        to: [],
+        toname: [],
+        date: (mail.date if mail.date),
+        replyto: (mail.reply_to if mail.reply_to),
+        bcc: (mail.bcc if mail.bcc),
+        text: (mail.text if mail.text),
+        html: (mail.html if mail.html)
       }
 
-      mail.to.each do |_to|
+      mail.to.each do |to|
+        payload[:to] << to[:email]
+        payload[:toname] << to[:name] if to[:name]
       end
 
-      @conn.post '/api/mail.send.json',
-                 api_user: @api_user,
-                 api_key: @api_key,
-                 to: mail.to[0][:email],
-                 from: mail.from,
-                 subject: mail.subject,
-                 text: mail.text
+      @conn.post '/api/mail.send.json', payload
+    end
+
+    private
+
+    def create_conn
+      @conn = Faraday.new(@host = 'https://api.sendgrid.com')
+      @conn.headers[:user_agent] = 'sendgrid-ruby 0.0.1'
+      @conn
     end
   end
 end
