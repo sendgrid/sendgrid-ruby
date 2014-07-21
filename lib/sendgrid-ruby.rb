@@ -1,15 +1,18 @@
-require 'sendgrid/version'
-require 'sendgrid/mail'
+require_relative 'sendgrid/version'
+require_relative 'sendgrid/email'
+
 require 'faraday'
 
 module SendGrid
   class Client
-    attr_reader :api_user, :api_key
+    attr_reader :api_user, :api_key, :host, :endpoint
 
-    def initialize(api_user, api_key, conn = nil)
+    def initialize(api_user, api_key, host = 'https://api.sendgrid.com', endpoint = '/api/mail.send.json', conn = create_conn)
       @api_user = api_user
       @api_key  = api_key
-      conn.nil? ? @conn = create_conn : @conn = conn
+      @host     = host
+      @endpoint = endpoint
+      @conn     = conn
     end
 
     # TODO: Sort these better
@@ -20,28 +23,39 @@ module SendGrid
         from: mail.from,
         fromname: (mail.from_name if mail.from_name),
         subject: mail.subject,
-        to: [],
-        toname: [],
+        to: (mail.to if mail.to),
+        toname: (mail.to_name if mail.to_name),
         date: (mail.date if mail.date),
         replyto: (mail.reply_to if mail.reply_to),
         bcc: (mail.bcc if mail.bcc),
         text: (mail.text if mail.text),
-        html: (mail.html if mail.html)
+        html: (mail.html if mail.html),
+        :'x-smtpapi' => (mail.smtpapi.to_json if mail.smtpapi),
+        files: (Hash.new unless mail.attachments.empty?)
       }
 
-      mail.to.each do |to|
-        payload[:to] << to[:email]
-        payload[:toname] << to[:name] if to[:name]
+      # required if using smtpapi to
+      if mail.to.nil? and not mail.smtpapi.to.empty?
+        payload[:to] = payload[:from]
       end
 
-      @conn.post '/api/mail.send.json', payload
+      unless mail.attachments.empty?
+        mail.attachments.each do |file|
+          payload[:files][file[:name]] = file[:file].read
+        end
+      end
+
+      return @conn.post do |req|
+        req.url '/api/mail.send.json'
+        req.params = payload
+      end
     end
 
     private
 
     def create_conn
       @conn = Faraday.new(@host = 'https://api.sendgrid.com')
-      @conn.headers[:user_agent] = 'sendgrid-ruby 0.0.1'
+      @conn.headers[:user_agent] = "sendgrid-ruby/#{SendGrid::VERSION};ruby"
       @conn
     end
   end
