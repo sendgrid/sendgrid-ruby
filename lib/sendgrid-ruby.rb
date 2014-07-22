@@ -1,5 +1,5 @@
 require_relative 'sendgrid/version'
-require_relative 'sendgrid/email'
+require_relative 'sendgrid/mail'
 
 require 'faraday'
 

@@ -1,15 +1,15 @@
 require 'spec_helper'
-require 'SendGrid/Email'
+require 'SendGrid/Mail'
 require 'time'
 
-describe SendGrid::Email do
+describe SendGrid::Mail do
 
   before(:each) do
-    @sg = SendGrid::Email.new
+    @sg = SendGrid::Mail.new
   end
 
   it 'takes a params hash' do
-    @sg = SendGrid::Email.new({})
+    @sg = SendGrid::Mail.new({})
   end
 
   it 'should take at least 1 email' do

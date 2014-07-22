@@ -2,7 +2,7 @@ require 'json'
 require 'smtpapi'
 
 module SendGrid
-  class Email
+  class Mail
     attr_reader :bcc
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :bcc, :reply_to, :date, :smtpapi, :attachments
 
