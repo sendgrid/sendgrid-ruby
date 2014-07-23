@@ -46,6 +46,7 @@ module SendGrid
       end
 
       @conn.post(payload)
+
     end
 
     private
