@@ -10,10 +10,14 @@ module SendGrid
       params.each do |k, v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
-      @headers = @headers || {}
-      @attachments = @attachments || []
-      @smtpapi = @smtpapi || Smtpapi::Header.new
+      @headers ||= {}
+      @attachments ||= []
+      @smtpapi ||= Smtpapi::Header.new
     end
+
+    # %w(from from_name).each do |method|
+      # define_method "set#{method.capitalize}"
+    # end
 
     def add_to(to_email)
       @smtpapi.add_to to_email
@@ -26,8 +30,8 @@ module SendGrid
 
     def add_attachment(path, name = nil)
       file = File.new(path)
-      name = name || File.basename(file)
-      @attachments << {name: name, file: file}
+      name ||= File.basename(file)
+      @attachments << {file: file, name: name}
     end
 
     # TODO:
