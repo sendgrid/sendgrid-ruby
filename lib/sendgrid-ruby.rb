@@ -7,12 +7,12 @@ module SendGrid
   class Client
     attr_reader :api_user, :api_key, :host, :endpoint
 
-    def initialize(api_user, api_key, host = 'https://api.sendgrid.com', endpoint = '/api/mail.send.json', conn = create_conn)
+    def initialize(api_user, api_key, host = 'https://api.sendgrid.com', endpoint = '/api/mail.send.json', conn = nil)
       @api_user = api_user
       @api_key  = api_key
       @host     = host
       @endpoint = endpoint
-      @conn     = conn
+      @conn     = conn || create_conn
     end
 
     # TODO: Sort these better
@@ -45,15 +45,13 @@ module SendGrid
         end
       end
 
-      @conn.post(payload)
-
+      @conn[@endpoint].post(payload, {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'})
     end
 
     private
 
-    # TODO: This host passing won't work
     def create_conn
-      @conn = RestClient::Resource.new(@host || 'https://api.sendgrid.com/api/mail.send.json')
+      @conn = RestClient::Resource.new(@host)
     end
   end
 end
