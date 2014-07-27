@@ -15,8 +15,11 @@ module SendGrid
       @smtpapi ||= Smtpapi::Header.new
     end
 
-    # %w(from from_name).each do |method|
-      # define_method "set#{method.capitalize}"
+    # cross lib standard
+    # %w(to to_name from from_name text html subject reply_to).each do |method|
+      # define_method "set_#{method}" do |var|
+        # instance_variable_set("@#{method}", var)
+      # end
     # end
 
     def add_to(to_email)
