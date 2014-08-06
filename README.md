@@ -28,12 +28,12 @@ client = SendGrid::Client.new('SENDGRID_USERNAME', 'SENDGRID_PASSWORD')
 
 Create a new mail object and send it off!
 ```ruby
-mail = SendGrid::Mail.new
-
-mail.to = 'eddiezane@sendgrid.com'
-mail.from = 'taco@cat.limo'
-mail.subject = 'Hello world!'
-mail.text = 'I heard you like pineapple.'
+mail = SendGrid::Mail.new do |m|
+  m.to = 'eddiezane@sendgrid.com'
+  m.from = 'taco@cat.limo'
+  m.subject = 'Hello world!'
+  m.text = 'I heard you like pineapple.'
+end
 
 puts client.send(mail) 
 # {"message":"success"}
