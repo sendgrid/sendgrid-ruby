@@ -1,6 +1,6 @@
 # SendGrid::Ruby
 
-This Gem allows you to quickly and easily send emails through SendGrid using Ruby.
+This Gem allows you to quickly and easily send emails through SendGrid's Web API using native Ruby.
 
 
 ## Installation
@@ -24,7 +24,7 @@ Create a new client with your SendGrid Username and Password.
 ```ruby
 require 'sendgrid-ruby'
 
-client = SendGrid::Client.new('SENDGRID_USERNAME', 'SENDGRID_PASSWORD')
+client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
 ```
 
 Create a new mail object and send it off!
