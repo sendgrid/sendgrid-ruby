@@ -64,38 +64,6 @@ params = {
 }
 ```
 
-
-
-## Contributors:
-
-Using RSpec for Testing, and Guard for test automation.
-
-Clone repo, Install any deps, then run:
-
-    guard
-
-From the base directory to watch for file changes / automate tests. 
-
-Uses github.com/SendGridJP/smtpapi-ruby for smtpapi lib.
-
-Also using Faraday to construct the email and post.   
-
-    ##
-      ##  THIS IS HOW I WANNA USE IT.
-        #  sg = sendgrid::Client.new("Myuser", "Mykey")
-        #  m = sendgrid::Mail.new()
-        #  m.to("robin@sendgrid.com")
-        #  sg.send(m)
-
-        ##   AND - I want both options!
-
-        #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "email@mcgee.me")
-        #  sg.send(m)
-        #
-      ##
-    ##  
-
-
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
