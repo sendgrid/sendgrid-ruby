@@ -67,6 +67,15 @@ params = {
 }
 ```
 
+#### Using the X-SMTPAPI Header
+
+To utilise the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">stmpapi-ruby</a> gem.  To initialise, use:
+
+```ruby
+header = Smtpapi::Header.new
+```
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
