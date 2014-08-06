@@ -1,5 +1,6 @@
 require_relative 'sendgrid/version'
 require_relative 'sendgrid/mail'
+require_relative 'sendgrid/exceptions'
 
 require 'rest-client'
 
@@ -45,7 +46,18 @@ module SendGrid
         end
       end
 
-      @conn[@endpoint].post(payload, {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'})
+      @conn[@endpoint].post(payload, {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'}) do |response, request, result|
+        case response.code
+        when /2\d\d/
+          response
+        when /(4\d\d|5\d\d)/
+          raise SendGrid::Exception.new(response)
+        else
+          puts "DEFAULT"
+          puts response.code
+          response
+        end
+      end
     end
 
     private

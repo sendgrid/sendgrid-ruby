@@ -8,13 +8,15 @@ describe SendGrid::Mail do
     @sg = SendGrid::Mail.new
   end
 
-  it 'takes a params hash' do
-    @sg = SendGrid::Mail.new({})
+  it 'raises sendgrid parameter error' do
+    expect {
+      SendGrid::Mail.new({})
+    }.to_not raise_error
   end
 
   it 'should take at least 1 email' do
-    @sg.add_to('me@rbin.co')
-    @sg.to == ['me@rbin.co']
+    @sg.to('me@rbin.co')
+    @sg.to.should == ['me@rbin.co']
   end
 
   it 'should accept an array of emails' do

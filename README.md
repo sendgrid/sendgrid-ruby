@@ -1,3 +1,71 @@
+# SendGrid::Ruby
+
+TODO: Write a gem description
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'sendgrid-ruby'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install sendgrid-ruby
+
+## Usage
+
+Create a new client with your SendGrid username and password.
+
+```ruby
+require 'sendgrid-ruby'
+
+client = SendGrid::Client.new('SENDGRID_USERNAME', 'SENDGRID_PASSWORD')
+```
+
+Create a new mail object and send it off!
+```ruby
+mail = SendGrid::Mail.new
+
+mail.to = 'eddiezane@sendgrid.com'
+mail.from = 'taco@cat.limo'
+mail.subject = 'Hello world!'
+mail.text = 'I heard you like pineapple.'
+
+puts client.send(mail) 
+# {"message":"success"}
+```
+
+You can also create a mail object with a hash.
+```ruby
+client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
+# {"message":"success"}
+```
+
+#### Available params
+
+```ruby
+params = {
+  :to
+  :from        => mail.from,
+  :subject     => mail.subject,
+  :text        => (mail.text if mail.text),
+  :html        => (mail.html if mail.html),
+  :fromname    => (mail.from_name if mail.from_name),
+  :toname      => (mail.to_name if mail.to_name),
+  :date        => (mail.date if mail.date),
+  :replyto     => (mail.reply_to if mail.reply_to),
+  :bcc         => (mail.bcc if mail.bcc),
+  :'x-smtpapi' => (mail.smtpapi.to_json if mail.smtpapi),
+  :files       => ({} unless mail.attachments.empty?)
+}
+```
+
+
+
 ## Contributors:
 
 Using RSpec for Testing, and Guard for test automation.
@@ -27,29 +95,6 @@ Also using Faraday to construct the email and post.
       ##
     ##  
 
-
-
-# Sendgrid::Ruby
-
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'sendgrid-ruby'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sendgrid-ruby
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 

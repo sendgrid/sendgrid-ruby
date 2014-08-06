@@ -13,6 +13,7 @@ module SendGrid
       @headers ||= {}
       @attachments ||= []
       @smtpapi ||= Smtpapi::Header.new
+      yield self if block_given?
     end
 
     # cross lib standard
