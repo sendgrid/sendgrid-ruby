@@ -47,5 +47,35 @@ module SendGrid
     def set_x_smtpapi(key, value)
       @xsmtpapi[key] = value
     end
+
+    def to_h
+      payload = {
+        :from        => @from,
+        :fromname    => (@from_name if @from_name),
+        :subject     => @subject,
+        :to          => (@to if @to),
+        :toname      => (@to_name if @to_name),
+        :date        => (@date if @date),
+        :replyto     => (@reply_to if @reply_to),
+        :bcc         => (@bcc if @bcc),
+        :text        => (@text if @text),
+        :html        => (@html if @html),
+        :'x-smtpapi' => (@smtpapi.to_json if @smtpapi),
+        :files       => ({} unless @attachments.empty?)
+      }
+
+      # required if using smtpapi to
+      if @to.nil? and not @smtpapi.to.empty?
+        payload[:to] = payload[:from]
+      end
+
+      unless @attachments.empty?
+        @attachments.each do |file|
+          payload[:files][file[:name]] = file[:file]
+        end
+      end
+
+      payload
+    end
   end
 end
