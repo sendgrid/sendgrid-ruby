@@ -45,19 +45,19 @@ module SendGrid
     def to_h
       payload = {
         :from        => @from,
-        :fromname    => (@from_name if @from_name),
+        :fromname    => @from_name,
         :subject     => @subject,
-        :to          => (@to if @to),
-        :toname      => (@to_name if @to_name),
-        :date        => (@date if @date),
-        :replyto     => (@reply_to if @reply_to),
-        :cc          => (@cc if @cc),
-        :bcc         => (@bcc if @bcc),
-        :text        => (@text if @text),
-        :html        => (@html if @html),
-        :'x-smtpapi' => (@smtpapi.to_json if @smtpapi),
+        :to          => @to,
+        :toname      => @to_name,
+        :date        => @date,
+        :replyto     => @reply_to,
+        :cc          => @cc,
+        :bcc         => @bcc,
+        :text        => @text,
+        :html        => @html,
+        :'x-smtpapi' => @smtpapi.to_json,
         :files       => ({} unless @attachments.empty?)
-      }
+      }.reject {|k,v| v.nil?}
 
       # required if using smtpapi to
       if @to.nil? and not @smtpapi.to.empty?
