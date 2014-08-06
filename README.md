@@ -2,7 +2,7 @@
 
 This Gem allows you to quickly and easily send emails through SendGrid's Web API using native Ruby.
 
-You can read our official documentation on the Web API's Mail feature <a href="https://sendgrid.com/docs/API_Reference/Web_API/mail.html">here.</a>
+You can read our official documentation on the Web API's Mail feature [here](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
 
 ## Installation
@@ -32,15 +32,14 @@ client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_
 Create a new Mail object and send:
 ```ruby
 mail = SendGrid::Mail.new do |m|
-  m.to = 'eddiezane@sendgrid.com'
+  m.to = 'test@sendgrid.com'
   m.from = 'taco@cat.limo'
   m.subject = 'Hello world!'
   m.text = 'I heard you like pineapple.'
 end
 
 puts client.send(mail) 
-
-	# {"message":"success"}
+# {"message":"success"}
 ```
 
 You can also create a mail object with a hash.
@@ -54,32 +53,38 @@ client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo',
 
 ```ruby
 params = {
-  :to
-  :from
-  :subject
-  :text
-  :html
-  :fromname
-  :toname
-  :date
-  :replyto
-  :bcc
-  :cc
-  :smtpapi
-  :files
+	:to,
+	:to_name,
+	:from,
+	:from_name,
+	:subject,
+	:text,
+	:html,
+	:cc,
+	:bcc,
+	:reply_to,
+	:date,
+	:smtpapi,
+	:attachments
 }
 ```
 
 #### Using the X-SMTPAPI Header
 
-To utilise the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">stmpapi-ruby</a> gem.  To initialise, you have two options:
+To utilize the X-SMTPAPI header, we have directly integrated the [smtpapi-ruby](https://github.com/SendGridJP/smtpapi-ruby) gem.  To initialize, you have two options:
 
+Create your own and pass it in to the initialize method:
 ```ruby
 header = Smtpapi::Header.new
-
-
+# Do things to the header
+header.add_substitution('keep', ['secret'])
+mail = SendGrid::Mail.new(smtpapi: header)
 ```
-
+Or use the one that we create and expose:
+```ruby
+mail = SendGrid::Mail.new
+mail.smtpapi.add_substitution('keep', ['secret'])
+```
 
 ## Contributing
 
@@ -89,4 +94,4 @@ header = Smtpapi::Header.new
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-***Hit up <a href="http://twitter.com/rbin">@rbin</a> or <a href="http://twitter.com/eddiezane">@eddiezane</a> on Twitter with any issues.***
+***Hit up [@rbin](http://twitter.com/rbin) or [@eddiezane](http://twitter.com/eddiezane) on Twitter with any issues.***
