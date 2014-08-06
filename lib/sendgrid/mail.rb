@@ -3,8 +3,7 @@ require 'smtpapi'
 
 module SendGrid
   class Mail
-    attr_reader :bcc
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :bcc, :reply_to, :date, :smtpapi, :attachments
+    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, :bcc, :reply_to, :date, :smtpapi, :attachments
 
     def initialize(params = {})
       params.each do |k, v|
@@ -25,11 +24,6 @@ module SendGrid
 
     def add_to(to_email)
       @smtpapi.add_to to_email
-    end
-
-    def add_bcc(bcc_email)
-      @bcc ||= []
-      bcc_email.is_a?(Array) ? @bcc += bcc_email : @bcc << bcc_email
     end
 
     def add_attachment(path, name = nil)
@@ -57,6 +51,7 @@ module SendGrid
         :toname      => (@to_name if @to_name),
         :date        => (@date if @date),
         :replyto     => (@reply_to if @reply_to),
+        :cc          => (@cc if @cc),
         :bcc         => (@bcc if @bcc),
         :text        => (@text if @text),
         :html        => (@html if @html),
