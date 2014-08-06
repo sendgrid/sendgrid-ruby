@@ -1,8 +1,6 @@
 # SendGrid::Ruby
 
-This library allows you to quickly and easily send emails through SendGrid using Ruby.
-
-
+This Gem allows you to quickly and easily send emails through SendGrid using Ruby.
 
 
 ## Installation
