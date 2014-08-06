@@ -64,6 +64,7 @@ params = {
   :date
   :replyto
   :bcc
+  :cc
   :smtpapi
   :files
 }
@@ -71,10 +72,12 @@ params = {
 
 #### Using the X-SMTPAPI Header
 
-To utilise the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">stmpapi-ruby</a> gem.  To initialise, use:
+To utilise the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">stmpapi-ruby</a> gem.  To initialise, you have two options:
 
 ```ruby
 header = Smtpapi::Header.new
+
+
 ```
 
 
