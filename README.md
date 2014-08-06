@@ -28,12 +28,12 @@ client = SendGrid::Client.new('SENDGRID_USERNAME', 'SENDGRID_PASSWORD')
 
 Create a new mail object and send it off!
 ```ruby
-mail = SendGrid::Mail.new
-
-mail.to = 'eddiezane@sendgrid.com'
-mail.from = 'taco@cat.limo'
-mail.subject = 'Hello world!'
-mail.text = 'I heard you like pineapple.'
+mail = SendGrid::Mail.new do |m|
+  m.to = 'eddiezane@sendgrid.com'
+  m.from = 'taco@cat.limo'
+  m.subject = 'Hello world!'
+  m.text = 'I heard you like pineapple.'
+end
 
 puts client.send(mail) 
 # {"message":"success"}
@@ -63,38 +63,6 @@ params = {
   :files       => ({} unless mail.attachments.empty?)
 }
 ```
-
-
-
-## Contributors:
-
-Using RSpec for Testing, and Guard for test automation.
-
-Clone repo, Install any deps, then run:
-
-    guard
-
-From the base directory to watch for file changes / automate tests. 
-
-Uses github.com/SendGridJP/smtpapi-ruby for smtpapi lib.
-
-Also using Faraday to construct the email and post.   
-
-    ##
-      ##  THIS IS HOW I WANNA USE IT.
-        #  sg = sendgrid::Client.new("Myuser", "Mykey")
-        #  m = sendgrid::Mail.new()
-        #  m.to("robin@sendgrid.com")
-        #  sg.send(m)
-
-        ##   AND - I want both options!
-
-        #  m = sendgrid::Mail.new(:to => "me@rbin.co", :from => "email@mcgee.me")
-        #  sg.send(m)
-        #
-      ##
-    ##  
-
 
 ## Contributing
 

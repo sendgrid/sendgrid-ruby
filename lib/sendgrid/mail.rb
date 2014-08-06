@@ -32,16 +32,6 @@ module SendGrid
       @attachments << {file: file, name: name}
     end
 
-    # TODO:
-    def add_header(key, value)
-      @headers[key] = value
-    end
-
-    # TODO:
-    def set_x_smtpapi(key, value)
-      @xsmtpapi[key] = value
-    end
-
     def to_h
       payload = {
         :from        => @from,
@@ -59,7 +49,7 @@ module SendGrid
         :files       => ({} unless @attachments.empty?)
       }.reject {|k,v| v.nil?}
 
-      # required if using smtpapi to
+      # smtpapi fixer
       if @to.nil? and not @smtpapi.to.empty?
         payload[:to] = payload[:from]
       end
