@@ -1,6 +1,9 @@
 # SendGrid::Ruby
 
-TODO: Write a gem description
+This library allows you to quickly and easily send emails through SendGrid using Ruby.
+
+
+
 
 ## Installation
 
@@ -18,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Create a new client with your SendGrid username and password.
+Create a new client with your SendGrid Username and Password.
 
 ```ruby
 require 'sendgrid-ruby'
@@ -36,13 +39,15 @@ mail = SendGrid::Mail.new do |m|
 end
 
 puts client.send(mail) 
-# {"message":"success"}
+
+	# {"message":"success"}
 ```
 
 You can also create a mail object with a hash.
 ```ruby
 client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
-# {"message":"success"}
+	
+	# {"message":"success"}
 ```
 
 #### Available params
@@ -71,3 +76,5 @@ params = {
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+***Hit up <a href="http://twitter.com/rbin">@rbin</a> or <a href="http://twitter.com/eddiezane">@eddiezane</a> on Twitter with any issues.***
