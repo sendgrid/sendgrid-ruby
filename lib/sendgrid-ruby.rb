@@ -1,6 +1,6 @@
-require_relative 'sendgrid/version'
-require_relative 'sendgrid/mail'
 require_relative 'sendgrid/exceptions'
+require_relative 'sendgrid/mail'
+require_relative 'sendgrid/version'
 
 require 'rest-client'
 
@@ -8,17 +8,18 @@ module SendGrid
   class Client
     attr_reader :api_user, :api_key, :host, :endpoint
 
-    def initialize(api_user, api_key, host = 'https://api.sendgrid.com', endpoint = '/api/mail.send.json', conn = nil)
-      @api_user = api_user
-      @api_key  = api_key
-      @host     = host
-      @endpoint = endpoint
-      @conn     = conn || create_conn
+    def initialize(params)
+      @api_user   = params.fetch(:api_user)
+      @api_key    = params.fetch(:api_key)
+      @host       = params.fetch(:host, 'https://api.sendgrid.com')
+      @endpoint   = params.fetch(:endpoint, '/api/mail.send.json')
+      @conn       = params.fetch(:conn, create_conn)
+      @user_agent = params.fetch(:user_agent, 'sendgrid/' + SendGrid::VERSION + ';ruby')
     end
 
     def send(mail)
       payload = mail.to_h.merge({api_user: @api_user, api_key: @api_key})
-      @conn[@endpoint].post(payload, {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'}) do |response, request, result|
+      @conn[@endpoint].post(payload, {user_agent: @user_agent}) do |response, request, result|
         case response.code.to_s
         when /2\d\d/
           response

@@ -3,31 +3,25 @@ require 'smtpapi'
 
 module SendGrid
   class Mail
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, :bcc, :reply_to, :date, :smtpapi, :attachments
+    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, 
+      :bcc, :reply_to, :date, :smtpapi, :attachments
 
     def initialize(params = {})
       params.each do |k, v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
-      @headers ||= {}
+      @headers     ||= {}
       @attachments ||= []
-      @smtpapi ||= Smtpapi::Header.new
+      @smtpapi     ||= Smtpapi::Header.new
       yield self if block_given?
     end
-
-    # cross lib standard
-    # %w(to to_name from from_name text html subject reply_to).each do |method|
-      # define_method "set_#{method}" do |var|
-        # instance_variable_set("@#{method}", var)
-      # end
-    # end
 
     def add_to(to_email)
       @smtpapi.add_to to_email
     end
 
     def add_attachment(path, name = nil)
-      file = File.new(path)
+      file   = File.new(path)
       name ||= File.basename(file)
       @attachments << {file: file, name: name}
     end
