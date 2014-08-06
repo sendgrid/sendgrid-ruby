@@ -2,6 +2,8 @@
 
 This Gem allows you to quickly and easily send emails through SendGrid's Web API using native Ruby.
 
+You can read our official documentation on the Web API's Mail feature <a href="https://sendgrid.com/docs/API_Reference/Web_API/mail.html">here.</a>
+
 
 ## Installation
 
@@ -27,7 +29,7 @@ require 'sendgrid-ruby'
 client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
 ```
 
-Create a new mail object and send it off!
+Create a new Mail object and send:
 ```ruby
 mail = SendGrid::Mail.new do |m|
   m.to = 'eddiezane@sendgrid.com'
@@ -48,22 +50,22 @@ client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo',
 	# {"message":"success"}
 ```
 
-#### Available params
+#### Available Params
 
 ```ruby
 params = {
   :to
-  :from        => mail.from,
-  :subject     => mail.subject,
-  :text        => (mail.text if mail.text),
-  :html        => (mail.html if mail.html),
-  :fromname    => (mail.from_name if mail.from_name),
-  :toname      => (mail.to_name if mail.to_name),
-  :date        => (mail.date if mail.date),
-  :replyto     => (mail.reply_to if mail.reply_to),
-  :bcc         => (mail.bcc if mail.bcc),
-  :'x-smtpapi' => (mail.smtpapi.to_json if mail.smtpapi),
-  :files       => ({} unless mail.attachments.empty?)
+  :from
+  :subject
+  :text
+  :html
+  :fromname
+  :toname
+  :date
+  :replyto
+  :bcc
+  :smtpapi
+  :files
 }
 ```
 
