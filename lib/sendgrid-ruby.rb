@@ -17,8 +17,9 @@ module SendGrid
     end
 
     def send(mail)
-      # TODO: This feels off possibly
-      @conn[@endpoint].post(mail.to_h.merge({api_user: @api_user, api_key: @api_key}), {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'}) do |response, request, result|
+      payload = mail.to_h.merge({api_user: @api_user, api_key: @api_key})
+      @conn[@endpoint].post(payload, {user_agent: 'sendgrid/' + SendGrid::VERSION + ';ruby'}) do |response, request, result|
+        p request
         case response.code.to_s
         when /2\d\d/
           response
