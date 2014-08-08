@@ -72,7 +72,7 @@ params = {
 
 #### Setting Params
 
-Params can be set in the usual Ruby ways, incluring a block or a hash.
+Params can be set in the usual Ruby ways, including a block or a hash.
 
 ````ruby
 mail = SendGrid::Mail.new do |m|
