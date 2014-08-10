@@ -91,7 +91,7 @@ Using the **:to** param, we can pass a single email address as a string, or an a
 mail = SendGrid::Mail.new
 mail.to = 'taco@rbin.codes'
 # or
-message.to['Example Dude <example@email.com>', 'john@email.com']
+mail.to['Example Dude <example@email.com>', 'john@email.com']
 # or
 mail.to = ['rbin@sendgrid.com', 'taco@cat.limo']
 ````
