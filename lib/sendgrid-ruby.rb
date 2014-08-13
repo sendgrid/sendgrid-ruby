@@ -6,15 +6,17 @@ require 'rest-client'
 
 module SendGrid
   class Client
-    attr_reader :api_user, :api_key, :host, :endpoint
+    attr_accessor :api_user, :api_key, :host, :endpoint
 
-    def initialize(params)
-      @api_user   = params.fetch(:api_user)
-      @api_key    = params.fetch(:api_key)
+    def initialize(params = {})
+      @api_user   = params.fetch(:api_user, nil)
+      @api_key    = params.fetch(:api_key, nil)
       @host       = params.fetch(:host, 'https://api.sendgrid.com')
       @endpoint   = params.fetch(:endpoint, '/api/mail.send.json')
       @conn       = params.fetch(:conn, create_conn)
       @user_agent = params.fetch(:user_agent, 'sendgrid/' + SendGrid::VERSION + ';ruby')
+      yield self if block_given?
+      raise SendGrid::Exception.new('api_user and api_key are required') unless @api_user && @api_key
     end
 
     def send(mail)
