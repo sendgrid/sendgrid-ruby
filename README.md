@@ -53,7 +53,7 @@ You can also create a mail object with a hash.
 ```ruby
 client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
 	
-	# {"message":"success"}
+# {"message":"success"}
 ```
 
 #### Available Params
