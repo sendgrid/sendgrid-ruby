@@ -26,7 +26,14 @@ Create a new client with your SendGrid Username and Password.
 ```ruby
 require 'sendgrid-ruby'
 
+# As a hash
 client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
+
+# Or as a block
+client = SendGrid::Client.new do |c|
+  c.api_user = 'SENDGRID_USERNAME'
+  c.api_key = 'SENDGRID_PASSWORD'
+end
 ```
 
 Create a new Mail object and send:
