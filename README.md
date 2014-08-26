@@ -56,6 +56,14 @@ client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo',
 # {"message":"success"}
 ```
 
+You can attach a attachment with add_attachment:
+```ruby
+mail.add_attachment('/tmp/report.pdf','report.pdf')
+
+puts client.send(mail) 
+# {"message":"success"}
+```
+
 #### Available Params
 
 ```ruby
