@@ -49,19 +49,18 @@ puts client.send(mail)
 # {"message":"success"}
 ```
 
-You can also create a mail object with a hash.
+You can also create a mail object with a hash:
 ```ruby
 client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
 	
 # {"message":"success"}
 ```
 
-You can attach a attachment with add_attachment:
-```ruby
-mail.add_attachment('/tmp/report.pdf','report.pdf')
+#### Attachments
 
-puts client.send(mail) 
-# {"message":"success"}
+Attachments can be added to a mail object with the `add_attachment` method. The first parameter is the path to the file, the second (optional) parameter is the desired name of the file. If a file name is not provided, it will use the original filename.
+```ruby
+mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 ```
 
 #### Available Params
