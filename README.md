@@ -15,7 +15,7 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or install it yourself using:
 
     $ gem install sendgrid-ruby
 
@@ -49,7 +49,7 @@ puts client.send(mail)
 # {"message":"success"}
 ```
 
-You can also create a mail object with a hash:
+You can also create a Mail object with a hash:
 ```ruby
 client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
 	
@@ -58,7 +58,7 @@ client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo',
 
 #### Attachments
 
-Attachments can be added to a mail object with the `add_attachment` method. The first parameter is the path to the file, the second (optional) parameter is the desired name of the file. If a file name is not provided, it will use the original filename.
+Attachments can be added to a Mail object with the `add_attachment` method. The first parameter is the path to the file, the second (optional) parameter is the desired name of the file. If a file name is not provided, it will use the original filename.
 ```ruby
 mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 ```
