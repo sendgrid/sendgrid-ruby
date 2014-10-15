@@ -163,106 +163,12 @@ mail.html = '<html><body>Stuff in here, yo!</body></html>'
 
 ## Using SendGrid's X-SMTPAPI Header
 
-To utilize the X-SMTPAPI header, we have directly integrated the [smtpapi-ruby](https://github.com/SendGridJP/smtpapi-ruby) gem.
 
-#### add_to
+<blockquote>
+To utilize the X-SMTPAPI header, we have directly integrated the [SendGridJP/smtpapi-ruby](https://github.com/SendGridJP/smtpapi-ruby) gem.
+</blockquote>
 
-You can directly generate an x-smtpapi add_to header instead of using to *:to* param.  ***Please note, this will override all params.***
 
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_to('me@rbin.codes')
-mail.smtpapi.add_to('eddiez@otheremail.com')
-```
-
-#### set_tos
-
-```ruby
-mail.smtpapi.set_tos(['rbin@cat.codes', 'eddie@taco.bell'])
-```
-
-#### add_substitution
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_substitution('keep', array('secret'))        # sub = {keep: ['secret']}
-mail.smtpapi.add_substitution('other', array('one', 'two'))   # sub = {keep: ['secret'], other: ['one', 'two']}
-```
-
-#### set_substitutions
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.set_substitutions({'keep' => 'secret'})  # sub = {keep: ['secret']}
-```
-
-#### add_unique_arg
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_unique_arg('cat', 'dogs')
-```
-
-#### set_unique_args
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.set_unique_args({'cow' => 'chicken'})
-mail.smtpapi.set_unique_args({'dad' => 'proud'})
-```
-
-#### add_category
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_category('tactics') # category = ['tactics']
-mail.smtpapi.add_category('advanced') # category = ['tactics', 'advanced']
-```
-
-#### set_categories
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.set_categories(['tactics', 'advanced']) # category = ['tactics', 'advanced']
-```
-
-#### add_section
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_section('-charge-', 'This ship is useless.'])
-mail.smtpapi.add_section('-bomber-', 'Only for sad vikings.'])
-```
-
-#### set_sections
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.set_sections({'-charge-' => 'This ship is useless.'})
-```
-
-#### add_filter
-
-```ruby
-mail = SendGrid::Mail.new
-mail.smtpapi.add_filter('footer', 'enable', 1)
-mail.smtpapi.add_filter('footer', 'text/html', '<strong>boo</strong>')
-```
-
-#### set_filters
-
-```ruby
-mail = SendGrid::Mail.new
-filter = {
-  'footer' => {
-    'setting' => {
-      'enable' => 1,
-      "text/plain" => 'You can haz footers!'
-    }
-  }
-}
-mail.smtpapi.set_filters(filter)
-```
 
 ## Contributing
 
