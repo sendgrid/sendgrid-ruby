@@ -185,8 +185,8 @@ mail.smtpapi.set_tos(['rbin@cat.codes', 'eddie@taco.bell'])
 
 ```ruby
 mail = SendGrid::Mail.new
-mail.smtpapi.add_substitution('keep', array('secret'))        # sub = {keep: ['secret']}
-mail.smtpapi.add_substitution('other', array('one', 'two'))   # sub = {keep: ['secret'], other: ['one', 'two']}
+mail.smtpapi.add_substitution('keep', ['secret'])        # sub = {keep: ['secret']}
+mail.smtpapi.add_substitution('other', ['one', 'two'])   # sub = {keep: ['secret'], other: ['one', 'two']}
 ```
 
 #### set_substitutions
@@ -230,8 +230,8 @@ mail.smtpapi.set_categories(['tactics', 'advanced']) # category = ['tactics', 'a
 
 ```ruby
 mail = SendGrid::Mail.new
-mail.smtpapi.add_section('-charge-', 'This ship is useless.'])
-mail.smtpapi.add_section('-bomber-', 'Only for sad vikings.'])
+mail.smtpapi.add_section('-charge-', ['This ship is useless.'])
+mail.smtpapi.add_section('-bomber-', ['Only for sad vikings.'])
 ```
 
 #### set_sections
