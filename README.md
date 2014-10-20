@@ -165,7 +165,7 @@ mail.html = '<html><body>Stuff in here, yo!</body></html>'
 
 
 <blockquote>
-To utilize the X-SMTPAPI header, we have directly integrated the [SendGridJP/smtpapi-ruby](https://github.com/SendGridJP/smtpapi-ruby) gem.
+To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
 </blockquote>
 
 
