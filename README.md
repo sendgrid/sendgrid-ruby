@@ -166,9 +166,23 @@ mail.html = '<html><body>Stuff in here, yo!</body></html>'
 
 <blockquote>
 To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
+For more information, view our <a href=https://sendgrid.com/docs/API_Reference/SMTP_API/index.html>SMTPAPI docs page</a>.
 </blockquote>
 
+```ruby
 
+header = Smtpapi::Header.new
+header.add_to(['john.doe@example.com', 'jane.doe@example.com'])
+header.add_substitution('keep', ['secret'])        # sub = {keep: ['secret']}
+header.add_substitution('other', ['one', 'two'])   # sub = {keep: ['secret'], other: ['one', 'two']}
+header.add_unique_arg("unique_code", "8675309")
+header.add_category("Newsletter")
+header.add_filter('template', 'enable', 1)	   # necessary for each time the template engine is used
+header.add_filter('template', 'template_id', '1234-5678-9100-abcd')
+header.set_ip_pool("marketing_ip_pool")
+mail.smtpapi = header
+
+```
 
 ## Contributing
 
