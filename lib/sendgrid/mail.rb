@@ -4,7 +4,7 @@ require 'smtpapi'
 module SendGrid
   class Mail
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, 
-      :bcc, :reply_to, :date, :smtpapi, :attachments
+      :bcc, :reply_to, :date, :smtpapi, :attachments, :message_id
 
     def initialize(params = {})
       params.each do |k, v|
@@ -26,6 +26,16 @@ module SendGrid
       @attachments << {file: file, name: name}
     end
 
+    def add_header(key, value)
+      @headers[key] = value
+    end
+
+    # see http://tools.ietf.org/html/rfc5322#section-3.6.4 for what constitutes as a valid Message-ID format
+    def message_id=(message_id)
+      @message_id = message_id
+      add_header("Message-ID", message_id)
+    end
+
     def to_h
       payload = {
         :from        => @from,
@@ -42,6 +52,8 @@ module SendGrid
         :'x-smtpapi' => @smtpapi.to_json,
         :files       => ({} unless @attachments.empty?)
       }.reject {|k,v| v.nil?}
+
+      payload[:headers] = @headers.to_json if @headers.any?
 
       # smtpapi fixer
       if @to.nil? and not @smtpapi.to.empty?
