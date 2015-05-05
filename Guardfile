@@ -1,12 +1,10 @@
 notification :gntp
-guard 'rspec' do
-  # watch /lib/ files
-  watch(%r{^lib/(.+).rb$}) do |m|
-    "spec/#{m[1]}_spec.rb"
-  end
-
-  # watch /spec/ files
-  watch(%r{^spec/(.+).rb$}) do |m|
-    "spec/#{m[1]}.rb"
-  end
+guard :rspec, cmd: 'rspec' do
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch('spec/spec_helper.rb')  { "spec" }
 end
+
+# guard :rubocop, all_on_start: false do
+  # watch(%r{^lib/(.+)\.rb$})
+# end
