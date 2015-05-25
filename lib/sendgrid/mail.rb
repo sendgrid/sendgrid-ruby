@@ -106,21 +106,22 @@ module SendGrid
       @smtpapi ||= Smtpapi::Header.new
     end
 
+    # rubocop:disable Style/HashSyntax
     def to_h
       payload = {
-        from: from,
-        fromname: from_name,
-        subject: subject,
-        to: to,
-        toname: to_name,
-        date: date,
-        replyto: reply_to,
-        cc: cc,
-        bcc: bcc,
-        text: text,
-        html: html,
-        'x-smtpapi': smtpapi.to_json,
-        files: ({} unless attachments.empty?)
+        :from => from,
+        :fromname => from_name,
+        :subject => subject,
+        :to => to,
+        :toname => to_name,
+        :date => date,
+        :replyto => reply_to,
+        :cc => cc,
+        :bcc => bcc,
+        :text => text,
+        :html => html,
+        :'x-smtpapi' => smtpapi.to_json,
+        :files => ({} unless attachments.empty?)
       }.reject {|_, v| v.nil? || v.empty?}
 
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
@@ -134,5 +135,6 @@ module SendGrid
       end
       payload
     end
+    # rubocop:enable Style/HashSyntax
   end
 end
