@@ -69,5 +69,15 @@ describe 'SendGrid::Client' do
 
       expect {client.send(mail)}.to raise_error(SendGrid::Exception)
     end
+
+    it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
+      stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
+      mail = SendGrid::Mail.new
+
+      expect {client.send(mail)}.not_to raise_error
+    end
   end
 end
