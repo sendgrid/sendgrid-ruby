@@ -4,6 +4,8 @@ This Gem allows you to quickly and easily send emails through SendGrid's Web API
 
 You can read our official documentation on the Web API's Mail feature [here](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
+[![BuildStatus](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
+
 
 ## Installation
 
