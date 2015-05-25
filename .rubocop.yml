@@ -1,0 +1,30 @@
+Metrics/AbcSize:
+  Max: 37
+
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Max: 109
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 132
+
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 22
+
+Style/Documentation:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+Style/SpaceInsideBlockBraces:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: false

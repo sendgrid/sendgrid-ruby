@@ -13,3 +13,8 @@ notifications:
       <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
     format: html
     notify: true
+before_script:
+    - bundle install
+script:
+    - rubocop --fail-level=W
+    - rake
