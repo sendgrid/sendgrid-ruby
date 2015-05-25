@@ -120,5 +120,4 @@ describe 'SendGrid::Mail' do
       expect(@mail.reply_to).to eq('foo@example.com')
     end
   end
-
 end

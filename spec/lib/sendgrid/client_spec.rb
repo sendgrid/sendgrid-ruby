@@ -1,4 +1,6 @@
+require 'json'
 require 'spec_helper'
+require 'webmock/rspec'
 
 describe 'SendGrid::Client' do
   it 'should accept a username and password' do
@@ -21,18 +23,51 @@ describe 'SendGrid::Client' do
     expect(SendGrid::Client.new.endpoint).to eq('/api/mail.send.json')
   end
 
-  # it 'should send' do
-    # stub_request(:any, "www.example.com").
-       # to_return(body: "abc", status: 200, headers: { 'Content-Length' => 3 })
-    # res = RestClient.get("www.example.com")
-    # expect(res.code).to eq(200)
-  # end
+  describe ':send' do
+    it 'should make a request to sendgrid' do
+      stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-  # describe ':send' do
-    # it 'should accept a mail' do
-      # create_client
-      # m = SendGrid::Mail.new
-      # @client.send(m)
-    # end
-  # end
+      client = SendGrid::Client.new(api_key: 'abc123')
+      mail = SendGrid::Mail.new
+      res = client.send(mail)
+      expect(res.code).to eq(200)
+    end
+
+    it 'should have an auth header when using an api key' do
+      stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      mail = SendGrid::Mail.new
+
+      client.send(mail)
+
+      expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/mail.send.json')
+        .with(headers: {'Authorization' => 'Bearer abc123'})
+    end
+
+    it 'should have a username + password when using them' do
+      stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123')
+      mail = SendGrid::Mail.new
+
+      client.send(mail)
+
+      expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/mail.send.json')
+        .with(body: 'api_key=abc123&api_user=foobar')
+    end
+
+    it 'should raise a SendGrid::Exception if status is not 200' do
+      stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123')
+      mail = SendGrid::Mail.new
+
+      expect {client.send(mail)}.to raise_error(SendGrid::Exception)
+    end
+  end
 end
