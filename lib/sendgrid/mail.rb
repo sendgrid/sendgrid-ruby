@@ -3,8 +3,8 @@ require 'smtpapi'
 
 module SendGrid
   class Mail
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, 
-      :bcc, :reply_to, :date, :smtpapi, :attachments
+    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
+                  :bcc, :reply_to, :date, :smtpapi, :attachments
 
     def initialize(params = {})
       params.each do |k, v|
@@ -91,7 +91,7 @@ module SendGrid
     def add_attachment(path, name = nil)
       file   = File.new(path)
       name ||= File.basename(file)
-      @attachments << {file: file, name: name}
+      attachments << {file: file, name: name}
     end
 
     def headers
@@ -108,39 +108,31 @@ module SendGrid
 
     def to_h
       payload = {
-        :from        => from,
-        :fromname    => from_name,
-        :subject     => subject,
-        :to          => to,
-        :toname      => to_name,
-        :date        => date,
-        :replyto     => reply_to,
-        :cc          => cc,
-        :bcc         => bcc,
-        :text        => text,
-        :html        => html,
-        :'x-smtpapi' => smtpapi.to_json,
-        :files       => ({} unless attachments.empty?)
-      }.reject {|k,v| v.nil?}
+        from: from,
+        fromname: from_name,
+        subject: subject,
+        to: to,
+        toname: to_name,
+        date: date,
+        replyto: reply_to,
+        cc: cc,
+        bcc: bcc,
+        text: text,
+        html: html,
+        'x-smtpapi': smtpapi.to_json,
+        files: ({} unless attachments.empty?)
+      }.reject {|_, v| v.nil? || v.empty?}
 
-      # smtpapi bandaid
-      if to.nil? && !smtpapi.to.empty?
-        payload[:to] = payload[:from]
-      end
+      payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
-      payload[:to] = payload[:from] if no_adressee?
+      payload[:to] = payload[:from] unless payload[:to].nil? && smtpapi.to.empty?
 
-      return if  @attachments.empty?
-      @attachments.each do |file|
+      return payload if attachments.empty?
+
+      attachments.each do |file|
         payload[:files][file[:name]] = file[:file]
       end
       payload
-    end
-
-
-    private 
-    def smtpapi_bandaid
-
     end
   end
 end
