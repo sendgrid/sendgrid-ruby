@@ -1,10 +1,11 @@
 require 'json'
 require 'smtpapi'
+require_relative './template'
 
 module SendGrid
   class Mail
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, 
-      :bcc, :reply_to, :date, :smtpapi, :attachments
+    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
+      :bcc, :reply_to, :date, :smtpapi, :attachments, :template_id
 
     def initialize(params = {})
       params.each do |k, v|
@@ -39,7 +40,7 @@ module SendGrid
         :bcc         => @bcc,
         :text        => @text,
         :html        => @html,
-        :'x-smtpapi' => @smtpapi.to_json,
+        :'x-smtpapi' => smtpapi_json,
         :files       => ({} unless @attachments.empty?)
       }.reject {|k,v| v.nil?}
 
@@ -55,6 +56,22 @@ module SendGrid
       end
 
       payload
+    end
+
+    private
+
+    def template
+      return if template_id.nil?
+
+      @template ||= Template.new(template_id)
+    end
+
+    def smtpapi_json
+      if template
+        template.add_to_smtpapi(@smtpapi)
+      end
+
+      @smtpapi.to_json
     end
   end
 end
