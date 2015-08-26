@@ -103,11 +103,11 @@ module SendGrid
     def attachments
       @attachments ||= []
     end
-    
+
     def contents
       @contents ||= []
     end
-    
+
     def add_content(path, cid)
       mime_type = MimeMagic.by_path(path)
       file = Faraday::UploadIO.new(path, mime_type)
@@ -144,7 +144,7 @@ module SendGrid
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
       payload[:to] = payload[:from] if payload[:to].nil? and not smtpapi.to.empty?
-      
+
       unless attachments.empty?
         attachments.each do |file|
           payload[:files][file[:name]] = file[:file]
@@ -153,7 +153,7 @@ module SendGrid
           payload[:files].delete(":default")
         end
       end
-      
+
       unless contents.empty?
         contents.each do |content|
           payload[:content][content[:name]] = content[:cid]
@@ -163,7 +163,7 @@ module SendGrid
           payload[:content].delete(":default")
         end
       end
-      
+
       payload
     end
     # rubocop:enable Style/HashSyntax
