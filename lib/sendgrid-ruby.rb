@@ -1,4 +1,5 @@
 require_relative 'sendgrid/exceptions'
+require_relative 'sendgrid/template'
 require_relative 'sendgrid/mail'
 require_relative 'sendgrid/version'
 

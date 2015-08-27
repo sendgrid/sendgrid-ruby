@@ -231,6 +231,56 @@ module SendGrid
           end
         end
       end
+
+      describe 'x-smtpapi' do
+        it 'calls the helper method for the smtpapi' do
+          expect(subject).to receive(:smtpapi_json)
+          subject.to_h
+        end
+      end
+    end
+
+    describe '!#template' do
+      let(:template_id) { anything }
+
+      subject { described_class.new(api_user: anything, api_key: anything, template_id: template_id) }
+
+      context 'template_id is set' do
+        it 'initializes and returns a template' do
+          expect(Template).to receive(:new).with(template_id).and_call_original
+          expect(subject.send(:template)).to be_a(Template)
+        end
+      end
+
+      context 'template_id is not set' do
+        let(:template_id) { nil }
+
+        it 'returns nil' do
+          expect(subject.send(:template)).to be_nil
+        end
+      end
+    end
+
+    describe '!#smtpapi_json' do
+      let(:smtpapi) { Smtpapi::Header.new }
+
+      subject { described_class.new(smtpapi: smtpapi, api_user: anything, api_key: anything)}
+
+      it 'calls the to_json method on smtpapi' do
+        expect(smtpapi).to receive(:to_json)
+        subject.send(:smtpapi_json)
+      end
+
+      context 'a template id has been set' do
+        before do
+          subject.template_id = anything
+        end
+
+        it 'calls the add_to_smtpapi on the template' do
+          expect(subject.send(:template)).to receive(:add_to_smtpapi).with(smtpapi)
+          subject.send(:smtpapi_json)
+        end
+      end
     end
   end
 end
