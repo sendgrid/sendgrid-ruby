@@ -12,6 +12,14 @@ module SendGrid
       it 'sets substitutions to an empty hash' do
         expect(subject.instance_variable_get(:@substitutions)).to eq({})
       end
+
+      context 'initialized with nil' do
+        it 'raises an error' do
+          expect do
+            described_class.new(nil)
+          end.to raise_error(Recipient::NoAddress, 'Recipient address cannot be nil')
+        end
+      end
     end
 
     describe '#add_substitution' do
@@ -56,36 +64,12 @@ module SendGrid
         subject.add_to_smtpapi(smtp_api)
       end
 
-      context 'address is nil and/or substitutions is empty' do
-        subject { described_class.new(address) }
-        let(:address) { anything }
+      context 'substitutions is empty' do
+        let(:substitutions) { {} }
 
-        context 'address is nil' do
-          let(:address) { nil }
-
-          it 'does nothing' do
-            expect(smtp_api).to_not receive(:add_substitution)
-            subject.add_to_smtpapi(smtp_api)
-          end
-        end
-
-        context 'substitutions is empty' do
-          let(:substitutions) { {} }
-
-          it 'does nothing' do
-            expect(smtp_api).to_not receive(:add_substitution)
-            subject.add_to_smtpapi(smtp_api)
-          end
-        end
-
-        context 'both are nil/empty' do
-          let(:substitutions) { {} }
-          let(:address) { nil }
-
-          it 'does nothing' do
-            expect(smtp_api).to_not receive(:add_substitution)
-            subject.add_to_smtpapi(smtp_api)
-          end
+        it 'does nothing' do
+          expect(smtp_api).to_not receive(:add_substitution)
+          subject.add_to_smtpapi(smtp_api)
         end
       end
     end
