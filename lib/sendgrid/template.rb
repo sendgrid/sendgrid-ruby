@@ -18,8 +18,8 @@ module SendGrid
       return if smtpapi.nil?
 
       smtpapi.tap do |api|
-        api.add_filter(:template, :enabled, 1)
-        api.add_filter(:template, :id, id)
+        api.add_filter(:templates, :enable, 1)
+        api.add_filter(:templates, :template_id, id)
         recipients.each { |r| r.add_to_smtpapi(smtpapi) }
       end
     end
