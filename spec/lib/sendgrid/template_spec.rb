@@ -28,6 +28,34 @@ module SendGrid
           end.to_not raise_error
         end
       end
+
+      context 'with recipients' do
+        let(:substitution_key) { :foo }
+        let(:substitution_value) { :bar }
+        let(:recipients) do
+          [].tap do |recipients|
+            3.times.each do
+              r = Recipient.new("test+#{ rand(100) }@example.com")
+              r.add_substitution(substitution_key, substitution_value)
+              recipients << r
+            end
+          end
+        end
+
+        before do
+          recipients.each do |r|
+            subject.add_recipient(r)
+          end
+        end
+
+        it 'calls the recipients call to add to smtpapi' do
+          recipients.each do |recipient|
+            expect(recipient).to receive(:add_to_smtpapi).with(smtpapi)
+          end
+
+          subject.add_to_smtpapi(smtpapi)
+        end
+      end
     end
   end
 end
