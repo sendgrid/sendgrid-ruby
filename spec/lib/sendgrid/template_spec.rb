@@ -16,8 +16,8 @@ module SendGrid
       let(:smtpapi) { Smtpapi::Header.new }
 
       it 'adds enabled and the templates id' do
-        expect(smtpapi).to receive(:add_filter).with(:template, :enabled, 1)
-        expect(smtpapi).to receive(:add_filter).with(:template, :id, id)
+        expect(smtpapi).to receive(:add_filter).with(:templates, :enable, 1)
+        expect(smtpapi).to receive(:add_filter).with(:templates, :template_id, id)
         subject.add_to_smtpapi(smtpapi)
       end
 
