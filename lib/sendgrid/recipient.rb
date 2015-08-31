@@ -21,7 +21,8 @@ module SendGrid
       smtpapi.add_to(@address)
 
       @substitutions.each do |key, value|
-        smtpapi.add_substitution(key, [value])
+        existing = smtpapi.sub[key] || []
+        smtpapi.add_substitution(key, existing + [value])
       end
     end
   end

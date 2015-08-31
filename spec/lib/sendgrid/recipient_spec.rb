@@ -64,6 +64,20 @@ module SendGrid
         subject.add_to_smtpapi(smtp_api)
       end
 
+      context 'a substitution for the same key already exists' do
+        let(:substitutions) { { foo: :bar } }
+        let(:added_value) { [:bar, :rab] }
+
+        before do
+          smtp_api.add_substitution(:foo, [:rab])
+        end
+
+        it 'adds to it' do
+          expect(smtp_api).to receive(:add_substitution).with(:foo, array_including(added_value))
+          subject.add_to_smtpapi(smtp_api)
+        end
+      end
+
       context 'substitutions is empty' do
         let(:substitutions) { {} }
 
