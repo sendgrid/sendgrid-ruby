@@ -11,6 +11,7 @@ module SendGrid
       params.each do |k, v|
         send(:"#{k}=", v) unless v.nil?
       end
+
       yield self if block_given?
     end
 
