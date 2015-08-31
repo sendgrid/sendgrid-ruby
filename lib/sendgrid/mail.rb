@@ -4,13 +4,18 @@ require_relative './template'
 
 module SendGrid
   class Mail
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-      :bcc, :reply_to, :date, :smtpapi, :attachments, :template
+
+    PAYLOAD_PARAMS = %i[bcc cc date from from_name html reply_to subject text to to_name].freeze
+
+    MAIL_PARAMS = (PAYLOAD_PARAMS + %i[attachments smtpapi headers template]).freeze
+
+    attr_accessor *MAIL_PARAMS
 
     def initialize(params = {})
-      params.each do |k, v|
-        instance_variable_set("@#{k}", v) unless v.nil?
+      MAIL_PARAMS.each do |mail_param|
+        self.send("#{mail_param}=", params[mail_param]) unless params[mail_param].nil?
       end
+
       @headers     ||= {}
       @attachments ||= []
       @smtpapi     ||= Smtpapi::Header.new
@@ -28,34 +33,46 @@ module SendGrid
     end
 
     def to_h
-      payload = {
-        :from        => @from,
-        :fromname    => @from_name,
-        :subject     => @subject,
-        :to          => @to,
-        :toname      => @to_name,
-        :date        => @date,
-        :replyto     => @reply_to,
-        :cc          => @cc,
-        :bcc         => @bcc,
-        :text        => @text,
-        :html        => @html,
+      payload = {}
+
+      PAYLOAD_PARAMS.each do |payload_param|
+        payload[payload_mapping(payload_param)] = self.send(payload_param)
+      end
+
+      payload.merge!({
         :'x-smtpapi' => smtpapi_json,
         :files       => ({} unless @attachments.empty?)
-      }.reject {|k,v| v.nil?}
+      })
 
+      payload.reject! {|k,v| v.nil?}
+
+      assign_missing_to(payload)
+      extract_attachments(payload)
+
+      payload
+    end
+
+    def payload_mapping(key)
+      {
+        from_name: :fromname,
+        to_name: :toname,
+        reply_to: :replyto,
+      }[key] || key
+    end
+
+    def assign_missing_to(payload)
       # smtpapi fixer
       if @to.nil? and not @smtpapi.to.empty?
         payload[:to] = payload[:from]
       end
+    end
 
+    def extract_attachments(payload)
       unless @attachments.empty?
         @attachments.each do |file|
           payload[:files][file[:name]] = file[:file]
         end
       end
-
-      payload
     end
 
     def smtpapi_json
