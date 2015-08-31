@@ -59,7 +59,7 @@ module SendGrid
     end
 
     def smtpapi_json
-      unless template.nil? && template.is_a?(Template)
+      if !template.nil? && template.is_a?(Template)
         template.add_to_smtpapi(@smtpapi)
       end
 
