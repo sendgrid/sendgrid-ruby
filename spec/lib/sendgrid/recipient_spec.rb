@@ -58,7 +58,7 @@ module SendGrid
 
       it 'calls add_substitution as many times as there are substitution keys' do
         substitutions.each do |key, value|
-          expect(smtp_api).to receive(:add_substitution).with(key, value)
+          expect(smtp_api).to receive(:add_substitution).with(key, [value])
         end
 
         subject.add_to_smtpapi(smtp_api)
