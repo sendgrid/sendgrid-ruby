@@ -14,14 +14,14 @@ module SendGrid
     end
 
     def add_substitution(key, value)
-      substitutions[key.to_sym] = value
+      substitutions[key] = value
     end
 
     def add_to_smtpapi(smtpapi)
       smtpapi.add_to(@address)
 
       @substitutions.each do |key, value|
-        smtpapi.add_substitution(key, value)
+        smtpapi.add_substitution(key, [value])
       end
     end
   end

@@ -5,7 +5,7 @@ require_relative './template'
 module SendGrid
   class Mail
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-      :bcc, :reply_to, :date, :smtpapi, :attachments, :template_id
+      :bcc, :reply_to, :date, :smtpapi, :attachments, :template
 
     def initialize(params = {})
       params.each do |k, v|
@@ -58,16 +58,8 @@ module SendGrid
       payload
     end
 
-    private
-
-    def template
-      return if template_id.nil?
-
-      @template ||= Template.new(template_id)
-    end
-
     def smtpapi_json
-      if template
+      unless template.nil? && template.is_a?(Template)
         template.add_to_smtpapi(@smtpapi)
       end
 
