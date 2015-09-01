@@ -74,10 +74,8 @@ module SendGrid
       return if @attachments.empty?
 
       {}.tap do |files|
-        unless @attachments.empty?
-          @attachments.each do |file|
-            files[file[:name]] = file[:file]
-          end
+        @attachments.each do |file|
+          files[file[:name]] = file[:file]
         end
       end
     end
