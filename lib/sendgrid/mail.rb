@@ -41,13 +41,12 @@ module SendGrid
 
       payload.merge!({
         :'x-smtpapi' => smtpapi_json,
-        :files       => ({} unless @attachments.empty?)
+        :files       => extract_attachments(payload)
       })
 
       payload.reject! {|k,v| v.nil?}
 
       assign_missing_to(payload)
-      extract_attachments(payload)
 
       payload
     end
@@ -68,9 +67,13 @@ module SendGrid
     end
 
     def extract_attachments(payload)
-      unless @attachments.empty?
-        @attachments.each do |file|
-          payload[:files][file[:name]] = file[:file]
+      return if @attachments.empty?
+
+      {}.tap do |files|
+        unless @attachments.empty?
+          @attachments.each do |file|
+            files[file[:name]] = file[:file]
+          end
         end
       end
     end
