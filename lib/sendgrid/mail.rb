@@ -51,6 +51,10 @@ module SendGrid
       payload
     end
 
+    # This mapping is to ensure that keys in the request payload
+    #  match requirements. This enables the use of common idiomatic
+    #  ruby variables (snake_cased) within class logic and easy translation
+    #  for request preparation.
     def payload_mapping(key)
       {
         from_name: :fromname,
