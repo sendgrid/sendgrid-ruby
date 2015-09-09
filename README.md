@@ -45,14 +45,14 @@ mail = SendGrid::Mail.new do |m|
   m.text = 'I heard you like pineapple.'
 end
 
-puts client.send(mail) 
+puts client.send(mail)
 # {"message":"success"}
 ```
 
 You can also create a Mail object with a hash:
 ```ruby
 client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
-	
+
 # {"message":"success"}
 ```
 
@@ -192,4 +192,4 @@ mail.smtpapi = header
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-***Hit up [@rbin](http://twitter.com/rbin) or [@eddiezane](http://twitter.com/eddiezane) on Twitter with any issues.***
+***Hit up [@rbin](http://twitter.com/rbin) on Twitter with any issues.***
