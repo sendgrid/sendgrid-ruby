@@ -33,11 +33,19 @@ module SendGrid
     end
 
     def to_h
-      payload = {}
-
-      PAYLOAD_PARAMS.each do |payload_param|
-        payload[payload_mapping(payload_param)] = self.send(payload_param)
-      end
+      payload = {
+        from: from,
+        fromname: from_name,
+        subject: subject,
+        to: to,
+        toname: to_name,
+        date: date,
+        replyto: reply_to,
+        cc: cc,
+        bcc: bcc,
+        text: text,
+        html: html
+      }
 
       payload.merge!({
         :'x-smtpapi' => smtpapi_json,
@@ -49,18 +57,6 @@ module SendGrid
       assign_missing_to(payload)
 
       payload
-    end
-
-    # This mapping is to ensure that keys in the request payload
-    #  match requirements. This enables the use of common idiomatic
-    #  ruby variables (snake_cased) within class logic and easy translation
-    #  for request preparation.
-    def payload_mapping(key)
-      {
-        from_name: :fromname,
-        to_name: :toname,
-        reply_to: :replyto,
-      }[key] || key
     end
 
     def assign_missing_to(payload)
