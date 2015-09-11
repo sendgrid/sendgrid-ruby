@@ -83,7 +83,6 @@ params = {
 }
 ```
 
-
 #### Setting Params
 
 Params can be set in the usual Ruby ways, including a block or a hash.
@@ -160,9 +159,58 @@ mail = SendGrid::Mail.new
 mail.html = '<html><body>Stuff in here, yo!</body></html>'
 ```
 
+## Working with Templates
+
+An easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Template_Engine/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
+
+Create some `Recipients`
+
+```ruby
+users = User.where(email: ['first@gmail.com', 'second@gmail.com'])
+
+recipients = []
+
+users.each do |user|
+  recipient = SendGrid::Recipient.new(user.email)
+  recipient.add_substitution('first_name', user.first_name)
+  recipient.add_substitution('city', user.city)
+
+  recipients << recipient
+end
+```
+
+Create a `Template`
+
+```ruby
+template = SendGrid::Template.new('MY_TEMPLATE_ID')
+```
+
+Create a `Client`
+
+```ruby
+client = SendGrid::Client.new(api_user: my_user, api_key: my_key)
+```
+
+Initialize mail defaults and create the `TemplateMailer`
+
+```ruby
+mail_defaults = {
+  from: 'admin@email.com',
+  html: '<h1>I like email</h1>',
+  text: 'I like email'
+  subject: 'Email is great',
+}
+
+mailer = TemplateMailer.new(client, template, recipients)
+```
+
+Mail it!
+
+```ruby
+mailer.mail(mail_defaults)
+```
 
 ## Using SendGrid's X-SMTPAPI Header
-
 
 <blockquote>
 To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
