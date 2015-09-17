@@ -121,18 +121,22 @@ module SendGrid
         :text => text,
         :html => html,
         :'x-smtpapi' => smtpapi.to_json,
-        :files => ({} unless attachments.empty?)
+        :files => ({":default"=>"0"} unless attachments.empty?)
+        # If I don't define a default value, I get a Nil error when
+        # in attachments.each do |file|
+        #:files => ({} unless attachments.empty?)
       }.reject {|_, v| v.nil? || v.empty?}
 
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
-      payload[:to] = payload[:from] unless payload[:to].nil? && smtpapi.to.empty?
+      payload[:to] = payload[:from] unless (not payload[:to].nil?) && smtpapi.to.empty?
 
       return payload if attachments.empty?
-
+      
       attachments.each do |file|
         payload[:files][file[:name]] = file[:file]
       end
+      payload[:files].delete(":default")
       payload
     end
     # rubocop:enable Style/HashSyntax

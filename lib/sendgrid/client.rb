@@ -37,10 +37,11 @@ module SendGrid
         end
 
         req.body = payload
+        puts "final payload= " + req.body.to_s
       end
 
       fail SendGrid::Exception, res.body if raise_exceptions? && res.status != 200
-
+    
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
 
