@@ -26,7 +26,7 @@ mail = SendGrid::Mail.new do |m|
 end
 mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 result = client.send(mail)
-puts result.code
-puts result.body
+# puts result.code
+# puts result.body
 
 # puts client.send(SendGrid::Mail.new(to: 'elmer.thomas@sendgrid.com', from: 'elmer@thinkingserious.com', subject: 'Hello world!', text: 'Hi there, testing from Ruby!', html: '<b>Hi there, testing from Ruby!</b>'))
