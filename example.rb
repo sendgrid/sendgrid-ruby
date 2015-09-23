@@ -14,8 +14,8 @@ sendgrid_apikey = ENV["SENDGRID_APIKEY"]
 # client = SendGrid::Client.new(api_user: sendgrid_username, api_key: sendgrid_password)
 
 client = SendGrid::Client.new do |c|
-  c.api_user = sendgrid_username
-  c.api_key = sendgrid_password
+  # c.api_user = sendgrid_username
+  c.api_key = sendgrid_apikey
 end
 
 mail = SendGrid::Mail.new do |m|
@@ -26,7 +26,7 @@ mail = SendGrid::Mail.new do |m|
 end
 mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 result = client.send(mail)
-# puts result.code
-# puts result.body
+puts result.code
+puts result.body
 
 # puts client.send(SendGrid::Mail.new(to: 'elmer.thomas@sendgrid.com', from: 'elmer@thinkingserious.com', subject: 'Hello world!', text: 'Hi there, testing from Ruby!', html: '<b>Hi there, testing from Ruby!</b>'))
