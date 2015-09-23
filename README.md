@@ -265,8 +265,11 @@ filter = {
 }
 mail.smtpapi.set_filters(filter)
 ```
+## Testing ##
 
-## Contributing
+`bundle exec rake test`
+
+## Contributing ##
 
 1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -274,4 +277,4 @@ mail.smtpapi.set_filters(filter)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-***Hit up [@rbin](http://twitter.com/rbin) or [@eddiezane](http://twitter.com/eddiezane) on Twitter with any issues.***
+***Hit up [@rbin](http://twitter.com/rbin) or [@sendgrid](http://twitter.com/sendgrid) on Twitter with any issues.***
