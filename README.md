@@ -36,6 +36,11 @@ client = SendGrid::Client.new do |c|
   c.api_user = 'SENDGRID_USERNAME'
   c.api_key = 'SENDGRID_PASSWORD'
 end
+
+# or as a block with the API key only #
+client = SendGrid::Client.new do |c|
+  c.api_key = 'SENDGRID_APIKEY'
+end
 ```
 
 Create a new Mail object and send:

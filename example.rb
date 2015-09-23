@@ -7,9 +7,9 @@ require_relative "lib/sendgrid_ruby.rb"
 require 'dotenv'
 Dotenv.load
 
-sendgrid_username = ENV["SENDGRID_USERNAME"]
-sendgrid_password = ENV["SENDGRID_PASSWORD"]
-sendgrid_apikey = ENV["SENDGRID_APIKEY"]
+# sendgrid_username = ENV['SENDGRID_USERNAME']
+# sendgrid_password = ENV['SENDGRID_PASSWORD']
+sendgrid_apikey = ENV['SENDGRID_APIKEY']
 
 # client = SendGrid::Client.new(api_user: sendgrid_username, api_key: sendgrid_password)
 
