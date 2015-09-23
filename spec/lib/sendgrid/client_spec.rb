@@ -57,7 +57,7 @@ describe 'SendGrid::Client' do
       client.send(mail)
 
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/mail.send.json')
-        .with(body: 'api_key=abc123&api_user=foobar')
+        .with(body: 'api_key=abc123&api_user=foobar&to=')
     end
 
     it 'should raise a SendGrid::Exception if status is not 200' do
