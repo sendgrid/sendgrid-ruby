@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+- 2.2
+- 2.0
+- 1.9.3
+notifications:
+  hipchat:
+    rooms:
+      secure: gYBEwOGBTxHE2nrxsHQqp2UdjRtCX04wVLYEimeT9RG/0LClS4nzJF7DaXLWlAwgLPmk+KV2+nXuLO5oausBr9ODmWhho8G0F90RPR47NupcvT1RM+I2ZbxSjHCUICL22mdnZd8ye/mrk/YtFWYmgmH7ILRK3BuYovXFoKoRnLg=
+    template:
+    - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
+      Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
+      <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
+    format: html
+    notify: false
+before_script:
+    - bundle install
+script:
+    - rubocop --fail-level=E
+    - rake

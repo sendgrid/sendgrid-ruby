@@ -4,6 +4,8 @@ This Gem allows you to quickly and easily send emails through SendGrid's Web API
 
 You can read our official documentation on the Web API's Mail feature [here](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
+[![BuildStatus](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
+
 
 ## Installation
 
@@ -33,6 +35,11 @@ client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_
 client = SendGrid::Client.new do |c|
   c.api_user = 'SENDGRID_USERNAME'
   c.api_key = 'SENDGRID_PASSWORD'
+end
+
+# or as a block with the API key only #
+client = SendGrid::Client.new do |c|
+  c.api_key = 'SENDGRID_APIKEY'
 end
 ```
 
@@ -183,8 +190,11 @@ header.set_ip_pool("marketing_ip_pool")
 mail.smtpapi = header
 
 ```
+## Testing ##
 
-## Contributing
+`bundle exec rake test`
+
+## Contributing ##
 
 1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -192,4 +202,4 @@ mail.smtpapi = header
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-***Hit up [@rbin](http://twitter.com/rbin) or [@eddiezane](http://twitter.com/eddiezane) on Twitter with any issues.***
+***Hit up [@rbin](http://twitter.com/rbin) or [@sendgrid](http://twitter.com/sendgrid) on Twitter with any issues.***
