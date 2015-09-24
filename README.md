@@ -194,6 +194,10 @@ mail.smtpapi = header
 
 `bundle exec rake test`
 
+## Deploying ##
+
+`rake release`
+
 ## Contributing ##
 
 1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
