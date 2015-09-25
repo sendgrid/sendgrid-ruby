@@ -52,15 +52,20 @@ mail = SendGrid::Mail.new do |m|
   m.text = 'I heard you like pineapple.'
 end
 
-puts client.send(mail) 
-# {"message":"success"}
+res = client.send(mail)
+puts res.code
+puts res.body
+# 200
+# {"message"=>"success"}
 ```
 
 You can also create a Mail object with a hash:
 ```ruby
-client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
-	
-# {"message":"success"}
+res = client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
+puts res.code
+puts res.body
+# 200
+# {"message"=>"success"}
 ```
 
 #### Attachments
