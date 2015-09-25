@@ -2,7 +2,7 @@
 # using ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-darwin14]
 # attachment is sent but only a corrupted 1k file
 
-require_relative "lib/sendgrid_ruby.rb"
+require_relative "lib/sendgrid-ruby.rb"
 
 require 'dotenv'
 Dotenv.load
