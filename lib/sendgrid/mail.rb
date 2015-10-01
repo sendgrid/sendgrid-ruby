@@ -131,7 +131,7 @@ module SendGrid
 
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
-      payload[:to] = payload[:from] unless (not payload[:to].nil?) && smtpapi.to.empty?
+      payload[:to] = payload[:from] if payload[:to].nil? and not smtpapi.to.empty?
 
       return payload if attachments.empty?
       
