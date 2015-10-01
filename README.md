@@ -201,7 +201,13 @@ mail.smtpapi = header
 
 ## Deploying ##
 
-`rake release`
+1. Confirm tests pass `bundle exec rake test`
+2. Bump the version in `lib/sendgrid/version.rb` and `spec/lib/sendgrid_spec.rb`
+3. Update CHANGELOG.md
+4. Commit Version bump vX.X.X
+5. `rake release`
+6. Push changes to GitHub
+7. Release tag on GitHub vX.X.X
 
 ## Contributing ##
 
