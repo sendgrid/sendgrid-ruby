@@ -72,11 +72,6 @@ module SendGrid
         subject.mail
       end
 
-      it 'adds the template to the mail object' do
-        expect_any_instance_of(Mail).to receive(:template=).with(template)
-        subject.mail
-      end
-
       it 'calls send on the client with the mail object' do
         expect(client).to receive(:send).with(mail_to_h)
         subject.mail

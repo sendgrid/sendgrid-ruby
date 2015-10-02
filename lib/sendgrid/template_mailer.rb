@@ -56,7 +56,8 @@ module SendGrid
     def mail(params = {})
       mail = Mail.new(params)
 
-      mail.template = @template
+      # TODO Modify to support templating
+      # mail.template = @template
       @client.send(mail.to_h)
     end
   end
