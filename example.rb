@@ -24,7 +24,7 @@ mail = SendGrid::Mail.new do |m|
   m.subject = 'Hello world!'
   m.text = 'I heard you like pineapple.'
 end
-mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
+#mail.add_attachment('/tmp/beach.jpg', 'beach.jpg')
 result = client.send(mail)
 puts result.code
 puts result.body

@@ -5,7 +5,7 @@ require 'mimemagic'
 module SendGrid
   class Mail
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-                  :bcc, :reply_to, :date, :smtpapi, :attachments
+                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content
 
     def initialize(params = {})
       params.each do |k, v|
@@ -103,6 +103,17 @@ module SendGrid
     def attachments
       @attachments ||= []
     end
+    
+    def contents
+      @contents ||= []
+    end
+    
+    def add_content(path, cid)
+      mime_type = MimeMagic.by_path(path)
+      file = Faraday::UploadIO.new(path, mime_type)
+      name ||= File.basename(file)
+      contents << {file: file, cid: cid, name: name}
+    end
 
     def smtpapi
       @smtpapi ||= Smtpapi::Header.new
@@ -123,7 +134,8 @@ module SendGrid
         :text => text,
         :html => html,
         :'x-smtpapi' => smtpapi.to_json,
-        :files => ({":default"=>"0"} unless attachments.empty?)
+        :content => ({":default"=>"0"} unless contents.empty?),
+        :files => ({":default"=>"0"} unless attachments.empty? and contents.empty?)
         # If I don't define a default value, I get a Nil error when
         # in attachments.each do |file|
         #:files => ({} unless attachments.empty?)
@@ -133,12 +145,25 @@ module SendGrid
 
       payload[:to] = payload[:from] if payload[:to].nil? and not smtpapi.to.empty?
 
-      return payload if attachments.empty?
+      return payload if attachments.empty? and contents.empty?
       
-      attachments.each do |file|
-        payload[:files][file[:name]] = file[:file]
+      unless attachments.empty?
+        attachments.each do |file|
+          payload[:files][file[:name]] = file[:file]
+        end
+        payload[:files].delete(":default")
       end
-      payload[:files].delete(":default")
+      
+      return payload if contents.empty?
+      
+      unless contents.empty?
+        contents.each do |content|
+          payload[:content][content[:name]] = content[:cid]
+          payload[:files][content[:name]] = content[:file]
+        end
+        payload[:contents].delete(":default")
+      end
+      
       payload
     end
     # rubocop:enable Style/HashSyntax
