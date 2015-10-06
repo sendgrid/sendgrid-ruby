@@ -144,25 +144,28 @@ module SendGrid
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
       payload[:to] = payload[:from] if payload[:to].nil? and not smtpapi.to.empty?
-
-      return payload if attachments.empty? and contents.empty?
       
       unless attachments.empty?
         attachments.each do |file|
           payload[:files][file[:name]] = file[:file]
         end
-        payload[:files].delete(":default")
+        if payload[:files].has_key?(":default")
+          payload[:files].delete(":default")
+        end
       end
-      
-      return payload if contents.empty?
       
       unless contents.empty?
         contents.each do |content|
           payload[:content][content[:name]] = content[:cid]
           payload[:files][content[:name]] = content[:file]
         end
-        payload[:contents].delete(":default")
+        if payload[:content].has_key?(":default")
+          payload[:content].delete(":default")
+        end
       end
+      
+      puts payload[:files]
+      puts payload[:content]
       
       payload
     end
