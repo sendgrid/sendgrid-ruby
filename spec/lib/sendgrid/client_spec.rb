@@ -23,6 +23,10 @@ describe 'SendGrid::Client' do
     expect(SendGrid::Client.new.endpoint).to eq('/api/mail.send.json')
   end
 
+  it 'accepts a block' do
+    expect { |b| SendGrid::Client.new(&b) }.to yield_control
+  end
+
   describe ':send' do
     it 'should make a request to sendgrid' do
       stub_request(:any, 'https://api.sendgrid.com/api/mail.send.json')
