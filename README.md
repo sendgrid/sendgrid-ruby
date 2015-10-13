@@ -106,7 +106,8 @@ params = {
 	:reply_to,
 	:date,
 	:smtpapi,
-	:attachments
+	:attachments,
+	:template
 }
 ```
 
@@ -186,9 +187,18 @@ mail = SendGrid::Mail.new
 mail.html = '<html><body>Stuff in here, yo!</body></html>'
 ```
 
+#### :template
+
+The **:template** param allows us to specify a template object for this email to use. The initialized `Template` will automatically be included in the `smtpapi` header and passed to SendGrid.
+
+```ruby
+template = SendGrid::Template.new('MY_TEMPLATE_ID')
+mail.template = template
+```
+
 ## Working with Templates
 
-An easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Template_Engine/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
+Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Template_Engine/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
 
 Create some `Recipients`
 
