@@ -1,5 +1,4 @@
 require 'smtpapi'
-require_relative './recipient'
 
 module SendGrid
   class Template

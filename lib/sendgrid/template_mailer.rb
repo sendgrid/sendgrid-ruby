@@ -1,7 +1,3 @@
-require_relative './recipient'
-require_relative './template'
-require_relative './mail'
-
 module SendGrid
   class InvalidClient < StandardError; end
   class InvalidTemplate < StandardError; end
