@@ -5,7 +5,7 @@ require 'mimemagic'
 module SendGrid
   class Mail
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content
+                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content, :template
 
     def initialize(params = {})
       params.each do |k, v|
@@ -120,6 +120,14 @@ module SendGrid
       @smtpapi ||= Smtpapi::Header.new
     end
 
+    def smtpapi_json
+      if !template.nil? && template.is_a?(Template)
+        template.add_to_smtpapi(smtpapi)
+      end
+
+      smtpapi.to_json
+    end
+
     # rubocop:disable Style/HashSyntax
     def to_h
       payload = {
@@ -134,7 +142,7 @@ module SendGrid
         :bcc => bcc,
         :text => text,
         :html => html,
-        :'x-smtpapi' => smtpapi.to_json,
+        :'x-smtpapi' => smtpapi_json,
         :content => ({":default"=>"0"} unless contents.empty?),
         :files => ({":default"=>"0"} unless attachments.empty? and contents.empty?)
         # If I don't define a default value, I get a Nil error when

@@ -120,4 +120,32 @@ describe 'SendGrid::Mail' do
       expect(@mail.reply_to).to eq('foo@example.com')
     end
   end
+
+  describe 'smtpapi_json' do
+    before do
+      @mail.template = template
+    end
+
+    context 'a template has been set' do
+      let(:template) { SendGrid::Template.new(anything) }
+
+      it 'adds the template to the smtpapi header' do
+        expect(@mail.template).to receive(:add_to_smtpapi).with(@mail.smtpapi)
+        expect(@mail.smtpapi).to receive(:to_json)
+
+        @mail.to_h
+      end
+    end
+
+    context 'no template has been set' do
+      let(:template) { nil }
+
+      it 'does not add anything to the smtpapi header' do
+        expect_any_instance_of(SendGrid::Template).to_not receive(:add_to_smtpapi)
+        expect(@mail.smtpapi).to receive(:to_json)
+
+        @mail.to_h
+      end
+    end
+  end
 end
