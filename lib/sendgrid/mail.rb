@@ -164,9 +164,6 @@ module SendGrid
         end
       end
       
-      puts payload[:files]
-      puts payload[:content]
-      
       payload
     end
     # rubocop:enable Style/HashSyntax
