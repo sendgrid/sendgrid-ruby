@@ -22,9 +22,11 @@ mail = SendGrid::Mail.new do |m|
   m.to = 'elmer.thomas@sendgrid.com'
   m.from = 'elmer@thinkingserious.com'
   m.subject = 'Hello world!'
-  m.text = 'I heard you like pineapple.'
+  m.text = 'I heard you like the beach.'
+  m.html = 'I heard you like the beach <div><img src="cid:beach"></div>'
 end
-mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
+mail.add_content('/tmp/beach.jpg', 'beach')
+mail.add_attachment('/tmp/report.pdf', 'report.pdf')
 result = client.send(mail)
 puts result.code
 puts result.body

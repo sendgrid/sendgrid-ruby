@@ -75,6 +75,21 @@ Attachments can be added to a Mail object with the `add_attachment` method. The 
 mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 ```
 
+#### Inline Content
+
+Inline content can be added to a Mail object with the `add_content` method. The first parameter is the path to the file, the second parameter is the cid to be referenced in the html. 
+```ruby
+mail = SendGrid::Mail.new do |m|
+  m.to = 'test@sendgrid.com'
+  m.from = 'taco@cat.limo'
+  m.subject = 'Hello world!'
+  m.text = 'I heard you like the beach.'
+  m.html = 'I heard you like the beach <div><img src="cid:beach"></div>'
+end
+mail.add_content('/tmp/beach.jpg', 'beach')
+result = client.send(mail)
+```
+
 #### Available Params
 
 ```ruby
@@ -201,7 +216,13 @@ mail.smtpapi = header
 
 ## Deploying ##
 
-`rake release`
+1. Confirm tests pass `bundle exec rake test`
+2. Bump the version in `lib/sendgrid/version.rb` and `spec/lib/sendgrid_spec.rb`
+3. Update CHANGELOG.md
+4. Commit Version bump vX.X.X
+5. `rake release`
+6. Push changes to GitHub
+7. Release tag on GitHub vX.X.X
 
 ## Contributing ##
 
