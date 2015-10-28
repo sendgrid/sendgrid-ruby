@@ -5,12 +5,13 @@ require 'mimemagic'
 module SendGrid
   class Mail
     attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content
+                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content, :template
 
     def initialize(params = {})
       params.each do |k, v|
         send(:"#{k}=", v) unless v.nil?
       end
+
       yield self if block_given?
     end
 
@@ -103,11 +104,11 @@ module SendGrid
     def attachments
       @attachments ||= []
     end
-    
+
     def contents
       @contents ||= []
     end
-    
+
     def add_content(path, cid)
       mime_type = MimeMagic.by_path(path)
       file = Faraday::UploadIO.new(path, mime_type)
@@ -117,6 +118,14 @@ module SendGrid
 
     def smtpapi
       @smtpapi ||= Smtpapi::Header.new
+    end
+
+    def smtpapi_json
+      if !template.nil? && template.is_a?(Template)
+        template.add_to_smtpapi(smtpapi)
+      end
+
+      smtpapi.to_json
     end
 
     # rubocop:disable Style/HashSyntax
@@ -133,7 +142,7 @@ module SendGrid
         :bcc => bcc,
         :text => text,
         :html => html,
-        :'x-smtpapi' => smtpapi.to_json,
+        :'x-smtpapi' => smtpapi_json,
         :content => ({":default"=>"0"} unless contents.empty?),
         :files => ({":default"=>"0"} unless attachments.empty? and contents.empty?)
         # If I don't define a default value, I get a Nil error when
@@ -144,7 +153,7 @@ module SendGrid
       payload.delete(:'x-smtpapi') if payload[:'x-smtpapi'] == '{}'
 
       payload[:to] = payload[:from] if payload[:to].nil? and not smtpapi.to.empty?
-      
+
       unless attachments.empty?
         attachments.each do |file|
           payload[:files][file[:name]] = file[:file]
@@ -153,7 +162,7 @@ module SendGrid
           payload[:files].delete(":default")
         end
       end
-      
+
       unless contents.empty?
         contents.each do |content|
           payload[:content][content[:name]] = content[:cid]
@@ -163,7 +172,7 @@ module SendGrid
           payload[:content].delete(":default")
         end
       end
-      
+
       payload
     end
     # rubocop:enable Style/HashSyntax

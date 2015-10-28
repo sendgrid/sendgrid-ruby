@@ -3,7 +3,7 @@ require 'faraday'
 module SendGrid
   class Client
     attr_accessor :api_user, :api_key, :protocol, :host, :port, :url, :endpoint,
-                  :user_agent
+                  :user_agent, :template
     attr_writer :adapter, :conn, :raise_exceptions
 
     def initialize(params = {})
@@ -25,7 +25,7 @@ module SendGrid
       res = conn.post do |req|
         payload = mail.to_h
         req.url(endpoint)
-        
+
         # Check if using username + password or API key
         if api_user
           # Username + password
@@ -34,12 +34,12 @@ module SendGrid
           # API key
           req.headers['Authorization'] = "Bearer #{api_key}"
         end
-        
+
         req.body = payload
       end
-      
+
       fail SendGrid::Exception, res.body if raise_exceptions? && res.status != 200
-    
+
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
 
