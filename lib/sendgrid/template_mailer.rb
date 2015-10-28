@@ -29,11 +29,11 @@ module SendGrid
     # mail_defaults = {
     #   from: 'admin@email.com',
     #   html: '<h1>I like email</h1>',
-    #   text: 'I like email'
+    #   text: 'I like email',
     #   subject: 'Email is great',
     # }
     #
-    # mailer = TemplateMailer.new(client, template, recipients)
+    # mailer = SendGrid::TemplateMailer.new(client, template, recipients)
     # mailer.mail(mail_defaults)
     def initialize(client, template, recipients = [])
       @client = client

@@ -234,11 +234,11 @@ Initialize mail defaults and create the `TemplateMailer`
 mail_defaults = {
   from: 'admin@email.com',
   html: '<h1>I like email</h1>',
-  text: 'I like email'
+  text: 'I like email',
   subject: 'Email is great',
 }
 
-mailer = TemplateMailer.new(client, template, recipients)
+mailer = SendGrid::TemplateMailer.new(client, template, recipients)
 ```
 
 Mail it!
