@@ -4,8 +4,8 @@ require 'mimemagic'
 
 module SendGrid
   class Mail
-    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc,
-                  :bcc, :reply_to, :date, :smtpapi, :attachments, :content, :template
+    attr_accessor :to, :to_name, :from, :from_name, :subject, :text, :html, :cc, :cc_name,
+                  :bcc, :bcc_name, :reply_to, :date, :smtpapi, :attachments, :content, :template
 
     def initialize(params = {})
       params.each do |k, v|
@@ -139,7 +139,9 @@ module SendGrid
         :date => date,
         :replyto => reply_to,
         :cc => cc,
+        :ccname => cc_name,
         :bcc => bcc,
+        :bccname => bcc_name,
         :text => text,
         :html => html,
         :'x-smtpapi' => smtpapi_json,
