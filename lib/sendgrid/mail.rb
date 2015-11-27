@@ -79,7 +79,7 @@ module SendGrid
       else
         bcc << email
       end
-      add_bcc_name(name)
+      add_bcc_name(name) if name
     end
 
     def add_bcc_name(name)

@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2015-11-26 ##
+## Added
+Support for cc_name and bcc_name via [#31](https://github.com/sendgrid/sendgrid-ruby/pull/31)
+
+Thanks [Dylan](https://github.com/DylanGriffith)!
+
 ## [1.1.5] - 2015-10-28 ##
 ## Added
 Support for [Templates](https://github.com/sendgrid/sendgrid-ruby#working-with-templates) via [#28](https://github.com/sendgrid/sendgrid-ruby/pull/28)

@@ -2,6 +2,7 @@
 # using ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-darwin14]
 # attachment is sent but only a corrupted 1k file
 
+
 require_relative "lib/sendgrid-ruby.rb"
 
 require 'dotenv'
@@ -19,8 +20,14 @@ client = SendGrid::Client.new do |c|
 end
 
 mail = SendGrid::Mail.new do |m|
-  m.to = 'elmer.thomas@sendgrid.com'
-  m.from = 'elmer@thinkingserious.com'
+  m.to = 'to@example.com'
+  m.to_name = 'John Doe'
+  m.from = 'from@example.com'
+  m.from_name = 'Jane Doe'
+  m.cc = 'cc@example.com'
+  m.cc_name = 'John Doe CC'
+  m.bcc = 'bcc@examlpe.com'
+  m.bcc_name = 'Jane Doe BCC'
   m.subject = 'Hello world!'
   m.text = 'I heard you like the beach.'
   m.html = 'I heard you like the beach <div><img src="cid:beach"></div>'
