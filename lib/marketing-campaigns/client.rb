@@ -21,9 +21,9 @@ module MarketingCampaigns
       yield self if block_given?
     end
 
-    def create(campaign)
+    def create(campaign_data)
       res = conn.post do |req|
-        payload = campaign.to_json
+        payload = campaign_data.to_json
         build(req)
         req.url(endpoint)
         req.body = payload
@@ -50,6 +50,18 @@ module MarketingCampaigns
       end
       output(res)
     end
+
+    def update(id, campaign_data)
+      res = conn.patch do |req|
+        payload = campaign_data.to_json
+        build(req)
+        req.url(endpoint + '/' + id.to_s)
+        req.body = payload
+      end
+      output(res)
+    end
+
+    private
 
     def conn
       @conn ||= Faraday.new(url: url) do |conn|

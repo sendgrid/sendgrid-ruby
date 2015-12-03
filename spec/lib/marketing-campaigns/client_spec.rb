@@ -42,8 +42,8 @@ describe 'MarketingCampaigns::Client' do
           .to_return(body: {id: 123, title: "Untitled"}.to_json, status: 201, headers: {'X-TEST' => 'yes'})
 
       client = MarketingCampaigns::Client.new(api_key: 'abc123')
-      mail = MarketingCampaigns::Campaign.new(title: 'test title')
-      res = client.create(mail)
+      data = MarketingCampaigns::Campaign.new(title: 'test title')
+      res = client.create(data)
       expect(res.code).to eq(201)
       expect(res.body['id']).to eq(123)
       expect(res.body['title']).to eq('Untitled')
@@ -82,6 +82,21 @@ describe 'MarketingCampaigns::Client' do
       res = client.delete(123)
       expect(res.code).to eq(404)
       expect(res.body['errors'][0]['message']).to eq('not found')
+    end
+  end
+
+  describe ':patch' do
+    it 'should return campaign data on success' do
+      stub_request(:patch, 'https://api.sendgrid.com/v3/campaigns/123')
+          .to_return(body: {id: 123, title: "New Title"}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      data = MarketingCampaigns::Campaign.new(title: 'Untitled')
+      client = MarketingCampaigns::Client.new(api_key: 'abc123')
+      data.title = 'New Title'
+      res = client.update(123, data)
+      expect(res.code).to eq(200)
+      expect(res.body['id']).to eq(123)
+      expect(res.body['title']).to eq('New Title')
     end
   end
 
