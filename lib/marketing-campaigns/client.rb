@@ -43,6 +43,14 @@ module MarketingCampaigns
       output(res)
     end
 
+    def delete(id)
+      res = conn.delete do |req|
+        build(req)
+        req.url(endpoint + '/' + id.to_s)
+      end
+      output(res)
+    end
+
     def conn
       @conn ||= Faraday.new(url: url) do |conn|
         conn.request :multipart

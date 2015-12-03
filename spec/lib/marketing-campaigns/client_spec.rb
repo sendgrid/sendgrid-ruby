@@ -63,4 +63,26 @@ describe 'MarketingCampaigns::Client' do
     end
   end
 
+  describe ':delete' do
+    it 'should return 204 on success' do
+      stub_request(:delete, 'https://api.sendgrid.com/v3/campaigns/123')
+          .to_return(status: 204, headers: {'X-TEST' => 'yes'})
+
+      client = MarketingCampaigns::Client.new(api_key: 'abc123')
+      res = client.delete(123)
+      expect(res.code).to eq(204)
+      expect(res.body).to eq(nil)
+    end
+
+    it 'should return 404 for a non found campaign' do
+      stub_request(:delete, 'https://api.sendgrid.com/v3/campaigns/123')
+          .to_return(body: {errors: [message: 'not found']}.to_json, status: 404, headers: {'X-TEST' => 'yes'})
+
+      client = MarketingCampaigns::Client.new(api_key: 'abc123')
+      res = client.delete(123)
+      expect(res.code).to eq(404)
+      expect(res.body['errors'][0]['message']).to eq('not found')
+    end
+  end
+
 end
