@@ -200,7 +200,7 @@ mail.template = template
 
 ## Working with Templates
 
-Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Template_Engine/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
+Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Transactional_Templates/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
 
 Create some `Recipients`
 
