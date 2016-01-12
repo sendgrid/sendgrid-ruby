@@ -13,6 +13,8 @@ notifications:
       <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
     format: html
     notify: false
+before_install:
+    - gem install bundler
 before_script:
     - gem update bundler
     - bundle install
