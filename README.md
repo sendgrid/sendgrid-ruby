@@ -23,23 +23,17 @@ Or install it yourself using:
 
 ## Usage
 
-Create a new client with your SendGrid Username and Password.
+Create a new client with your SendGrid [API Key](https://app.sendgrid.com/settings/api_keys).
 
 ```ruby
 require 'sendgrid-ruby'
 
 # As a hash
-client = SendGrid::Client.new(api_user: 'SENDGRID_USERNAME', api_key: 'SENDGRID_PASSWORD')
+client = SendGrid::Client.new(api_key: 'YOUR_SENDGRID_APIKEY')
 
 # Or as a block
 client = SendGrid::Client.new do |c|
-  c.api_user = 'SENDGRID_USERNAME'
-  c.api_key = 'SENDGRID_PASSWORD'
-end
-
-# or as a block with the API key only #
-client = SendGrid::Client.new do |c|
-  c.api_key = 'SENDGRID_APIKEY'
+  c.api_key = 'YOUR_SENDGRID_APIKEY'
 end
 ```
 
@@ -200,7 +194,7 @@ mail.template = template
 
 ## Working with Templates
 
-Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/API_Reference/Web_API_v3/Template_Engine/index.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
+Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/Glossary/transactional_email_templates.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
 
 Create some `Recipients`
 
