@@ -9,6 +9,40 @@ module SendGrid
       it 'sets the id instance var' do
         expect(subject.instance_variable_get(:@id)).to_not be_nil
       end
+      it 'cache_recipients instance variable defaults to true' do
+        expect(subject.instance_variable_get(:@cache_recipients)).to be_truthy
+      end
+      context 'cache_recipients: false' do
+        subject { described_class.new(id, cache_recipients: false) }
+
+        it 'sets cache_recipients instance varialbe to false' do
+          expect(subject.instance_variable_get(:@cache_recipients)).to be_falsey
+        end
+      end
+    end
+
+    describe '#add_recipient' do
+      let(:first_recipient) { Recipient.new('someone@anything.com') }
+      let(:second_recipient) { Recipient.new('test@test.com') }
+      let(:recipients) { [first_recipient, second_recipient] }
+
+      context 'cache_recipients: true' do
+        it 'caches the added recipients' do
+          subject.add_recipient(first_recipient)
+          subject.add_recipient(second_recipient)
+          expect(subject.recipients).to match_array(recipients)
+        end
+      end
+
+      context 'cache_recipients: false' do
+        subject { described_class.new(id, cache_recipients: false) }
+
+        it 'does not cache the added recipients' do
+          subject.add_recipient(first_recipient)
+          subject.add_recipient(second_recipient)
+          expect(subject.recipients).to match_array([second_recipient])
+        end
+      end
     end
 
     describe '#add_to_smtpapi' do

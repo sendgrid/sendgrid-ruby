@@ -2,14 +2,16 @@ require 'smtpapi'
 
 module SendGrid
   class Template
-    attr_reader :id, :recipients
+    attr_reader :id, :recipients, :cache_recipients
 
-    def initialize(id)
+    def initialize(id, opts = {})
       @id = id
       @recipients = []
+      @cache_recipients = opts.fetch(:cache_recipients, true)
     end
 
     def add_recipient(recipient)
+      @recipients = [] unless cache_recipients
       recipients << recipient
     end
 
