@@ -221,7 +221,7 @@ template = SendGrid::Template.new('MY_TEMPLATE_ID')
 Create a `Client`
 
 ```ruby
-client = SendGrid::Client.new(api_user: my_user, api_key: my_key)
+client = SendGrid::Client.new(api_key: my_key)
 ```
 
 Initialize mail defaults and create the `TemplateMailer`
