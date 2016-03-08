@@ -246,7 +246,7 @@ mailer.mail(mail_defaults)
 ## Using SendGrid's X-SMTPAPI Header
 
 <blockquote>
-To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
+To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/sendgrid/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
 For more information, view our <a href=https://sendgrid.com/docs/API_Reference/SMTP_API/index.html>SMTPAPI docs page</a>.
 </blockquote>
 
