@@ -154,4 +154,53 @@ describe 'SendGrid::Client' do
       expect { client.bounces }.to raise_error(SendGrid::Exception)
     end
   end
+
+  describe ':delete_bounce' do
+    let :headers do
+      { 'Content-Type' => 'application/json', 'X-TEST' => 'yes' }
+    end
+
+    let(:email) { 'test@testemail.com' }
+    let(:api_user) { 'foobar' }
+    let(:api_key) { 'abc123' }
+    let(:endpoint) { "https://api.sendgrid.com/v3/suppression/bounces/#{email}" }
+
+    it 'should make a request to sendgrid' do
+      stub_request(:delete, endpoint)
+        .to_return(status: 204, headers: headers)
+
+      client = SendGrid::Client.new(api_key: api_key)
+
+      res = client.delete_bounce(email)
+      expect(res.code).to eq(204)
+    end
+
+    it 'should have a Bearer auth header when using an api key' do
+      stub_request(:delete, endpoint)
+        .to_return(status: 204, headers: headers)
+
+      client = SendGrid::Client.new(api_key: api_key)
+      client.delete_bounce(email)
+
+      expect(WebMock).to have_requested(:delete, endpoint)
+        .with(headers: { 'Authorization' => "Bearer #{api_key}" })
+    end
+
+    it 'should use basic auth when using a username + password' do
+      stub_request(:delete, "https://#{api_user}:#{api_key}@api.sendgrid.com/v3/suppression/bounces/#{CGI.escape email}")
+        .to_return(status: 204, headers: headers)
+
+      client = SendGrid::Client.new(api_user: api_user, api_key: api_key)
+      client.delete_bounce(email)
+    end
+
+    it 'should raise a SendGrid::Exception if status is not 204' do
+      stub_request(:delete, endpoint)
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: api_key)
+
+      expect { client.delete_bounce(email) }.to raise_error(SendGrid::Exception)
+    end
+  end
 end

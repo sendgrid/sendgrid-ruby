@@ -1,5 +1,6 @@
 require 'faraday'
 require 'base64'
+require 'cgi'
 
 module SendGrid
   class Client
@@ -41,6 +42,16 @@ module SendGrid
           apply_v3_authorization(req)
           apply_v3_headers(req)
           req.params = options
+        end
+      end
+    end
+
+    def delete_bounce(email)
+      handle_response(204) do
+        conn.delete do |req|
+          req.url("/v3/suppression/bounces/#{CGI.escape email}")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
         end
       end
     end
