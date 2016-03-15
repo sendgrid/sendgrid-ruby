@@ -22,26 +22,18 @@ module SendGrid
     end
 
     def send(mail)
-      res = conn.post do |req|
-        payload = mail.to_h
-        req.url(endpoint)
+      handle_response do
+        conn.post do |req|
+          payload = mail.to_h
+          req.url(endpoint)
 
-        # Check if using username + password or API key
-        if api_user
-          # Username + password
-          payload = payload.merge(api_user: api_user, api_key: api_key)
-        else
-          # API key
-          req.headers['Authorization'] = "Bearer #{api_key}"
+          apply_v2_authorization(req, payload)
+          req.body = payload
         end
-
-        req.body = payload
       end
-
-      fail SendGrid::Exception, res.body if raise_exceptions? && res.status != 200
-
-      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
+
+  private
 
     def conn
       @conn ||= Faraday.new(url: url) do |conn|
@@ -57,6 +49,27 @@ module SendGrid
 
     def raise_exceptions?
       @raise_exceptions
+    end
+
+    def apply_v2_authorization(request, payload)
+      # Check if using username + password or API key
+      if api_user
+        # Username + password
+        payload.merge!(api_user: api_user, api_key: api_key)
+      else
+        # API key
+        request.headers['Authorization'] = "Bearer #{api_key}"
+      end
+    end
+
+    def handle_response(expected_status = 200)
+      res = yield
+
+      if raise_exceptions? && res.status != expected_status
+        fail SendGrid::Exception, res.body
+      end
+
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
   end
 end
