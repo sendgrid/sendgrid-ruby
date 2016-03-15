@@ -84,4 +84,74 @@ describe 'SendGrid::Client' do
       expect {client.send(mail)}.not_to raise_error
     end
   end
+
+  describe ':bounces' do
+    let :success_body do
+      [
+        {
+          'created' => 1_443_651_125,
+          'email' => 'testemail1@test.com',
+          'reason' => '550 5.1.1 The email account that you tried to reach does not exist.',
+          'status' => '5.1.1'
+        }
+      ]
+    end
+
+    let :headers do
+      { 'Content-Type' => 'application/json', 'X-TEST' => 'yes' }
+    end
+
+    let(:api_user) { 'foobar' }
+    let(:api_key) { 'abc123' }
+    let(:endpoint) { 'https://api.sendgrid.com/v3/suppression/bounces' }
+
+    it 'should make a request to sendgrid' do
+      stub_request(:get, endpoint)
+        .to_return(body: success_body.to_json, status: 200, headers: headers)
+
+      client = SendGrid::Client.new(api_key: api_key)
+
+      res = client.bounces
+      expect(res.code).to eq(200)
+      expect(res.body).to eq(success_body)
+    end
+
+    it 'should have a Bearer auth header when using an api key' do
+      stub_request(:get, endpoint)
+        .to_return(body: success_body.to_json, status: 200, headers: headers)
+
+      client = SendGrid::Client.new(api_key: api_key)
+      client.bounces
+
+      expect(WebMock).to have_requested(:get, endpoint)
+        .with(headers: { 'Authorization' => "Bearer #{api_key}" })
+    end
+
+    it 'should use basic auth when using a username + password' do
+      stub_request(:get, "https://#{api_user}:#{api_key}@api.sendgrid.com/v3/suppression/bounces")
+        .to_return(body: success_body.to_json, status: 200, headers: headers)
+
+      client = SendGrid::Client.new(api_user: api_user, api_key: api_key)
+      client.bounces
+    end
+
+    it 'should accept query params' do
+      stub_request(:get, endpoint + '?start_time=1443651141&end_time=1443651154')
+        .to_return(body: success_body.to_json, status: 200, headers: headers)
+
+      client = SendGrid::Client.new(api_key: api_key)
+
+      res = client.bounces(start_time: 1_443_651_141, end_time: 1_443_651_154)
+      expect(res.code).to eq(200)
+    end
+
+    it 'should raise a SendGrid::Exception if status is not 200' do
+      stub_request(:get, endpoint)
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: api_key)
+
+      expect { client.bounces }.to raise_error(SendGrid::Exception)
+    end
+  end
 end

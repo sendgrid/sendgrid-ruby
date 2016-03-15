@@ -1,4 +1,5 @@
 require 'faraday'
+require 'base64'
 
 module SendGrid
   class Client
@@ -33,13 +34,25 @@ module SendGrid
       end
     end
 
-  private
+    def bounces(options = {})
+      handle_response do
+        conn.get do |req|
+          req.url('/v3/suppression/bounces')
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.params = options
+        end
+      end
+    end
+
+    private
 
     def conn
       @conn ||= Faraday.new(url: url) do |conn|
         conn.request :multipart
         conn.request :url_encoded
         conn.adapter adapter
+        conn.headers['User-Agent'] = user_agent
       end
     end
 
@@ -60,6 +73,22 @@ module SendGrid
         # API key
         request.headers['Authorization'] = "Bearer #{api_key}"
       end
+    end
+
+    def apply_v3_authorization(request)
+      if api_user
+        value = Base64.encode64([api_user, api_key].join(':'))
+        value.delete!("\n")
+        value = "Basic #{value}"
+      else
+        value = "Bearer #{api_key}"
+      end
+
+      request.headers['Authorization'] = value
+    end
+
+    def apply_v3_headers(request)
+      request.headers['Content-Type'] = 'application/json'
     end
 
     def handle_response(expected_status = 200)
