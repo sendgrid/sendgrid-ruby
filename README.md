@@ -231,7 +231,7 @@ mail_defaults = {
   from: 'admin@email.com',
   html: '<h1>I like email</h1>',
   text: 'I like email',
-  subject: 'Email is great',
+  subject: 'Email is great'
 }
 
 mailer = SendGrid::TemplateMailer.new(client, template, recipients)
