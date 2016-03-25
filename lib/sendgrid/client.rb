@@ -56,6 +56,17 @@ module SendGrid
       end
     end
 
+    def create_whitelabel_domain(options = {})
+      handle_response(201) do
+        conn.post do |req|
+          req.url("/v3/whitelabel/domains")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.body = options.to_json
+        end
+      end
+    end
+
     private
 
     def conn

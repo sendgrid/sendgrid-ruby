@@ -203,4 +203,62 @@ describe 'SendGrid::Client' do
       expect { client.delete_bounce(email) }.to raise_error(SendGrid::Exception)
     end
   end
+
+  describe ':create_whitelabel_domain' do
+    let :success_body do
+      <<-JSON
+        {
+          "id": 1,
+          "domain": "example.com",
+          "subdomain": "mail",
+          "username": "john@example.com",
+          "user_id": 7,
+          "ips": [
+            "192.168.1.1",
+            "192.168.1.2"
+          ],
+          "custom_spf": true,
+          "default": true,
+          "legacy": false,
+          "automatic_security": true,
+          "valid": true,
+          "dns": {
+            "mail_cname": {
+              "host": "mail.example.com",
+              "type": "cname",
+              "data": "u7.wl.sendgrid.net",
+              "valid": true
+            },
+            "spf": {
+              "host": "example.com",
+              "type": "txt",
+              "data": "v=spf1 include:u7.wl.sendgrid.net -all",
+              "valid": true
+            },
+            "dkim1": {
+              "host": "s1.<em>domainkey.example.com",
+              "type": "cname",
+              "data": "s1._domainkey.u7.wl.sendgrid.net",
+              "valid": true
+            },
+            "dkim2": {
+              "host": "s2.</em>domainkey.example.com",
+              "type": "cname",
+              "data": "s2._domainkey.u7.wl.sendgrid.net",
+              "valid": true
+            }
+          }
+        }
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:any, 'https://api.sendgrid.com/v3/whitelabel/domains')
+        .to_return(body: success_body, status: 201, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      res = client.create_whitelabel_domain(domain: "example.com")
+      expect(res.code).to eq(201)
+    end
+  end
 end
