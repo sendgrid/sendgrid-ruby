@@ -67,6 +67,39 @@ module SendGrid
       end
     end
 
+    def scopes(options = {})
+      handle_response(200) do
+        conn.get do |req|
+          req.url("/v3/scopes")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.params = options
+        end
+      end
+    end
+
+    def api_keys(options = {})
+      handle_response(200) do
+        conn.get do |req|
+          req.url("/v3/api_keys")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.params = options
+        end
+      end
+    end
+
+    def create_api_key(options = {})
+      handle_response(201) do
+        conn.post do |req|
+          req.url("/v3/api_keys")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.body = options.to_json
+        end
+      end
+    end
+
     private
 
     def conn

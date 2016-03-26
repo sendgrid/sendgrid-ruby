@@ -253,11 +253,91 @@ describe 'SendGrid::Client' do
     end
 
     it 'should make a request to sendgrid' do
-      stub_request(:any, 'https://api.sendgrid.com/v3/whitelabel/domains')
+      stub_request(:post, 'https://api.sendgrid.com/v3/whitelabel/domains')
         .to_return(body: success_body, status: 201, headers: {'X-TEST' => 'yes'})
 
       client = SendGrid::Client.new(api_key: 'abc123')
       res = client.create_whitelabel_domain(domain: "example.com")
+      expect(res.code).to eq(201)
+    end
+  end
+
+  describe ':scopes' do
+    let :success_body do
+      <<-JSON
+        "scopes": [
+          "mail.send",
+          "alerts.create",
+          "alerts.read"
+        ]
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:get, 'https://api.sendgrid.com/v3/scopes')
+        .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+
+      res = client.scopes
+      expect(res.code).to eq(200)
+    end
+  end
+
+  describe ':api_keys' do
+    let :success_body do
+      <<-JSON
+        "result": [
+          {
+            "api_key_id": "xxxxxxxx",
+            "name": "My API Key"
+          }
+        ]
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:get, 'https://api.sendgrid.com/v3/api_keys')
+        .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+
+      res = client.api_keys
+      expect(res.code).to eq(200)
+    end
+  end
+
+  describe ':create_api_key' do
+    let :success_body do
+      <<-JSON
+        {
+          "api_key": "SG.xxxxxxxx.yyyyyyyy",
+          "api_key_id": "xxxxxxxx",
+          "name": "My API Key",
+          "scopes": [
+            "mail.send",
+            "alerts.create",
+            "alerts.read"
+          ]
+        }
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:post, 'https://api.sendgrid.com/v3/api_keys')
+        .to_return(body: success_body, status: 201, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+
+      res = client.create_api_key({
+        name: "My API Key",
+        scopes: [
+          "mail.send",
+          "alerts.create",
+          "alerts.read"
+        ]
+      })
+
       expect(res.code).to eq(201)
     end
   end
