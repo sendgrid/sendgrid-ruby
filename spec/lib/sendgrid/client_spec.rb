@@ -340,5 +340,36 @@ describe 'SendGrid::Client' do
 
       expect(res.code).to eq(201)
     end
+
+    describe ':create_subuser' do
+      let :success_body do
+        <<-JSON
+          {
+            "username": "John@example.com",
+            "email": "John@example.com",
+            "password": "johns_password",
+            "ips": [
+              "1.1.1.1",
+              "2.2.2.2"
+            ]
+          }
+        JSON
+      end
+
+      it 'should make a request to sendgrid' do
+        stub_request(:post, 'https://api.sendgrid.com/v3/subusers')
+          .to_return(body: success_body, status: 201, headers: {'X-TEST' => 'yes'})
+
+        client = SendGrid::Client.new(api_key: 'abc123')
+
+        res = client.create_subuser({
+          username: "John@example.com",
+          email: "John@example.com",
+          password: "johns_password"
+        })
+
+        expect(res.code).to eq(201)
+      end
+    end
   end
 end
