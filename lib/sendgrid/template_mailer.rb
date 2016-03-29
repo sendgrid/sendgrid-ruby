@@ -53,7 +53,7 @@ module SendGrid
       mail = Mail.new(params)
 
       mail.template = @template
-      @client.send(mail.to_h)
+      @client.send(mail)
     end
   end
 end

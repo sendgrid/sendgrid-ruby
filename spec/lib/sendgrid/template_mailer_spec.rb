@@ -78,7 +78,7 @@ module SendGrid
       end
 
       it 'calls send on the client with the mail object' do
-        expect(client).to receive(:send).with(mail_to_h)
+        expect(client).to receive(:send).with(instance_of(Mail))
         subject.mail
       end
     end
