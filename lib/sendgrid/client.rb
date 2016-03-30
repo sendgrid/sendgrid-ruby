@@ -111,6 +111,18 @@ module SendGrid
       end
     end
 
+    def update_filter_settings(options = {})
+      handle_response do
+        conn.post do |req|
+          payload = options
+          req.url("/api/filter.setup.json")
+
+          apply_v2_authorization(req, payload)
+          req.body = payload
+        end
+      end
+    end
+
     private
 
     def conn

@@ -371,5 +371,28 @@ describe 'SendGrid::Client' do
         expect(res.code).to eq(201)
       end
     end
+
+    describe ':update_filter_settings' do
+      let :success_body do
+        <<-JSON
+          {
+            "message": "success"
+          }
+        JSON
+      end
+
+      it 'should make a request to sendgrid' do
+        stub_request(:post, 'https://api.sendgrid.com/api/filter.setup.json')
+          .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+        client = SendGrid::Client.new(api_key: 'abc123')
+
+        res = client.update_filter_settings({
+          name: "eventnotify"
+        })
+
+        expect(res.code).to eq(200)
+      end
+    end
   end
 end
