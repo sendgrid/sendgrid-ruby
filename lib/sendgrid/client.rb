@@ -110,6 +110,17 @@ module SendGrid
       end
     end
 
+    def update_api_key(id, options = {})
+      handle_response(200) do
+        conn.post do |req|
+          req.url("/v3/api_keys/#{id}")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.body = options.to_json
+        end
+      end
+    end
+
     def create_subuser(options = {})
       handle_response(201) do
         conn.post do |req|
