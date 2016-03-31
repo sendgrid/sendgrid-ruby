@@ -144,6 +144,18 @@ module SendGrid
       end
     end
 
+    def activate_app(name)
+      handle_response do
+        conn.post do |req|
+          payload = { name: name }
+          req.url("/api/filter.activate.json")
+
+          apply_v2_authorization(req, payload)
+          req.body = payload
+        end
+      end
+    end
+
     private
 
     def conn
