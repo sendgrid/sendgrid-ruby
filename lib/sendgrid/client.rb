@@ -35,6 +35,8 @@ module SendGrid
       end
     end
 
+    # Suppressions
+
     def bounces(options = {})
       handle_response do
         conn.get do |req|
@@ -56,6 +58,8 @@ module SendGrid
       end
     end
 
+    # Whitelabel Domains
+
     def create_whitelabel_domain(options = {})
       handle_response(201) do
         conn.post do |req|
@@ -66,6 +70,8 @@ module SendGrid
         end
       end
     end
+
+    # API Keys
 
     def scopes(options = {})
       handle_response(200) do
@@ -121,6 +127,8 @@ module SendGrid
       end
     end
 
+    # Subusers
+
     def create_subuser(options = {})
       handle_response(201) do
         conn.post do |req|
@@ -128,6 +136,20 @@ module SendGrid
           apply_v3_authorization(req)
           apply_v3_headers(req)
           req.body = options.to_json
+        end
+      end
+    end
+
+    # Apps
+
+    def get_available_apps
+      handle_response do
+        conn.get do |req|
+          payload = {}
+          req.url("/api/filter.getavailable.json")
+
+          apply_v2_authorization(req, payload)
+          req.params = payload
         end
       end
     end
@@ -149,6 +171,18 @@ module SendGrid
         conn.post do |req|
           payload = { name: name }
           req.url("/api/filter.activate.json")
+
+          apply_v2_authorization(req, payload)
+          req.body = payload
+        end
+      end
+    end
+
+    def deactivate_app(name)
+      handle_response do
+        conn.post do |req|
+          payload = { name: name }
+          req.url("/api/filter.deactivate.json")
 
           apply_v2_authorization(req, payload)
           req.body = payload
