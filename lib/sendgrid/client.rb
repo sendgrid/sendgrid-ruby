@@ -89,6 +89,16 @@ module SendGrid
       end
     end
 
+    def api_key(id)
+      handle_response(200) do
+        conn.get do |req|
+          req.url("/v3/api_keys/#{id}")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+        end
+      end
+    end
+
     def create_api_key(options = {})
       handle_response(201) do
         conn.post do |req|
