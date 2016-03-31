@@ -89,7 +89,7 @@ module SendGrid
       end
     end
 
-    def api_key(id)
+    def get_api_key(id)
       handle_response(200) do
         conn.get do |req|
           req.url("/v3/api_keys/#{id}")
