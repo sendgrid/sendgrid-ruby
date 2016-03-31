@@ -112,7 +112,7 @@ module SendGrid
 
     def update_api_key(id, options = {})
       handle_response(200) do
-        conn.post do |req|
+        conn.put do |req|
           req.url("/v3/api_keys/#{id}")
           apply_v3_authorization(req)
           apply_v3_headers(req)
