@@ -1,13 +1,8 @@
-# SendGrid::Ruby
+[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
 
-This Gem allows you to quickly and easily send emails through SendGrid's Web API using native Ruby.
+**This library allows you to quickly and easily use the SendGrid Web API via Ruby.**
 
-You can read our official documentation on the Web API's Mail feature [here](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
-
-[![BuildStatus](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
-
-
-## Installation
+# Installation
 
 Add this line to your application's Gemfile:
 
@@ -21,270 +16,81 @@ Or install it yourself using:
 
     $ gem install sendgrid-ruby
 
-## Usage
+## Dependencies
 
-Create a new client with your SendGrid [API Key](https://app.sendgrid.com/settings/api_keys).
+- [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
+
+## Environment Variables
+
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-ruby).
+
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env
+```
+
+# Quick Start
+
+## v3 Web API endpoints
 
 ```ruby
 require 'sendgrid-ruby'
-
-# As a hash
-client = SendGrid::Client.new(api_key: 'YOUR_SENDGRID_APIKEY')
-
-# Or as a block
-client = SendGrid::Client.new do |c|
-  c.api_key = 'YOUR_SENDGRID_APIKEY'
-end
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+response = sg.client.api_keys.get()
+puts response.status_code
+puts response.response_body
+puts response.response_headers
 ```
 
-Create a new Mail object and send:
-```ruby
-mail = SendGrid::Mail.new do |m|
-  m.to = 'test@sendgrid.com'
-  m.from = 'taco@cat.limo'
-  m.subject = 'Hello world!'
-  m.text = 'I heard you like pineapple.'
-end
+# Announcements
 
-res = client.send(mail)
-puts res.code
-puts res.body
-# 200
-# {"message"=>"success"}
-```
+**BREAKING CHANGE as of XXXX.XX.XX**
 
-You can also create a Mail object with a hash:
-```ruby
-res = client.send(SendGrid::Mail.new(to: 'example@example.com', from: 'taco@cat.limo', subject: 'Hello world!', text: 'Hi there!', html: '<b>Hi there!</b>'))
-puts res.code
-puts res.body
-# 200
-# {"message"=>"success"}
-```
+Version `2.0.0` is a breaking change for the entire library.
 
-#### Attachments
+Version 2.0.0 brings you full support for all Web API v3 endpoints. We
+have the following resources to get you started quickly:
 
-Attachments can be added to a Mail object with the `add_attachment` method. The first parameter is the path to the file, the second (optional) parameter is the desired name of the file. If a file name is not provided, it will use the original filename.
-```ruby
-mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
-```
+-   [SendGrid
+    Documentation](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
+-   [Usage
+    Documentation](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md)
+-   [Example
+    Code](https://github.com/sendgrid/sendgrid-ruby/blob/master/examples)
 
-#### Inline Content
+Thank you for your continued support!
 
-Inline content can be added to a Mail object with the `add_content` method. The first parameter is the path to the file, the second parameter is the cid to be referenced in the html. 
-```ruby
-mail = SendGrid::Mail.new do |m|
-  m.to = 'test@sendgrid.com'
-  m.from = 'taco@cat.limo'
-  m.subject = 'Hello world!'
-  m.text = 'I heard you like the beach.'
-  m.html = 'I heard you like the beach <div><img src="cid:beach"></div>'
-end
-mail.add_content('/tmp/beach.jpg', 'beach')
-result = client.send(mail)
-```
+## Roadmap
 
-#### Available Params
+[Milestones](https://github.com/sendgrid/sendgrid-ruby/milestones)
 
-```ruby
-params = {
-	:to,
-	:to_name,
-	:from,
-	:from_name,
-	:subject,
-	:text,
-	:html,
-	:cc,
-	:cc_name,
-	:bcc,
-	:bcc_name,
-	:reply_to,
-	:date,
-	:smtpapi,
-	:attachments,
-	:template
-}
-```
+## How to Contribute
 
-#### Setting Params
+We encourage contribution to our libraries, please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md) guide for details.
 
-Params can be set in the usual Ruby ways, including a block or a hash.
+* [Feature Request](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md#feature_request)
+* [Bug Reports](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md#submit_a_bug_report)
+* [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md#improvements_to_the_codebase)
 
-````ruby
-mail = SendGrid::Mail.new do |m|
-  m.to = 'rbin@sendgrid.com'
-  m.from = 'taco@rbin.codes'
-end
+## Usage
 
-client.send(SendGrid::Mail.new(to: 'rbin@sendgrid.com', from: 'taco@cat.limo'))
-````
+- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
+- [v3 Web API](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md)
+- [Example Code](https://github.com/sendgrid/sendgrid-ruby/blob/master/examples)
+- [v3 Web API Mail Send Helper]()
 
-#### :to
+## Unsupported Libraries
 
-Using the **:to** param, we can pass a single email address as a string, or an array of email address strings.
+- [Official and Unsupported SendGrid Libraries](https://sendgrid.com/docs/Integrate/libraries.html)
 
-````ruby
-mail = SendGrid::Mail.new
-mail.to = 'taco@rbin.codes'
-# or
-mail.to = ['Example Dude <example@email.com>', 'john@email.com']
-# or
-mail.to = ['rbin@sendgrid.com', 'taco@cat.limo']
-````
+# About
 
-#### :from
+![SendGrid Logo]
+(https://assets3.sendgrid.com/mkt/assets/logos_brands/small/sglogo_2015_blue-9c87423c2ff2ff393ebce1ab3bd018a4.png)
 
-```ruby
-mail = SendGrid::Mail.new
-mail.from = 'me@sendgrid.com'
-```
+sendgrid-ruby is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
 
-#### :cc
-
-As with **:to**, **:cc** can take a single string or an array of strings.
-
-```ruby
-mail = SendGrid::Mail.new
-mail.cc = ['robin@sendgrid.com', 'taco@cat.limo']
-```
-
-#### :bcc
-
-As with **:to** and **:cc**, **:bcc** can take a single string or an array of strings.
-
-```ruby
-mail = SendGrid::Mail.new
-mail.bcc = ['robin@sendgrid.com', 'taco@cat.limo']
-```
-
-#### :subject
-
-```ruby
-mail = SendGrid::Mail.new
-mail.subject = 'This is a subject string'
-```
-
-### Email Bodies:
-#### :text
-
-Using the **:text** param allows us to add plain text to our email body.
-
-```ruby
-mail = SendGrid::Mail.new
-mail.text = 'WHATTUP KITTY CAT!?'
-```
-
-#### :html
-
-Using the **:html** param allows us to add html content to our email body.
-```ruby
-mail = SendGrid::Mail.new
-mail.html = '<html><body>Stuff in here, yo!</body></html>'
-```
-
-#### :template
-
-The **:template** param allows us to specify a template object for this email to use. The initialized `Template` will automatically be included in the `smtpapi` header and passed to SendGrid.
-
-```ruby
-template = SendGrid::Template.new('MY_TEMPLATE_ID')
-mail.template = template
-```
-
-## Working with Templates
-
-Another easy way to use the [SendGrid Templating](https://sendgrid.com/docs/Glossary/transactional_email_templates.html) system is with the `Recipient`, `Mail`, `Template`, and `TemplateMailer` objects.
-
-Create some `Recipients`
-
-```ruby
-users = User.where(email: ['first@gmail.com', 'second@gmail.com'])
-
-recipients = []
-
-users.each do |user|
-  recipient = SendGrid::Recipient.new(user.email)
-  recipient.add_substitution('first_name', user.first_name)
-  recipient.add_substitution('city', user.city)
-
-  recipients << recipient
-end
-```
-
-Create a `Template`
-
-```ruby
-template = SendGrid::Template.new('MY_TEMPLATE_ID')
-```
-
-Create a `Client`
-
-```ruby
-client = SendGrid::Client.new(api_user: my_user, api_key: my_key)
-```
-
-Initialize mail defaults and create the `TemplateMailer`
-
-```ruby
-mail_defaults = {
-  from: 'admin@email.com',
-  html: '<h1>I like email</h1>',
-  text: 'I like email',
-  subject: 'Email is great'
-}
-
-mailer = SendGrid::TemplateMailer.new(client, template, recipients)
-```
-
-Mail it!
-
-```ruby
-mailer.mail(mail_defaults)
-```
-
-## Using SendGrid's X-SMTPAPI Header
-
-<blockquote>
-To utilize the X-SMTPAPI header, we have directly integrated the <a href="https://github.com/SendGridJP/smtpapi-ruby">SendGridJP/smtpapi-ruby</a> gem.
-For more information, view our <a href=https://sendgrid.com/docs/API_Reference/SMTP_API/index.html>SMTPAPI docs page</a>.
-</blockquote>
-
-```ruby
-
-header = Smtpapi::Header.new
-header.add_to(['john.doe@example.com', 'jane.doe@example.com'])
-header.add_substitution('keep', ['secret'])        # sub = {keep: ['secret']}
-header.add_substitution('other', ['one', 'two'])   # sub = {keep: ['secret'], other: ['one', 'two']}
-header.add_unique_arg("unique_code", "8675309")
-header.add_category("Newsletter")
-header.add_filter('templates', 'enable', 1)	   # necessary for each time the template engine is used
-header.add_filter('templates', 'template_id', '1234-5678-9100-abcd')
-header.set_ip_pool("marketing_ip_pool")
-mail.smtpapi = header
-
-```
-## Testing ##
-
-`bundle exec rake test`
-
-## Deploying ##
-
-1. Confirm tests pass `bundle exec rake test`
-2. Bump the version in `lib/sendgrid/version.rb` and `spec/lib/sendgrid_spec.rb`
-3. Update CHANGELOG.md
-4. Commit Version bump vX.X.X
-5. `rake release`
-6. Push changes to GitHub
-7. Release tag on GitHub vX.X.X
-
-## Contributing ##
-
-1. Fork it ( https://github.com/[my-github-username]/sendgrid-ruby/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
-***Hit up [@rbin](http://twitter.com/rbin) or [@sendgrid](http://twitter.com/sendgrid) on Twitter with any issues.***
-
+sendgrid-ruby is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of SendGrid, Inc.

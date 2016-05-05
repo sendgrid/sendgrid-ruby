@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2016-XX-XX ##
+### Added
+- Breaking change to support the v3 Web API
+- New HTTP client
+- v3 Mail Send helper
+
 ## [1.1.6] - 2015-11-26 ##
 ## Added
 Support for cc_name and bcc_name via [#31](https://github.com/sendgrid/sendgrid-ruby/pull/31)

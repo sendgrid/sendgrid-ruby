@@ -6,8 +6,8 @@ require 'sendgrid/version'
 Gem::Specification.new do |spec|
   spec.name        = 'sendgrid-ruby'
   spec.version     = SendGrid::VERSION
-  spec.authors     = ['Robin Johnson', 'Eddie Zaneski']
-  spec.email       = 'community@sendgrid.com'
+  spec.authors     = ['Elmer Thomas', 'Robin Johnson', 'Eddie Zaneski']
+  spec.email       = 'dx@sendgrid.com'
   spec.summary     = 'Official SendGrid Gem'
   spec.description = 'Interact with SendGrids API in native Ruby'
   spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
@@ -18,17 +18,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'smtpapi', '~> 0.1'
-  spec.add_dependency 'faraday', '~> 0.9'
-  spec.add_dependency 'mimemagic'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rspec-nc'
-  spec.add_development_dependency 'webmock'
-  spec.add_development_dependency 'guard'
-  spec.add_development_dependency 'guard-rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'guard-rubocop'
-  spec.add_development_dependency 'ruby_gntp'
-  spec.add_development_dependency 'bundler', '~> 1.6'
+  spec.add_dependency 'ruby_http_client', '~> 1.1'
+  spec.add_development_dependency 'rake', '~> 0'
 end

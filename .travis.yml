@@ -1,8 +1,6 @@
 language: ruby
 rvm:
 - 2.2
-- 2.0
-- 1.9.3
 notifications:
   hipchat:
     rooms:
@@ -10,14 +8,8 @@ notifications:
     template:
     - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
       Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/docs/commits/%{commit}">View on GitHub</a>'
+      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on GitHub</a>'
     format: html
     notify: false
-before_install:
-    - gem install bundler
-before_script:
-    - gem update bundler
-    - bundle install
 script:
-    - rubocop --fail-level=E
     - rake
