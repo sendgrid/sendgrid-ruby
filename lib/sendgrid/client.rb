@@ -140,7 +140,7 @@ module SendGrid
       end
     end
 
-    # Apps
+    # Apps (v2)
 
     def get_available_apps
       handle_response do
@@ -186,6 +186,30 @@ module SendGrid
 
           apply_v2_authorization(req, payload)
           req.body = payload
+        end
+      end
+    end
+
+    # Bounce Forwarding
+
+    def get_forward_bounce_setting(options = {})
+      handle_response do
+        conn.get do |req|
+          req.url("/v3/mail_settings/forward_bounce")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.params = options
+        end
+      end
+    end
+
+    def update_forward_bounce_setting(options = {})
+      handle_response do
+        conn.patch do |req|
+          req.url("/v3/mail_settings/forward_bounce")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+          req.body = options.to_json
         end
       end
     end
