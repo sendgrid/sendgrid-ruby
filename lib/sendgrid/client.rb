@@ -42,7 +42,39 @@ module SendGrid
 
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
-
+    
+    def post(url:, payload: {})
+      res = conn.post do |req|
+        req.url url
+        req.headers['Content-Type'] = 'application/json'
+        req.body = payload.to_json
+      end
+      
+      fail SendGrid::Exception, res.body if raise_exceptions? && res.status < 200 && res.status >= 300
+      
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
+    end
+    
+    def patch(url:, payload: {})
+      res = conn.patch do |req|
+        req.url url
+        req.headers['Content-Type'] = 'application/json'
+        req.body = payload.to_json
+      end
+      
+      fail SendGrid::Exception, res.body if raise_exceptions? && res.status < 200 && res.status >= 300
+      
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
+    end
+    
+    def get(url:)
+      res = conn.get url
+      
+      fail SendGrid::Exception, res.body if raise_exceptions? && res.status < 200 && res.status >= 300
+      
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
+    end
+    
     def conn
       @conn ||= Faraday.new(url: url) do |conn|
         conn.request :multipart
