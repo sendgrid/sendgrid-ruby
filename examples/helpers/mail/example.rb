@@ -12,7 +12,7 @@ def hello_world
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://e9sk3d3bfaikbpdq7.stoplight-proxy.io')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
   puts response.status_code
   puts response.response_body
@@ -93,7 +93,8 @@ def kitchen_sink
 
   mail.send_at = 1443636842
 
-  mail.batch_id = 'sendgrid_batch_id'
+  # This must be a valid [batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
+  # mail.batch_id = 'sendgrid_batch_id'
 
   mail.asm = ASM.new(group_id: 99, groups_to_display: [4,5,6,7,8])
 
@@ -119,7 +120,7 @@ def kitchen_sink
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://e9sk3d3bfaikbpdq7.stoplight-proxy.io')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
   puts response.status_code
   puts response.response_body

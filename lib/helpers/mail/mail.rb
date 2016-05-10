@@ -978,7 +978,7 @@ module SendGrid
       {
         'from' => self.from,
         'subject' => self.subject,
-        'personalization' => self.personalizations,
+        'personalizations' => self.personalizations,
         'content' => self.contents,
         'attachments' => self.attachments,
         'template_id' => self.template_id,
