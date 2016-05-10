@@ -2,6 +2,14 @@
 
 **This library allows you to quickly and easily use the SendGrid Web API via Ruby.**
 
+**NOTE: The `/mail/send/beta` endpoint is currently in beta!
+
+Since this is not a general release, we do not recommend POSTing production level traffic through this endpoint or integrating your production servers with this endpoint.
+
+When this endpoint is ready for general release, your code will require an update in order to use the official URI.
+
+By using this endpoint, you accept that you may encounter bugs and that the endpoint may be taken down for maintenance at any time. We cannot guarantee the continued availability of this beta endpoint. We hope that you like this new endpoint and we appreciate any [feedback](dx+mail-beta@sendgrid.com) that you can send our way.**
+
 # Installation
 
 Add this line to your application's Gemfile:
@@ -34,7 +42,25 @@ source ./sendgrid.env
 
 # Quick Start
 
-## v3 Web API endpoints
+## Hello Email
+
+```ruby
+require 'sendgrid-ruby'
+
+from = Email.new(email: 'dx@sendgrid.com')
+subject = 'Hello World from the SendGrid Ruby Library'
+to = Email.new(email: 'elmer.thomas@sendgrid.com')
+content = Content.new(type: 'text/plain', value: 'some text here')
+mail = Mail.new(from, subject, to, content)
+
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
+puts response.status_code
+puts response.response_body
+puts response.response_headers
+```
+
+## General v3 Web API Usage
 
 ```ruby
 require 'sendgrid-ruby'

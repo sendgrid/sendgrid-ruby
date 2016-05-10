@@ -62,23 +62,14 @@ module SendGrid
       @utm_campaign
     end
 
-    def utm_name=(utm_name)
-      @utm_name = utm_name
-    end
-
-    def utm_name
-      @utm_name
-    end
-
     def to_json(*)
       {
-        'enable' => enable,
-        'utm_source' => utm_source,
-        'utm_medium' => utm_medium,
-        'utm_term' => utm_term,
-        'utm_content' => utm_content,
-        'utm_campaign' => utm_campaign,
-        'utm_name' => utm_name
+        'enable' => self.enable,
+        'utm_source' => self.utm_source,
+        'utm_medium' => self.utm_medium,
+        'utm_term' => self.utm_term,
+        'utm_content' => self.utm_content,
+        'utm_campaign' => self.utm_campaign
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -125,10 +116,10 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'text' => text,
-        'html' => html,
-        'substitution_tag' => substitution_tag
+        'enable' => self.enable,
+        'text' => self.text,
+        'html' => self.html,
+        'substitution_tag' => self.substitution_tag
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -157,8 +148,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'substitution_tag' => substitution_tag
+        'enable' => self.enable,
+        'substitution_tag' => self.substitution_tag
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -187,8 +178,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'enable_text' => enable_text
+        'enable' => self.enable,
+        'enable_text' => self.enable_text
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -235,10 +226,10 @@ module SendGrid
 
     def to_json(*)
       {
-        'click_tracking' => click_tracking,
-        'open_tracking' => open_tracking,
-        'subscription_tracking' => subscription_tracking,
-        'ganalytics' => ganalytics
+        'click_tracking' => self.click_tracking,
+        'open_tracking' => self.open_tracking,
+        'subscription_tracking' => self.subscription_tracking,
+        'ganalytics' => self.ganalytics
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -276,9 +267,9 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'threshold' => threshold,
-        'post_to_url' => post_to_url
+        'enable' => self.enable,
+        'threshold' => self.threshold,
+        'post_to_url' => self.post_to_url
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -316,9 +307,9 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'text' => text,
-        'html' => html
+        'enable' => self.enable,
+        'text' => self.text,
+        'html' => self.html
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -347,8 +338,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable,
-        'email' => email
+        'enable' => self.enable,
+        'email' => self.email
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -368,7 +359,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable
+        'enable' => self.enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -388,7 +379,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => enable
+        'enable' => self.enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -444,11 +435,11 @@ module SendGrid
 
     def to_json(*)
       {
-        'bcc' => bcc,
-        'bypass_list_management' => bypass_list_management,
-        'footer' => footer,
-        'sandbox_mode' => sandbox_mode,
-        'spam_check' => spam_check
+        'bcc' => self.bcc,
+        'bypass_list_management' => self.bypass_list_management,
+        'footer' => self.footer,
+        'sandbox_mode' => self.sandbox_mode,
+        'spam_check' => self.spam_check
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -477,8 +468,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'group_id' => group_id,
-        'groups_to_display' => groups_to_display
+        'group_id' => self.group_id,
+        'groups_to_display' => self.groups_to_display
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -498,7 +489,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'category' => category
+        'category' => self.category
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -519,7 +510,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'section' => section
+        'section' => self.section
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -575,11 +566,11 @@ module SendGrid
 
     def to_json(*)
       {
-        'content' => content,
-        'type' => type,
-        'filename' => filename,
-        'disposition' => disposition,
-        'content_id' => content_id
+        'content' => self.content,
+        'type' => self.type,
+        'filename' => self.filename,
+        'disposition' => self.disposition,
+        'content_id' => self.content_id
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -600,7 +591,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'header' => header
+        'header' => self.header
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -621,7 +612,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'substitution' => substitution
+        'substitution' => self.substitution
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -642,7 +633,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'custom_arg' => custom_arg
+        'custom_arg' => self.custom_arg
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -671,17 +662,17 @@ module SendGrid
 
     def to_json(*)
       {
-        'type' => type,
-        'value' => value
+        'type' => self.type,
+        'value' => self.value
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
 
   class Personalization
     def initilize
-      @to = nil
-      @cc = nil
-      @bcc = nil
+      @tos = nil
+      @ccs = nil
+      @bccs = nil
       @subject = nil
       @headers = nil
       @substitutions = nil
@@ -690,30 +681,30 @@ module SendGrid
     end
 
     def to=(to)
-      @to = @to.nil? ? [] : @to
-      @to = @to.push(to.to_json)
+      @tos = @tos.nil? ? [] : @tos
+      @tos = @tos.push(to.to_json)
     end
 
-    def to
-      @to
+    def tos
+      @tos
     end
 
     def cc=(cc)
-      @cc = @cc.nil? ? [] : @cc
-      @cc = @cc.push(cc.to_json)
+      @ccs = @ccs.nil? ? [] : @ccs
+      @ccs = @ccs.push(cc.to_json)
     end
 
-    def cc
-      @cc
+    def ccs
+      @ccs
     end
 
     def bcc=(bcc)
-      @bcc = @bcc.nil? ? [] : @bcc
-      @bcc = @bcc.push(bcc.to_json)
+      @bccs = @bccs.nil? ? [] : @bccs
+      @bccs = @bccs.push(bcc.to_json)
     end
 
-    def bcc
-      @bcc
+    def bccs
+      @bccs
     end
 
     def subject=(subject)
@@ -764,14 +755,14 @@ module SendGrid
 
     def to_json(*)
       {
-        'to' => to,
-        'cc' => cc,
-        'bcc' => bcc,
-        'subject' => subject,
-        'headers' => headers,
-        'substitutions' => substitutions,
-        'custom_args' => custom_args,
-        'send_at' => send_at
+        'to' => self.tos,
+        'cc' => self.ccs,
+        'bcc' => self.bccs,
+        'subject' => self.subject,
+        'headers' => self.headers,
+        'substitutions' => self.substitutions,
+        'custom_args' => self.custom_args,
+        'send_at' => self.send_at
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -800,14 +791,14 @@ module SendGrid
 
     def to_json(*)
       {
-        'email' => email,
-        'name' => name
+        'email' => self.email,
+        'name' => self.name
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
 
   class Mail
-    def initialize
+    def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
       @subject = nil
       @personalizations = nil
@@ -825,6 +816,15 @@ module SendGrid
       @mail_settings = nil
       @tracking_settings = nil
       @reply_to = nil
+
+      if !(from_email.nil? && subj.nil? && to_email.nil? && cont.nil?)
+        self.from = from_email
+        self.subject = subj
+        personalization = Personalization.new
+        personalization.to = to_email
+        self.personalizations = personalization
+        self.contents = cont
+      end
     end
 
     def from=(from)
@@ -976,23 +976,23 @@ module SendGrid
 
     def to_json(*)
       {
-        'from' => @from.to_json,
-        'subject' => subject,
-        'personalization' => personalizations,
-        'content' => contents,
-        'attachments' => attachments,
-        'template_id' => template_id,
-        'sections' => sections,
-        'headers' => headers,
-        'categories' => categories,
-        'custom_args' => custom_args,
-        'send_at' => send_at,
-        'batch_id' => batch_id,
-        'asm' => asm,
-        'ip_pool_name' => ip_pool_name,
-        'mail_settings' => mail_settings,
-        'tracking_settings' => tracking_settings,
-        'reply_to' => reply_to
+        'from' => self.from,
+        'subject' => self.subject,
+        'personalization' => self.personalizations,
+        'content' => self.contents,
+        'attachments' => self.attachments,
+        'template_id' => self.template_id,
+        'sections' => self.sections,
+        'headers' => self.headers,
+        'categories' => self.categories,
+        'custom_args' => self.custom_args,
+        'send_at' => self.send_at,
+        'batch_id' => self.batch_id,
+        'asm' => self.asm,
+        'ip_pool_name' => self.ip_pool_name,
+        'mail_settings' => self.mail_settings,
+        'tracking_settings' => self.tracking_settings,
+        'reply_to' => self.reply_to
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
