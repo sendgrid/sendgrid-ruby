@@ -13,7 +13,7 @@ class TestAPI < Minitest::Test
         }
     ')
     sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3")
-    
+
     assert_equal("https://api.test.com", sg.host)
     test_headers = JSON.parse('
         {
