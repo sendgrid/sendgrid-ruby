@@ -12,6 +12,48 @@ By using this endpoint, you accept that you may encounter bugs and that the endp
 
 # Installation
 
+## Environment Variables
+
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-ruby).
+
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
+
+```bash
+echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
+echo "sendgrid.env" >> .gitignore
+source ./sendgrid.env
+```
+## TRYING OUT THE V3 BETA MAIL SEND
+
+```bash
+git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-ruby.git
+cd sendgrid-ruby
+```
+
+* Update the to and from [emails](https://github.com/sendgrid/sendgrid-ruby/blob/v3beta/examples/helpers/mail/example.rb#L7).
+
+```bash
+ruby examples/helpers/mail/example.rb
+```
+
+## TRYING OUT THE V3 BETA WEB API
+
+```bash
+git clone -b v3beta --single-branch https://github.com/sendgrid/sendgrid-ruby.git
+cd sendgrid-ruby
+```
+
+* Check out the documentation for [Web API v3 endpoints](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html).
+* Review the [example](https://github.com/sendgrid/sendgrid-ruby/blob/v3beta/examples).
+
+```bash
+ruby examples/example.rb
+```
+
+* Check out the documentation for [Web API v3 /mail/send/beta endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html).
+
+## Once we are out of v3 BETA, the following will apply
+
 Add this line to your application's Gemfile:
 
     gem 'sendgrid-ruby'
@@ -28,18 +70,6 @@ Or install it yourself using:
 
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
 
-## Environment Variables
-
-First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-ruby).
-
-Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
-
-```bash
-echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
-```
-
 # Quick Start
 
 ## Hello Email
@@ -47,9 +77,9 @@ source ./sendgrid.env
 ```ruby
 require 'sendgrid-ruby'
 
-from = Email.new(email: 'dx@sendgrid.com')
+from = Email.new(email: 'test@example.com')
 subject = 'Hello World from the SendGrid Ruby Library'
-to = Email.new(email: 'elmer.thomas@sendgrid.com')
+to = Email.new(email: 'test@example.com')
 content = Content.new(type: 'text/plain', value: 'some text here')
 mail = Mail.new(from, subject, to, content)
 

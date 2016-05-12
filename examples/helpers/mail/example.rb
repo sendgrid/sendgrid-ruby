@@ -4,9 +4,9 @@ include SendGrid
 require 'json'
 
 def hello_world
-  from = Email.new(email: 'dx@sendgrid.com')
+  from = Email.new(email: 'test@example.com')
   subject = 'Hello World from the SendGrid Ruby Library'
-  to = Email.new(email: 'elmer.thomas@sendgrid.com')
+  to = Email.new(email: 'test@example.com')
   content = Content.new(type: 'text/plain', value: 'some text here')
   mail = Mail.new(from, subject, to, content)
   # puts JSON.pretty_generate(mail.to_json)
@@ -21,37 +21,37 @@ end
 
 def kitchen_sink
   mail = Mail.new
-  mail.from = Email.new(email: 'dx@sendgrid.com')
+  mail.from = Email.new(email: 'test@example.com')
   mail.subject = 'Hello World from the SendGrid Ruby Library'
   personalization = Personalization.new
-  personalization.to = Email.new(email: 'elmer.thomas@sendgrid.com', name: 'Elmer Thomas')
-  personalization.to = Email.new(email: 'elmer.thomas@gmail.com', name: 'Elmer Thomas Alias')
-  personalization.cc = Email.new(email: 'matt.bernier@sendgrid.com', name: 'Matt Bernier')
-  personalization.cc = Email.new(email: 'eric.shallock@sendgrid.com', name: 'Eric Shallock')
-  personalization.bcc = Email.new(email: 'matt.bernier+dx@sendgrid.com', name: 'Matt Bernier DX')
-  personalization.bcc = Email.new(email: 'eric.shallock+dx@sendgrid.com', name: 'Eric Shallock DX')
+  personalization.to = Email.new(email: 'test1@example.com', name: 'Example User')
+  personalization.to = Email.new(email: 'test2@example.com', name: 'Example User')
+  personalization.cc = Email.new(email: 'test3@example.com', name: 'Example User')
+  personalization.cc = Email.new(email: 'test4@example.com', name: 'Example User')
+  personalization.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
+  personalization.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
   personalization.subject = 'Hello World from the Personalized SendGrid Python Library'
   personalization.headers = Header.new(key: 'X-Test', value: 'True')
   personalization.headers = Header.new(key: 'X-Mock', value: 'False')
-  personalization.substitutions = Substitution.new(key: '%name%', value: 'Tim')
-  personalization.substitutions = Substitution.new(key: '%city%', value: 'Riverside')
+  personalization.substitutions = Substitution.new(key: '%name%', value: 'Example User')
+  personalization.substitutions = Substitution.new(key: '%city%', value: 'Denver')
   personalization.custom_args = CustomArg.new(key: 'user_id', value: '343')
   personalization.custom_args = CustomArg.new(key: 'type', value: 'marketing')
   personalization.send_at = 1443636843
   mail.personalizations = personalization
 
   personalization2 = Personalization.new
-  personalization2.to = Email.new(email: 'elmer.thomas@sendgrid.com', name: 'Elmer Thomas')
-  personalization2.to = Email.new(email: 'elmer.thomas@gmail.com', name: 'Elmer Thomas Alias')
-  personalization2.cc = Email.new(email: 'matt.bernier@sendgrid.com', name: 'Matt Bernier')
-  personalization2.cc = Email.new(email: 'eric.shallock@sendgrid.com', name: 'Eric Shallock')
-  personalization2.bcc = Email.new(email: 'matt.bernier+dx@sendgrid.com', name: 'Matt Bernier DX')
-  personalization2.bcc = Email.new(email: 'eric.shallock+dx@sendgrid.com', name: 'Eric Shallock DX')
+  personalization2.to = Email.new(email: 'test1@example.com', name: 'Example User')
+  personalization2.to = Email.new(email: 'test2@example.com', name: 'Example User')
+  personalization2.cc = Email.new(email: 'test3@example.com', name: 'Example User')
+  personalization2.cc = Email.new(email: 'test4@example.com', name: 'Example User')
+  personalization2.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
+  personalization2.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
   personalization2.subject = 'Hello World from the Personalized SendGrid Python Library'
   personalization2.headers = Header.new(key: 'X-Test', value: 'True')
   personalization2.headers = Header.new(key: 'X-Mock', value: 'False')
-  personalization2.substitutions = Substitution.new(key: '%name%', value: 'Tim')
-  personalization2.substitutions = Substitution.new(key: '%city%', value: 'Riverside')
+  personalization2.substitutions = Substitution.new(key: '%name%', value: 'Example User')
+  personalization2.substitutions = Substitution.new(key: '%city%', value: 'Denver')
   personalization2.custom_args = CustomArg.new(key: 'user_id', value: '343')
   personalization2.custom_args = CustomArg.new(key: 'type', value: 'marketing')
   personalization2.send_at = 1443636843
@@ -101,7 +101,7 @@ def kitchen_sink
   mail.ip_pool_name = '23'
 
   mail_settings = MailSettings.new
-  mail_settings.bcc = BccSettings.new(enable: true, email: 'dx@sendgrid.com')
+  mail_settings.bcc = BccSettings.new(enable: true, email: 'test@example.com')
   mail_settings.bypass_list_management = BypassListManagement.new(enable: true)
   mail_settings.footer = Footer.new(enable: true, text: 'Footer Text', html: '<html><body>Footer Text</body></html>')
   mail_settings.sandbox_mode = SandBoxMode.new(enable: true)
@@ -115,7 +115,7 @@ def kitchen_sink
   tracking_settings.ganalytics = Ganalytics.new(enable: true, utm_source: 'some source', utm_medium: 'some medium', utm_term: 'some term', utm_content: 'some content', utm_campaign: 'some campaign')
   mail.tracking_settings = tracking_settings
 
-  mail.reply_to = Email.new(email: 'dx@sendgrid.com')
+  mail.reply_to = Email.new(email: 'test@example.com')
 
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json

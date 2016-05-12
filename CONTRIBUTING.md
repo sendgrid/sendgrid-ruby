@@ -109,7 +109,7 @@ The Web API v3 client is `sendgrid-ruby.rb`
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in the `[tests](https://github.com/sendgrid/sendgrid-ruby/tree/master/test)` directory.
+All test files are in the [`tests`](https://github.com/sendgrid/sendgrid-ruby/tree/master/test) directory.
 
 For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](https://github.com/sendgrid/sendgrid-ruby/blob/master/test/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
 
@@ -127,11 +127,6 @@ Generally, we follow the style guidelines as suggested by the official language.
 * [Community Driven Style Guide](https://github.com/bbatsov/ruby-style-guide)
 
 Please run your code through [rubocop](https://github.com/bbatsov/rubocop).
-
-### Directory Structure
-
-* `examples` for example calls
-* `test`, for all tests
 
 ## Creating a Pull Request<a name="creating_a_pull_request"></a>
 
