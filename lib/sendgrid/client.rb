@@ -5,11 +5,6 @@ module SendGrid
     attr_accessor :api_user, :api_key, :protocol, :host, :port, :url, :endpoint,
                   :user_agent, :template
     attr_writer :adapter, :conn, :raise_exceptions
-    
-    def self.client
-      fail SendGrid::Exception, "Client not found. Please initialize a client." unless @client.is_a?(SendGrid::Client)
-      @client
-    end
 
     def initialize(params = {})
       self.api_user         = params.fetch(:api_user, nil)
@@ -23,7 +18,6 @@ module SendGrid
       self.conn             = params.fetch(:conn, conn)
       self.user_agent       = params.fetch(:user_agent, "sendgrid/#{SendGrid::VERSION};ruby")
       self.raise_exceptions = params.fetch(:raise_exceptions, true)
-      self.class.client     = self
       yield self if block_given?
     end
 
@@ -95,11 +89,6 @@ module SendGrid
 
     def raise_exceptions?
       @raise_exceptions
-    end
-    
-    def self.client=(client)
-      client.conn.basic_auth(client.api_user, client.api_key)
-      @client = client
     end
   end
 end
