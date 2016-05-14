@@ -230,4 +230,54 @@ describe 'SendGrid::Client' do
       expect { client.get(endpoint: '/api/test') }.not_to raise_error
     end
   end
+  
+  describe ':get' do
+    let(:token_client) { SendGrid::Client.new(api_key: 'abc123') }
+    let(:user_client)  { SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123') }
+    
+    it 'should make a post request to sendgrid' do
+      stub_request(:any, 'https://api.sendgrid.com/api/test')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      token_client.delete(endpoint: '/api/test')
+      
+      expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
+    end
+    
+    it 'should have an auth header when using an api key' do
+      stub_request(:any, 'https://api.sendgrid.com/api/test')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      token_client.delete(endpoint: '/api/test')
+
+      expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
+        .with(headers: {'Authorization' => 'Bearer abc123'})
+    end
+
+    it 'should have a username + password when using them' do
+      stub_request(:any, 'https://api.sendgrid.com/api/test')
+        .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
+
+      res = user_client.delete(endpoint: '/api/test')
+
+      expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
+        .with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' } )
+    end
+
+    it 'should raise a SendGrid::Exception if status is not 200' do
+      stub_request(:any, 'https://api.sendgrid.com/api/test')
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      expect { user_client.delete(endpoint: '/api/test') }.to raise_error(SendGrid::Exception)
+    end
+
+    it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
+      stub_request(:any, 'https://api.sendgrid.com/api/test')
+        .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
+
+      expect { client.delete(endpoint: '/api/test') }.not_to raise_error
+    end
+  end
 end
