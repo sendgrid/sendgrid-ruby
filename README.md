@@ -276,6 +276,47 @@ header.set_ip_pool("marketing_ip_pool")
 mail.smtpapi = header
 
 ```
+
+## Scheduled Sends
+
+SendGrid allows for cancelling emails that are scheduled (created with a `send_at` parameter). You must generate a batch id through the SendGrid api in order to be able to cancel it. You must authenticate the api with your SendGrid username and password (Basic auth).
+
+SendGrid docs: [https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html)
+
+#### Initialize a new api client
+```ruby
+scheduled_send_api = SendGrid::ScheduledSend.new(api_user: username, api_key: password)
+```
+
+#### Generate the batch id
+```ruby
+scheduled_send_api.generate_batch_id
+```
+
+#### Fetch scheduled sends
+```ruby
+# Returns all scheduled sends
+scheduled_send_api.scheduled_sends
+
+# Returns the scheduled send for the batch id
+scheduled_send_api.scheduled_send(batch_id)
+```
+
+#### Cancel a scheduled send
+```ruby
+scheduled_send_api.cancel_scheduled_send(batch_id)
+```
+
+#### Pause a scheduled send
+```ruby
+scheduled_send_api.pause_scheduled_send(batch_id)
+```
+
+#### Resume/delete a scheduled send
+```ruby
+scheduled_send_api.resume_scheduled_send(batch_id)
+```
+
 ## Testing ##
 
 `bundle exec rake test`
