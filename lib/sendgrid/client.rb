@@ -24,11 +24,11 @@ module SendGrid
     def send(mail)
       post endpoint, mail.to_h
     end
-    
+
     def post(endpoint, payload = {})
       res = conn.post do |req|
         req.url endpoint
-        
+
         if api_user
           # Username + password
           payload = payload.merge(api_user: api_user, api_key: api_key)
@@ -36,19 +36,19 @@ module SendGrid
           # API key
           req.headers['Authorization'] = "Bearer #{api_key}"
         end
-        
+
         req.body = payload
       end
-      
-      fail SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
-      
+
+      raise SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
+
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
-    
+
     def patch(endpoint, payload = {})
       res = conn.patch do |req|
         req.url endpoint
-        
+
         if api_user
           # Username + password
           payload = payload.merge(api_user: api_user, api_key: api_key)
@@ -56,19 +56,19 @@ module SendGrid
           # API key
           req.headers['Authorization'] = "Bearer #{api_key}"
         end
-        
+
         req.body = payload
       end
-      
-      fail SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
-      
+
+      raise SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
+
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
-    
+
     def get(endpoint, payload = {})
       res = conn.get do |req|
         req.url endpoint
-        
+
         if api_user
           # Username + password
           payload = payload.merge(api_user: api_user, api_key: api_key)
@@ -76,15 +76,15 @@ module SendGrid
           # API key
           req.headers['Authorization'] = "Bearer #{api_key}"
         end
-        
+
         req.body = payload
       end
-      
-      fail SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
-      
+
+      raise SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
+
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
-    
+
     def delete(endpoint, payload = {})
       res = if api_user
         conn.basic_auth api_user, api_key
@@ -96,12 +96,12 @@ module SendGrid
           req.headers['Authorization'] = "Bearer #{api_key}"
         end
       end
-      
-      fail SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
-      
-      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)  
+
+      raise SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
+
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
-    
+
     def conn
       @conn ||= Faraday.new(url: url) do |conn|
         conn.request :multipart
