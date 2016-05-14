@@ -57,6 +57,10 @@ module SendGrid
                    payload: { status: status }).body
     end
     
+    def resume_scheduled_send(batch_id)
+      client.delete(endpoint: "/v3/user/scheduled_sends/#{batch_id}").body
+    end
+    
   private
     
     def client=(client)

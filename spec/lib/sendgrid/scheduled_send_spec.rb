@@ -239,4 +239,29 @@ describe 'SendGrid::ScheduledSend' do
       end
     end
   end
+  
+  describe ':resume_scheduled_send' do
+    let(:url) { "https://api.sendgrid.com/v3/user/scheduled_sends/#{batch_id}" }
+    
+    it 'makes a request to the scheduled send api' do
+      stub_request(:any, url)
+        
+      scheduled_send_api.resume_scheduled_send(batch_id)
+      
+      expect(WebMock).to have_requested(:delete, url)
+    end
+    
+    it 'is successful for a valid batch id' do
+      stub_request(:any, url).to_return(status: 204, body: "")
+        
+      expect(scheduled_send_api.resume_scheduled_send(batch_id)).to be_empty
+    end
+    
+    it 'is raises an error for an invalid batch id' do
+      stub_request(:any, url).to_return(status: 404)
+      
+      expect { scheduled_send_api.resume_scheduled_send(batch_id) }
+        .to raise_error(SendGrid::Exception)
+    end
+  end
 end
