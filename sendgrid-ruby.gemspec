@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-nc'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'listen', '<= 3.0.7' # 3.1 requires ruby ~> 2.2
   spec.add_development_dependency 'guard-rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'guard-rubocop'
