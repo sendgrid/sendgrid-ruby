@@ -13,25 +13,25 @@ module SendGrid
     end
 
     def generate_batch_id
-      client.post(endpoint: '/v3/mail/batch').body['batch_id']
+      client.post('/v3/mail/batch').body['batch_id']
     end
 
     def validate_batch_id(batch_id)
-      client.get(endpoint: "/v3/mail/batch/#{batch_id}").body['batch_id']
+      client.get("/v3/mail/batch/#{batch_id}").body['batch_id']
     end
 
     def scheduled_send(batch_id)
-      client.get(endpoint: "/v3/user/scheduled_sends/#{batch_id}").body[0]
+      client.get("/v3/user/scheduled_sends/#{batch_id}").body[0]
     end
 
     def scheduled_sends
-      client.get(endpoint: '/v3/user/scheduled_sends').body
+      client.get('/v3/user/scheduled_sends').body
     end
 
     def cancel_scheduled_send(batch_id)
       if scheduled_send(batch_id).nil?
-        client.post(endpoint: '/v3/user/scheduled_sends',
-                    payload: {
+        client.post('/v3/user/scheduled_sends',
+                    {
                       batch_id: batch_id,
                       status: 'cancel'
                     }).body
@@ -42,8 +42,8 @@ module SendGrid
 
     def pause_scheduled_send(batch_id)
       if scheduled_send(batch_id).nil?
-        client.post(endpoint: '/v3/user/scheduled_sends',
-                    payload: {
+        client.post('/v3/user/scheduled_sends',
+                    {
                       batch_id: batch_id,
                       status: 'pause'
                     }).body
@@ -53,12 +53,12 @@ module SendGrid
     end
 
     def update_scheduled_send(batch_id, status)
-      client.patch(endpoint: "/v3/user/scheduled_sends/#{batch_id}",
-                   payload: { status: status }).body
+      client.patch("/v3/user/scheduled_sends/#{batch_id}",
+                   { status: status }).body
     end
 
     def resume_scheduled_send(batch_id)
-      client.delete(endpoint: "/v3/user/scheduled_sends/#{batch_id}").body
+      client.delete("/v3/user/scheduled_sends/#{batch_id}").body
     end
 
     private

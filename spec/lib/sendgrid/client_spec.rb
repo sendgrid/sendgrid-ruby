@@ -59,7 +59,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.post(endpoint: '/api/test')
+      token_client.post('/api/test')
       
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/test')
     end
@@ -68,7 +68,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
       
-      token_client.post(endpoint: '/api/test', payload: { am_i_here: true } )
+      token_client.post('/api/test', { am_i_here: true } )
       
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -78,7 +78,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.post(endpoint: '/api/test')
+      token_client.post('/api/test')
 
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/test')
         .with(headers: {'Authorization' => 'Bearer abc123'})
@@ -88,7 +88,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      res = user_client.post(endpoint: '/api/test')
+      res = user_client.post('/api/test')
 
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/test')
         .with(body: 'api_key=abc123&api_user=foobar')
@@ -98,7 +98,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
 
-      expect { user_client.post(endpoint: '/api/test') }.to raise_error(SendGrid::Exception)
+      expect { user_client.post('/api/test') }.to raise_error(SendGrid::Exception)
     end
 
     it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
@@ -107,7 +107,7 @@ describe 'SendGrid::Client' do
 
       client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
 
-      expect { client.post(endpoint: '/api/test') }.not_to raise_error
+      expect { client.post('/api/test') }.not_to raise_error
     end
   end
   
@@ -119,7 +119,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.patch(endpoint: '/api/test')
+      token_client.patch('/api/test')
       
       expect(WebMock).to have_requested(:patch, 'https://api.sendgrid.com/api/test')
     end
@@ -128,7 +128,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
       
-      token_client.patch(endpoint: '/api/test', payload: { am_i_here: true } )
+      token_client.patch('/api/test', { am_i_here: true } )
       
       expect(WebMock).to have_requested(:patch, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -138,7 +138,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.patch(endpoint: '/api/test')
+      token_client.patch('/api/test')
 
       expect(WebMock).to have_requested(:patch, 'https://api.sendgrid.com/api/test')
         .with(headers: {'Authorization' => 'Bearer abc123'})
@@ -148,7 +148,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      res = user_client.patch(endpoint: '/api/test')
+      res = user_client.patch('/api/test')
 
       expect(WebMock).to have_requested(:patch, 'https://api.sendgrid.com/api/test')
         .with(body: 'api_key=abc123&api_user=foobar')
@@ -158,7 +158,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
 
-      expect { user_client.patch(endpoint: '/api/test') }.to raise_error(SendGrid::Exception)
+      expect { user_client.patch('/api/test') }.to raise_error(SendGrid::Exception)
     end
 
     it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
@@ -167,7 +167,7 @@ describe 'SendGrid::Client' do
 
       client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
 
-      expect { client.patch(endpoint: '/api/test') }.not_to raise_error
+      expect { client.patch('/api/test') }.not_to raise_error
     end
   end
   
@@ -179,7 +179,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.get(endpoint: '/api/test')
+      token_client.get('/api/test')
       
       expect(WebMock).to have_requested(:get, 'https://api.sendgrid.com/api/test')
     end
@@ -188,7 +188,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
       
-      token_client.get(endpoint: '/api/test', payload: { am_i_here: true } )
+      token_client.get('/api/test', { am_i_here: true } )
       
       expect(WebMock).to have_requested(:get, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -198,7 +198,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.get(endpoint: '/api/test')
+      token_client.get('/api/test')
 
       expect(WebMock).to have_requested(:get, 'https://api.sendgrid.com/api/test')
         .with(headers: {'Authorization' => 'Bearer abc123'})
@@ -208,7 +208,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      res = user_client.get(endpoint: '/api/test')
+      res = user_client.get('/api/test')
 
       expect(WebMock).to have_requested(:get, 'https://api.sendgrid.com/api/test')
         .with(body: 'api_key=abc123&api_user=foobar')
@@ -218,7 +218,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
 
-      expect { user_client.get(endpoint: '/api/test') }.to raise_error(SendGrid::Exception)
+      expect { user_client.get('/api/test') }.to raise_error(SendGrid::Exception)
     end
 
     it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
@@ -227,7 +227,7 @@ describe 'SendGrid::Client' do
 
       client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
 
-      expect { client.get(endpoint: '/api/test') }.not_to raise_error
+      expect { client.get('/api/test') }.not_to raise_error
     end
   end
   
@@ -239,7 +239,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.delete(endpoint: '/api/test')
+      token_client.delete('/api/test')
       
       expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
     end
@@ -248,7 +248,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.delete(endpoint: '/api/test')
+      token_client.delete('/api/test')
 
       expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
         .with(headers: {'Authorization' => 'Bearer abc123'})
@@ -258,7 +258,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      res = user_client.delete(endpoint: '/api/test')
+      res = user_client.delete('/api/test')
 
       expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
         .with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' } )
@@ -268,7 +268,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'error', errors: ['Bad username / password']}.to_json, status: 400, headers: {'X-TEST' => 'yes'})
 
-      expect { user_client.delete(endpoint: '/api/test') }.to raise_error(SendGrid::Exception)
+      expect { user_client.delete('/api/test') }.to raise_error(SendGrid::Exception)
     end
 
     it 'should not raise a SendGrid::Exception if raise_exceptions is disabled' do
@@ -277,7 +277,7 @@ describe 'SendGrid::Client' do
 
       client = SendGrid::Client.new(api_user: 'foobar', api_key: 'abc123', raise_exceptions: false)
 
-      expect { client.delete(endpoint: '/api/test') }.not_to raise_error
+      expect { client.delete('/api/test') }.not_to raise_error
     end
   end
 end

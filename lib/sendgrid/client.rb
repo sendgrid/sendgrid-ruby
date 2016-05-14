@@ -22,11 +22,10 @@ module SendGrid
     end
 
     def send(mail)
-      post endpoint: endpoint,
-           payload: mail.to_h
+      post endpoint, mail.to_h
     end
     
-    def post(endpoint:, payload: {})
+    def post(endpoint, payload = {})
       res = conn.post do |req|
         req.url endpoint
         
@@ -46,7 +45,7 @@ module SendGrid
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
     
-    def patch(endpoint:, payload: {})
+    def patch(endpoint, payload = {})
       res = conn.patch do |req|
         req.url endpoint
         
@@ -66,7 +65,7 @@ module SendGrid
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
     
-    def get(endpoint:, payload: {})
+    def get(endpoint, payload = {})
       res = conn.get do |req|
         req.url endpoint
         
@@ -86,7 +85,7 @@ module SendGrid
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
     
-    def delete(endpoint:, payload: {})
+    def delete(endpoint, payload = {})
       res = if api_user
         conn.basic_auth api_user, api_key
         conn.delete(endpoint)
