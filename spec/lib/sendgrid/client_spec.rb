@@ -68,7 +68,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.post('/api/test', { am_i_here: true } )
+      token_client.post('/api/test', { am_i_here: true })
 
       expect(WebMock).to have_requested(:post, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -128,7 +128,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.patch('/api/test', { am_i_here: true } )
+      token_client.patch('/api/test', { am_i_here: true })
 
       expect(WebMock).to have_requested(:patch, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -188,7 +188,7 @@ describe 'SendGrid::Client' do
       stub_request(:any, 'https://api.sendgrid.com/api/test')
         .to_return(body: {message: 'success'}.to_json, status: 200, headers: {'X-TEST' => 'yes'})
 
-      token_client.get('/api/test', { am_i_here: true } )
+      token_client.get('/api/test', { am_i_here: true })
 
       expect(WebMock).to have_requested(:get, 'https://api.sendgrid.com/api/test')
         .with(body: 'am_i_here=true')
@@ -261,7 +261,7 @@ describe 'SendGrid::Client' do
       user_client.delete('/api/test')
 
       expect(WebMock).to have_requested(:delete, 'https://api.sendgrid.com/api/test')
-        .with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' } )
+        .with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' })
     end
 
     it 'should raise a SendGrid::Exception if status is not 200' do
