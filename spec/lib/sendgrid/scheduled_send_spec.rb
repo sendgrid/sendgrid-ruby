@@ -85,14 +85,14 @@ describe 'SendGrid::ScheduledSend' do
     end
 
     it 'returns the scheduled send when cancelled' do
-      body = { "batch_id" => batch_id, "status" => "cancel" }
+      body = { 'batch_id' => batch_id, 'status' => 'cancel' }
       stub_request(:any, url).to_return(status: 200, body: [body].to_json)
 
       expect(scheduled_send_api.scheduled_send(batch_id)).to eq body
     end
 
     it 'returns the scheduled send when paused' do
-      body = { "batch_id" => batch_id, "status" => "cancel" }
+      body = { 'batch_id' => batch_id, 'status' => 'cancel' }
       stub_request(:any, url).to_return(status: 200, body: [body].to_json)
 
       expect(scheduled_send_api.scheduled_send(batch_id)).to eq body
@@ -106,7 +106,7 @@ describe 'SendGrid::ScheduledSend' do
   end
 
   describe ':scheduled_sends' do
-    let(:url) { "https://api.sendgrid.com/v3/user/scheduled_sends" }
+    let(:url) { 'https://api.sendgrid.com/v3/user/scheduled_sends' }
 
     it 'makes a get request to the schedule send api' do
       stub_request(:any, url)
@@ -118,8 +118,8 @@ describe 'SendGrid::ScheduledSend' do
 
     it 'returns the scheduled sends' do
       body = [
-        { "batch_id" => batch_id, "status" => "cancel" },
-        { "batch_id" => "#{batch_id}1234", "status" => "pause" }
+        { 'batch_id' => batch_id, 'status' => 'cancel' },
+        { 'batch_id' => "#{batch_id}1234", 'status' => 'pause' }
       ]
       stub_request(:any, url).to_return(status: 200, body: body.to_json)
 
@@ -151,7 +151,7 @@ describe 'SendGrid::ScheduledSend' do
       end
 
       it 'returns the status when successful' do
-        body = { "status" => "cancel" }
+        body = { 'status' => 'cancel' }
         stub_request(:any, url).to_return(status: 201, body: body.to_json)
 
         expect(scheduled_send_api.cancel_scheduled_send(batch_id)).to eq body
@@ -166,7 +166,7 @@ describe 'SendGrid::ScheduledSend' do
     end
 
     context 'when cancelled for the first time' do
-      let(:url)  { "https://api.sendgrid.com/v3/user/scheduled_sends" }
+      let(:url)  { 'https://api.sendgrid.com/v3/user/scheduled_sends' }
       let(:body) { params.merge(batch_id: batch_id, status: 'cancel') }
 
       before do
@@ -216,7 +216,7 @@ describe 'SendGrid::ScheduledSend' do
     end
 
     context 'when cancelled for the first time' do
-      let(:url)  { "https://api.sendgrid.com/v3/user/scheduled_sends" }
+      let(:url)  { 'https://api.sendgrid.com/v3/user/scheduled_sends' }
       let(:body) { params.merge(batch_id: batch_id, status: 'pause') }
 
       before do
@@ -252,7 +252,7 @@ describe 'SendGrid::ScheduledSend' do
     end
 
     it 'is successful for a valid batch id' do
-      stub_request(:any, url).to_return(status: 204, body: "")
+      stub_request(:any, url).to_return(status: 204, body: '')
 
       expect(scheduled_send_api.resume_scheduled_send(batch_id)).to be_empty
     end
