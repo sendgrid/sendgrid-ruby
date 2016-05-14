@@ -85,17 +85,17 @@ module SendGrid
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
 
-    def delete(endpoint, payload = {})
+    def delete(endpoint)
       res = if api_user
-        conn.basic_auth api_user, api_key
-        conn.delete(endpoint)
-      else
-        conn.delete do |req|
-          req.url endpoint
-          # API key
-          req.headers['Authorization'] = "Bearer #{api_key}"
-        end
-      end
+              conn.basic_auth api_user, api_key
+              conn.delete(endpoint)
+            else
+              conn.delete do |req|
+                req.url endpoint
+                # API key
+                req.headers['Authorization'] = "Bearer #{api_key}"
+              end
+            end
 
       raise SendGrid::Exception, res.body if raise_exceptions? && (res.status < 200 || res.status >= 300)
 
