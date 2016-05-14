@@ -29,7 +29,7 @@ module SendGrid
     end
     
     def cancel_scheduled_send(batch_id)
-      if scheduled_send(batch_id).empty?
+      if scheduled_send(batch_id).nil?
         client.post(endpoint: "/v3/user/scheduled_sends", 
                     payload: {
                       batch_id: batch_id,
@@ -41,7 +41,7 @@ module SendGrid
     end
     
     def pause_scheduled_send(batch_id)
-      if scheduled_send(batch_id).empty?
+      if scheduled_send(batch_id).nil?
         client.post(endpoint: "/v3/user/scheduled_sends",
                     payload: { 
                       batch_id: batch_id, 

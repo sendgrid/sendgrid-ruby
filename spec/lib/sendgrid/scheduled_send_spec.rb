@@ -170,7 +170,7 @@ describe 'SendGrid::ScheduledSend' do
       let(:body) { params.merge(batch_id: batch_id, status: 'cancel') }
       
       before do
-        allow(scheduled_send_api).to receive(:scheduled_send).and_return([])
+        allow(scheduled_send_api).to receive(:scheduled_send).and_return(nil)
       end
       
       it 'makes a post request to the schedule send api' do
@@ -220,7 +220,7 @@ describe 'SendGrid::ScheduledSend' do
       let(:body) { params.merge(batch_id: batch_id, status: 'pause') }
       
       before do
-        allow(scheduled_send_api).to receive(:scheduled_send).and_return([])
+        allow(scheduled_send_api).to receive(:scheduled_send).and_return(nil)
       end
       
       it 'makes a post request to the schedule send api' do
