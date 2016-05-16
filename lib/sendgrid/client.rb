@@ -23,18 +23,9 @@ module SendGrid
 
     def send(mail)
       res = conn.post do |req|
-        payload = mail.to_h
         req.url(endpoint)
 
-        # Check if using username + password or API key
-        if api_user
-          # Username + password
-          payload = payload.merge(api_user: api_user, api_key: api_key)
-        else
-          # API key
-          req.headers['Authorization'] = "Bearer #{api_key}"
-        end
-
+        payload = build(mail, req)
         req.body = payload
       end
 
@@ -49,6 +40,18 @@ module SendGrid
         conn.request :url_encoded
         conn.adapter adapter
       end
+    end
+
+    # Build email with authorization
+    # Check if using username + password or API key
+    def build(mail, request)
+      if api_user
+        payload = mail.to_h.merge(api_user: api_user, api_key: api_key)
+      else
+        payload = mail.to_h
+        request.headers['Authorization'] = "Bearer #{api_key}"
+      end
+      payload
     end
 
     def adapter

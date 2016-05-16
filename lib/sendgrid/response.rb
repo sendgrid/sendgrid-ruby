@@ -7,8 +7,8 @@ module SendGrid
     def initialize(params)
       @code = params[:code]
       @headers = params[:headers]
-      @body = JSON.parse(params[:body])
-      @raw_body = params[:body]
+      @body = params[:body].present? ? JSON.parse(params[:body]) : nil
+      @raw_body = params[:body].present? ? params[:body] : nil
     end
   end
 end
