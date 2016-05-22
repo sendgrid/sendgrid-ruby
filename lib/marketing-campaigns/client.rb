@@ -1,37 +1,54 @@
+require 'active_support/all'
 require 'faraday'
+require 'pry'
 
-module SendGrid
+module MarketingCampaigns
   class Client
     attr_accessor :api_user, :api_key, :protocol, :host, :port, :url, :endpoint,
                   :user_agent, :template
     attr_writer :adapter, :conn, :raise_exceptions
 
     def initialize(params = {})
-      self.api_user         = params.fetch(:api_user, nil)
       self.api_key          = params.fetch(:api_key, nil)
       self.protocol         = params.fetch(:protocol, 'https')
       self.host             = params.fetch(:host, 'api.sendgrid.com')
       self.port             = params.fetch(:port, nil)
       self.url              = params.fetch(:url, protocol + '://' + host + (port ? ":#{port}" : ''))
-      self.endpoint         = params.fetch(:endpoint, '/api/mail.send.json')
+      self.endpoint         = params.fetch(:endpoint, '/v3/campaigns')
       self.adapter          = params.fetch(:adapter, adapter)
       self.conn             = params.fetch(:conn, conn)
       self.user_agent       = params.fetch(:user_agent, "sendgrid/#{SendGrid::VERSION};ruby")
-      self.raise_exceptions = params.fetch(:raise_exceptions, true)
       yield self if block_given?
     end
 
-    def send(mail)
+    def create(campaign)
       res = conn.post do |req|
+        payload = campaign.to_json
+        build(req)
         req.url(endpoint)
-
-        payload = build(mail, req)
         req.body = payload
       end
+      output(res)
+    end
 
-      fail SendGrid::Exception, res.body if raise_exceptions? && res.status != 200
+    def get(id = '')
+      res = conn.get do |req|
+        build(req)
+        if id.present?
+          req.url(endpoint + '/' + id.to_s)
+        else
+          req.url(endpoint)
+        end
+      end
+      output(res)
+    end
 
-      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
+    def delete(id)
+      res = conn.delete do |req|
+        build(req)
+        req.url(endpoint + '/' + id.to_s)
+      end
+      output(res)
     end
 
     def conn
@@ -42,20 +59,20 @@ module SendGrid
       end
     end
 
-    # Build email with authorization
-    # Check if using username + password or API key
-    def build(mail, request)
-      if api_user
-        payload = mail.to_h.merge(api_user: api_user, api_key: api_key)
-      else
-        payload = mail.to_h
-        request.headers['Authorization'] = "Bearer #{api_key}"
-      end
-      payload
+    def build(request)
+      request.headers['Authorization'] = "Bearer #{api_key}"
+      # GZIP encoding issue
+      # https://github.com/lostisland/faraday/issues/120
+      request.headers['accept-encoding'] = "none"
     end
 
     def adapter
       @adapter ||= Faraday.default_adapter
+    end
+
+    def output(res)
+      # marketing campaigns API returns multiple statuses, including failed with reasons
+      SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
     end
 
     def raise_exceptions?
