@@ -132,6 +132,7 @@ puts response.response_headers
 # Usage
 
 - [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
+- [Usage Docs](https://github.com/sendgrid/sendgrid-ruby/tree/v3beta/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-ruby/tree/v3beta/examples)
 
 ## Roadmap
