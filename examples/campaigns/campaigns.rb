@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Create a Campaign #
 # POST /campaigns #
@@ -29,8 +43,8 @@ data = JSON.parse('{
 }')
 response = sg.client.campaigns.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all Campaigns #
@@ -39,8 +53,8 @@ puts response.response_headers
 params = JSON.parse('{"limit": 0, "offset": 0}')
 response = sg.client.campaigns.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update a Campaign #
@@ -58,8 +72,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a single campaign #
@@ -68,18 +82,18 @@ puts response.response_headers
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a Campaign #
 # DELETE /campaigns/{campaign_id} #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).delete()
+response = sg.client.campaigns._(campaign_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update a Scheduled Campaign #
@@ -91,8 +105,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Schedule a Campaign #
@@ -104,8 +118,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # View Scheduled Time of a Campaign #
@@ -114,28 +128,29 @@ puts response.response_headers
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Unschedule a Scheduled Campaign #
 # DELETE /campaigns/{campaign_id}/schedules #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete()
+response = sg.client.campaigns._(campaign_id).schedules.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Send a Campaign #
 # POST /campaigns/{campaign_id}/schedules/now #
 
+data = JSON.parse('null')
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post()
+response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Send a Test Campaign #
@@ -147,6 +162,6 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

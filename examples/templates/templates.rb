@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Create a transactional template. #
 # POST /templates #
@@ -12,8 +26,8 @@ data = JSON.parse('{
 }')
 response = sg.client.templates.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all transactional templates. #
@@ -21,8 +35,8 @@ puts response.response_headers
 
 response = sg.client.templates.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Edit a transactional template. #
@@ -34,8 +48,8 @@ data = JSON.parse('{
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a single transactional template. #
@@ -44,18 +58,18 @@ puts response.response_headers
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a template. #
 # DELETE /templates/{template_id} #
 
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).delete()
+response = sg.client.templates._(template_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Create a new transactional template version. #
@@ -72,8 +86,8 @@ data = JSON.parse('{
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).versions.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Edit a transactional template version. #
@@ -90,8 +104,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a specific transactional template version. #
@@ -101,8 +115,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a transactional template version. #
@@ -110,19 +124,20 @@ puts response.response_headers
 
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete()
+response = sg.client.templates._(template_id).versions._(version_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Activate a transactional template version. #
 # POST /templates/{template_id}/versions/{version_id}/activate #
 
+data = JSON.parse('null')
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

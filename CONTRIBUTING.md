@@ -91,10 +91,18 @@ source ./sendgrid.env
 
 See the [examples folder](https://github.com/sendgrid/sendgrid-ruby/tree/master/examples) to get started quickly.
 
-To run the examples:
+To run the examples using the local version of this library from the root directory of this repo, please replace:
+
+`require 'sendgrid-ruby'`
+
+with:
+
+`require_relative './lib/sendgrid-ruby.rb'`
+
+Then run using:
 
 ```bash
-ruby examples/example.rb
+ruby example.rb
 ```
 
 <a name="understanding_the_codebase"></a>

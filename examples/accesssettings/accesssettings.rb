@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Retrieve all recent access attempts #
 # GET /access_settings/activity #
@@ -10,8 +24,8 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 params = JSON.parse('{"limit": 1}')
 response = sg.client.access_settings.activity.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Add one or more IPs to the whitelist #
@@ -32,8 +46,8 @@ data = JSON.parse('{
 }')
 response = sg.client.access_settings.whitelist.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a list of currently whitelisted IPs #
@@ -41,8 +55,8 @@ puts response.response_headers
 
 response = sg.client.access_settings.whitelist.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Remove one or more IPs from the whitelist #
@@ -50,8 +64,8 @@ puts response.response_headers
 
 response = sg.client.access_settings.whitelist.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a specific whitelisted IP #
@@ -60,16 +74,16 @@ puts response.response_headers
 rule_id = "test_url_param"
 response = sg.client.access_settings.whitelist._(rule_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Remove a specific IP from the whitelist #
 # DELETE /access_settings/whitelist/{rule_id} #
 
 rule_id = "test_url_param"
-response = sg.client.access_settings.whitelist._(rule_id).delete()
+response = sg.client.access_settings.whitelist._(rule_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

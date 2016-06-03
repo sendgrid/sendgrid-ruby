@@ -114,8 +114,8 @@ mail = Mail.new(from, subject, to, content)
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 
 ## General v3 Web API Usage
@@ -125,8 +125,8 @@ require 'sendgrid-ruby'
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.api_keys.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 
 # Usage

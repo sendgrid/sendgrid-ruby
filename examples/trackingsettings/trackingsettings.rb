@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Retrieve Tracking Settings #
 # GET /tracking_settings #
@@ -10,8 +24,8 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.tracking_settings.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update Click Tracking Settings #
@@ -22,8 +36,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.click.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve Click Track Settings #
@@ -31,8 +45,8 @@ puts response.response_headers
 
 response = sg.client.tracking_settings.click.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update Google Analytics Settings #
@@ -48,8 +62,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.google_analytics.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve Google Analytics Settings #
@@ -57,8 +71,8 @@ puts response.response_headers
 
 response = sg.client.tracking_settings.google_analytics.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update Open Tracking Settings #
@@ -69,8 +83,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.open.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Get Open Tracking Settings #
@@ -78,8 +92,8 @@ puts response.response_headers
 
 response = sg.client.tracking_settings.open.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update Subscription Tracking Settings #
@@ -95,8 +109,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.subscription.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve Subscription Tracking Settings #
@@ -104,6 +118,6 @@ puts response.response_headers
 
 response = sg.client.tracking_settings.subscription.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

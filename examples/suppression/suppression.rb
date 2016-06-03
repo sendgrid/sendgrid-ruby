@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Retrieve all blocks #
 # GET /suppression/blocks #
@@ -10,8 +24,8 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.blocks.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete blocks #
@@ -19,8 +33,8 @@ puts response.response_headers
 
 response = sg.client.suppression.blocks.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a specific block #
@@ -29,18 +43,18 @@ puts response.response_headers
 email = "test_url_param"
 response = sg.client.suppression.blocks._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a specific block #
 # DELETE /suppression/blocks/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.blocks._(email).delete()
+response = sg.client.suppression.blocks._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all bounces #
@@ -49,8 +63,8 @@ puts response.response_headers
 params = JSON.parse('{"start_time": 0, "end_time": 0}')
 response = sg.client.suppression.bounces.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete bounces #
@@ -58,8 +72,8 @@ puts response.response_headers
 
 response = sg.client.suppression.bounces.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a Bounce #
@@ -68,8 +82,8 @@ puts response.response_headers
 email = "test_url_param"
 response = sg.client.suppression.bounces._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a bounce #
@@ -77,10 +91,10 @@ puts response.response_headers
 
 params = JSON.parse('{"email_address": "example@example.com"}')
 email = "test_url_param"
-response = sg.client.suppression.bounces._(email).delete(query_params: params)
+response = sg.client.suppression.bounces._(email).delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all invalid emails #
@@ -89,8 +103,8 @@ puts response.response_headers
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.invalid_emails.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete invalid emails #
@@ -98,8 +112,8 @@ puts response.response_headers
 
 response = sg.client.suppression.invalid_emails.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a specific invalid email #
@@ -108,18 +122,18 @@ puts response.response_headers
 email = "test_url_param"
 response = sg.client.suppression.invalid_emails._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a specific invalid email #
 # DELETE /suppression/invalid_emails/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.invalid_emails._(email).delete()
+response = sg.client.suppression.invalid_emails._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve a specific spam report #
@@ -128,18 +142,18 @@ puts response.response_headers
 email = "test_url_param"
 response = sg.client.suppression.spam_report._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a specific spam report #
 # DELETE /suppression/spam_report/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete()
+response = sg.client.suppression.spam_report._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all spam reports #
@@ -148,8 +162,8 @@ puts response.response_headers
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.spam_reports.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete spam reports #
@@ -157,8 +171,8 @@ puts response.response_headers
 
 response = sg.client.suppression.spam_reports.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all global suppressions #
@@ -167,6 +181,6 @@ puts response.response_headers
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.unsubscribes.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

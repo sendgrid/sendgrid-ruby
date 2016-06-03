@@ -3,14 +3,29 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Create a batch ID #
 # POST /mail/batch #
 
-response = sg.client.mail.batch.post()
+data = JSON.parse('null')
+response = sg.client.mail.batch.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Validate batch ID #
@@ -19,8 +34,8 @@ puts response.response_headers
 batch_id = "test_url_param"
 response = sg.client.mail.batch._(batch_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # v3 Mail Send Beta #
@@ -171,6 +186,6 @@ data = JSON.parse('{
 }')
 response = sg.client.mail._("send").beta.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

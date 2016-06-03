@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Retrieve all IP addresses #
 # GET /ips #
@@ -10,8 +24,8 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 params = JSON.parse('{"subuser": "test_string", "ip": "test_string", "limit": 1, "exclude_whitelabels": "true", "offset": 1}')
 response = sg.client.ips.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all assigned IPs #
@@ -19,8 +33,8 @@ puts response.response_headers
 
 response = sg.client.ips.assigned.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Create an IP pool. #
@@ -31,8 +45,8 @@ data = JSON.parse('{
 }')
 response = sg.client.ips.pools.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all IP pools. #
@@ -40,8 +54,8 @@ puts response.response_headers
 
 response = sg.client.ips.pools.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update an IP pools name. #
@@ -53,8 +67,8 @@ data = JSON.parse('{
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all IPs in a specified pool. #
@@ -63,18 +77,18 @@ puts response.response_headers
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete an IP pool. #
 # DELETE /ips/pools/{pool_name} #
 
 pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete()
+response = sg.client.ips.pools._(pool_name).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Add an IP address to a pool #
@@ -86,8 +100,8 @@ data = JSON.parse('{
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).ips.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Remove an IP address from a pool. #
@@ -95,10 +109,10 @@ puts response.response_headers
 
 pool_name = "test_url_param"
         ip = "test_url_param"
-response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Add an IP to warmup #
@@ -109,8 +123,8 @@ data = JSON.parse('{
 }')
 response = sg.client.ips.warmup.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all IPs currently in warmup #
@@ -118,8 +132,8 @@ puts response.response_headers
 
 response = sg.client.ips.warmup.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve warmup status for a specific IP address #
@@ -128,18 +142,18 @@ puts response.response_headers
 ip_address = "test_url_param"
 response = sg.client.ips.warmup._(ip_address).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Remove an IP from warmup #
 # DELETE /ips/warmup/{ip_address} #
 
 ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).delete()
+response = sg.client.ips.warmup._(ip_address).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all IP pools an IP address belongs to #
@@ -148,6 +162,6 @@ puts response.response_headers
 ip_address = "test_url_param"
 response = sg.client.ips._(ip_address).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

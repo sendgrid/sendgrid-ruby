@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Retrieve all mail settings #
 # GET /mail_settings #
@@ -10,8 +24,8 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.mail_settings.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update address whitelist mail settings #
@@ -26,8 +40,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.address_whitelist.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve address whitelist mail settings #
@@ -35,8 +49,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.address_whitelist.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update BCC mail settings #
@@ -48,8 +62,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.bcc.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve all BCC mail settings #
@@ -57,8 +71,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.bcc.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update bounce purge mail settings #
@@ -71,8 +85,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.bounce_purge.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve bounce purge mail settings #
@@ -80,8 +94,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.bounce_purge.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update footer mail settings #
@@ -94,8 +108,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.footer.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve footer mail settings #
@@ -103,8 +117,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.footer.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update forward bounce mail settings #
@@ -116,8 +130,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.forward_bounce.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve forward bounce mail settings #
@@ -125,8 +139,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.forward_bounce.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update forward spam mail settings #
@@ -138,8 +152,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.forward_spam.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve forward spam mail settings #
@@ -147,8 +161,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.forward_spam.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update plain content mail settings #
@@ -159,8 +173,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.plain_content.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve plain content mail settings #
@@ -168,8 +182,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.plain_content.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update spam check mail settings #
@@ -182,8 +196,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.spam_check.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve spam check mail settings #
@@ -191,8 +205,8 @@ puts response.response_headers
 
 response = sg.client.mail_settings.spam_check.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update template mail settings #
@@ -204,8 +218,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.template.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve legacy template mail settings #
@@ -213,6 +227,6 @@ puts response.response_headers
 
 response = sg.client.mail_settings.template.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

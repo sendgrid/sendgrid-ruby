@@ -3,6 +3,20 @@ require 'sendgrid-ruby'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.sendgrid.Client;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 ##################################################
 # Create Subuser #
 # POST /subusers #
@@ -18,8 +32,8 @@ data = JSON.parse('{
 }')
 response = sg.client.subusers.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # List all Subusers #
@@ -28,8 +42,8 @@ puts response.response_headers
 params = JSON.parse('{"username": "test_string", "limit": 0, "offset": 0}')
 response = sg.client.subusers.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve Subuser Reputations #
@@ -38,8 +52,8 @@ puts response.response_headers
 params = JSON.parse('{"usernames": "test_string"}')
 response = sg.client.subusers.reputations.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve email statistics for your subusers. #
@@ -48,8 +62,8 @@ puts response.response_headers
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "subusers": "test_string"}')
 response = sg.client.subusers.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve monthly stats for all subusers #
@@ -58,8 +72,8 @@ puts response.response_headers
 params = JSON.parse('{"subuser": "test_string", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "date": "test_string", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.monthly.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 #  Retrieve the totals for each email statistic metric for all subusers. #
@@ -68,8 +82,8 @@ puts response.response_headers
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.sums.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Enable/disable a subuser #
@@ -81,18 +95,18 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete a subuser #
 # DELETE /subusers/{subuser_name} #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete()
+response = sg.client.subusers._(subuser_name).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update IPs assigned to a subuser #
@@ -104,8 +118,8 @@ data = JSON.parse('[
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).ips.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Update Monitor Settings for a subuser #
@@ -118,8 +132,8 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Create monitor settings #
@@ -132,8 +146,8 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve monitor settings for a subuser #
@@ -142,18 +156,18 @@ puts response.response_headers
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Delete monitor settings #
 # DELETE /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete()
+response = sg.client.subusers._(subuser_name).monitor.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 
 ##################################################
 # Retrieve the monthly email statistics for a single subuser #
@@ -163,6 +177,6 @@ params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit"
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 

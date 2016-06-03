@@ -53,8 +53,8 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 params = JSON.parse('{"limit": 1}')
 response = sg.client.access_settings.activity.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add one or more IPs to the whitelist
 
@@ -84,8 +84,8 @@ data = JSON.parse('{
 }')
 response = sg.client.access_settings.whitelist.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a list of currently whitelisted IPs
 
@@ -100,8 +100,8 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 ```ruby
 response = sg.client.access_settings.whitelist.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Remove one or more IPs from the whitelist
 
@@ -118,8 +118,8 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 ```ruby
 response = sg.client.access_settings.whitelist.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a specific whitelisted IP
 
@@ -137,8 +137,8 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 rule_id = "test_url_param"
 response = sg.client.access_settings.whitelist._(rule_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Remove a specific IP from the whitelist
 
@@ -154,10 +154,10 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ```ruby
 rule_id = "test_url_param"
-response = sg.client.access_settings.whitelist._(rule_id).delete()
+response = sg.client.access_settings.whitelist._(rule_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="api_keys"></a>
 # API KEYS
@@ -187,8 +187,8 @@ data = JSON.parse('{
 }')
 response = sg.client.api_keys.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all API Keys belonging to the authenticated user
 
@@ -201,8 +201,8 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 ```ruby
 response = sg.client.api_keys.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update the name & scopes of an API Key
 
@@ -227,8 +227,8 @@ data = JSON.parse('{
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update API keys
 
@@ -253,8 +253,8 @@ data = JSON.parse('{
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve an existing API Key
 
@@ -268,8 +268,8 @@ If the API Key ID does not exist an HTTP 404 will be returned.
 api_key_id = "test_url_param"
 response = sg.client.api_keys._(api_key_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete API keys
 
@@ -289,10 +289,10 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ```ruby
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete()
+response = sg.client.api_keys._(api_key_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="asm"></a>
 # ASM
@@ -317,8 +317,8 @@ data = JSON.parse('{
 }')
 response = sg.client.asm.groups.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all suppression groups associated with the user.
 
@@ -335,8 +335,8 @@ Each user can create up to 25 different suppression groups.
 ```ruby
 response = sg.client.asm.groups.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a suppression group.
 
@@ -359,8 +359,8 @@ data = JSON.parse('{
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Get information on a single suppression group.
 
@@ -378,8 +378,8 @@ Each user can create up to 25 different suppression groups.
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a suppression group.
 
@@ -397,10 +397,10 @@ Each user can create up to 25 different suppression groups.
 
 ```ruby
 group_id = "test_url_param"
-response = sg.client.asm.groups._(group_id).delete()
+response = sg.client.asm.groups._(group_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add suppressions to a suppression group
 
@@ -422,8 +422,8 @@ data = JSON.parse('{
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all suppressions for a suppression group
 
@@ -437,8 +437,8 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a suppression from a suppression group
 
@@ -451,10 +451,10 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 ```ruby
 group_id = "test_url_param"
         email = "test_url_param"
-response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
+response = sg.client.asm.groups._(group_id).suppressions._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add recipient addresses to the global suppression group.
 
@@ -473,8 +473,8 @@ data = JSON.parse('{
 }')
 response = sg.client.asm.suppressions.global.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Global Suppression
 
@@ -490,8 +490,8 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 email = "test_url_param"
 response = sg.client.asm.suppressions.global._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Global Suppression
 
@@ -503,10 +503,10 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ```ruby
 email = "test_url_param"
-response = sg.client.asm.suppressions.global._(email).delete()
+response = sg.client.asm.suppressions.global._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="browsers"></a>
 # BROWSERS
@@ -525,8 +525,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "browsers": "test_string", "limit": "test_string", "offset": "test_string", "start_date": "2016-01-01"}')
 response = sg.client.browsers.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="campaigns"></a>
 # CAMPAIGNS
@@ -568,8 +568,8 @@ data = JSON.parse('{
 }')
 response = sg.client.campaigns.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all Campaigns
 
@@ -589,8 +589,8 @@ For more information:
 params = JSON.parse('{"limit": 0, "offset": 0}')
 response = sg.client.campaigns.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a Campaign
 
@@ -615,8 +615,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a single campaign
 
@@ -634,8 +634,8 @@ For more information:
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Campaign
 
@@ -651,10 +651,10 @@ For more information:
 
 ```ruby
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).delete()
+response = sg.client.campaigns._(campaign_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a Scheduled Campaign
 
@@ -673,8 +673,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Schedule a Campaign
 
@@ -693,8 +693,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## View Scheduled Time of a Campaign
 
@@ -710,8 +710,8 @@ For more information:
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Unschedule a Scheduled Campaign
 
@@ -728,10 +728,10 @@ For more information:
 
 ```ruby
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete()
+response = sg.client.campaigns._(campaign_id).schedules.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Send a Campaign
 
@@ -746,11 +746,12 @@ For more information:
 ### POST /campaigns/{campaign_id}/schedules/now
 
 ```ruby
+data = JSON.parse('null')
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post()
+response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Send a Test Campaign
 
@@ -771,8 +772,8 @@ data = JSON.parse('{
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="categories"></a>
 # CATEGORIES
@@ -789,8 +790,8 @@ Categories can help organize your email analytics by enabling you to tag emails 
 params = JSON.parse('{"category": "test_string", "limit": 1, "offset": 1}')
 response = sg.client.categories.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Email Statistics for Categories
 
@@ -806,8 +807,8 @@ Categories allow you to group your emails together according to broad topics tha
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "categories": "test_string"}')
 response = sg.client.categories.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve sums of email stats for each category [Needs: Stats object defined, has category ID?]
 
@@ -823,8 +824,8 @@ Categories allow you to group your emails together according to broad topics tha
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
 response = sg.client.categories.stats.sums.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="clients"></a>
 # CLIENTS
@@ -843,8 +844,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_date": "2016-04-01"}')
 response = sg.client.clients.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve stats by a specific client type.
 
@@ -867,8 +868,8 @@ params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_d
 client_type = "test_url_param"
 response = sg.client.clients._(client_type).stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="contactdb"></a>
 # CONTACTDB
@@ -888,8 +889,8 @@ data = JSON.parse('{
 }')
 response = sg.client.contactdb.custom_fields.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all custom fields
 
@@ -902,8 +903,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ```ruby
 response = sg.client.contactdb.custom_fields.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Custom Field
 
@@ -917,8 +918,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 custom_field_id = "test_url_param"
 response = sg.client.contactdb.custom_fields._(custom_field_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Custom Field
 
@@ -930,10 +931,10 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ```ruby
 custom_field_id = "test_url_param"
-response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
+response = sg.client.contactdb.custom_fields._(custom_field_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create a List
 
@@ -949,8 +950,8 @@ data = JSON.parse('{
 }')
 response = sg.client.contactdb.lists.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all lists
 
@@ -963,8 +964,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```ruby
 response = sg.client.contactdb.lists.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete Multiple lists
 
@@ -977,8 +978,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```ruby
 response = sg.client.contactdb.lists.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a List
 
@@ -997,8 +998,8 @@ params = JSON.parse('{"list_id": 0}')
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).patch(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a single list
 
@@ -1013,8 +1014,8 @@ params = JSON.parse('{"list_id": 0}')
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a List
 
@@ -1027,10 +1028,10 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```ruby
 params = JSON.parse('{"delete_contacts": "true"}')
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).delete(query_params: params)
+response = sg.client.contactdb.lists._(list_id).delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add Multiple Recipients to a List
 
@@ -1050,8 +1051,8 @@ data = JSON.parse('[
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all recipients on a List
 
@@ -1066,8 +1067,8 @@ params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 0}')
 list_id = "test_url_param"
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add a Single Recipient to a List
 
@@ -1078,12 +1079,13 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ### POST /contactdb/lists/{list_id}/recipients/{recipient_id}
 
 ```ruby
+data = JSON.parse('null')
 list_id = "test_url_param"
         recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Single Recipient from a Single List
 
@@ -1097,10 +1099,10 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 params = JSON.parse('{"recipient_id": 0, "list_id": 0}')
 list_id = "test_url_param"
         recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params: params)
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Recipient
 
@@ -1124,8 +1126,8 @@ data = JSON.parse('[
 ]')
 response = sg.client.contactdb.recipients.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add recipients
 
@@ -1154,8 +1156,8 @@ data = JSON.parse('[
 ]')
 response = sg.client.contactdb.recipients.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve recipients
 
@@ -1172,8 +1174,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 params = JSON.parse('{"page": 1, "page_size": 1}')
 response = sg.client.contactdb.recipients.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete Recipient
 
@@ -1188,8 +1190,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ```ruby
 response = sg.client.contactdb.recipients.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve the count of billable recipients
 
@@ -1204,8 +1206,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 ```ruby
 response = sg.client.contactdb.recipients.billable_count.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Count of Recipients
 
@@ -1218,8 +1220,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ```ruby
 response = sg.client.contactdb.recipients.count.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve recipients matching search criteria
 
@@ -1242,8 +1244,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 params = JSON.parse('{"{field_name}": "test_string"}')
 response = sg.client.contactdb.recipients.search.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a single recipient
 
@@ -1257,8 +1259,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 recipient_id = "test_url_param"
 response = sg.client.contactdb.recipients._(recipient_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Recipient
 
@@ -1270,10 +1272,10 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ```ruby
 recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).delete()
+response = sg.client.contactdb.recipients._(recipient_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve the lists that a recipient is on
 
@@ -1289,8 +1291,8 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 recipient_id = "test_url_param"
 response = sg.client.contactdb.recipients._(recipient_id).lists.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve reserved fields
 
@@ -1303,8 +1305,8 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 ```ruby
 response = sg.client.contactdb.reserved_fields.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create a Segment
 
@@ -1361,8 +1363,8 @@ data = JSON.parse('{
 }')
 response = sg.client.contactdb.segments.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all segments
 
@@ -1377,8 +1379,8 @@ For more information about segments in Marketing Campaigns, please see our [User
 ```ruby
 response = sg.client.contactdb.segments.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a segment
 
@@ -1407,8 +1409,8 @@ params = JSON.parse('{"segment_id": "test_string"}')
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).patch(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a segment
 
@@ -1425,8 +1427,8 @@ params = JSON.parse('{"segment_id": 0}')
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a segment
 
@@ -1443,10 +1445,10 @@ For more information about segments in Marketing Campaigns, please see our [User
 ```ruby
 params = JSON.parse('{"delete_contacts": "true"}')
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).delete(query_params: params)
+response = sg.client.contactdb.segments._(segment_id).delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve recipients on a segment
 
@@ -1463,8 +1465,8 @@ params = JSON.parse('{"page": 1, "page_size": 1}')
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).recipients.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="devices"></a>
 # DEVICES
@@ -1492,8 +1494,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
 response = sg.client.devices.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="geo"></a>
 # GEO
@@ -1512,8 +1514,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 params = JSON.parse('{"end_date": "2016-04-01", "country": "US", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
 response = sg.client.geo.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="ips"></a>
 # IPS
@@ -1532,8 +1534,8 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 params = JSON.parse('{"subuser": "test_string", "ip": "test_string", "limit": 1, "exclude_whitelabels": "true", "offset": 1}')
 response = sg.client.ips.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all assigned IPs
 
@@ -1546,8 +1548,8 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 ```ruby
 response = sg.client.ips.assigned.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create an IP pool.
 
@@ -1569,8 +1571,8 @@ data = JSON.parse('{
 }')
 response = sg.client.ips.pools.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all IP pools.
 
@@ -1587,8 +1589,8 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 ```ruby
 response = sg.client.ips.pools.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update an IP pools name.
 
@@ -1609,8 +1611,8 @@ data = JSON.parse('{
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all IPs in a specified pool.
 
@@ -1628,8 +1630,8 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete an IP pool.
 
@@ -1645,10 +1647,10 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ```ruby
 pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete()
+response = sg.client.ips.pools._(pool_name).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add an IP address to a pool
 
@@ -1667,8 +1669,8 @@ data = JSON.parse('{
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).ips.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Remove an IP address from a pool.
 
@@ -1683,10 +1685,10 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 ```ruby
 pool_name = "test_url_param"
         ip = "test_url_param"
-response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add an IP to warmup
 
@@ -1704,8 +1706,8 @@ data = JSON.parse('{
 }')
 response = sg.client.ips.warmup.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all IPs currently in warmup
 
@@ -1720,8 +1722,8 @@ For more general information about warming up IPs, please see our [Classroom](ht
 ```ruby
 response = sg.client.ips.warmup.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve warmup status for a specific IP address
 
@@ -1737,8 +1739,8 @@ For more general information about warming up IPs, please see our [Classroom](ht
 ip_address = "test_url_param"
 response = sg.client.ips.warmup._(ip_address).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Remove an IP from warmup
 
@@ -1752,10 +1754,10 @@ For more general information about warming up IPs, please see our [Classroom](ht
 
 ```ruby
 ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).delete()
+response = sg.client.ips.warmup._(ip_address).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all IP pools an IP address belongs to
 
@@ -1771,8 +1773,8 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 ip_address = "test_url_param"
 response = sg.client.ips._(ip_address).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="mail"></a>
 # MAIL
@@ -1790,10 +1792,11 @@ More Information:
 ### POST /mail/batch
 
 ```ruby
-response = sg.client.mail.batch.post()
+data = JSON.parse('null')
+response = sg.client.mail.batch.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Validate batch ID
 
@@ -1811,8 +1814,8 @@ More Information:
 batch_id = "test_url_param"
 response = sg.client.mail.batch._(batch_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## v3 Mail Send Beta
 
@@ -1973,8 +1976,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail._("send").beta.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="mail_settings"></a>
 # MAIL SETTINGS
@@ -1991,8 +1994,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.mail_settings.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update address whitelist mail settings
 
@@ -2014,8 +2017,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.address_whitelist.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve address whitelist mail settings
 
@@ -2030,8 +2033,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.address_whitelist.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update BCC mail settings
 
@@ -2050,8 +2053,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.bcc.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all BCC mail settings
 
@@ -2066,8 +2069,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.bcc.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update bounce purge mail settings
 
@@ -2087,8 +2090,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.bounce_purge.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve bounce purge mail settings
 
@@ -2103,8 +2106,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.bounce_purge.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update footer mail settings
 
@@ -2124,8 +2127,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.footer.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve footer mail settings
 
@@ -2140,8 +2143,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.footer.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update forward bounce mail settings
 
@@ -2160,8 +2163,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.forward_bounce.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve forward bounce mail settings
 
@@ -2176,8 +2179,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.forward_bounce.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update forward spam mail settings
 
@@ -2196,8 +2199,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.forward_spam.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve forward spam mail settings
 
@@ -2212,8 +2215,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.forward_spam.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update plain content mail settings
 
@@ -2231,8 +2234,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.plain_content.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve plain content mail settings
 
@@ -2247,8 +2250,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.plain_content.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update spam check mail settings
 
@@ -2268,8 +2271,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.spam_check.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve spam check mail settings
 
@@ -2284,8 +2287,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.spam_check.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update template mail settings
 
@@ -2306,8 +2309,8 @@ data = JSON.parse('{
 }')
 response = sg.client.mail_settings.template.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve legacy template mail settings
 
@@ -2324,8 +2327,8 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 ```ruby
 response = sg.client.mail_settings.template.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="mailbox_providers"></a>
 # MAILBOX PROVIDERS
@@ -2344,8 +2347,8 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 params = JSON.parse('{"end_date": "2016-04-01", "mailbox_providers": "test_string", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
 response = sg.client.mailbox_providers.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="partner_settings"></a>
 # PARTNER SETTINGS
@@ -2362,8 +2365,8 @@ Our partner settings allow you to integrate your SendGrid account with our partn
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.partner_settings.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Updates New Relic partner settings.
 
@@ -2383,8 +2386,8 @@ data = JSON.parse('{
 }')
 response = sg.client.partner_settings.new_relic.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Returns all New Relic partner settings.
 
@@ -2399,8 +2402,8 @@ By integrating with New Relic, you can send your SendGrid email statistics to yo
 ```ruby
 response = sg.client.partner_settings.new_relic.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="scopes"></a>
 # SCOPES
@@ -2416,8 +2419,8 @@ API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://s
 ```ruby
 response = sg.client.scopes.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="stats"></a>
 # STATS
@@ -2434,8 +2437,8 @@ Parent accounts will see aggregated stats for their account and all subuser acco
 params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
 response = sg.client.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="subusers"></a>
 # SUBUSERS
@@ -2463,8 +2466,8 @@ data = JSON.parse('{
 }')
 response = sg.client.subusers.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## List all Subusers
 
@@ -2481,8 +2484,8 @@ For more information about Subusers:
 params = JSON.parse('{"username": "test_string", "limit": 0, "offset": 0}')
 response = sg.client.subusers.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Subuser Reputations
 
@@ -2496,8 +2499,8 @@ This endpoint allows you to request the reputations for your subusers.
 params = JSON.parse('{"usernames": "test_string"}')
 response = sg.client.subusers.reputations.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve email statistics for your subusers.
 
@@ -2515,8 +2518,8 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "subusers": "test_string"}')
 response = sg.client.subusers.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve monthly stats for all subusers
 
@@ -2535,8 +2538,8 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 params = JSON.parse('{"subuser": "test_string", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "date": "test_string", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.monthly.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ##  Retrieve the totals for each email statistic metric for all subusers.
 
@@ -2553,8 +2556,8 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.sums.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Enable/disable a subuser
 
@@ -2574,8 +2577,8 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a subuser
 
@@ -2590,10 +2593,10 @@ For more information about Subusers:
 
 ```ruby
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete()
+response = sg.client.subusers._(subuser_name).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update IPs assigned to a subuser
 
@@ -2613,8 +2616,8 @@ data = JSON.parse('[
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).ips.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Monitor Settings for a subuser
 
@@ -2630,8 +2633,8 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create monitor settings
 
@@ -2647,8 +2650,8 @@ data = JSON.parse('{
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve monitor settings for a subuser
 
@@ -2660,8 +2663,8 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete monitor settings
 
@@ -2671,10 +2674,10 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ```ruby
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete()
+response = sg.client.subusers._(subuser_name).monitor.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve the monthly email statistics for a single subuser
 
@@ -2694,8 +2697,8 @@ params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit"
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="suppression"></a>
 # SUPPRESSION
@@ -2714,8 +2717,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.blocks.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete blocks
 
@@ -2735,8 +2738,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ```ruby
 response = sg.client.suppression.blocks.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a specific block
 
@@ -2752,8 +2755,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 email = "test_url_param"
 response = sg.client.suppression.blocks._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a specific block
 
@@ -2767,10 +2770,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.blocks._(email).delete()
+response = sg.client.suppression.blocks._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all bounces
 
@@ -2789,8 +2792,8 @@ For more information see:
 params = JSON.parse('{"start_time": 0, "end_time": 0}')
 response = sg.client.suppression.bounces.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete bounces
 
@@ -2811,8 +2814,8 @@ Note: the `delete_all` and `emails` parameters should be used independently of e
 ```ruby
 response = sg.client.suppression.bounces.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Bounce
 
@@ -2832,8 +2835,8 @@ For more information see:
 email = "test_url_param"
 response = sg.client.suppression.bounces._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a bounce
 
@@ -2852,10 +2855,10 @@ For more information see:
 ```ruby
 params = JSON.parse('{"email_address": "example@example.com"}')
 email = "test_url_param"
-response = sg.client.suppression.bounces._(email).delete(query_params: params)
+response = sg.client.suppression.bounces._(email).delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all invalid emails
 
@@ -2873,8 +2876,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.invalid_emails.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete invalid emails
 
@@ -2896,8 +2899,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ```ruby
 response = sg.client.suppression.invalid_emails.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a specific invalid email
 
@@ -2915,8 +2918,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 email = "test_url_param"
 response = sg.client.suppression.invalid_emails._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a specific invalid email
 
@@ -2932,10 +2935,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.invalid_emails._(email).delete()
+response = sg.client.suppression.invalid_emails._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a specific spam report
 
@@ -2951,8 +2954,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 email = "test_url_param"
 response = sg.client.suppression.spam_report._(email).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a specific spam report
 
@@ -2966,10 +2969,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete()
+response = sg.client.suppression.spam_report._(email).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all spam reports
 
@@ -2985,8 +2988,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.spam_reports.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete spam reports
 
@@ -3006,8 +3009,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 ```ruby
 response = sg.client.suppression.spam_reports.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all global suppressions
 
@@ -3021,8 +3024,8 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
 response = sg.client.suppression.unsubscribes.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="templates"></a>
 # TEMPLATES
@@ -3043,8 +3046,8 @@ data = JSON.parse('{
 }')
 response = sg.client.templates.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all transactional templates.
 
@@ -3059,8 +3062,8 @@ Transactional templates are templates created specifically for transactional ema
 ```ruby
 response = sg.client.templates.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Edit a transactional template.
 
@@ -3080,8 +3083,8 @@ data = JSON.parse('{
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a single transactional template.
 
@@ -3098,8 +3101,8 @@ Transactional templates are templates created specifically for transactional ema
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a template.
 
@@ -3114,10 +3117,10 @@ Transactional templates are templates created specifically for transactional ema
 
 ```ruby
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).delete()
+response = sg.client.templates._(template_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create a new transactional template version.
 
@@ -3142,8 +3145,8 @@ data = JSON.parse('{
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).versions.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Edit a transactional template version.
 
@@ -3173,8 +3176,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a specific transactional template version.
 
@@ -3197,8 +3200,8 @@ template_id = "test_url_param"
         version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a transactional template version.
 
@@ -3219,10 +3222,10 @@ For more information about transactional templates, please see our [User Guide](
 ```ruby
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete()
+response = sg.client.templates._(template_id).versions._(version_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Activate a transactional template version.
 
@@ -3242,12 +3245,13 @@ For more information about transactional templates, please see our [User Guide](
 ### POST /templates/{template_id}/versions/{version_id}/activate
 
 ```ruby
+data = JSON.parse('null')
 template_id = "test_url_param"
         version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="tracking_settings"></a>
 # TRACKING SETTINGS
@@ -3266,8 +3270,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.tracking_settings.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Click Tracking Settings
 
@@ -3285,8 +3289,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.click.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Click Track Settings
 
@@ -3301,8 +3305,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ```ruby
 response = sg.client.tracking_settings.click.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Google Analytics Settings
 
@@ -3329,8 +3333,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.google_analytics.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Google Analytics Settings
 
@@ -3349,8 +3353,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ```ruby
 response = sg.client.tracking_settings.google_analytics.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Open Tracking Settings
 
@@ -3370,8 +3374,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.open.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Get Open Tracking Settings
 
@@ -3388,8 +3392,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ```ruby
 response = sg.client.tracking_settings.open.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Subscription Tracking Settings
 
@@ -3414,8 +3418,8 @@ data = JSON.parse('{
 }')
 response = sg.client.tracking_settings.subscription.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Subscription Tracking Settings
 
@@ -3432,8 +3436,8 @@ For more information about tracking, please see our [User Guide](https://sendgri
 ```ruby
 response = sg.client.tracking_settings.subscription.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="user"></a>
 # USER
@@ -3455,8 +3459,8 @@ For more information about your user profile:
 ```ruby
 response = sg.client.user.account.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve your credit balance
 
@@ -3469,8 +3473,8 @@ Your monthly credit allotment limits the number of emails you may send before in
 ```ruby
 response = sg.client.user.credits.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update your account email address
 
@@ -3490,8 +3494,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.email.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve your account email address
 
@@ -3508,8 +3512,8 @@ For more information about your user profile:
 ```ruby
 response = sg.client.user.email.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update your password
 
@@ -3530,8 +3534,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.password.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a user's profile
 
@@ -3555,8 +3559,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.profile.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Get a user's profile
 
@@ -3571,8 +3575,8 @@ For more information about your user profile:
 ```ruby
 response = sg.client.user.profile.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Cancel or pause a scheduled send
 
@@ -3592,8 +3596,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.scheduled_sends.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all scheduled sends
 
@@ -3606,8 +3610,8 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 ```ruby
 response = sg.client.user.scheduled_sends.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update user scheduled send information
 
@@ -3624,8 +3628,8 @@ data = JSON.parse('{
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve scheduled send
 
@@ -3639,8 +3643,8 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a cancellation or pause of a scheduled send
 
@@ -3652,10 +3656,10 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ```ruby
 batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).delete()
+response = sg.client.user.scheduled_sends._(batch_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Enforced TLS settings
 
@@ -3674,8 +3678,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.settings.enforced_tls.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve current Enforced TLS settings.
 
@@ -3690,8 +3694,8 @@ The Enforced TLS settings specify whether or not the recipient is required to su
 ```ruby
 response = sg.client.user.settings.enforced_tls.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update your username
 
@@ -3711,8 +3715,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.username.put(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve your username
 
@@ -3729,8 +3733,8 @@ For more information about your user profile:
 ```ruby
 response = sg.client.user.username.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update Event Notification Settings
 
@@ -3762,8 +3766,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.webhooks.event.settings.patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Event Webhook settings
 
@@ -3780,8 +3784,8 @@ Common uses of this data are to remove unsubscribes, react to spam reports, dete
 ```ruby
 response = sg.client.user.webhooks.event.settings.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Test Event Notification Settings
 
@@ -3799,8 +3803,8 @@ data = JSON.parse('{
 }')
 response = sg.client.user.webhooks.event.test.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Parse Webhook settings
 
@@ -3813,8 +3817,8 @@ SendGrid can parse the attachments and contents of incoming emails. The Parse AP
 ```ruby
 response = sg.client.user.webhooks.parse.settings.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieves Inbound Parse Webhook statistics.
 
@@ -3830,8 +3834,8 @@ There are a number of pre-made integrations for the SendGrid Parse Webhook which
 params = JSON.parse('{"aggregated_by": "day", "limit": "test_string", "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": "test_string"}')
 response = sg.client.user.webhooks.parse.stats.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 <a name="whitelabel"></a>
 # WHITELABEL
@@ -3865,8 +3869,8 @@ data = JSON.parse('{
 }')
 response = sg.client.whitelabel.domains.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## List all domain whitelabels.
 
@@ -3883,8 +3887,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 params = JSON.parse('{"username": "test_string", "domain": "test_string", "exclude_subusers": "true", "limit": 1, "offset": 1}')
 response = sg.client.whitelabel.domains.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Get the default domain whitelabel.
 
@@ -3904,8 +3908,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ```ruby
 response = sg.client.whitelabel.domains.default.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## List the domain whitelabel associated with the given user.
 
@@ -3927,8 +3931,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ```ruby
 response = sg.client.whitelabel.domains.subuser.get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Disassociate a domain whitelabel from a given user.
 
@@ -3948,10 +3952,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ### DELETE /whitelabel/domains/subuser
 
 ```ruby
-response = sg.client.whitelabel.domains.subuser.delete()
+response = sg.client.whitelabel.domains.subuser.delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a domain whitelabel.
 
@@ -3971,8 +3975,8 @@ data = JSON.parse('{
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a domain whitelabel.
 
@@ -3989,8 +3993,8 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a domain whitelabel.
 
@@ -4004,10 +4008,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ```ruby
 domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).delete()
+response = sg.client.whitelabel.domains._(domain_id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Associate a domain whitelabel with a given user.
 
@@ -4033,8 +4037,8 @@ data = JSON.parse('{
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Add an IP to a domain whitelabel.
 
@@ -4058,8 +4062,8 @@ data = JSON.parse('{
 id = "test_url_param"
 response = sg.client.whitelabel.domains._(id).ips.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Remove an IP from a domain whitelabel.
 
@@ -4080,10 +4084,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ```ruby
 id = "test_url_param"
         ip = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
+response = sg.client.whitelabel.domains._(id).ips._(ip).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Validate a domain whitelabel.
 
@@ -4101,11 +4105,12 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 ### POST /whitelabel/domains/{id}/validate
 
 ```ruby
+data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post()
+response = sg.client.whitelabel.domains._(id).validate.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create an IP whitelabel
 
@@ -4127,8 +4132,8 @@ data = JSON.parse('{
 }')
 response = sg.client.whitelabel.ips.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all IP whitelabels
 
@@ -4146,8 +4151,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 params = JSON.parse('{"ip": "test_string", "limit": 1, "offset": 1}')
 response = sg.client.whitelabel.ips.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve an IP whitelabel
 
@@ -4163,8 +4168,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 id = "test_url_param"
 response = sg.client.whitelabel.ips._(id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete an IP whitelabel
 
@@ -4178,10 +4183,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```ruby
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete()
+response = sg.client.whitelabel.ips._(id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Validate an IP whitelabel
 
@@ -4194,11 +4199,12 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 ### POST /whitelabel/ips/{id}/validate
 
 ```ruby
+data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post()
+response = sg.client.whitelabel.ips._(id).validate.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Create a Link Whitelabel
 
@@ -4219,8 +4225,8 @@ data = JSON.parse('{
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.whitelabel.links.post(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve all link whitelabels
 
@@ -4236,8 +4242,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 params = JSON.parse('{"limit": 1}')
 response = sg.client.whitelabel.links.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Default Link Whitelabel
 
@@ -4260,8 +4266,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 params = JSON.parse('{"domain": "test_string"}')
 response = sg.client.whitelabel.links.default.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve Associated Link Whitelabel
 
@@ -4281,8 +4287,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 params = JSON.parse('{"username": "test_string"}')
 response = sg.client.whitelabel.links.subuser.get(query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Disassociate a Link Whitelabel
 
@@ -4300,10 +4306,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```ruby
 params = JSON.parse('{"username": "test_string"}')
-response = sg.client.whitelabel.links.subuser.delete(query_params: params)
+response = sg.client.whitelabel.links.subuser.delete(request_body: data, query_params: params)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Update a Link Whitelabel
 
@@ -4322,8 +4328,8 @@ data = JSON.parse('{
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).patch(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Retrieve a Link Whitelabel
 
@@ -4339,8 +4345,8 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).get()
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Delete a Link Whitelabel
 
@@ -4354,10 +4360,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ```ruby
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete()
+response = sg.client.whitelabel.links._(id).delete(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Validate a Link Whitelabel
 
@@ -4370,11 +4376,12 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 ### POST /whitelabel/links/{id}/validate
 
 ```ruby
+data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post()
+response = sg.client.whitelabel.links._(id).validate.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 ## Associate a Link Whitelabel
 
@@ -4397,7 +4404,7 @@ data = JSON.parse('{
 link_id = "test_url_param"
 response = sg.client.whitelabel.links._(link_id).subuser.post(request_body: data)
 puts response.status_code
-puts response.response_body
-puts response.response_headers
+puts response.body
+puts response.headers
 ```
 
