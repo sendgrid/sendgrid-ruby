@@ -103,7 +103,7 @@ puts response.headers
 # DELETE /subusers/{subuser_name} #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete(request_body: data)
+response = sg.client.subusers._(subuser_name).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -164,7 +164,7 @@ puts response.headers
 # DELETE /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete(request_body: data)
+response = sg.client.subusers._(subuser_name).monitor.delete()
 puts response.status_code
 puts response.body
 puts response.headers

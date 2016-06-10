@@ -88,7 +88,7 @@ puts response.headers
 # DELETE /api_keys/{api_key_id} #
 
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete(request_body: data)
+response = sg.client.api_keys._(api_key_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers

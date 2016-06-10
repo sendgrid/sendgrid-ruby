@@ -66,7 +66,7 @@ puts response.headers
 # DELETE /templates/{template_id} #
 
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).delete(request_body: data)
+response = sg.client.templates._(template_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -101,7 +101,7 @@ data = JSON.parse('{
   "subject": "<%subject%>"
 }')
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -112,7 +112,7 @@ puts response.headers
 # GET /templates/{template_id}/versions/{version_id} #
 
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 puts response.status_code
 puts response.body
@@ -123,8 +123,8 @@ puts response.headers
 # DELETE /templates/{template_id}/versions/{version_id} #
 
 template_id = "test_url_param"
-        version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete(request_body: data)
+version_id = "test_url_param"
+response = sg.client.templates._(template_id).versions._(version_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -133,10 +133,9 @@ puts response.headers
 # Activate a transactional template version. #
 # POST /templates/{template_id}/versions/{version_id}/activate #
 
-data = JSON.parse('null')
 template_id = "test_url_param"
-        version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body: data)
+version_id = "test_url_param"
+response = sg.client.templates._(template_id).versions._(version_id).activate.post()
 puts response.status_code
 puts response.body
 puts response.headers

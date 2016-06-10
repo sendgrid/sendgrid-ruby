@@ -21,8 +21,7 @@ import java.util.Map;
 # Create a batch ID #
 # POST /mail/batch #
 
-data = JSON.parse('null')
-response = sg.client.mail.batch.post(request_body: data)
+response = sg.client.mail.batch.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -40,6 +39,7 @@ puts response.headers
 ##################################################
 # v3 Mail Send Beta #
 # POST /mail/send/beta #
+# This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/v3beta/lib/helpers/mail/README.md).
 
 data = JSON.parse('{
   "asm": {

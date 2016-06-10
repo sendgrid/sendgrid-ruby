@@ -142,7 +142,7 @@ puts response.headers
 # DELETE /user/scheduled_sends/{batch_id} #
 
 batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).delete(request_body: data)
+response = sg.client.user.scheduled_sends._(batch_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers

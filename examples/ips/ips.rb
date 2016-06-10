@@ -85,7 +85,7 @@ puts response.headers
 # DELETE /ips/pools/{pool_name} #
 
 pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete(request_body: data)
+response = sg.client.ips.pools._(pool_name).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -108,8 +108,8 @@ puts response.headers
 # DELETE /ips/pools/{pool_name}/ips/{ip} #
 
 pool_name = "test_url_param"
-        ip = "test_url_param"
-response = sg.client.ips.pools._(pool_name).ips._(ip).delete(request_body: data)
+ip = "test_url_param"
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -150,7 +150,7 @@ puts response.headers
 # DELETE /ips/warmup/{ip_address} #
 
 ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).delete(request_body: data)
+response = sg.client.ips.warmup._(ip_address).delete()
 puts response.status_code
 puts response.body
 puts response.headers

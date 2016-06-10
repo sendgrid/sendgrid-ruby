@@ -82,7 +82,7 @@ puts response.headers
 # DELETE /access_settings/whitelist/{rule_id} #
 
 rule_id = "test_url_param"
-response = sg.client.access_settings.whitelist._(rule_id).delete(request_body: data)
+response = sg.client.access_settings.whitelist._(rule_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers

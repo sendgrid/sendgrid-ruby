@@ -54,7 +54,7 @@ puts response.headers
 # DELETE /contactdb/custom_fields/{custom_field_id} #
 
 custom_field_id = "test_url_param"
-response = sg.client.contactdb.custom_fields._(custom_field_id).delete(request_body: data)
+response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -120,7 +120,7 @@ puts response.headers
 
 params = JSON.parse('{"delete_contacts": "true"}')
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).delete(request_body: data, query_params: params)
+response = sg.client.contactdb.lists._(list_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -154,10 +154,9 @@ puts response.headers
 # Add a Single Recipient to a List #
 # POST /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
-data = JSON.parse('null')
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body: data)
+recipient_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -168,8 +167,8 @@ puts response.headers
 
 params = JSON.parse('{"recipient_id": 0, "list_id": 0}')
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(request_body: data, query_params: params)
+recipient_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -275,7 +274,7 @@ puts response.headers
 # DELETE /contactdb/recipients/{recipient_id} #
 
 recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).delete(request_body: data)
+response = sg.client.contactdb.recipients._(recipient_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -381,7 +380,7 @@ puts response.headers
 
 params = JSON.parse('{"delete_contacts": "true"}')
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).delete(request_body: data, query_params: params)
+response = sg.client.contactdb.segments._(segment_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers

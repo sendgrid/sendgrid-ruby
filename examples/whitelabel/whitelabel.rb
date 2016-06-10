@@ -70,7 +70,7 @@ puts response.headers
 # Disassociate a domain whitelabel from a given user. #
 # DELETE /whitelabel/domains/subuser #
 
-response = sg.client.whitelabel.domains.subuser.delete(request_body: data)
+response = sg.client.whitelabel.domains.subuser.delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -104,7 +104,7 @@ puts response.headers
 # DELETE /whitelabel/domains/{domain_id} #
 
 domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).delete(request_body: data)
+response = sg.client.whitelabel.domains._(domain_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -140,8 +140,8 @@ puts response.headers
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
 id = "test_url_param"
-        ip = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips._(ip).delete(request_body: data)
+ip = "test_url_param"
+response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -150,9 +150,8 @@ puts response.headers
 # Validate a domain whitelabel. #
 # POST /whitelabel/domains/{id}/validate #
 
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.domains._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -196,7 +195,7 @@ puts response.headers
 # DELETE /whitelabel/ips/{id} #
 
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete(request_body: data)
+response = sg.client.whitelabel.ips._(id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -205,9 +204,8 @@ puts response.headers
 # Validate an IP whitelabel #
 # POST /whitelabel/ips/{id}/validate #
 
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.ips._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -262,7 +260,7 @@ puts response.headers
 # DELETE /whitelabel/links/subuser #
 
 params = JSON.parse('{"username": "test_string"}')
-response = sg.client.whitelabel.links.subuser.delete(request_body: data, query_params: params)
+response = sg.client.whitelabel.links.subuser.delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -295,7 +293,7 @@ puts response.headers
 # DELETE /whitelabel/links/{id} #
 
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete(request_body: data)
+response = sg.client.whitelabel.links._(id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -304,9 +302,8 @@ puts response.headers
 # Validate a Link Whitelabel #
 # POST /whitelabel/links/{id}/validate #
 
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.links._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers

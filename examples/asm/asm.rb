@@ -18,13 +18,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 ##################################################
-# Create a Group #
+# Create a new suppression group #
 # POST /asm/groups #
 
 data = JSON.parse('{
-  "description": "A group description", 
-  "is_default": false, 
-  "name": "A group name"
+  "description": "Suggestions for products our users might like.", 
+  "is_default": true, 
+  "name": "Product Suggestions"
 }')
 response = sg.client.asm.groups.post(request_body: data)
 puts response.status_code
@@ -32,10 +32,11 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve all suppression groups associated with the user. #
+# Retrieve information about multiple suppression groups #
 # GET /asm/groups #
 
-response = sg.client.asm.groups.get()
+params = JSON.parse('{"id": 1}')
+response = sg.client.asm.groups.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -70,7 +71,7 @@ puts response.headers
 # DELETE /asm/groups/{group_id} #
 
 group_id = "test_url_param"
-response = sg.client.asm.groups._(group_id).delete(request_body: data)
+response = sg.client.asm.groups._(group_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -106,8 +107,17 @@ puts response.headers
 # DELETE /asm/groups/{group_id}/suppressions/{email} #
 
 group_id = "test_url_param"
-        email = "test_url_param"
-response = sg.client.asm.groups._(group_id).suppressions._(email).delete(request_body: data)
+email = "test_url_param"
+response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Retrieve all suppressions #
+# GET /asm/suppressions #
+
+response = sg.client.asm.suppressions.get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -142,7 +152,17 @@ puts response.headers
 # DELETE /asm/suppressions/global/{email} #
 
 email = "test_url_param"
-response = sg.client.asm.suppressions.global._(email).delete(request_body: data)
+response = sg.client.asm.suppressions.global._(email).delete()
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Retrieve all suppression groups for an email address #
+# GET /asm/suppressions/{email} #
+
+email = "test_url_param"
+response = sg.client.asm.suppressions._(email).get()
 puts response.status_code
 puts response.body
 puts response.headers

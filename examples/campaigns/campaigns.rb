@@ -90,7 +90,7 @@ puts response.headers
 # DELETE /campaigns/{campaign_id} #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).delete(request_body: data)
+response = sg.client.campaigns._(campaign_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -136,7 +136,7 @@ puts response.headers
 # DELETE /campaigns/{campaign_id}/schedules #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete(request_body: data)
+response = sg.client.campaigns._(campaign_id).schedules.delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -145,9 +145,8 @@ puts response.headers
 # Send a Campaign #
 # POST /campaigns/{campaign_id}/schedules/now #
 
-data = JSON.parse('null')
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body: data)
+response = sg.client.campaigns._(campaign_id).schedules.now.post()
 puts response.status_code
 puts response.body
 puts response.headers

@@ -49,6 +49,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ### GET /access_settings/activity
 
+
 ```ruby
 params = JSON.parse('{"limit": 1}')
 response = sg.client.access_settings.activity.get(query_params: params)
@@ -67,6 +68,7 @@ IP Access Management allows you to control which IP addresses can be used to acc
 For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
 
 ### POST /access_settings/whitelist
+
 
 ```ruby
 data = JSON.parse('{
@@ -97,6 +99,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ### GET /access_settings/whitelist
 
+
 ```ruby
 response = sg.client.access_settings.whitelist.get()
 puts response.status_code
@@ -115,6 +118,7 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ### DELETE /access_settings/whitelist
 
+
 ```ruby
 response = sg.client.access_settings.whitelist.delete(request_body: data)
 puts response.status_code
@@ -132,6 +136,7 @@ IP Access Management allows you to control which IP addresses can be used to acc
 For more information, please see our [User Guide](http://sendgrid.com/docs/User_Guide/Settings/ip_access_management.html).
 
 ### GET /access_settings/whitelist/{rule_id}
+
 
 ```ruby
 rule_id = "test_url_param"
@@ -152,9 +157,10 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 ### DELETE /access_settings/whitelist/{rule_id}
 
+
 ```ruby
 rule_id = "test_url_param"
-response = sg.client.access_settings.whitelist._(rule_id).delete(request_body: data)
+response = sg.client.access_settings.whitelist._(rule_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -175,6 +181,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 See the [API Key Permissions List](https://sendgrid.com/docs/API_Reference/Web_API_v3/API_Keys/api_key_permissions_list.html) for a list of all available scopes.
 
 ### POST /api_keys
+
 
 ```ruby
 data = JSON.parse('{
@@ -198,6 +205,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ### GET /api_keys
 
+
 ```ruby
 response = sg.client.api_keys.get()
 puts response.status_code
@@ -215,6 +223,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 
 ### PUT /api_keys/{api_key_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -246,6 +255,7 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ### PATCH /api_keys/{api_key_id}
 
+
 ```ruby
 data = JSON.parse('{
   "name": "A New Hope"
@@ -263,6 +273,7 @@ puts response.headers
 If the API Key ID does not exist an HTTP 404 will be returned.
 
 ### GET /api_keys/{api_key_id}
+
 
 ```ruby
 api_key_id = "test_url_param"
@@ -287,9 +298,10 @@ The API Keys feature allows customers to be able to generate an API Key credenti
 
 ### DELETE /api_keys/{api_key_id}
 
+
 ```ruby
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete(request_body: data)
+response = sg.client.api_keys._(api_key_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -297,9 +309,9 @@ puts response.headers
 <a name="asm"></a>
 # ASM
 
-## Create a Group
+## Create a new suppression group
 
-**This endoint allows you to create a new suppression group.**
+**This endpoint allows you to create a new suppression group.**
 
 Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
@@ -309,31 +321,30 @@ Each user can create up to 25 different suppression groups.
 
 ### POST /asm/groups
 
+
 ```ruby
 data = JSON.parse('{
-  "description": "A group description",
-  "is_default": false,
-  "name": "A group name"
+  "description": "Suggestions for products our users might like.",
+  "is_default": true,
+  "name": "Product Suggestions"
 }')
 response = sg.client.asm.groups.post(request_body: data)
 puts response.status_code
 puts response.body
 puts response.headers
 ```
-## Retrieve all suppression groups associated with the user.
+## Retrieve information about multiple suppression groups
 
-**This endpoint allows you to retrieve a list of all suppression groups created by this user.**
+**This endpoint allows you to retrieve information about multiple suppression groups.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
-
-The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
-
-Each user can create up to 25 different suppression groups.
+This endpoint will return information for each group ID that you include in your request. To add a group ID to your request, simply append `&id=` followed by the group ID.
 
 ### GET /asm/groups
 
+
 ```ruby
-response = sg.client.asm.groups.get()
+params = JSON.parse('{"id": 1}')
+response = sg.client.asm.groups.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -349,6 +360,7 @@ The **name** and **description** of the unsubscribe group will be visible by rec
 Each user can create up to 25 different suppression groups.
 
 ### PATCH /asm/groups/{group_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -374,6 +386,7 @@ Each user can create up to 25 different suppression groups.
 
 ### GET /asm/groups/{group_id}
 
+
 ```ruby
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).get()
@@ -395,9 +408,10 @@ Each user can create up to 25 different suppression groups.
 
 ### DELETE /asm/groups/{group_id}
 
+
 ```ruby
 group_id = "test_url_param"
-response = sg.client.asm.groups._(group_id).delete(request_body: data)
+response = sg.client.asm.groups._(group_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -411,6 +425,7 @@ If you attempt to add suppressions to a group that has been deleted or does not 
 Suppressions are recipient email addresses that are added to [unsubscribe groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html). Once a recipient's address is on the suppressions list for an unsubscribe group, they will not receive any emails that are tagged with that unsubscribe group.
 
 ### POST /asm/groups/{group_id}/suppressions
+
 
 ```ruby
 data = JSON.parse('{
@@ -433,6 +448,7 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ### GET /asm/groups/{group_id}/suppressions
 
+
 ```ruby
 group_id = "test_url_param"
 response = sg.client.asm.groups._(group_id).suppressions.get()
@@ -448,10 +464,26 @@ Suppressions are recipient email addresses that are added to [unsubscribe groups
 
 ### DELETE /asm/groups/{group_id}/suppressions/{email}
 
+
 ```ruby
 group_id = "test_url_param"
-        email = "test_url_param"
-response = sg.client.asm.groups._(group_id).suppressions._(email).delete(request_body: data)
+email = "test_url_param"
+response = sg.client.asm.groups._(group_id).suppressions._(email).delete()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Retrieve all suppressions
+
+**This endpoint allows you to retrieve a list of all suppressions.**
+
+Suppressions are email addresses that can be added to [groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html) to prevent certain types of emails from being delivered to those addresses.
+
+### GET /asm/suppressions
+
+
+```ruby
+response = sg.client.asm.suppressions.get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -463,6 +495,7 @@ puts response.headers
 A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
 ### POST /asm/suppressions/global
+
 
 ```ruby
 data = JSON.parse('{
@@ -486,6 +519,7 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ### GET /asm/suppressions/global/{email}
 
+
 ```ruby
 email = "test_url_param"
 response = sg.client.asm.suppressions.global._(email).get()
@@ -501,9 +535,26 @@ A global suppression (or global unsubscribe) is an email address of a recipient 
 
 ### DELETE /asm/suppressions/global/{email}
 
+
 ```ruby
 email = "test_url_param"
-response = sg.client.asm.suppressions.global._(email).delete(request_body: data)
+response = sg.client.asm.suppressions.global._(email).delete()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Retrieve all suppression groups for an email address
+
+**This endpoint will return a list of all suppression groups, indicating if the given email address is suppressed for each group.**
+
+Suppressions are email addresses that can be added to [groups](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html) to prevent certain types of emails from being delivered to those addresses.
+
+### GET /asm/suppressions/{email}
+
+
+```ruby
+email = "test_url_param"
+response = sg.client.asm.suppressions._(email).get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -520,6 +571,7 @@ puts response.headers
 Advanced Stats provide a more in-depth view of your email statistics and the actions taken by your recipients. You can segment these statistics by geographic location, device type, client type, browser, and mailbox provider. For more information about statistics, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/index.html).
 
 ### GET /browsers/stats
+
 
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "browsers": "test_string", "limit": "test_string", "offset": "test_string", "start_date": "2016-01-01"}')
@@ -544,6 +596,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### POST /campaigns
+
 
 ```ruby
 data = JSON.parse('{
@@ -585,6 +638,7 @@ For more information:
 
 ### GET /campaigns
 
+
 ```ruby
 params = JSON.parse('{"limit": 0, "offset": 0}')
 response = sg.client.campaigns.get(query_params: params)
@@ -601,6 +655,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### PATCH /campaigns/{campaign_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -630,6 +685,7 @@ For more information:
 
 ### GET /campaigns/{campaign_id}
 
+
 ```ruby
 campaign_id = "test_url_param"
 response = sg.client.campaigns._(campaign_id).get()
@@ -649,9 +705,10 @@ For more information:
 
 ### DELETE /campaigns/{campaign_id}
 
+
 ```ruby
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).delete(request_body: data)
+response = sg.client.campaigns._(campaign_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -665,6 +722,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### PATCH /campaigns/{campaign_id}/schedules
+
 
 ```ruby
 data = JSON.parse('{
@@ -686,6 +744,7 @@ For more information:
 
 ### POST /campaigns/{campaign_id}/schedules
 
+
 ```ruby
 data = JSON.parse('{
   "send_at": 1489771528
@@ -705,6 +764,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### GET /campaigns/{campaign_id}/schedules
+
 
 ```ruby
 campaign_id = "test_url_param"
@@ -726,9 +786,10 @@ For more information:
 
 ### DELETE /campaigns/{campaign_id}/schedules
 
+
 ```ruby
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete(request_body: data)
+response = sg.client.campaigns._(campaign_id).schedules.delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -745,10 +806,10 @@ For more information:
 
 ### POST /campaigns/{campaign_id}/schedules/now
 
+
 ```ruby
-data = JSON.parse('null')
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post(request_body: data)
+response = sg.client.campaigns._(campaign_id).schedules.now.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -764,6 +825,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### POST /campaigns/{campaign_id}/schedules/test
+
 
 ```ruby
 data = JSON.parse('{
@@ -786,6 +848,7 @@ Categories can help organize your email analytics by enabling you to tag emails 
 
 ### GET /categories
 
+
 ```ruby
 params = JSON.parse('{"category": "test_string", "limit": 1, "offset": 1}')
 response = sg.client.categories.get(query_params: params)
@@ -803,6 +866,7 @@ Categories allow you to group your emails together according to broad topics tha
 
 ### GET /categories/stats
 
+
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "categories": "test_string"}')
 response = sg.client.categories.stats.get(query_params: params)
@@ -819,6 +883,7 @@ If you do not define any query parameters, this endpoint will return a sum for e
 Categories allow you to group your emails together according to broad topics that you define. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/categories.html).
 
 ### GET /categories/stats/sums
+
 
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
@@ -839,6 +904,7 @@ puts response.headers
 Advanced Stats provide a more in-depth view of your email statistics and the actions taken by your recipients. You can segment these statistics by geographic location, device type, client type, browser, and mailbox provider. For more information about statistics, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/index.html).
 
 ### GET /clients/stats
+
 
 ```ruby
 params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_date": "2016-04-01"}')
@@ -863,6 +929,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /clients/{client_type}/stats
 
+
 ```ruby
 params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_date": "2016-04-01"}')
 client_type = "test_url_param"
@@ -882,6 +949,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### POST /contactdb/custom_fields
 
+
 ```ruby
 data = JSON.parse('{
   "name": "pet",
@@ -900,6 +968,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### GET /contactdb/custom_fields
 
+
 ```ruby
 response = sg.client.contactdb.custom_fields.get()
 puts response.status_code
@@ -913,6 +982,7 @@ puts response.headers
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/custom_fields/{custom_field_id}
+
 
 ```ruby
 custom_field_id = "test_url_param"
@@ -929,9 +999,10 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### DELETE /contactdb/custom_fields/{custom_field_id}
 
+
 ```ruby
 custom_field_id = "test_url_param"
-response = sg.client.contactdb.custom_fields._(custom_field_id).delete(request_body: data)
+response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -943,6 +1014,7 @@ puts response.headers
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/lists
+
 
 ```ruby
 data = JSON.parse('{
@@ -961,6 +1033,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### GET /contactdb/lists
 
+
 ```ruby
 response = sg.client.contactdb.lists.get()
 puts response.status_code
@@ -974,6 +1047,7 @@ puts response.headers
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### DELETE /contactdb/lists
+
 
 ```ruby
 response = sg.client.contactdb.lists.delete(request_body: data)
@@ -989,6 +1063,7 @@ puts response.headers
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### PATCH /contactdb/lists/{list_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -1009,6 +1084,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### GET /contactdb/lists/{list_id}
 
+
 ```ruby
 params = JSON.parse('{"list_id": 0}')
 list_id = "test_url_param"
@@ -1025,10 +1101,11 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### DELETE /contactdb/lists/{list_id}
 
+
 ```ruby
 params = JSON.parse('{"delete_contacts": "true"}')
 list_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).delete(request_body: data, query_params: params)
+response = sg.client.contactdb.lists._(list_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1042,6 +1119,7 @@ Adds existing recipients to a list, passing in the recipient IDs to add. Recipie
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/lists/{list_id}/recipients
+
 
 ```ruby
 data = JSON.parse('[
@@ -1062,6 +1140,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### GET /contactdb/lists/{list_id}/recipients
 
+
 ```ruby
 params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 0}')
 list_id = "test_url_param"
@@ -1078,11 +1157,11 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### POST /contactdb/lists/{list_id}/recipients/{recipient_id}
 
+
 ```ruby
-data = JSON.parse('null')
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_body: data)
+recipient_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1095,11 +1174,12 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### DELETE /contactdb/lists/{list_id}/recipients/{recipient_id}
 
+
 ```ruby
 params = JSON.parse('{"recipient_id": 0, "list_id": 0}')
 list_id = "test_url_param"
-        recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(request_body: data, query_params: params)
+recipient_id = "test_url_param"
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1115,6 +1195,7 @@ It is of note that you can add custom field data as parameters on recipient obje
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### PATCH /contactdb/recipients
+
 
 ```ruby
 data = JSON.parse('[
@@ -1138,6 +1219,7 @@ It is of note that you can add custom field data as a parameter on this endpoint
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### POST /contactdb/recipients
+
 
 ```ruby
 data = JSON.parse('[
@@ -1170,6 +1252,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### GET /contactdb/recipients
 
+
 ```ruby
 params = JSON.parse('{"page": 1, "page_size": 1}')
 response = sg.client.contactdb.recipients.get(query_params: params)
@@ -1187,6 +1270,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### DELETE /contactdb/recipients
 
+
 ```ruby
 response = sg.client.contactdb.recipients.delete(request_body: data)
 puts response.status_code
@@ -1203,6 +1287,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### GET /contactdb/recipients/billable_count
 
+
 ```ruby
 response = sg.client.contactdb.recipients.billable_count.get()
 puts response.status_code
@@ -1216,6 +1301,7 @@ puts response.headers
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/recipients/count
+
 
 ```ruby
 response = sg.client.contactdb.recipients.count.get()
@@ -1240,6 +1326,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 ### GET /contactdb/recipients/search
 
+
 ```ruby
 params = JSON.parse('{"{field_name}": "test_string"}')
 response = sg.client.contactdb.recipients.search.get(query_params: params)
@@ -1254,6 +1341,7 @@ puts response.headers
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/recipients/{recipient_id}
+
 
 ```ruby
 recipient_id = "test_url_param"
@@ -1270,9 +1358,10 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 ### DELETE /contactdb/recipients/{recipient_id}
 
+
 ```ruby
 recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).delete(request_body: data)
+response = sg.client.contactdb.recipients._(recipient_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1286,6 +1375,7 @@ Each recipient can be on many lists. This endpoint gives you all of the lists th
 The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html) recipients.
 
 ### GET /contactdb/recipients/{recipient_id}/lists
+
 
 ```ruby
 recipient_id = "test_url_param"
@@ -1301,6 +1391,7 @@ puts response.headers
 The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html).
 
 ### GET /contactdb/reserved_fields
+
 
 ```ruby
 response = sg.client.contactdb.reserved_fields.get()
@@ -1335,6 +1426,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### POST /contactdb/segments
+
 
 ```ruby
 data = JSON.parse('{
@@ -1376,6 +1468,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 
 ### GET /contactdb/segments
 
+
 ```ruby
 response = sg.client.contactdb.segments.get()
 puts response.status_code
@@ -1391,6 +1484,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### PATCH /contactdb/segments/{segment_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -1422,6 +1516,7 @@ For more information about segments in Marketing Campaigns, please see our [User
 
 ### GET /contactdb/segments/{segment_id}
 
+
 ```ruby
 params = JSON.parse('{"segment_id": 0}')
 segment_id = "test_url_param"
@@ -1442,10 +1537,11 @@ For more information about segments in Marketing Campaigns, please see our [User
 
 ### DELETE /contactdb/segments/{segment_id}
 
+
 ```ruby
 params = JSON.parse('{"delete_contacts": "true"}')
 segment_id = "test_url_param"
-response = sg.client.contactdb.segments._(segment_id).delete(request_body: data, query_params: params)
+response = sg.client.contactdb.segments._(segment_id).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1459,6 +1555,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### GET /contactdb/segments/{segment_id}/recipients
+
 
 ```ruby
 params = JSON.parse('{"page": 1, "page_size": 1}')
@@ -1490,6 +1587,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /devices/stats
 
+
 ```ruby
 params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
 response = sg.client.devices.stats.get(query_params: params)
@@ -1509,6 +1607,7 @@ puts response.headers
 Advanced Stats provide a more in-depth view of your email statistics and the actions taken by your recipients. You can segment these statistics by geographic location, device type, client type, browser, and mailbox provider. For more information about statistics, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/index.html).
 
 ### GET /geo/stats
+
 
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "country": "US", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
@@ -1530,6 +1629,7 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 
 ### GET /ips
 
+
 ```ruby
 params = JSON.parse('{"subuser": "test_string", "ip": "test_string", "limit": 1, "exclude_whitelabels": "true", "offset": 1}')
 response = sg.client.ips.get(query_params: params)
@@ -1544,6 +1644,7 @@ puts response.headers
 A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### GET /ips/assigned
+
 
 ```ruby
 response = sg.client.ips.assigned.get()
@@ -1564,6 +1665,7 @@ IP pools can only be used with whitelabeled IP addresses.
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### POST /ips/pools
+
 
 ```ruby
 data = JSON.parse('{
@@ -1586,6 +1688,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ### GET /ips/pools
 
+
 ```ruby
 response = sg.client.ips.pools.get()
 puts response.status_code
@@ -1603,6 +1706,7 @@ IP pools can only be used with whitelabeled IP addresses.
 If an IP pool is NOT specified for an email, it will use any IP available, including ones in pools.
 
 ### PUT /ips/pools/{pool_name}
+
 
 ```ruby
 data = JSON.parse('{
@@ -1626,6 +1730,7 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ### GET /ips/pools/{pool_name}
 
+
 ```ruby
 pool_name = "test_url_param"
 response = sg.client.ips.pools._(pool_name).get()
@@ -1645,9 +1750,10 @@ If an IP pool is NOT specified for an email, it will use any IP available, inclu
 
 ### DELETE /ips/pools/{pool_name}
 
+
 ```ruby
 pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete(request_body: data)
+response = sg.client.ips.pools._(pool_name).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1661,6 +1767,7 @@ You can add the same IP address to multiple pools. It may take up to 60 seconds 
 A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### POST /ips/pools/{pool_name}/ips
+
 
 ```ruby
 data = JSON.parse('{
@@ -1682,10 +1789,11 @@ A single IP address or a range of IP addresses may be dedicated to an account in
 
 ### DELETE /ips/pools/{pool_name}/ips/{ip}
 
+
 ```ruby
 pool_name = "test_url_param"
-        ip = "test_url_param"
-response = sg.client.ips.pools._(pool_name).ips._(ip).delete(request_body: data)
+ip = "test_url_param"
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1699,6 +1807,7 @@ SendGrid can automatically warm up dedicated IP addresses by limiting the amount
 For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### POST /ips/warmup
+
 
 ```ruby
 data = JSON.parse('{
@@ -1719,6 +1828,7 @@ For more general information about warming up IPs, please see our [Classroom](ht
 
 ### GET /ips/warmup
 
+
 ```ruby
 response = sg.client.ips.warmup.get()
 puts response.status_code
@@ -1734,6 +1844,7 @@ SendGrid can automatically warm up dedicated IP addresses by limiting the amount
 For more general information about warming up IPs, please see our [Classroom](https://sendgrid.com/docs/Classroom/Deliver/Delivery_Introduction/warming_up_ips.html).
 
 ### GET /ips/warmup/{ip_address}
+
 
 ```ruby
 ip_address = "test_url_param"
@@ -1752,9 +1863,10 @@ For more general information about warming up IPs, please see our [Classroom](ht
 
 ### DELETE /ips/warmup/{ip_address}
 
+
 ```ruby
 ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).delete(request_body: data)
+response = sg.client.ips.warmup._(ip_address).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1768,6 +1880,7 @@ The same IP address can be added to multiple IP pools.
 A single IP address or a range of IP addresses may be dedicated to an account in order to send email for multiple domains. The reputation of this IP is based on the aggregate performance of all the senders who use it.
 
 ### GET /ips/{ip_address}
+
 
 ```ruby
 ip_address = "test_url_param"
@@ -1791,9 +1904,9 @@ More Information:
 
 ### POST /mail/batch
 
+
 ```ruby
-data = JSON.parse('null')
-response = sg.client.mail.batch.post(request_body: data)
+response = sg.client.mail.batch.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -1809,6 +1922,7 @@ More Information:
 * [Scheduling Parameters > Batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html)
 
 ### GET /mail/batch/{batch_id}
+
 
 ```ruby
 batch_id = "test_url_param"
@@ -1829,6 +1943,8 @@ For an overview of the v3 Mail Send endpoint, please visit our [v3 API Reference
 For more detailed information about how to use the v3 Mail Send endpoint, please visit our [Classroom](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/index.html).
 
 ### POST /mail/send/beta
+
+ This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/v3beta/lib/helpers/mail/README.md).
 
 ```ruby
 data = JSON.parse('{
@@ -1990,6 +2106,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings
 
+
 ```ruby
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.mail_settings.get(query_params: params)
@@ -2006,6 +2123,7 @@ The address whitelist setting whitelists a specified email address or domain for
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/address_whitelist
+
 
 ```ruby
 data = JSON.parse('{
@@ -2030,6 +2148,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/address_whitelist
 
+
 ```ruby
 response = sg.client.mail_settings.address_whitelist.get()
 puts response.status_code
@@ -2045,6 +2164,7 @@ When the BCC mail setting is enabled, SendGrid will automatically send a blind c
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/bcc
+
 
 ```ruby
 data = JSON.parse('{
@@ -2066,6 +2186,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/bcc
 
+
 ```ruby
 response = sg.client.mail_settings.bcc.get()
 puts response.status_code
@@ -2081,6 +2202,7 @@ This setting allows you to set a schedule for SendGrid to automatically delete c
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/bounce_purge
+
 
 ```ruby
 data = JSON.parse('{
@@ -2103,6 +2225,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/bounce_purge
 
+
 ```ruby
 response = sg.client.mail_settings.bounce_purge.get()
 puts response.status_code
@@ -2118,6 +2241,7 @@ The footer setting will insert a custom footer at the bottom of the text and HTM
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/footer
+
 
 ```ruby
 data = JSON.parse('{
@@ -2140,6 +2264,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/footer
 
+
 ```ruby
 response = sg.client.mail_settings.footer.get()
 puts response.status_code
@@ -2155,6 +2280,7 @@ Activating this setting allows you to specify an email address to which bounce r
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/forward_bounce
+
 
 ```ruby
 data = JSON.parse('{
@@ -2176,6 +2302,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/forward_bounce
 
+
 ```ruby
 response = sg.client.mail_settings.forward_bounce.get()
 puts response.status_code
@@ -2191,6 +2318,7 @@ Enabling the forward spam setting allows you to specify an email address to whic
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/forward_spam
+
 
 ```ruby
 data = JSON.parse('{
@@ -2212,6 +2340,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/forward_spam
 
+
 ```ruby
 response = sg.client.mail_settings.forward_spam.get()
 puts response.status_code
@@ -2227,6 +2356,7 @@ The plain content setting will automatically convert any plain text emails that 
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/plain_content
+
 
 ```ruby
 data = JSON.parse('{
@@ -2247,6 +2377,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/plain_content
 
+
 ```ruby
 response = sg.client.mail_settings.plain_content.get()
 puts response.status_code
@@ -2262,6 +2393,7 @@ The spam checker filter notifies you when emails are detected that exceed a pred
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/spam_check
+
 
 ```ruby
 data = JSON.parse('{
@@ -2284,6 +2416,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/spam_check
 
+
 ```ruby
 response = sg.client.mail_settings.spam_check.get()
 puts response.status_code
@@ -2301,6 +2434,7 @@ The legacy email template setting wraps an HTML template around your email conte
 Mail settings allow you to tell SendGrid specific things to do to every email that you send to your recipients over SendGrids [Web API](https://sendgrid.com/docs/API_Reference/Web_API/mail.html) or [SMTP Relay](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).
 
 ### PATCH /mail_settings/template
+
 
 ```ruby
 data = JSON.parse('{
@@ -2324,6 +2458,7 @@ Mail settings allow you to tell SendGrid specific things to do to every email th
 
 ### GET /mail_settings/template
 
+
 ```ruby
 response = sg.client.mail_settings.template.get()
 puts response.status_code
@@ -2343,6 +2478,7 @@ Advanced Stats provide a more in-depth view of your email statistics and the act
 
 ### GET /mailbox_providers/stats
 
+
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "mailbox_providers": "test_string", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
 response = sg.client.mailbox_providers.stats.get(query_params: params)
@@ -2361,6 +2497,7 @@ Our partner settings allow you to integrate your SendGrid account with our partn
 
 ### GET /partner_settings
 
+
 ```ruby
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.partner_settings.get(query_params: params)
@@ -2377,6 +2514,7 @@ Our partner settings allow you to integrate your SendGrid account with our partn
 By integrating with New Relic, you can send your SendGrid email statistics to your New Relic Dashboard. If you enable this setting, your stats will be sent to New Relic every 5 minutes. You will need your New Relic License Key to enable this setting. For more information, please see our [Classroom](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/new_relic.html).
 
 ### PATCH /partner_settings/new_relic
+
 
 ```ruby
 data = JSON.parse('{
@@ -2399,6 +2537,7 @@ By integrating with New Relic, you can send your SendGrid email statistics to yo
 
 ### GET /partner_settings/new_relic
 
+
 ```ruby
 response = sg.client.partner_settings.new_relic.get()
 puts response.status_code
@@ -2416,6 +2555,7 @@ API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://s
 
 ### GET /scopes
 
+
 ```ruby
 response = sg.client.scopes.get()
 puts response.status_code
@@ -2432,6 +2572,7 @@ puts response.headers
 Parent accounts will see aggregated stats for their account and all subuser accounts. Subuser accounts will only see their own stats.
 
 ### GET /stats
+
 
 ```ruby
 params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
@@ -2453,6 +2594,7 @@ For more information about Subusers:
 * [Classroom > How do I add more subusers to my account?](https://sendgrid.com/docs/Classroom/Basics/Account/how_do_i_add_more_subusers_to_my_account.html)
 
 ### POST /subusers
+
 
 ```ruby
 data = JSON.parse('{
@@ -2480,6 +2622,7 @@ For more information about Subusers:
 
 ### GET /subusers
 
+
 ```ruby
 params = JSON.parse('{"username": "test_string", "limit": 0, "offset": 0}')
 response = sg.client.subusers.get(query_params: params)
@@ -2494,6 +2637,7 @@ Subuser sender reputations give a good idea how well a sender is doing with rega
 This endpoint allows you to request the reputations for your subusers.
 
 ### GET /subusers/reputations
+
 
 ```ruby
 params = JSON.parse('{"usernames": "test_string"}')
@@ -2513,6 +2657,7 @@ While you can always view the statistics for all email activity on your account,
 For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/subuser.html).
 
 ### GET /subusers/stats
+
 
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "subusers": "test_string"}')
@@ -2534,6 +2679,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ### GET /subusers/stats/monthly
 
+
 ```ruby
 params = JSON.parse('{"subuser": "test_string", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "date": "test_string", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.monthly.get(query_params: params)
@@ -2552,6 +2698,7 @@ For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/
 
 ### GET /subusers/stats/sums
 
+
 ```ruby
 params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
 response = sg.client.subusers.stats.sums.get(query_params: params)
@@ -2569,6 +2716,7 @@ For more information about Subusers:
 * [Classroom > How do I add more subusers to my account?](https://sendgrid.com/docs/Classroom/Basics/Account/how_do_i_add_more_subusers_to_my_account.html)
 
 ### PATCH /subusers/{subuser_name}
+
 
 ```ruby
 data = JSON.parse('{
@@ -2591,9 +2739,10 @@ For more information about Subusers:
 
 ### DELETE /subusers/{subuser_name}
 
+
 ```ruby
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete(request_body: data)
+response = sg.client.subusers._(subuser_name).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2608,6 +2757,7 @@ More information:
 * [IPs can be whitelabeled](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/ips.html)
 
 ### PUT /subusers/{subuser_name}/ips
+
 
 ```ruby
 data = JSON.parse('[
@@ -2624,6 +2774,7 @@ puts response.headers
 Subuser monitor settings allow you to receive a sample of an outgoing message by a specific customer at a specific frequency of emails.
 
 ### PUT /subusers/{subuser_name}/monitor
+
 
 ```ruby
 data = JSON.parse('{
@@ -2642,6 +2793,7 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### POST /subusers/{subuser_name}/monitor
 
+
 ```ruby
 data = JSON.parse('{
   "email": "example@example.com",
@@ -2659,6 +2811,7 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### GET /subusers/{subuser_name}/monitor
 
+
 ```ruby
 subuser_name = "test_url_param"
 response = sg.client.subusers._(subuser_name).monitor.get()
@@ -2672,9 +2825,10 @@ Subuser monitor settings allow you to receive a sample of an outgoing message by
 
 ### DELETE /subusers/{subuser_name}/monitor
 
+
 ```ruby
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete(request_body: data)
+response = sg.client.subusers._(subuser_name).monitor.delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2691,6 +2845,7 @@ When using the `sort_by_metric` to sort your stats by a specific metric, you can
 For more information, see our [User Guide](https://sendgrid.com/docs/User_Guide/Statistics/subuser.html).
 
 ### GET /subusers/{subuser_name}/stats/monthly
+
 
 ```ruby
 params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit": 0, "sort_by_metric": "test_string", "offset": 1}')
@@ -2712,6 +2867,7 @@ puts response.headers
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
 
 ### GET /suppression/blocks
+
 
 ```ruby
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
@@ -2735,6 +2891,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/blocks
 
+
 ```ruby
 response = sg.client.suppression.blocks.delete(request_body: data)
 puts response.status_code
@@ -2750,6 +2907,7 @@ puts response.headers
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/blocks.html).
 
 ### GET /suppression/blocks/{email}
+
 
 ```ruby
 email = "test_url_param"
@@ -2768,9 +2926,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/blocks/{email}
 
+
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.blocks._(email).delete(request_body: data)
+response = sg.client.suppression.blocks._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2787,6 +2946,7 @@ For more information see:
 * [Glossary > Bounces](https://sendgrid.com/docs/Glossary/Bounces.html)
 
 ### GET /suppression/bounces
+
 
 ```ruby
 params = JSON.parse('{"start_time": 0, "end_time": 0}')
@@ -2811,6 +2971,7 @@ Note: the `delete_all` and `emails` parameters should be used independently of e
 
 ### DELETE /suppression/bounces
 
+
 ```ruby
 response = sg.client.suppression.bounces.delete(request_body: data)
 puts response.status_code
@@ -2830,6 +2991,7 @@ For more information see:
 * [Classroom > List Scrubbing Guide](https://sendgrid.com/docs/Classroom/Deliver/list_scrubbing.html)
 
 ### GET /suppression/bounces/{email}
+
 
 ```ruby
 email = "test_url_param"
@@ -2852,10 +3014,11 @@ For more information see:
 
 ### DELETE /suppression/bounces/{email}
 
+
 ```ruby
 params = JSON.parse('{"email_address": "example@example.com"}')
 email = "test_url_param"
-response = sg.client.suppression.bounces._(email).delete(request_body: data, query_params: params)
+response = sg.client.suppression.bounces._(email).delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2871,6 +3034,7 @@ Examples include addresses without the @ sign or addresses that include certain 
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
 
 ### GET /suppression/invalid_emails
+
 
 ```ruby
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
@@ -2896,6 +3060,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/invalid_emails
 
+
 ```ruby
 response = sg.client.suppression.invalid_emails.delete(request_body: data)
 puts response.status_code
@@ -2913,6 +3078,7 @@ Examples include addresses without the @ sign or addresses that include certain 
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/invalid_emails.html).
 
 ### GET /suppression/invalid_emails/{email}
+
 
 ```ruby
 email = "test_url_param"
@@ -2933,9 +3099,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/invalid_emails/{email}
 
+
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.invalid_emails._(email).delete(request_body: data)
+response = sg.client.suppression.invalid_emails._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2949,6 +3116,7 @@ puts response.headers
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
 
 ### GET /suppression/spam_report/{email}
+
 
 ```ruby
 email = "test_url_param"
@@ -2967,9 +3135,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/spam_report/{email}
 
+
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete(request_body: data)
+response = sg.client.suppression.spam_report._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -2983,6 +3152,7 @@ puts response.headers
 For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/spam_reports.html).
 
 ### GET /suppression/spam_reports
+
 
 ```ruby
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
@@ -3006,6 +3176,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ### DELETE /suppression/spam_reports
 
+
 ```ruby
 response = sg.client.suppression.spam_reports.delete(request_body: data)
 puts response.status_code
@@ -3019,6 +3190,7 @@ puts response.headers
 A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
 ### GET /suppression/unsubscribes
+
 
 ```ruby
 params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
@@ -3040,6 +3212,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ### POST /templates
 
+
 ```ruby
 data = JSON.parse('{
   "name": "example_name"
@@ -3059,6 +3232,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ### GET /templates
 
+
 ```ruby
 response = sg.client.templates.get()
 puts response.status_code
@@ -3075,6 +3249,7 @@ Transactional templates are templates created specifically for transactional ema
 
 
 ### PATCH /templates/{template_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -3097,6 +3272,7 @@ Transactional templates are templates created specifically for transactional ema
 
 ### GET /templates/{template_id}
 
+
 ```ruby
 template_id = "test_url_param"
 response = sg.client.templates._(template_id).get()
@@ -3115,9 +3291,10 @@ Transactional templates are templates created specifically for transactional ema
 
 ### DELETE /templates/{template_id}
 
+
 ```ruby
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).delete(request_body: data)
+response = sg.client.templates._(template_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -3132,6 +3309,7 @@ For more information about transactional templates, please see our [User Guide](
 
 
 ### POST /templates/{template_id}/versions
+
 
 ```ruby
 data = JSON.parse('{
@@ -3164,6 +3342,7 @@ For more information about transactional templates, please see our [User Guide](
 
 ### PATCH /templates/{template_id}/versions/{version_id}
 
+
 ```ruby
 data = JSON.parse('{
   "active": 1,
@@ -3173,7 +3352,7 @@ data = JSON.parse('{
   "subject": "<%subject%>"
 }')
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -3195,9 +3374,10 @@ For more information about transactional templates, please see our [User Guide](
 
 ### GET /templates/{template_id}/versions/{version_id}
 
+
 ```ruby
 template_id = "test_url_param"
-        version_id = "test_url_param"
+version_id = "test_url_param"
 response = sg.client.templates._(template_id).versions._(version_id).get()
 puts response.status_code
 puts response.body
@@ -3219,10 +3399,11 @@ For more information about transactional templates, please see our [User Guide](
 
 ### DELETE /templates/{template_id}/versions/{version_id}
 
+
 ```ruby
 template_id = "test_url_param"
-        version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete(request_body: data)
+version_id = "test_url_param"
+response = sg.client.templates._(template_id).versions._(version_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -3244,11 +3425,11 @@ For more information about transactional templates, please see our [User Guide](
 
 ### POST /templates/{template_id}/versions/{version_id}/activate
 
+
 ```ruby
-data = JSON.parse('null')
 template_id = "test_url_param"
-        version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post(request_body: data)
+version_id = "test_url_param"
+response = sg.client.templates._(template_id).versions._(version_id).activate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -3266,6 +3447,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings
 
+
 ```ruby
 params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.tracking_settings.get(query_params: params)
@@ -3282,6 +3464,7 @@ You can track a variety of the actions your recipients may take when interacting
 For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/click
+
 
 ```ruby
 data = JSON.parse('{
@@ -3302,6 +3485,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/click
 
+
 ```ruby
 response = sg.client.tracking_settings.click.get()
 puts response.status_code
@@ -3321,6 +3505,7 @@ You can track a variety of the actions your recipients may take when interacting
 For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/google_analytics
+
 
 ```ruby
 data = JSON.parse('{
@@ -3350,6 +3535,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/google_analytics
 
+
 ```ruby
 response = sg.client.tracking_settings.google_analytics.get()
 puts response.status_code
@@ -3367,6 +3553,7 @@ You can track a variety of the actions your recipients may take when interacting
 For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/open
+
 
 ```ruby
 data = JSON.parse('{
@@ -3389,6 +3576,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/open
 
+
 ```ruby
 response = sg.client.tracking_settings.open.get()
 puts response.status_code
@@ -3406,6 +3594,7 @@ You can track a variety of the actions your recipients may take when interacting
 For more information about tracking, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/tracking.html).
 
 ### PATCH /tracking_settings/subscription
+
 
 ```ruby
 data = JSON.parse('{
@@ -3433,6 +3622,7 @@ For more information about tracking, please see our [User Guide](https://sendgri
 
 ### GET /tracking_settings/subscription
 
+
 ```ruby
 response = sg.client.tracking_settings.subscription.get()
 puts response.status_code
@@ -3456,6 +3646,7 @@ For more information about your user profile:
 
 ### GET /user/account
 
+
 ```ruby
 response = sg.client.user.account.get()
 puts response.status_code
@@ -3469,6 +3660,7 @@ puts response.headers
 Your monthly credit allotment limits the number of emails you may send before incurring overage charges. For more information about credits and billing, please visit our [Clssroom](https://sendgrid.com/docs/Classroom/Basics/Billing/billing_info_and_faqs.html).
 
 ### GET /user/credits
+
 
 ```ruby
 response = sg.client.user.credits.get()
@@ -3487,6 +3679,7 @@ For more information about your user profile:
 * [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
 
 ### PUT /user/email
+
 
 ```ruby
 data = JSON.parse('{
@@ -3509,6 +3702,7 @@ For more information about your user profile:
 
 ### GET /user/email
 
+
 ```ruby
 response = sg.client.user.email.get()
 puts response.status_code
@@ -3526,6 +3720,7 @@ For more information about your user profile:
 * [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
 
 ### PUT /user/password
+
 
 ```ruby
 data = JSON.parse('{
@@ -3551,6 +3746,7 @@ It should be noted that any one or more of the parameters can be updated via the
 
 ### PATCH /user/profile
 
+
 ```ruby
 data = JSON.parse('{
   "city": "Orange",
@@ -3572,6 +3768,7 @@ For more information about your user profile:
 
 ### GET /user/profile
 
+
 ```ruby
 response = sg.client.user.profile.get()
 puts response.status_code
@@ -3588,6 +3785,7 @@ be returned.
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### POST /user/scheduled_sends
+
 
 ```ruby
 data = JSON.parse('{
@@ -3607,6 +3805,7 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ### GET /user/scheduled_sends
 
+
 ```ruby
 response = sg.client.user.scheduled_sends.get()
 puts response.status_code
@@ -3620,6 +3819,7 @@ puts response.headers
 The Cancel Scheduled Sends feature allows the customer to cancel a scheduled send based on a Batch ID included in the SMTPAPI header.Scheduled sends cancelled less than 10 minutes before the scheduled time are not guaranteed to be cancelled.
 
 ### PATCH /user/scheduled_sends/{batch_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -3639,6 +3839,7 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ### GET /user/scheduled_sends/{batch_id}
 
+
 ```ruby
 batch_id = "test_url_param"
 response = sg.client.user.scheduled_sends._(batch_id).get()
@@ -3654,9 +3855,10 @@ The Cancel Scheduled Sends feature allows the customer to cancel a scheduled sen
 
 ### DELETE /user/scheduled_sends/{batch_id}
 
+
 ```ruby
 batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).delete(request_body: data)
+response = sg.client.user.scheduled_sends._(batch_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -3670,6 +3872,7 @@ The Enforced TLS settings specify whether or not the recipient is required to su
 **Note:** If either setting is enabled and the recipient does not support TLS or have a valid certificate, we drop the message and send a block event with TLS required but not supported as the description.
 
 ### PATCH /user/settings/enforced_tls
+
 
 ```ruby
 data = JSON.parse('{
@@ -3691,6 +3894,7 @@ The Enforced TLS settings specify whether or not the recipient is required to su
 
 ### GET /user/settings/enforced_tls
 
+
 ```ruby
 response = sg.client.user.settings.enforced_tls.get()
 puts response.status_code
@@ -3708,6 +3912,7 @@ For more information about your user profile:
 * [SendGrid Account Settings](https://sendgrid.com/docs/User_Guide/Settings/account.html)
 
 ### PUT /user/username
+
 
 ```ruby
 data = JSON.parse('{
@@ -3730,6 +3935,7 @@ For more information about your user profile:
 
 ### GET /user/username
 
+
 ```ruby
 response = sg.client.user.username.get()
 puts response.status_code
@@ -3747,6 +3953,7 @@ SendGrids Event Webhook will notify a URL of your choice via HTTP POST with info
 Common uses of this data are to remove unsubscribes, react to spam reports, determine unengaged recipients, identify bounced email addresses, or create advanced analytics of your email program.
 
 ### PATCH /user/webhooks/event/settings
+
 
 ```ruby
 data = JSON.parse('{
@@ -3781,6 +3988,7 @@ Common uses of this data are to remove unsubscribes, react to spam reports, dete
 
 ### GET /user/webhooks/event/settings
 
+
 ```ruby
 response = sg.client.user.webhooks.event.settings.get()
 puts response.status_code
@@ -3796,6 +4004,7 @@ SendGrids Event Webhook will notify a URL of your choice via HTTP POST with info
 Common uses of this data are to remove unsubscribes, react to spam reports, determine unengaged recipients, identify bounced email addresses, or create advanced analytics of your email program.
 
 ### POST /user/webhooks/event/test
+
 
 ```ruby
 data = JSON.parse('{
@@ -3814,6 +4023,7 @@ SendGrid can parse the attachments and contents of incoming emails. The Parse AP
 
 ### GET /user/webhooks/parse/settings
 
+
 ```ruby
 response = sg.client.user.webhooks.parse.settings.get()
 puts response.status_code
@@ -3829,6 +4039,7 @@ SendGrid's Inbound Parse Webhook allows you to parse the contents and attachment
 There are a number of pre-made integrations for the SendGrid Parse Webhook which make processing events easy. You can find these integrations in the [Library Index](https://sendgrid.com/docs/Integrate/libraries.html#-Webhook-Libraries).
 
 ### GET /user/webhooks/parse/stats
+
 
 ```ruby
 params = JSON.parse('{"aggregated_by": "day", "limit": "test_string", "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": "test_string"}')
@@ -3853,6 +4064,7 @@ A domain whitelabel allows you to remove the via or sent on behalf of message th
 For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
 
 ### POST /whitelabel/domains
+
 
 ```ruby
 data = JSON.parse('{
@@ -3883,6 +4095,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains
 
+
 ```ruby
 params = JSON.parse('{"username": "test_string", "domain": "test_string", "exclude_subusers": "true", "limit": 1, "offset": 1}')
 response = sg.client.whitelabel.domains.get(query_params: params)
@@ -3904,6 +4117,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 | domain | string  |The domain to find a default domain whitelabel for. |
 
 ### GET /whitelabel/domains/default
+
 
 ```ruby
 response = sg.client.whitelabel.domains.default.get()
@@ -3928,6 +4142,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains/subuser
 
+
 ```ruby
 response = sg.client.whitelabel.domains.subuser.get()
 puts response.status_code
@@ -3951,8 +4166,9 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### DELETE /whitelabel/domains/subuser
 
+
 ```ruby
-response = sg.client.whitelabel.domains.subuser.delete(request_body: data)
+response = sg.client.whitelabel.domains.subuser.delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -3966,6 +4182,7 @@ A domain whitelabel allows you to remove the via or sent on behalf of message th
 For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
 
 ### PATCH /whitelabel/domains/{domain_id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -3989,6 +4206,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### GET /whitelabel/domains/{domain_id}
 
+
 ```ruby
 domain_id = "test_url_param"
 response = sg.client.whitelabel.domains._(domain_id).get()
@@ -4006,9 +4224,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### DELETE /whitelabel/domains/{domain_id}
 
+
 ```ruby
 domain_id = "test_url_param"
-response = sg.client.whitelabel.domains._(domain_id).delete(request_body: data)
+response = sg.client.whitelabel.domains._(domain_id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4029,6 +4248,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 | domain_id | integer   | ID of the domain whitelabel to associate with the subuser. |
 
 ### POST /whitelabel/domains/{domain_id}/subuser
+
 
 ```ruby
 data = JSON.parse('{
@@ -4054,6 +4274,7 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 | id | integer  | ID of the domain to which you are adding an IP |
 
 ### POST /whitelabel/domains/{id}/ips
+
 
 ```ruby
 data = JSON.parse('{
@@ -4081,10 +4302,11 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### DELETE /whitelabel/domains/{id}/ips/{ip}
 
+
 ```ruby
 id = "test_url_param"
-        ip = "test_url_param"
-response = sg.client.whitelabel.domains._(id).ips._(ip).delete(request_body: data)
+ip = "test_url_param"
+response = sg.client.whitelabel.domains._(id).ips._(ip).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4104,10 +4326,10 @@ For more information on whitelabeling, please see our [User Guide](https://sendg
 
 ### POST /whitelabel/domains/{id}/validate
 
+
 ```ruby
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.domains._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.domains._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4123,6 +4345,7 @@ A IP whitelabel consists of a subdomain and domain that will be used to generate
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
 
 ### POST /whitelabel/ips
+
 
 ```ruby
 data = JSON.parse('{
@@ -4147,6 +4370,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/ips
 
+
 ```ruby
 params = JSON.parse('{"ip": "test_string", "limit": 1, "offset": 1}')
 response = sg.client.whitelabel.ips.get(query_params: params)
@@ -4163,6 +4387,7 @@ A IP whitelabel consists of a subdomain and domain that will be used to generate
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/ips.html).
 
 ### GET /whitelabel/ips/{id}
+
 
 ```ruby
 id = "test_url_param"
@@ -4181,9 +4406,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### DELETE /whitelabel/ips/{id}
 
+
 ```ruby
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).delete(request_body: data)
+response = sg.client.whitelabel.ips._(id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4198,10 +4424,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/ips/{id}/validate
 
+
 ```ruby
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.ips._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.ips._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4215,6 +4441,7 @@ Email link whitelabels allow all of the click-tracked links you send in your ema
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
 
 ### POST /whitelabel/links
+
 
 ```ruby
 data = JSON.parse('{
@@ -4237,6 +4464,7 @@ Email link whitelabels allow all of the click-tracked links you send in your ema
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
 
 ### GET /whitelabel/links
+
 
 ```ruby
 params = JSON.parse('{"limit": 1}')
@@ -4262,6 +4490,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/links/default
 
+
 ```ruby
 params = JSON.parse('{"domain": "test_string"}')
 response = sg.client.whitelabel.links.default.get(query_params: params)
@@ -4282,6 +4511,7 @@ Email link whitelabels allow all of the click-tracked links you send in your ema
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
 
 ### GET /whitelabel/links/subuser
+
 
 ```ruby
 params = JSON.parse('{"username": "test_string"}')
@@ -4304,9 +4534,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### DELETE /whitelabel/links/subuser
 
+
 ```ruby
 params = JSON.parse('{"username": "test_string"}')
-response = sg.client.whitelabel.links.subuser.delete(request_body: data, query_params: params)
+response = sg.client.whitelabel.links.subuser.delete(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4320,6 +4551,7 @@ Email link whitelabels allow all of the click-tracked links you send in your ema
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
 
 ### PATCH /whitelabel/links/{id}
+
 
 ```ruby
 data = JSON.parse('{
@@ -4341,6 +4573,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### GET /whitelabel/links/{id}
 
+
 ```ruby
 id = "test_url_param"
 response = sg.client.whitelabel.links._(id).get()
@@ -4358,9 +4591,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### DELETE /whitelabel/links/{id}
 
+
 ```ruby
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).delete(request_body: data)
+response = sg.client.whitelabel.links._(id).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4375,10 +4609,10 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/API_
 
 ### POST /whitelabel/links/{id}/validate
 
+
 ```ruby
-data = JSON.parse('null')
 id = "test_url_param"
-response = sg.client.whitelabel.links._(id).validate.post(request_body: data)
+response = sg.client.whitelabel.links._(id).validate.post()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4396,6 +4630,7 @@ Email link whitelabels allow all of the click-tracked links you send in your ema
 For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
 
 ### POST /whitelabel/links/{link_id}/subuser
+
 
 ```ruby
 data = JSON.parse('{
