@@ -24,7 +24,6 @@ class TestAPI < Minitest::Test
         test_headers = JSON.parse('
                 {
                     "Authorization": "Bearer SENDGRID_API_KEY",
-                    "Content-Type": "application/json",
                     "X-Test": "test"
                 }
             ')

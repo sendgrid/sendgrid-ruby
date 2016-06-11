@@ -21,8 +21,7 @@ module SendGrid
       @user_agent       = "sendgrid/#{@VERSION};ruby"
       @request_headers  = JSON.parse('
         {
-          "Authorization": "Bearer ' + @api_key + '",
-          "Content-Type": "application/json"
+          "Authorization": "Bearer ' + @api_key + '"
         }
       ')
 
