@@ -1,5 +1,4 @@
-require_relative '../../../lib/helpers/mail/mail'
-require_relative '../../../lib/sendgrid-ruby'
+require 'sendgrid-ruby'
 include SendGrid
 require 'json'
 
@@ -13,7 +12,7 @@ def hello_world
   puts mail.to_json
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-  response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
   puts response.response_body
   puts response.response_headers
@@ -121,7 +120,7 @@ def kitchen_sink
   puts mail.to_json
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-  response = sg.client.mail._('send').beta.post(request_body: mail.to_json)
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
   puts response.response_body
   puts response.response_headers
