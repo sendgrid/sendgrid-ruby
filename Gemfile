@@ -1,5 +1,3 @@
-gem 'dotenv-rails'
-gem 'smtpapi'
-gem 'rest-client'
-source 'https://rubygems.org'
-gemspec
+source 'http://rubygems.org'
+
+gem "ruby_http_client"
