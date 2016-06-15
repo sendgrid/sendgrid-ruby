@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = 'sendgrid-ruby'
-  spec.version     = '3.0.0'
+  spec.version     = '3.0.1'
   spec.authors     = ['Elmer Thomas', 'Robin Johnson', 'Eddie Zaneski']
   spec.email       = 'dx@sendgrid.com'
   spec.summary     = 'Official SendGrid Gem'
@@ -15,8 +15,8 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
-  spec.require_paths = ['lib']
+  spec.require_paths = ['lib', 'lib/helpers/mail']
 
-  spec.add_dependency 'ruby_http_client', '~> 2.1.1'
+  spec.add_dependency 'ruby_http_client', '~> 2.1.2'
   spec.add_development_dependency 'rake', '~> 0'
 end

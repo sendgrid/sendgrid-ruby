@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2016-06-15 ##
+### Added
+- Add mail/send helper to the $LOAD_PATH, updated http client dependency
+
 ## [2.0.0] - 2016-06-13 ##
 ### Added
 - Breaking change to support the v3 Web API
