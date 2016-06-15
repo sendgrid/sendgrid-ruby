@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.3] - 2016-06-15 ##
+### Fixing
+- Import structure
+
 ## [3.0.2] - 2016-06-15 ##
 ### Added
 - Relative import for mail/helper

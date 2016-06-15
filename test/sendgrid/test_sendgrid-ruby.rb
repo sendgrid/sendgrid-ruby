@@ -1,4 +1,4 @@
-require_relative '../lib/sendgrid-ruby.rb'
+require_relative "../../lib/sendgrid/client"
 require 'ruby_http_client'
 require 'minitest/autorun'
 
@@ -29,7 +29,6 @@ class TestAPI < Minitest::Test
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("2.0.0", sg.VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
