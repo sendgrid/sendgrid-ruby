@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.2] - 2016-06-15 ##
+### Added
+- Relative import for mail/helper
+
 ## [3.0.1] - 2016-06-15 ##
 ### Added
 - Add mail/send helper to the $LOAD_PATH, updated http client dependency

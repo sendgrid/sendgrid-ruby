@@ -1,5 +1,6 @@
 # Quickly and easily access the SendGrid API.
 require 'ruby_http_client'
+require_relative 'helpers/mail'
 
 module SendGrid
   # Initialize the HTTP client
@@ -14,7 +15,7 @@ module SendGrid
     #                  currently only "v3" is supported
     #
     def initialize(api_key: nil, host: nil, request_headers: nil, version: nil)
-      @VERSION = '2.0.0'
+      @VERSION = '3.0.2'
       @api_key          = api_key
       @host             = host ? host : 'https://api.sendgrid.com'
       @version          = version ? version : 'v3'

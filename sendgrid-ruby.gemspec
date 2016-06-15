@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = 'sendgrid-ruby'
-  spec.version     = '3.0.1'
+  spec.version     = '3.0.2'
   spec.authors     = ['Elmer Thomas', 'Robin Johnson', 'Eddie Zaneski']
   spec.email       = 'dx@sendgrid.com'
   spec.summary     = 'Official SendGrid Gem'
