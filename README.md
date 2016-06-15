@@ -67,6 +67,7 @@ gem install sendgrid-ruby
 
 ```ruby
 require 'sendgrid-ruby'
+include SendGrid
 
 from = Email.new(email: 'test@example.com')
 subject = 'Hello World from the SendGrid Ruby Library'
