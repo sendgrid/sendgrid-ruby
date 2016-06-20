@@ -58,7 +58,7 @@ gem install sendgrid-ruby
 
 ## Dependencies
 
-- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby))
+- The SendGrid Service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby)
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
 
 # Quick Start
