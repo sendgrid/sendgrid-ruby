@@ -81,27 +81,6 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
-## Manage Account Settings
-
-```ruby
-require 'sendgrid-ruby'
-include SendGrid
-
-sg_client = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY']).client
-settings = SendGrid::Settings.new(sendgrid_client: sg_client)
-
-# Fetch settings
-response = settings.bcc
-puts response.status_code
-puts response.body
-puts response.headers
-
-# Update bcc settings
-response = settings.update_bcc(enabled: true, email: "email@example.com")
-puts response.status_code
-puts response.body
-puts response.headers
-```
 
 ## General v3 Web API Usage
 
@@ -119,6 +98,11 @@ puts response.headers
 - [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
 - [Usage Docs](https://github.com/sendgrid/sendgrid-ruby/tree/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-ruby/tree/master/examples)
+
+# Helpers
+
+-[Mail](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/mail)
+-[Settings](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/settings)
 
 ## Roadmap
 
