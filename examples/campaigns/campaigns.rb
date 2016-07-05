@@ -37,7 +37,7 @@ puts response.headers
 # Retrieve all Campaigns #
 # GET /campaigns #
 
-params = JSON.parse('{"limit": 0, "offset": 0}')
+params = JSON.parse('{"limit": 1, "offset": 1}')
 response = sg.client.campaigns.get(query_params: params)
 puts response.status_code
 puts response.body

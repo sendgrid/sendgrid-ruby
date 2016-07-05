@@ -1,4 +1,4 @@
-require_relative "../../lib/sendgrid/client"
+require_relative '../../lib/sendgrid-ruby.rb'
 require 'ruby_http_client'
 require 'minitest/autorun'
 
@@ -24,11 +24,13 @@ class TestAPI < Minitest::Test
         test_headers = JSON.parse('
                 {
                     "Authorization": "Bearer SENDGRID_API_KEY",
+                    "Accept": "application/json",
                     "X-Test": "test"
                 }
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
+        assert_equal("3.0.5", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -91,9 +93,51 @@ class TestAPI < Minitest::Test
         self.assert_equal(response.status_code, "204")
     end
 
+    def test_alerts_post
+        data = JSON.parse('{
+  "email_to": "example@example.com",
+  "frequency": "daily",
+  "type": "stats_notification"
+}')
+        headers = JSON.parse('{"X-Mock": 201}')
+        response = @sg.client.alerts.post(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "201")
+    end
+
+    def test_alerts_get
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.alerts.get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_alerts__alert_id__patch
+        data = JSON.parse('{
+  "email_to": "example@example.com"
+}')
+        alert_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.alerts._(alert_id).patch(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_alerts__alert_id__get
+        alert_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.alerts._(alert_id).get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_alerts__alert_id__delete
+        alert_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 204}')
+        response = @sg.client.alerts._(alert_id).delete(request_headers: headers)
+        self.assert_equal(response.status_code, "204")
+    end
+
     def test_api_keys_post
         data = JSON.parse('{
   "name": "My API Key",
+  "sample": "data",
   "scopes": [
     "mail.send",
     "alerts.create",
@@ -106,8 +150,9 @@ class TestAPI < Minitest::Test
     end
 
     def test_api_keys_get
+        params = JSON.parse('{"limit": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
-        response = @sg.client.api_keys.get(request_headers: headers)
+        response = @sg.client.api_keys.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
     end
 
@@ -151,18 +196,19 @@ class TestAPI < Minitest::Test
 
     def test_asm_groups_post
         data = JSON.parse('{
-  "description": "A group description",
-  "is_default": false,
-  "name": "A group name"
+  "description": "Suggestions for products our users might like.",
+  "is_default": true,
+  "name": "Product Suggestions"
 }')
-        headers = JSON.parse('{"X-Mock": 200}')
+        headers = JSON.parse('{"X-Mock": 201}')
         response = @sg.client.asm.groups.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+        self.assert_equal(response.status_code, "201")
     end
 
     def test_asm_groups_get
+        params = JSON.parse('{"id": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
-        response = @sg.client.asm.groups.get(request_headers: headers)
+        response = @sg.client.asm.groups.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
     end
 
@@ -212,12 +258,32 @@ class TestAPI < Minitest::Test
         self.assert_equal(response.status_code, "200")
     end
 
+    def test_asm_groups__group_id__suppressions_search_post
+        data = JSON.parse('{
+  "recipient_emails": [
+    "exists1@example.com",
+    "exists2@example.com",
+    "doesnotexists@example.com"
+  ]
+}')
+        group_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.asm.groups._(group_id).suppressions.search.post(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
     def test_asm_groups__group_id__suppressions__email__delete
         group_id = "test_url_param"
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
         response = @sg.client.asm.groups._(group_id).suppressions._(email).delete(request_headers: headers)
         self.assert_equal(response.status_code, "204")
+    end
+
+    def test_asm_suppressions_get
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.asm.suppressions.get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
     end
 
     def test_asm_suppressions_global_post
@@ -244,6 +310,13 @@ class TestAPI < Minitest::Test
         headers = JSON.parse('{"X-Mock": 204}')
         response = @sg.client.asm.suppressions.global._(email).delete(request_headers: headers)
         self.assert_equal(response.status_code, "204")
+    end
+
+    def test_asm_suppressions__email__get
+        email = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.asm.suppressions._(email).get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
     end
 
     def test_browsers_stats_get
@@ -280,7 +353,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_campaigns_get
-        params = JSON.parse('{"limit": 0, "offset": 0}')
+        params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.campaigns.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
@@ -464,7 +537,7 @@ class TestAPI < Minitest::Test
         data = JSON.parse('{
   "name": "newlistname"
 }')
-        params = JSON.parse('{"list_id": 0}')
+        params = JSON.parse('{"list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.lists._(list_id).patch(request_body: data, query_params: params, request_headers: headers)
@@ -472,7 +545,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_lists__list_id__get
-        params = JSON.parse('{"list_id": 0}')
+        params = JSON.parse('{"list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.lists._(list_id).get(query_params: params, request_headers: headers)
@@ -499,7 +572,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_lists__list_id__recipients_get
-        params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 0}')
+        params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.lists._(list_id).recipients.get(query_params: params, request_headers: headers)
@@ -515,7 +588,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_lists__list_id__recipients__recipient_id__delete
-        params = JSON.parse('{"recipient_id": 0, "list_id": 0}')
+        params = JSON.parse('{"recipient_id": 1, "list_id": 1}')
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
@@ -586,7 +659,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_recipients_search_get
-        params = JSON.parse('{"{field_name}": "test_string"}')
+        params = JSON.parse('{"%7Bfield_name%7D": "test_string", "{field_name}": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.recipients.search.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
@@ -676,7 +749,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_segments__segment_id__get
-        params = JSON.parse('{"segment_id": 0}')
+        params = JSON.parse('{"segment_id": 1}')
         segment_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.segments._(segment_id).get(query_params: params, request_headers: headers)
@@ -832,7 +905,7 @@ class TestAPI < Minitest::Test
         self.assert_equal(response.status_code, "200")
     end
 
-    def test_mail_send_beta_post
+    def test_mail_send_post
         data = JSON.parse('{
   "asm": {
     "group_id": 1,
@@ -922,13 +995,8 @@ class TestAPI < Minitest::Test
       "send_at": 1409348513,
       "subject": "Hello, World!",
       "substitutions": {
-        "sub": {
-          "%name%": [
-            "John",
-            "Jane",
-            "Sam"
-          ]
-        }
+        "id": "substitutions",
+        "type": "object"
       },
       "to": [
         {
@@ -977,7 +1045,7 @@ class TestAPI < Minitest::Test
   }
 }')
         headers = JSON.parse('{"X-Mock": 202}')
-        response = @sg.client.mail._("send").beta.post(request_body: data, request_headers: headers)
+        response = @sg.client.mail._("send").post(request_body: data, request_headers: headers)
         self.assert_equal(response.status_code, "202")
     end
 
@@ -1197,7 +1265,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_subusers_get
-        params = JSON.parse('{"username": "test_string", "limit": 0, "offset": 0}')
+        params = JSON.parse('{"username": "test_string", "limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.subusers.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
@@ -1295,7 +1363,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_subusers__subuser_name__stats_monthly_get
-        params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit": 0, "sort_by_metric": "test_string", "offset": 1}')
+        params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit": 1, "sort_by_metric": "test_string", "offset": 1}')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.subusers._(subuser_name).stats.monthly.get(query_params: params, request_headers: headers)
@@ -1337,7 +1405,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_suppression_bounces_get
-        params = JSON.parse('{"start_time": 0, "end_time": 0}')
+        params = JSON.parse('{"start_time": 1, "end_time": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.suppression.bounces.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
@@ -1777,10 +1845,48 @@ class TestAPI < Minitest::Test
         self.assert_equal(response.status_code, "204")
     end
 
+    def test_user_webhooks_parse_settings_post
+        data = JSON.parse('{
+  "hostname": "myhostname.com",
+  "send_raw": false,
+  "spam_check": true,
+  "url": "http://email.myhosthame.com"
+}')
+        headers = JSON.parse('{"X-Mock": 201}')
+        response = @sg.client.user.webhooks.parse.settings.post(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "201")
+    end
+
     def test_user_webhooks_parse_settings_get
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.user.webhooks.parse.settings.get(request_headers: headers)
         self.assert_equal(response.status_code, "200")
+    end
+
+    def test_user_webhooks_parse_settings__hostname__patch
+        data = JSON.parse('{
+  "send_raw": true,
+  "spam_check": false,
+  "url": "http://newdomain.com/parse"
+}')
+        hostname = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.user.webhooks.parse.settings._(hostname).patch(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_user_webhooks_parse_settings__hostname__get
+        hostname = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.user.webhooks.parse.settings._(hostname).get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_user_webhooks_parse_settings__hostname__delete
+        hostname = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 204}')
+        response = @sg.client.user.webhooks.parse.settings._(hostname).delete(request_headers: headers)
+        self.assert_equal(response.status_code, "204")
     end
 
     def test_user_webhooks_parse_stats_get

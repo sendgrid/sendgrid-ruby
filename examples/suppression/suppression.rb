@@ -47,7 +47,7 @@ puts response.headers
 # Retrieve all bounces #
 # GET /suppression/bounces #
 
-params = JSON.parse('{"start_time": 0, "end_time": 0}')
+params = JSON.parse('{"start_time": 1, "end_time": 1}')
 response = sg.client.suppression.bounces.get(query_params: params)
 puts response.status_code
 puts response.body

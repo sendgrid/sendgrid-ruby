@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [3.0.5] - 2016-07-05 ##
+### Added
+- Accept: application/json header per https://sendgrid.com/docs/API_Reference/Web_API_v3/How_To_Use_The_Web_API_v3/requests.html
+
+### Updated
+- Content based on our updated [Swagger/OAI doc](https://github.com/sendgrid/sendgrid-oai)
+
 ## [3.0.4] - 2016-06-15 ##
 ### Added
 - Updated dependency on ruby-http-client
