@@ -101,8 +101,8 @@ puts response.headers
 
 # Helpers
 
--[Mail](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/mail)
--[Settings](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/settings)
+- [Mail](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/mail)
+- [Settings](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/settings)
 
 ## Roadmap
 
