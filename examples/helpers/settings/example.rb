@@ -10,7 +10,6 @@ puts response.status_code
 puts response.body
 puts response.headers
 
-
 # Turn on bcc settings
 response = settings.update_bcc(enabled: true, email: "email@example.com")
 puts response.status_code
