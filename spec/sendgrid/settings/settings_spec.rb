@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SendGrid::Settings do
-  let(:sendgrid_client) { SendGrid::API.new(api_key: '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').client }
+  let(:sendgrid_client) { SendGrid::API.new(api_key: 'fake_key').client }
   let(:settings) { SendGrid::Settings.new(sendgrid_client: sendgrid_client) }
 
   describe '.new' do
