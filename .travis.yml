@@ -13,3 +13,6 @@ notifications:
     notify: false
 script:
     - rake
+before_install:
+    - gem update bundler
+
