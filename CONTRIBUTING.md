@@ -64,16 +64,37 @@ We welcome direct contributions to the sendgrid-ruby code base. Thank you!
 
 ##### Prerequisites #####
 
-- Ruby version 2.2
+- Ruby 2.1+
 - [ruby_http_client](https://github.com/sendgrid/ruby-http-client)
+
 
 ##### Initial setup: #####
 
-```bash
-git clone https://github.com/sendgrid/sendgrid-ruby.git
-cd sendgrid-ruby
-bundle install
-```
+1. Clone the project
+
+   ```bash
+   git clone https://github.com/sendgrid/sendgrid-ruby.git
+   cd sendgrid-ruby
+   ```
+
+1. Install bundler and bundle
+
+   ```bash
+   bundle install
+   ```
+
+1. Download [prism](https://stoplight.io/prism/) for your platform ([Mac OS X](https://github.com/stoplightio/prism/releases/download/v0.1.5/prism_darwin_amd64)) and save the binary to the sendgrid-ruby directory (or any directory you would like. The sendgrid-ruby directory is chosen mostly for convenience.)
+1. Add execute permissions
+
+   ```bash
+   chmod +x prism
+   ```
+1. Download the [prism spec for sendgrid](https://api.stoplight.io/v1/versions/563a5309daad691100fb05af/export/stoplight.json) and save it to the same directory
+1. In a separate terminal, cd into the directory you chose for prism and start the sendgrid local server which the tests will use. 
+
+   ```bash
+   ./prism run --mock --list --spec stoplight.json
+   ```
 
 ## Environment Variables
 
