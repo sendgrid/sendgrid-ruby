@@ -37,8 +37,10 @@ class TestAPI < Minitest::Test
     def test_access_settings_activity_get
         params = JSON.parse('{"limit": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_access_settings_whitelist_post
@@ -56,14 +58,18 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.access_settings.whitelist.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_access_settings_whitelist_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.access_settings.whitelist.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_access_settings_whitelist_delete
@@ -75,22 +81,28 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.access_settings.whitelist.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_access_settings_whitelist__rule_id__get
         rule_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.access_settings.whitelist._(rule_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_access_settings_whitelist__rule_id__delete
         rule_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.access_settings.whitelist._(rule_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_alerts_post
@@ -100,14 +112,18 @@ class TestAPI < Minitest::Test
   "type": "stats_notification"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.alerts.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_alerts_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.alerts.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_alerts__alert_id__patch
@@ -116,22 +132,28 @@ class TestAPI < Minitest::Test
 }')
         alert_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.alerts._(alert_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_alerts__alert_id__get
         alert_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.alerts._(alert_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_alerts__alert_id__delete
         alert_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.alerts._(alert_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_api_keys_post
@@ -145,15 +167,19 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.api_keys.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_api_keys_get
         params = JSON.parse('{"limit": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.api_keys.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_api_keys__api_key_id__put
@@ -166,8 +192,10 @@ class TestAPI < Minitest::Test
 }')
         api_key_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.api_keys._(api_key_id).put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_api_keys__api_key_id__patch
@@ -176,22 +204,28 @@ class TestAPI < Minitest::Test
 }')
         api_key_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.api_keys._(api_key_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_api_keys__api_key_id__get
         api_key_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.api_keys._(api_key_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_api_keys__api_key_id__delete
         api_key_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.api_keys._(api_key_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_asm_groups_post
@@ -201,15 +235,19 @@ class TestAPI < Minitest::Test
   "name": "Product Suggestions"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.asm.groups.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_asm_groups_get
         params = JSON.parse('{"id": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.groups.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_groups__group_id__patch
@@ -220,22 +258,28 @@ class TestAPI < Minitest::Test
 }')
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.asm.groups._(group_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_asm_groups__group_id__get
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.groups._(group_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_groups__group_id__delete
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.asm.groups._(group_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_asm_groups__group_id__suppressions_post
@@ -247,15 +291,19 @@ class TestAPI < Minitest::Test
 }')
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.asm.groups._(group_id).suppressions.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_asm_groups__group_id__suppressions_get
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.groups._(group_id).suppressions.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_groups__group_id__suppressions_search_post
@@ -268,22 +316,28 @@ class TestAPI < Minitest::Test
 }')
         group_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.groups._(group_id).suppressions.search.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_groups__group_id__suppressions__email__delete
         group_id = "test_url_param"
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.asm.groups._(group_id).suppressions._(email).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_asm_suppressions_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.suppressions.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_suppressions_global_post
@@ -294,36 +348,46 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.asm.suppressions.global.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_asm_suppressions_global__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.suppressions.global._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_asm_suppressions_global__email__delete
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.asm.suppressions.global._(email).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_asm_suppressions__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.asm.suppressions._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_browsers_stats_get
         params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "browsers": "test_string", "limit": "test_string", "offset": "test_string", "start_date": "2016-01-01"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.browsers.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns_post
@@ -348,15 +412,19 @@ class TestAPI < Minitest::Test
   "title": "March Newsletter"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.campaigns.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_campaigns_get
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.campaigns.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns__campaign_id__patch
@@ -371,22 +439,28 @@ class TestAPI < Minitest::Test
 }')
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.campaigns._(campaign_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns__campaign_id__get
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.campaigns._(campaign_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns__campaign_id__delete
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.campaigns._(campaign_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_patch
@@ -395,8 +469,10 @@ class TestAPI < Minitest::Test
 }')
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_post
@@ -405,29 +481,37 @@ class TestAPI < Minitest::Test
 }')
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_get
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_delete
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_now_post
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.now.post(request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_campaigns__campaign_id__schedules_test_post
@@ -436,44 +520,56 @@ class TestAPI < Minitest::Test
 }')
         campaign_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.campaigns._(campaign_id).schedules.test.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_categories_get
         params = JSON.parse('{"category": "test_string", "limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.categories.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_categories_stats_get
         params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "categories": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.categories.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_categories_stats_sums_get
         params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.categories.stats.sums.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_clients_stats_get
         params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_date": "2016-04-01"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.clients.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_clients__client_type__stats_get
         params = JSON.parse('{"aggregated_by": "day", "start_date": "2016-01-01", "end_date": "2016-04-01"}')
         client_type = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.clients._(client_type).stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_custom_fields_post
@@ -482,28 +578,36 @@ class TestAPI < Minitest::Test
   "type": "text"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.custom_fields.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_custom_fields_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.custom_fields.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_custom_fields__custom_field_id__get
         custom_field_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.custom_fields._(custom_field_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_custom_fields__custom_field_id__delete
         custom_field_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 202}')
+        
         response = @sg.client.contactdb.custom_fields._(custom_field_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "202")
+
+        self.assert_equal('202', response.status_code)
     end
 
     def test_contactdb_lists_post
@@ -511,14 +615,18 @@ class TestAPI < Minitest::Test
   "name": "your list name"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.lists.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_lists_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.lists.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_lists_delete
@@ -529,8 +637,10 @@ class TestAPI < Minitest::Test
   4
 ]')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.contactdb.lists.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_contactdb_lists__list_id__patch
@@ -540,24 +650,30 @@ class TestAPI < Minitest::Test
         params = JSON.parse('{"list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.lists._(list_id).patch(request_body: data, query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_lists__list_id__get
         params = JSON.parse('{"list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.lists._(list_id).get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_lists__list_id__delete
         params = JSON.parse('{"delete_contacts": "true"}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 202}')
+        
         response = @sg.client.contactdb.lists._(list_id).delete(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "202")
+
+        self.assert_equal('202', response.status_code)
     end
 
     def test_contactdb_lists__list_id__recipients_post
@@ -567,24 +683,30 @@ class TestAPI < Minitest::Test
 ]')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.lists._(list_id).recipients.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_lists__list_id__recipients_get
         params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 1}')
         list_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.lists._(list_id).recipients.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_lists__list_id__recipients__recipient_id__post
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post(request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_lists__list_id__recipients__recipient_id__delete
@@ -592,8 +714,10 @@ class TestAPI < Minitest::Test
         list_id = "test_url_param"
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_contactdb_recipients_patch
@@ -605,8 +729,10 @@ class TestAPI < Minitest::Test
   }
 ]')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.recipients.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_recipients_post
@@ -625,15 +751,19 @@ class TestAPI < Minitest::Test
   }
 ]')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.contactdb.recipients.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_contactdb_recipients_get
         params = JSON.parse('{"page": 1, "page_size": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients_delete
@@ -642,54 +772,70 @@ class TestAPI < Minitest::Test
   "recipient_id2"
 ]')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients_billable_count_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients.billable_count.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients_count_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients.count.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients_search_get
         params = JSON.parse('{"{field_name}": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients.search.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients__recipient_id__get
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients._(recipient_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_recipients__recipient_id__delete
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.contactdb.recipients._(recipient_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_contactdb_recipients__recipient_id__lists_get
         recipient_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.recipients._(recipient_id).lists.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_reserved_fields_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.reserved_fields.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_segments_post
@@ -718,14 +864,18 @@ class TestAPI < Minitest::Test
   "name": "Last Name Miller"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.segments.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_segments_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.segments.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_segments__segment_id__patch
@@ -744,59 +894,75 @@ class TestAPI < Minitest::Test
         params = JSON.parse('{"segment_id": "test_string"}')
         segment_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.segments._(segment_id).patch(request_body: data, query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_segments__segment_id__get
         params = JSON.parse('{"segment_id": 1}')
         segment_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.segments._(segment_id).get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_contactdb_segments__segment_id__delete
         params = JSON.parse('{"delete_contacts": "true"}')
         segment_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.contactdb.segments._(segment_id).delete(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_contactdb_segments__segment_id__recipients_get
         params = JSON.parse('{"page": 1, "page_size": 1}')
         segment_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.contactdb.segments._(segment_id).recipients.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_devices_stats_get
         params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.devices.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_geo_stats_get
         params = JSON.parse('{"end_date": "2016-04-01", "country": "US", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.geo.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_get
         params = JSON.parse('{"subuser": "test_string", "ip": "test_string", "limit": 1, "exclude_whitelabels": "true", "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_assigned_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.assigned.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_pools_post
@@ -804,14 +970,18 @@ class TestAPI < Minitest::Test
   "name": "marketing"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.pools.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_pools_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.pools.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_pools__pool_name__put
@@ -820,22 +990,28 @@ class TestAPI < Minitest::Test
 }')
         pool_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.pools._(pool_name).put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_pools__pool_name__get
         pool_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.pools._(pool_name).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_pools__pool_name__delete
         pool_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.ips.pools._(pool_name).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_ips_pools__pool_name__ips_post
@@ -844,16 +1020,20 @@ class TestAPI < Minitest::Test
 }')
         pool_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.ips.pools._(pool_name).ips.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_ips_pools__pool_name__ips__ip__delete
         pool_name = "test_url_param"
         ip = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.ips.pools._(pool_name).ips._(ip).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_ips_warmup_post
@@ -861,48 +1041,62 @@ class TestAPI < Minitest::Test
   "ip": "0.0.0.0"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.warmup.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_warmup_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.warmup.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_warmup__ip_address__get
         ip_address = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips.warmup._(ip_address).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_ips_warmup__ip_address__delete
         ip_address = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.ips.warmup._(ip_address).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_ips__ip_address__get
         ip_address = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.ips._(ip_address).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_batch_post
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.mail.batch.post(request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_mail_batch__batch_id__get
         batch_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail.batch._(batch_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_send_post
@@ -1045,15 +1239,19 @@ class TestAPI < Minitest::Test
   }
 }')
         headers = JSON.parse('{"X-Mock": 202}')
+        
         response = @sg.client.mail._("send").post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "202")
+
+        self.assert_equal('202', response.status_code)
     end
 
     def test_mail_settings_get
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_address_whitelist_patch
@@ -1065,14 +1263,18 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.address_whitelist.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_address_whitelist_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.address_whitelist.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_bcc_patch
@@ -1081,14 +1283,18 @@ class TestAPI < Minitest::Test
   "enabled": false
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.bcc.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_bcc_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.bcc.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_bounce_purge_patch
@@ -1098,14 +1304,18 @@ class TestAPI < Minitest::Test
   "soft_bounces": 5
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.bounce_purge.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_bounce_purge_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.bounce_purge.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_footer_patch
@@ -1115,14 +1325,18 @@ class TestAPI < Minitest::Test
   "plain_content": "..."
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.footer.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_footer_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.footer.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_forward_bounce_patch
@@ -1131,14 +1345,18 @@ class TestAPI < Minitest::Test
   "enabled": true
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.forward_bounce.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_forward_bounce_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.forward_bounce.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_forward_spam_patch
@@ -1147,14 +1365,18 @@ class TestAPI < Minitest::Test
   "enabled": false
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.forward_spam.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_forward_spam_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.forward_spam.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_plain_content_patch
@@ -1162,14 +1384,18 @@ class TestAPI < Minitest::Test
   "enabled": false
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.plain_content.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_plain_content_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.plain_content.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_spam_check_patch
@@ -1179,14 +1405,18 @@ class TestAPI < Minitest::Test
   "url": "url"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.spam_check.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_spam_check_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.spam_check.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_template_patch
@@ -1195,28 +1425,36 @@ class TestAPI < Minitest::Test
   "html_content": "<% body %>"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.template.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mail_settings_template_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mail_settings.template.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_mailbox_providers_stats_get
         params = JSON.parse('{"end_date": "2016-04-01", "mailbox_providers": "test_string", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.mailbox_providers.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_partner_settings_get
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.partner_settings.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_partner_settings_new_relic_patch
@@ -1226,20 +1464,26 @@ class TestAPI < Minitest::Test
   "license_key": ""
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.partner_settings.new_relic.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_partner_settings_new_relic_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.partner_settings.new_relic.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_scopes_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.scopes.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_senders_post
@@ -1319,8 +1563,10 @@ class TestAPI < Minitest::Test
     def test_stats_get
         params = JSON.parse('{"aggregated_by": "day", "limit": 1, "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_post
@@ -1334,43 +1580,55 @@ class TestAPI < Minitest::Test
   "username": "John@example.com"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_get
         params = JSON.parse('{"username": "test_string", "limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_reputations_get
         params = JSON.parse('{"usernames": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.reputations.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_stats_get
         params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "offset": 1, "start_date": "2016-01-01", "subusers": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_stats_monthly_get
         params = JSON.parse('{"subuser": "test_string", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "date": "test_string", "sort_by_direction": "asc"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.stats.monthly.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers_stats_sums_get
         params = JSON.parse('{"end_date": "2016-04-01", "aggregated_by": "day", "limit": 1, "sort_by_metric": "test_string", "offset": 1, "start_date": "2016-01-01", "sort_by_direction": "asc"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers.stats.sums.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers__subuser_name__patch
@@ -1379,15 +1637,19 @@ class TestAPI < Minitest::Test
 }')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.subusers._(subuser_name).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_subusers__subuser_name__delete
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.subusers._(subuser_name).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_subusers__subuser_name__ips_put
@@ -1396,8 +1658,10 @@ class TestAPI < Minitest::Test
 ]')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers._(subuser_name).ips.put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers__subuser_name__monitor_put
@@ -1407,8 +1671,10 @@ class TestAPI < Minitest::Test
 }')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers._(subuser_name).monitor.put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers__subuser_name__monitor_post
@@ -1418,37 +1684,47 @@ class TestAPI < Minitest::Test
 }')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers._(subuser_name).monitor.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers__subuser_name__monitor_get
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers._(subuser_name).monitor.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_subusers__subuser_name__monitor_delete
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.subusers._(subuser_name).monitor.delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_subusers__subuser_name__stats_monthly_get
         params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit": 1, "sort_by_metric": "test_string", "offset": 1}')
         subuser_name = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.subusers._(subuser_name).stats.monthly.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_blocks_get
         params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.blocks.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_blocks_delete
@@ -1460,29 +1736,37 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.blocks.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_blocks__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.blocks._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_blocks__email__delete
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.blocks._(email).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_bounces_get
         params = JSON.parse('{"start_time": 1, "end_time": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.bounces.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_bounces_delete
@@ -1494,30 +1778,38 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.bounces.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_bounces__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.bounces._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_bounces__email__delete
         params = JSON.parse('{"email_address": "example@example.com"}')
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.bounces._(email).delete(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_invalid_emails_get
         params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.invalid_emails.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_invalid_emails_delete
@@ -1529,43 +1821,55 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.invalid_emails.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_invalid_emails__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.invalid_emails._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_invalid_emails__email__delete
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.invalid_emails._(email).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_spam_report__email__get
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.spam_report._(email).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_spam_report__email__delete
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.spam_report._(email).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_spam_reports_get
         params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.spam_reports.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_suppression_spam_reports_delete
@@ -1577,15 +1881,19 @@ class TestAPI < Minitest::Test
   ]
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.suppression.spam_reports.delete(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_suppression_unsubscribes_get
         params = JSON.parse('{"start_time": 1, "limit": 1, "end_time": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.suppression.unsubscribes.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates_post
@@ -1593,14 +1901,18 @@ class TestAPI < Minitest::Test
   "name": "example_name"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.templates.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_templates_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates__template_id__patch
@@ -1609,22 +1921,28 @@ class TestAPI < Minitest::Test
 }')
         template_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates._(template_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates__template_id__get
         template_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates._(template_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates__template_id__delete
         template_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.templates._(template_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_templates__template_id__versions_post
@@ -1638,8 +1956,10 @@ class TestAPI < Minitest::Test
 }')
         template_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.templates._(template_id).versions.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_templates__template_id__versions__version_id__patch
@@ -1653,39 +1973,49 @@ class TestAPI < Minitest::Test
         template_id = "test_url_param"
         version_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates._(template_id).versions._(version_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates__template_id__versions__version_id__get
         template_id = "test_url_param"
         version_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates._(template_id).versions._(version_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_templates__template_id__versions__version_id__delete
         template_id = "test_url_param"
         version_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.templates._(template_id).versions._(version_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_templates__template_id__versions__version_id__activate_post
         template_id = "test_url_param"
         version_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.templates._(template_id).versions._(version_id).activate.post(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_get
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_click_patch
@@ -1693,14 +2023,18 @@ class TestAPI < Minitest::Test
   "enabled": true
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.click.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_click_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.click.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_google_analytics_patch
@@ -1713,14 +2047,18 @@ class TestAPI < Minitest::Test
   "utm_term": ""
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.google_analytics.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_google_analytics_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.google_analytics.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_open_patch
@@ -1728,14 +2066,18 @@ class TestAPI < Minitest::Test
   "enabled": true
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.open.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_open_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.open.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_subscription_patch
@@ -1748,26 +2090,34 @@ class TestAPI < Minitest::Test
   "url": "url"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.subscription.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_tracking_settings_subscription_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.tracking_settings.subscription.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_account_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.account.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_credits_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.credits.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_email_put
@@ -1775,14 +2125,18 @@ class TestAPI < Minitest::Test
   "email": "example@example.com"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.email.put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_email_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.email.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_password_put
@@ -1791,8 +2145,10 @@ class TestAPI < Minitest::Test
   "old_password": "old_password"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.password.put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_profile_patch
@@ -1802,14 +2158,18 @@ class TestAPI < Minitest::Test
   "last_name": "User"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.profile.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_profile_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.profile.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_scheduled_sends_post
@@ -1818,14 +2178,18 @@ class TestAPI < Minitest::Test
   "status": "pause"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.user.scheduled_sends.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_user_scheduled_sends_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.scheduled_sends.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_scheduled_sends__batch_id__patch
@@ -1834,22 +2198,28 @@ class TestAPI < Minitest::Test
 }')
         batch_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.user.scheduled_sends._(batch_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_user_scheduled_sends__batch_id__get
         batch_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.scheduled_sends._(batch_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_scheduled_sends__batch_id__delete
         batch_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.user.scheduled_sends._(batch_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_user_settings_enforced_tls_patch
@@ -1858,14 +2228,18 @@ class TestAPI < Minitest::Test
   "require_valid_cert": false
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.settings.enforced_tls.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_settings_enforced_tls_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.settings.enforced_tls.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_username_put
@@ -1873,14 +2247,18 @@ class TestAPI < Minitest::Test
   "username": "test_username"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.username.put(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_username_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.username.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_event_settings_patch
@@ -1900,14 +2278,18 @@ class TestAPI < Minitest::Test
   "url": "url"
 }')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.event.settings.patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_event_settings_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.event.settings.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_event_test_post
@@ -1915,8 +2297,10 @@ class TestAPI < Minitest::Test
   "url": "url"
 }')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.user.webhooks.event.test.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_user_webhooks_parse_settings_post
@@ -1927,14 +2311,18 @@ class TestAPI < Minitest::Test
   "url": "http://email.myhosthame.com"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.user.webhooks.parse.settings.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_user_webhooks_parse_settings_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.parse.settings.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_parse_settings__hostname__patch
@@ -1945,29 +2333,37 @@ class TestAPI < Minitest::Test
 }')
         hostname = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.parse.settings._(hostname).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_parse_settings__hostname__get
         hostname = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.parse.settings._(hostname).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_user_webhooks_parse_settings__hostname__delete
         hostname = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.user.webhooks.parse.settings._(hostname).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_user_webhooks_parse_stats_get
         params = JSON.parse('{"aggregated_by": "day", "limit": "test_string", "start_date": "2016-01-01", "end_date": "2016-04-01", "offset": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.user.webhooks.parse.stats.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains_post
@@ -1984,33 +2380,43 @@ class TestAPI < Minitest::Test
   "username": "john@example.com"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.whitelabel.domains.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_whitelabel_domains_get
         params = JSON.parse('{"username": "test_string", "domain": "test_string", "exclude_subusers": "true", "limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains_default_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains.default.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains_subuser_get
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains.subuser.get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains_subuser_delete
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.whitelabel.domains.subuser.delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_whitelabel_domains__domain_id__patch
@@ -2020,22 +2426,28 @@ class TestAPI < Minitest::Test
 }')
         domain_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains._(domain_id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains__domain_id__get
         domain_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains._(domain_id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains__domain_id__delete
         domain_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.whitelabel.domains._(domain_id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_whitelabel_domains__domain_id__subuser_post
@@ -2044,8 +2456,10 @@ class TestAPI < Minitest::Test
 }')
         domain_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.whitelabel.domains._(domain_id).subuser.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_whitelabel_domains__id__ips_post
@@ -2054,23 +2468,29 @@ class TestAPI < Minitest::Test
 }')
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains._(id).ips.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains__id__ips__ip__delete
         id = "test_url_param"
         ip = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains._(id).ips._(ip).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_domains__id__validate_post
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.domains._(id).validate.post(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_ips_post
@@ -2080,36 +2500,46 @@ class TestAPI < Minitest::Test
   "subdomain": "email"
 }')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.whitelabel.ips.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_whitelabel_ips_get
         params = JSON.parse('{"ip": "test_string", "limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.ips.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_ips__id__get
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.ips._(id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_ips__id__delete
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.whitelabel.ips._(id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_whitelabel_ips__id__validate_post
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.ips._(id).validate.post(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links_post
@@ -2120,36 +2550,46 @@ class TestAPI < Minitest::Test
 }')
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 201}')
+        
         response = @sg.client.whitelabel.links.post(request_body: data, query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "201")
+
+        self.assert_equal('201', response.status_code)
     end
 
     def test_whitelabel_links_get
         params = JSON.parse('{"limit": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links_default_get
         params = JSON.parse('{"domain": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links.default.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links_subuser_get
         params = JSON.parse('{"username": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links.subuser.get(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links_subuser_delete
         params = JSON.parse('{"username": "test_string"}')
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.whitelabel.links.subuser.delete(query_params: params, request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_whitelabel_links__id__patch
@@ -2158,29 +2598,37 @@ class TestAPI < Minitest::Test
 }')
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links._(id).patch(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links__id__get
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links._(id).get(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links__id__delete
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
+        
         response = @sg.client.whitelabel.links._(id).delete(request_headers: headers)
-        self.assert_equal(response.status_code, "204")
+
+        self.assert_equal('204', response.status_code)
     end
 
     def test_whitelabel_links__id__validate_post
         id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links._(id).validate.post(request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 
     def test_whitelabel_links__link_id__subuser_post
@@ -2189,7 +2637,9 @@ class TestAPI < Minitest::Test
 }')
         link_id = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
+        
         response = @sg.client.whitelabel.links._(link_id).subuser.post(request_body: data, request_headers: headers)
-        self.assert_equal(response.status_code, "200")
+
+        self.assert_equal('200', response.status_code)
     end
 end
