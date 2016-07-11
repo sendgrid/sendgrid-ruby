@@ -1,8 +1,9 @@
 require_relative '../../lib/sendgrid-ruby.rb'
 require 'ruby_http_client'
 require 'minitest/autorun'
+require 'minitest/unit'
 
-class TestAPI < Minitest::Test
+class TestAPI < MiniTest::Test
     def setup
         if ENV['TRAVIS']
             host = ENV['MOCK_HOST']
