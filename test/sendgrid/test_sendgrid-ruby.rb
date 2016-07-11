@@ -795,7 +795,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_recipients_search_get
-        params = JSON.parse('{"{field_name}": "test_string"}')
+        params = { field_name: "test_string" }
         headers = JSON.parse('{"X-Mock": 200}')
         
         response = @sg.client.contactdb.recipients.search.get(query_params: params, request_headers: headers)
