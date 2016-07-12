@@ -30,7 +30,7 @@ class TestAPI < Minitest::Test
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("3.0.5", SendGrid::VERSION)
+        assert_equal("3.0.6", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -659,7 +659,7 @@ class TestAPI < Minitest::Test
     end
 
     def test_contactdb_recipients_search_get
-        params = JSON.parse('{"%7Bfield_name%7D": "test_string", "{field_name}": "test_string"}')
+        params = JSON.parse('{"{field_name}": "test_string"}')
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.contactdb.recipients.search.get(query_params: params, request_headers: headers)
         self.assert_equal(response.status_code, "200")
@@ -1240,6 +1240,80 @@ class TestAPI < Minitest::Test
         headers = JSON.parse('{"X-Mock": 200}')
         response = @sg.client.scopes.get(request_headers: headers)
         self.assert_equal(response.status_code, "200")
+    end
+
+    def test_senders_post
+        data = JSON.parse('{
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}')
+        headers = JSON.parse('{"X-Mock": 201}')
+        response = @sg.client.senders.post(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "201")
+    end
+
+    def test_senders_get
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.senders.get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_senders__sender_id__patch
+        data = JSON.parse('{
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}')
+        sender_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.senders._(sender_id).patch(request_body: data, request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_senders__sender_id__get
+        sender_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 200}')
+        response = @sg.client.senders._(sender_id).get(request_headers: headers)
+        self.assert_equal(response.status_code, "200")
+    end
+
+    def test_senders__sender_id__delete
+        sender_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 204}')
+        response = @sg.client.senders._(sender_id).delete(request_headers: headers)
+        self.assert_equal(response.status_code, "204")
+    end
+
+    def test_senders__sender_id__resend_verification_post
+        sender_id = "test_url_param"
+        headers = JSON.parse('{"X-Mock": 204}')
+        response = @sg.client.senders._(sender_id).resend_verification.post(request_headers: headers)
+        self.assert_equal(response.status_code, "204")
     end
 
     def test_stats_get
