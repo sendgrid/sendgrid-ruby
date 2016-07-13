@@ -28,6 +28,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 * [MAILBOX PROVIDERS](#mailbox_providers)
 * [PARTNER SETTINGS](#partner_settings)
 * [SCOPES](#scopes)
+* [SENDERS](#senders)
 * [STATS](#stats)
 * [SUBUSERS](#subusers)
 * [SUPPRESSION](#suppression)
@@ -1469,7 +1470,7 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 
 ```ruby
-params = JSON.parse('{"%7Bfield_name%7D": "test_string", "{field_name}": "test_string"}')
+params = JSON.parse('{"{field_name}": "test_string"}')
 response = sg.client.contactdb.recipients.search.get(query_params: params)
 puts response.status_code
 puts response.body
@@ -2694,6 +2695,141 @@ API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://s
 
 ```ruby
 response = sg.client.scopes.get()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+<a name="senders"></a>
+# SENDERS
+
+## Create a Sender Identity
+
+**This endpoint allows you to create a new sender identity.**
+
+*You may create up to 100 unique sender identities.*
+
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+### POST /senders
+
+
+```ruby
+data = JSON.parse('{
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}')
+response = sg.client.senders.post(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Get all Sender Identities
+
+**This endpoint allows you to retrieve a list of all sender identities that have been created for your account.**
+
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+### GET /senders
+
+
+```ruby
+response = sg.client.senders.get()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Update a Sender Identity
+
+**This endpoint allows you to update a sender identity.**
+
+Updates to `from.email` require re-verification. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+Partial updates are allowed, but fields that are marked as "required" in the POST (create) endpoint must not be nil if that field is included in the PATCH request.
+
+### PATCH /senders/{sender_id}
+
+
+```ruby
+data = JSON.parse('{
+  "address": "123 Elm St.",
+  "address_2": "Apt. 456",
+  "city": "Denver",
+  "country": "United States",
+  "from": {
+    "email": "from@example.com",
+    "name": "Example INC"
+  },
+  "nickname": "My Sender ID",
+  "reply_to": {
+    "email": "replyto@example.com",
+    "name": "Example INC"
+  },
+  "state": "Colorado",
+  "zip": "80202"
+}')
+sender_id = "test_url_param"
+response = sg.client.senders._(sender_id).patch(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## View a Sender Identity
+
+**This endpoint allows you to retrieve a specific sender identity.**
+
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+### GET /senders/{sender_id}
+
+
+```ruby
+sender_id = "test_url_param"
+response = sg.client.senders._(sender_id).get()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Delete a Sender Identity
+
+**This endoint allows you to delete one of your sender identities.**
+
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+### DELETE /senders/{sender_id}
+
+
+```ruby
+sender_id = "test_url_param"
+response = sg.client.senders._(sender_id).delete()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+## Resend Sender Identity Verification
+
+**This enpdoint allows you to resend a sender identity verification email.**
+
+Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
+
+### POST /senders/{sender_id}/resend_verification
+
+
+```ruby
+sender_id = "test_url_param"
+response = sg.client.senders._(sender_id).resend_verification.post()
 puts response.status_code
 puts response.body
 puts response.headers
