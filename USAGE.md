@@ -2086,7 +2086,7 @@ For more detailed information about how to use the v3 Mail Send endpoint, please
 
 ### POST /mail/send
 
- This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/lib/helpers/mail/README.md).
+ This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/lib/sendgrid/helpers/mail/README.md).
 
 ```ruby
 data = JSON.parse('{
