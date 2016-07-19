@@ -64,7 +64,7 @@ We welcome direct contributions to the sendgrid-ruby code base. Thank you!
 
 ##### Prerequisites #####
 
-- Ruby 2.2
+- Ruby version 2.2
 - [ruby_http_client](https://github.com/sendgrid/ruby-http-client)
 
 ##### Initial setup: #####
