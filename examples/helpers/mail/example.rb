@@ -14,8 +14,8 @@ def hello_world
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
-  puts response.response_body
-  puts response.response_headers
+  puts response.body
+  puts response.headers
 end
 
 def kitchen_sink
@@ -122,8 +122,8 @@ def kitchen_sink
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
-  puts response.response_body
-  puts response.response_headers
+  puts response.body
+  puts response.headers
 end
 
 hello_world
