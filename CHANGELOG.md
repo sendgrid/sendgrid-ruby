@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2016-07-23 ##
+- BREAKING CHANGE
+- Update dependency to [ruby-http-client](https://github.com/sendgrid/ruby-http-client/releases/tag/v3.0.0)
+- Response headers now return a hash instead of a string
+- Thanks to [Chris France](https://github.com/hipsterelitist) for the pull request!
+
 ## [3.0.7] - 2016-07-20 ##
 ### Added
 - README updates
