@@ -122,6 +122,13 @@ For more information, please see our [User Guide](http://sendgrid.com/docs/User_
 
 
 ```ruby
+data = JSON.parse('{
+  "ids": [
+    1,
+    2,
+    3
+  ]
+}')
 response = sg.client.access_settings.whitelist.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -1192,6 +1199,12 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 
 
 ```ruby
+data = JSON.parse('[
+  1,
+  2,
+  3,
+  4
+]')
 response = sg.client.contactdb.lists.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -1414,6 +1427,10 @@ The contactdb is a database of your contacts for [SendGrid Marketing Campaigns](
 
 
 ```ruby
+data = JSON.parse('[
+  "recipient_id1",
+  "recipient_id2"
+]')
 response = sg.client.contactdb.recipients.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -3165,6 +3182,13 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 
 ```ruby
+data = JSON.parse('{
+  "delete_all": false,
+  "emails": [
+    "example1@example.com",
+    "example2@example.com"
+  ]
+}')
 response = sg.client.suppression.blocks.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -3245,6 +3269,13 @@ Note: the `delete_all` and `emails` parameters should be used independently of e
 
 
 ```ruby
+data = JSON.parse('{
+  "delete_all": true,
+  "emails": [
+    "example@example.com",
+    "example2@example.com"
+  ]
+}')
 response = sg.client.suppression.bounces.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -3334,6 +3365,13 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 
 ```ruby
+data = JSON.parse('{
+  "delete_all": false,
+  "emails": [
+    "example1@example.com",
+    "example2@example.com"
+  ]
+}')
 response = sg.client.suppression.invalid_emails.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -3450,6 +3488,13 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 
 ```ruby
+data = JSON.parse('{
+  "delete_all": false,
+  "emails": [
+    "example1@example.com",
+    "example2@example.com"
+  ]
+}')
 response = sg.client.suppression.spam_reports.delete(request_body: data)
 puts response.status_code
 puts response.body

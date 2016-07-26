@@ -71,6 +71,12 @@ puts response.headers
 # Delete Multiple lists #
 # DELETE /contactdb/lists #
 
+data = JSON.parse('[
+  1, 
+  2, 
+  3, 
+  4
+]')
 response = sg.client.contactdb.lists.delete(request_body: data)
 puts response.status_code
 puts response.body
@@ -213,6 +219,10 @@ puts response.headers
 # Delete Recipient #
 # DELETE /contactdb/recipients #
 
+data = JSON.parse('[
+  "recipient_id1", 
+  "recipient_id2"
+]')
 response = sg.client.contactdb.recipients.delete(request_body: data)
 puts response.status_code
 puts response.body

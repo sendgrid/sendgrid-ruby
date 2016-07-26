@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.2] - 2016-07-26 ##
+### Fixed
+- Example and USAGE DELETE calls were missing example payloads
+
+## [4.0.1] - 2016-07-25 ##
+### Added
+- [Troubleshooting](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md) section
+
 ## [4.0.0] - 2016-07-23 ##
 ### BREAKING CHANGE
 - Update dependency to [ruby-http-client](https://github.com/sendgrid/ruby-http-client/releases/tag/v3.0.0)

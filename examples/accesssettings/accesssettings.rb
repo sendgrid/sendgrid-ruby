@@ -49,6 +49,13 @@ puts response.headers
 # Remove one or more IPs from the whitelist #
 # DELETE /access_settings/whitelist #
 
+data = JSON.parse('{
+  "ids": [
+    1, 
+    2, 
+    3
+  ]
+}')
 response = sg.client.access_settings.whitelist.delete(request_body: data)
 puts response.status_code
 puts response.body
