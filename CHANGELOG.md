@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.3] - 2016-08-24 ##
+### Added
+- Table of Contents in the README
+- Added a [USE_CASES.md](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md) section, with the first use case example for transactional templates
+
 ## [4.0.2] - 2016-07-26 ##
 ### Fixed
 - Example and USAGE DELETE calls were missing example payloads
