@@ -11,6 +11,19 @@ Please browse the rest of this README for further detail.
 
 We appreciate your continued support, thank you!
 
+# Table of Contents
+
+* [Installation](#installation)
+* [Quick Start](#quick_start)
+* [Usage](#usage)
+* [Use Cases](#use_cases)
+* [Announcements](#announcements)
+* [Roadmap](#roadmap)
+* [How to Contribute](#contribute)
+* [Troubleshooting](#troubleshooting)
+* [About](#about)
+
+<a name="installation"></a>
 # Installation
 
 ## Prerequisites
@@ -51,6 +64,7 @@ gem install sendgrid-ruby
 
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
 
+<a name="quick_start"></a>
 # Quick Start
 
 ## Hello Email
@@ -83,6 +97,9 @@ For more complex scenarios, please do not use the above constructor and instead 
 The following is the minimum needed code to send an email without the /mail/send Helper ([here](https://github.com/sendgrid/sendgrid-ruby/blob/master/examples/mail/mail.rb#L26) is a full example):
 
 ```ruby
+require 'sendgrid-ruby'
+include SendGrid
+
 data = JSON.parse('{
   "personalizations": [
     {
@@ -104,6 +121,7 @@ data = JSON.parse('{
     }
   ]
 }')
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
 puts response.body
@@ -132,6 +150,7 @@ puts response.body
 puts response.headers
 ```
 
+<a name="usage"></a>
 # Usage
 
 - [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
@@ -140,14 +159,22 @@ puts response.headers
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 
+<a name="use_cases">
+# Use Cases
+
+[Examples of common API use cases](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
+
+<a name="announcements"></a>
 # Announcements
 
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases).
 
+<a name="roadmap"></a>
 # Roadmap
 
 If you are interested in the future direction of this project, please take a look at our open [issues](https://github.com/sendgrid/sendgrid-ruby/issues) and [pull requests](https://github.com/sendgrid/sendgrid-ruby/pulls). We would love to hear your feedback.
 
+<a name="contribute"></a>
 # How to Contribute
 
 We encourage contribution to our libraries (you might even score some nifty swag), please see our [CONTRIBUTING](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md) guide for details.
@@ -157,10 +184,13 @@ We encourage contribution to our libraries (you might even score some nifty swag
 - [Sign the CLA to Create a Pull Request](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md#cla)
 - [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md#improvements_to_the_codebase)
 
+<a name="troubleshooting"></a>
 # Troubleshooting
 
 Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md) for common library issues.
 
+
+<a name="about"></a>
 # About
 
 sendgrid-ruby is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
