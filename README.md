@@ -1,5 +1,6 @@
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
 
+Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Ruby.**
 
@@ -167,6 +168,8 @@ puts response.headers
 <a name="announcements"></a>
 # Announcements
 
+Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
+
 All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases).
 
 <a name="roadmap"></a>
@@ -188,7 +191,6 @@ We encourage contribution to our libraries (you might even score some nifty swag
 # Troubleshooting
 
 Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md) for common library issues.
-
 
 <a name="about"></a>
 # About
