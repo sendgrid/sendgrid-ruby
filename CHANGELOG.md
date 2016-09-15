@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.4] - 2016-09-15 ##
+### Fixed
+- Pull #72: [remove unnecessary ruby 2.2 requirement](https://github.com/sendgrid/sendgrid-ruby/pull/72)
+- Thanks to [Billy Watson](https://github.com/billywatson) for the pull request!
+
 ## [4.0.3] - 2016-08-24 ##
 ### Added
 - Table of Contents in the README

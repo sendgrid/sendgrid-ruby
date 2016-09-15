@@ -29,7 +29,7 @@ We appreciate your continued support, thank you!
 
 ## Prerequisites
 
-- Ruby version 2.2
+- Ruby version 2.1+
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby)
 
 ## Setup Environment Variables
