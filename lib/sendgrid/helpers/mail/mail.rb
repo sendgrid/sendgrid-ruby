@@ -475,23 +475,28 @@ module SendGrid
   end
 
   class Category
+    attr_accessor :name
+
     def initialize(name: nil)
-      @category = name
+      @name = name
     end
 
-    def category=(category)
-      @category = category
+    def name=(name)
+      @name = name
     end
 
-    def category
-      @category
+    def name
+      @name
     end
 
     def to_json(*)
       {
-        'category' => self.category
+        'category' => name
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
+
+    alias :category :name
+    alias :category= :name=
   end
 
   class Section
@@ -899,13 +904,12 @@ module SendGrid
     end
 
     def categories=(category)
-      @categories = @categories.nil? ? [] : @categories
-      category = category.to_json
-      @categories = @categories.push(category['category'])
+      raise ArgumentError.new("#{category.inspect} is not Category") unless category.is_a?(Category)
+      (@categories ||= []) << category.name
     end
 
     def categories
-      @categories
+      @categories ||= []
     end
 
     def custom_args=(custom_args)
