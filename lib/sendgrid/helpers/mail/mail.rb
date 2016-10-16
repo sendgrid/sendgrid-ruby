@@ -803,16 +803,19 @@ module SendGrid
   end
 
   class Mail
+
+    attr_reader :personalizations, :contents, :attachments, :categories
+
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
       @subject = nil
-      @personalizations = nil
-      @contents = nil
-      @attachments = nil
+      @personalizations = []
+      @contents = []
+      @attachments = []
       @template_id = nil
       @sections = nil
       @headers = nil
-      @categories = nil
+      @categories = []
       @custom_args = nil
       @send_at = nil
       @batch_id = nil
@@ -827,8 +830,8 @@ module SendGrid
         self.subject = subj
         personalization = Personalization.new
         personalization.to = to_email
-        self.personalizations = personalization
-        self.contents = cont
+        self.add_personalization(personalization)
+        self.add_content(cont)
       end
     end
 
@@ -848,31 +851,20 @@ module SendGrid
       @subject
     end
 
-    def personalizations=(personalizations)
-      @personalizations = @personalizations.nil? ? [] : @personalizations
-      @personalizations = @personalizations.push(personalizations.to_json)
+    def add_personalization(personalization)
+      @personalizations << personalization.to_json
     end
 
-    def personalizations
-      @personalizations.nil? ? nil : @personalizations
+    def add_content(content)
+      @contents << content.to_json
     end
 
-    def contents=(content)
-      @contents = @contents ? @contents : []
-      @contents = @contents.push(content.to_json)
+    def add_attachment(attachment)
+      @attachments << attachment.to_json
     end
 
-    def contents
-      @contents
-    end
-
-    def attachments=(attachments)
-      @attachments = @attachments.nil? ? [] : @attachments
-      @attachments = @attachments.push(attachments.to_json)
-    end
-
-    def attachments
-      @attachments
+    def add_category(category)
+      @categories << category.name
     end
 
     def template_id=(template_id)
@@ -901,15 +893,6 @@ module SendGrid
 
     def headers
       @headers
-    end
-
-    def categories=(category)
-      raise ArgumentError.new("#{category.inspect} is not Category") unless category.is_a?(Category)
-      (@categories ||= []) << category.name
-    end
-
-    def categories
-      @categories ||= []
     end
 
     def custom_args=(custom_args)
