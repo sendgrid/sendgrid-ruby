@@ -83,20 +83,6 @@ We welcome direct contributions to the sendgrid-ruby code base. Thank you!
    bundle install
    ```
 
-1. Download [prism](https://stoplight.io/prism/) for your platform ([Mac OS X](https://github.com/stoplightio/prism/releases/download/v0.1.5/prism_darwin_amd64)) and save the binary to the sendgrid-ruby directory (or any directory you would like. The sendgrid-ruby directory is chosen mostly for convenience.)
-
-1. Add execute permissions
-
-   ```bash
-   chmod +x prism
-   ```
-
-1. In a separate terminal, cd into the directory you chose for prism and start the sendgrid local server which the tests will use.
-
-   ```bash
-   ./prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json
-   ```
-
 ## Environment Variables
 
 First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-ruby).
