@@ -4,6 +4,27 @@ require 'minitest/autorun'
 require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
+
+    unless File.exists?('/usr/local/bin/prism') || File.exists?(File.join(Dir.pwd, 'prism/bin/prism'))
+      if RUBY_PLATFORM =~ /mswin|mingw/
+        puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
+      else
+        puts 'Installing Prism'
+        IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
+          out = io.read
+          unless system(out)
+            puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /user/local/bin directory, #{out}"
+            exit
+          end
+        end
+      end
+    end
+
+    puts 'Activating Prism (~20 seconds)'
+    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
+    sleep(15)
+    puts 'Prism started'
+
     def setup
         if ENV['TRAVIS']
             host = ENV['MOCK_HOST']
@@ -11,6 +32,11 @@ class TestAPI < MiniTest::Test
             host = "http://localhost:4010"
         end
         @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: host)
+    end
+
+    Minitest.after_run do
+      Process.kill('TERM', @@prism_pid)
+      puts 'Prism shut down'
     end
 
     def test_init
