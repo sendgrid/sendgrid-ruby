@@ -5,7 +5,7 @@ require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
 
-    unless File.exists?('/usr/local/bin/prism') || File.exists?(File.join(Dir.pwd, 'prism/bin/prism'))
+    unless File.exist?('/usr/local/bin/prism') || File.exists?(File.join(Dir.pwd, 'prism/bin/prism'))
       if RUBY_PLATFORM =~ /mswin|mingw/
         puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
       else
@@ -26,11 +26,7 @@ class TestAPI < MiniTest::Test
     puts 'Prism started'
 
     def setup
-        if ENV['TRAVIS']
-            host = ENV['MOCK_HOST']
-        else
-            host = "http://localhost:4010"
-        end
+        host = "http://localhost:4010"
         @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: host)
     end
 
