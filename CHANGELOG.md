@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.5] - 2016-10-18 ##
+### Added
+- Pull #113: Fix Travis CI Prism functionality for non-SendGrid contributors, update deprecated File.exists
+
 ## [4.0.5] - 2016-10-17 ##
 ### Added
 - Pull #110, fixed Issue #109
