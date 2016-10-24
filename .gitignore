@@ -27,6 +27,7 @@ build/
 /rdoc/
 
 ## Environment normalisation:
+Gemfile.lock
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
