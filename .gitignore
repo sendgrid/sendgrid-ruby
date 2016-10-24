@@ -1,7 +1,7 @@
 # Created by https://www.gitignore.io
 
 ### Ruby ###
-.bin
+bin
 *.gem
 *.rbc
 /.config
