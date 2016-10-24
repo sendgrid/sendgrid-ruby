@@ -5,7 +5,6 @@
 * [Quick Start for Local Testing with Sample Data](#quick_start_local_sample)
 * [Quick Start for Local Testing with Real Data](#quick_start_local_real)
 * [Code Walkthrough](#code_walkthrough)
-* [Testing the Source Code](#testing)
 * [Contributing](#contributing)
 
 <a name="quick_start_local_sample"></a>
