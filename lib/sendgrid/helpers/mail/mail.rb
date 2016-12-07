@@ -669,7 +669,7 @@ module SendGrid
   end
 
   class Personalization
-    def initilize
+    def initialize
       @tos = nil
       @ccs = nil
       @bccs = nil
