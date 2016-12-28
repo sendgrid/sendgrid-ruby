@@ -4,7 +4,7 @@ This Gem allows you to quickly and easily send emails through SendGrid's Web API
 
 You can read our official documentation on the Web API's Mail feature [here](https://sendgrid.com/docs/API_Reference/Web_API/mail.html).
 
-[![BuildStatus](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
+[![CircleCI](https://circleci.com/gh/DripEmail/sendgrid-ruby.svg?style=svg)](https://circleci.com/gh/DripEmail/sendgrid-ruby)
 
 
 ## Installation
@@ -71,7 +71,7 @@ mail.add_attachment('/tmp/report.pdf', 'july_report.pdf')
 
 #### Inline Content
 
-Inline content can be added to a Mail object with the `add_content` method. The first parameter is the path to the file, the second parameter is the cid to be referenced in the html. 
+Inline content can be added to a Mail object with the `add_content` method. The first parameter is the path to the file, the second parameter is the cid to be referenced in the html.
 ```ruby
 mail = SendGrid::Mail.new do |m|
   m.to = 'test@sendgrid.com'
@@ -287,4 +287,3 @@ mail.smtpapi = header
 5. Create a new Pull Request
 
 ***Hit up [@rbin](http://twitter.com/rbin) or [@sendgrid](http://twitter.com/sendgrid) on Twitter with any issues.***
-
