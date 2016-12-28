@@ -128,7 +128,8 @@ describe 'SendGrid::Client' do
     end
 
     it 'should use basic auth when using a username + password' do
-      stub_request(:get, "https://#{api_user}:#{api_key}@api.sendgrid.com/v3/suppression/bounces")
+      # Base64 encoded "foobar:abc123" => "Zm9vOmFiYzEyMyA=""
+      stub_request(:get, "https://api.sendgrid.com/v3/suppression/bounces").with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' })
         .to_return(body: success_body.to_json, status: 200, headers: headers)
 
       client = SendGrid::Client.new(api_user: api_user, api_key: api_key)
@@ -187,7 +188,8 @@ describe 'SendGrid::Client' do
     end
 
     it 'should use basic auth when using a username + password' do
-      stub_request(:delete, "https://#{api_user}:#{api_key}@api.sendgrid.com/v3/suppression/bounces/#{CGI.escape email}")
+      # Base64 encoded "foobar:abc123" => "Zm9vOmFiYzEyMyA=""
+      stub_request(:delete, "https://api.sendgrid.com/v3/suppression/bounces/#{CGI.escape email}").with(headers: { 'Authorization' => 'Basic Zm9vYmFyOmFiYzEyMw==' })
         .to_return(status: 204, headers: headers)
 
       client = SendGrid::Client.new(api_user: api_user, api_key: api_key)
