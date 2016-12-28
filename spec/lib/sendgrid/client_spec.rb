@@ -206,6 +206,66 @@ describe 'SendGrid::Client' do
     end
   end
 
+  describe ':whitelabel_domains' do
+    let(:username) { 'subuser123' }
+
+    let :success_body do
+      <<-JSON
+        [{
+          "id": 1,
+          "domain": "example.com",
+          "subdomain": "mail",
+          "username": "john@example.com",
+          "user_id": 7,
+          "ips": [
+            "192.168.1.1",
+            "192.168.1.2"
+          ],
+          "custom_spf": true,
+          "default": true,
+          "legacy": false,
+          "automatic_security": true,
+          "valid": true,
+          "dns": {
+            "mail_cname": {
+              "host": "mail.example.com",
+              "type": "cname",
+              "data": "u7.wl.sendgrid.net",
+              "valid": true
+            },
+            "spf": {
+              "host": "example.com",
+              "type": "txt",
+              "data": "v=spf1 include:u7.wl.sendgrid.net -all",
+              "valid": true
+            },
+            "dkim1": {
+              "host": "s1.<em>domainkey.example.com",
+              "type": "cname",
+              "data": "s1._domainkey.u7.wl.sendgrid.net",
+              "valid": true
+            },
+            "dkim2": {
+              "host": "s2.</em>domainkey.example.com",
+              "type": "cname",
+              "data": "s2._domainkey.u7.wl.sendgrid.net",
+              "valid": true
+            }
+          }
+        }]
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:get, "https://api.sendgrid.com/v3/whitelabel/domains?username=#{username}")
+        .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      res = client.whitelabel_domains(username: username)
+      expect(res.code).to eq(200)
+    end
+  end
+
   describe ':create_whitelabel_domain' do
     let :success_body do
       <<-JSON
@@ -261,6 +321,46 @@ describe 'SendGrid::Client' do
       client = SendGrid::Client.new(api_key: 'abc123')
       res = client.create_whitelabel_domain(domain: "example.com")
       expect(res.code).to eq(201)
+    end
+  end
+
+  describe ':validate_whitelabel_domain' do
+    let(:domain_id) { '1' }
+
+    let :success_body do
+      <<-JSON
+        {
+          "id": 1,
+          "valid": true,
+          "validation_resuts": {
+            "mail_cname": {
+              "valid": false,
+              "reason": "Expected your MX record to be \"mx.sendgrid.net\" but found \"example.com\"."
+            },
+            "dkim1": {
+              "valid": true,
+              "reason": null
+            },
+            "dkim2": {
+              "valid": true,
+              "reason": null
+            },
+            "spf": {
+              "valid": true,
+              "reason": null
+            }
+          }
+        }
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:post, "https://api.sendgrid.com/v3/whitelabel/domains/#{domain_id}/validate")
+        .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      res = client.validate_whitelabel_domain(domain_id)
+      expect(res.code).to eq(200)
     end
   end
 
