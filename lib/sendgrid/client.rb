@@ -82,6 +82,16 @@ module SendGrid
       end
     end
 
+    def validate_whitelabel_domain(id, options = {})
+      handle_response(200) do
+        conn.post do |req|
+          req.url("/v3/whitelabel/domains/#{id}/validate")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+        end
+      end
+    end
+
     # API Keys
 
     def scopes(options = {})

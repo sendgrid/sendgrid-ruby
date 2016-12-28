@@ -324,6 +324,46 @@ describe 'SendGrid::Client' do
     end
   end
 
+  describe ':validate_whitelabel_domain' do
+    let(:domain_id) { '1' }
+
+    let :success_body do
+      <<-JSON
+        {
+          "id": 1,
+          "valid": true,
+          "validation_resuts": {
+            "mail_cname": {
+              "valid": false,
+              "reason": "Expected your MX record to be \"mx.sendgrid.net\" but found \"example.com\"."
+            },
+            "dkim1": {
+              "valid": true,
+              "reason": null
+            },
+            "dkim2": {
+              "valid": true,
+              "reason": null
+            },
+            "spf": {
+              "valid": true,
+              "reason": null
+            }
+          }
+        }
+      JSON
+    end
+
+    it 'should make a request to sendgrid' do
+      stub_request(:post, "https://api.sendgrid.com/v3/whitelabel/domains/#{domain_id}/validate")
+        .to_return(body: success_body, status: 200, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      res = client.validate_whitelabel_domain(domain_id)
+      expect(res.code).to eq(200)
+    end
+  end
+
   describe ':scopes' do
     let :success_body do
       <<-JSON
