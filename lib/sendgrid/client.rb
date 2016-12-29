@@ -92,6 +92,16 @@ module SendGrid
       end
     end
 
+    def delete_whitelabel_domain(id, options = {})
+      handle_response(204) do
+        conn.delete do |req|
+          req.url("/v3/whitelabel/domains/#{id}")
+          apply_v3_authorization(req)
+          apply_v3_headers(req)
+        end
+      end
+    end
+
     # API Keys
 
     def scopes(options = {})
