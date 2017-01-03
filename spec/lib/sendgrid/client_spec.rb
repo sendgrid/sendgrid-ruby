@@ -364,6 +364,19 @@ describe 'SendGrid::Client' do
     end
   end
 
+  describe ':delete_whitelabel_domain' do
+    let(:domain_id) { '1' }
+
+    it 'should make a request to sendgrid' do
+      stub_request(:delete, "https://api.sendgrid.com/v3/whitelabel/domains/#{domain_id}")
+        .to_return(status: 204, headers: {'X-TEST' => 'yes'})
+
+      client = SendGrid::Client.new(api_key: 'abc123')
+      res = client.delete_whitelabel_domain(domain_id)
+      expect(res.code).to eq(204)
+    end
+  end
+
   describe ':scopes' do
     let :success_body do
       <<-JSON
