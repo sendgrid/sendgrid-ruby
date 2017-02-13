@@ -128,6 +128,10 @@ module SendGrid
       smtpapi.to_json
     end
 
+    def headers_json
+      headers.to_json
+    end
+
     # rubocop:disable Style/HashSyntax
     def to_h
       payload = {
@@ -147,7 +151,7 @@ module SendGrid
         :'x-smtpapi' => smtpapi_json,
         :content => ({":default"=>"0"} unless contents.empty?),
         :files => ({":default"=>"0"} unless attachments.empty? and contents.empty?),
-        :headers => headers
+        :headers => headers_json
         # If I don't define a default value, I get a Nil error when
         # in attachments.each do |file|
         #:files => ({} unless attachments.empty?)
