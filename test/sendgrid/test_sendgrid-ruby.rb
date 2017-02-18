@@ -44,16 +44,18 @@ class TestAPI < MiniTest::Test
         sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3")
 
         assert_equal("https://api.test.com", sg.host)
+        user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
         test_headers = JSON.parse('
                 {
                     "Authorization": "Bearer SENDGRID_API_KEY",
                     "Accept": "application/json",
-                    "X-Test": "test"
+                    "X-Test": "test",
+                    "User-agent": "' + user_agent + '"
                 }
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("4.0.7", SendGrid::VERSION)
+        assert_equal("4.0.8", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.8] - 2016-2-17 ##
+### Add
+- Solves #147: Add User Agent string
+
 ## [4.0.7] - 2016-1-25 ##
 ### Fixes
 - [Pull Request #7](https://github.com/sendgrid/ruby-http-client/pull/7)
