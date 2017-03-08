@@ -1874,7 +1874,7 @@ class TestAPI < MiniTest::Test
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
 
-        response = @sg.client.suppression.spam_report._(email).get(request_headers: headers)
+        response = @sg.client.suppression.spam_reports._(email).get(request_headers: headers)
 
         self.assert_equal('200', response.status_code)
     end
