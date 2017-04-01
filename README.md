@@ -160,7 +160,7 @@ puts response.headers
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
 - [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
 
-<a name="use_cases">
+<a name="use_cases"></a>
 # Use Cases
 
 [Examples of common API use cases](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
