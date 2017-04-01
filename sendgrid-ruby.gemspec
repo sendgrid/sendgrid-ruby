@@ -11,6 +11,9 @@ Gem::Specification.new do |spec|
   spec.summary     = 'Official SendGrid Gem'
   spec.description = 'Interact with SendGrids API in native Ruby'
   spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
+
+  spec.required_ruby_version = '>= 2.0'
+
   spec.license     = 'MIT'
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
