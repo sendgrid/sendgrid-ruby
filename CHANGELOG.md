@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.1.0] - 2016-2-17 ##
+## [4.1.0] - 2016-4-6 ##
 ### Add
 - #144: Add [Inbound Email Parse Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/inbound_email.html) support
 - Thanks to [Wataru Sato](https://github.com/awwa) for the pull request!
