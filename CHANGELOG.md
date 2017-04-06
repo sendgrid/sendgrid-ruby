@@ -1,6 +1,26 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.0.8] - 2016-2-17 ##
+### Add
+- Solves #147: Add User Agent string
+
+## [4.0.7] - 2016-1-25 ##
+### Fixes
+- [Pull Request #7](https://github.com/sendgrid/ruby-http-client/pull/7)
+- Fixes [issue #6](https://github.com/sendgrid/ruby-http-client/issues/6): TLS certificates not verified
+- Thanks to [Koen Rouwhorst](https://github.com/koenrh) for the pull request!
+
+## [4.0.6] - 2016-10-18 ##
+### Added
+- Pull #113: Fix Travis CI Prism functionality for non-SendGrid contributors, update deprecated File.exists
+
+## [4.0.5] - 2016-10-17 ##
+### Added
+- Pull #110, fixed Issue #109
+- Automates StopLight.io Prism mock server locally & on Travis CI
+- Thanks to [KY](https://github.com/tkbky) for the pull request!
+
 ## [4.0.4] - 2016-09-15 ##
 ### Fixed
 - Pull #72: [remove unnecessary ruby 2.2 requirement](https://github.com/sendgrid/sendgrid-ruby/pull/72)

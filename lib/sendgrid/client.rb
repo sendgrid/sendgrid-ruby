@@ -22,7 +22,8 @@ module SendGrid
       @request_headers  = JSON.parse('
         {
           "Authorization": "Bearer ' + @api_key + '",
-          "Accept": "application/json"
+          "Accept": "application/json",
+          "User-agent": "' + @user_agent + '"
         }
       ')
 
