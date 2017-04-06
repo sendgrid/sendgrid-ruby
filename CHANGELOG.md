@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.1.1] - 2016-4-6 ##
+### Fixed
+- #115 #134: Fix typos in initialize methods
+- Thanks to [Ben Jackson](https://github.com/benjackson84) for the pull request!
+
 ## [4.1.0] - 2016-4-6 ##
 ### Add
 - #144: Add [Inbound Email Parse Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/inbound_email.html) support
