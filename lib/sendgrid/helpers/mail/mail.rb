@@ -385,7 +385,7 @@ module SendGrid
   end
 
   class MailSettings
-    def initilize
+    def initialize
       @bcc = nil
       @bypass_list_management = nil
       @footer = nil
