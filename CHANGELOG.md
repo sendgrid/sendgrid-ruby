@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.2.0] - 2016-4-10 ##
+### Added
+- #148: Set api_key to empty string 
+- This makes creating an API key for a SendGrid subuser who does not have an API key easier. See #146 for details
+- Thanks to [Adam Beck](https://github.com/Gwash3189) for the pull request!
+
 ## [4.1.1] - 2016-4-6 ##
 ### Fixed
 - #115 #134: Fix typos in initialize methods
