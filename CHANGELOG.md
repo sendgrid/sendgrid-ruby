@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.2.1] - 2016-4-10 ##
+### Fixed
+- #112: Fixes version ambiguity in gemspec
+- Thanks to [Chris McKnight](https://github.com/cmckni3) for the pull request!
+
 ## [4.2.0] - 2016-4-10 ##
 ### Added
 - #148: Set api_key to empty string 
