@@ -14,8 +14,8 @@ def hello_world
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
-  puts response.response_body
-  puts response.response_headers
+  puts response.body
+  puts response.headers
 end
 
 def kitchen_sink
@@ -29,7 +29,7 @@ def kitchen_sink
   personalization.cc = Email.new(email: 'test4@example.com', name: 'Example User')
   personalization.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
   personalization.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
-  personalization.subject = 'Hello World from the Personalized SendGrid Python Library'
+  personalization.subject = 'Hello World from the Personalized SendGrid Ruby Library'
   personalization.headers = Header.new(key: 'X-Test', value: 'True')
   personalization.headers = Header.new(key: 'X-Mock', value: 'False')
   personalization.substitutions = Substitution.new(key: '%name%', value: 'Example User')
@@ -46,7 +46,7 @@ def kitchen_sink
   personalization2.cc = Email.new(email: 'test4@example.com', name: 'Example User')
   personalization2.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
   personalization2.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
-  personalization2.subject = 'Hello World from the Personalized SendGrid Python Library'
+  personalization2.subject = 'Hello World from the Personalized SendGrid Ruby Library'
   personalization2.headers = Header.new(key: 'X-Test', value: 'True')
   personalization2.headers = Header.new(key: 'X-Mock', value: 'False')
   personalization2.substitutions = Substitution.new(key: '%name%', value: 'Example User')
@@ -122,8 +122,8 @@ def kitchen_sink
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
-  puts response.response_body
-  puts response.response_headers
+  puts response.body
+  puts response.headers
 end
 
 hello_world

@@ -14,14 +14,16 @@ module SendGrid
     #   - +version+ -> the version of the API you wish to access,
     #                  currently only "v3" is supported
     #
-    def initialize(api_key: nil, host: nil, request_headers: nil, version: nil)
+    def initialize(api_key: '', host: nil, request_headers: nil, version: nil)
       @api_key          = api_key
       @host             = host ? host : 'https://api.sendgrid.com'
       @version          = version ? version : 'v3'
       @user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
       @request_headers  = JSON.parse('
         {
-          "Authorization": "Bearer ' + @api_key + '"
+          "Authorization": "Bearer ' + @api_key + '",
+          "Accept": "application/json",
+          "User-agent": "' + @user_agent + '"
         }
       ')
 

@@ -10,6 +10,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
 data = JSON.parse('{
   "name": "My API Key", 
+  "sample": "data", 
   "scopes": [
     "mail.send", 
     "alerts.create", 
@@ -25,7 +26,8 @@ puts response.headers
 # Retrieve all API Keys belonging to the authenticated user #
 # GET /api_keys #
 
-response = sg.client.api_keys.get()
+params = JSON.parse('{"limit": 1}')
+response = sg.client.api_keys.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers

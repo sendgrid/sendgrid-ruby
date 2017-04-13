@@ -223,10 +223,60 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve Parse Webhook settings #
+# Create a parse setting #
+# POST /user/webhooks/parse/settings #
+
+data = JSON.parse('{
+  "hostname": "myhostname.com", 
+  "send_raw": false, 
+  "spam_check": true, 
+  "url": "http://email.myhosthame.com"
+}')
+response = sg.client.user.webhooks.parse.settings.post(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Retrieve all parse settings #
 # GET /user/webhooks/parse/settings #
 
 response = sg.client.user.webhooks.parse.settings.get()
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Update a parse setting #
+# PATCH /user/webhooks/parse/settings/{hostname} #
+
+data = JSON.parse('{
+  "send_raw": true, 
+  "spam_check": false, 
+  "url": "http://newdomain.com/parse"
+}')
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).patch(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Retrieve a specific parse setting #
+# GET /user/webhooks/parse/settings/{hostname} #
+
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).get()
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Delete a parse setting #
+# DELETE /user/webhooks/parse/settings/{hostname} #
+
+hostname = "test_url_param"
+response = sg.client.user.webhooks.parse.settings._(hostname).delete()
 puts response.status_code
 puts response.body
 puts response.headers
