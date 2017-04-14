@@ -1,5 +1,5 @@
 module SendGrid
-  class PartnerSettings
+  class PartnerSettingsDto
     attr_reader :new_relic
 
     def self.fetch(sendgrid_client:, name:, query_params:)

@@ -1,5 +1,5 @@
 module SendGrid
-  class UserSettings
+  class UserSettingsDto
     attr_reader :enforced_tls
 
     def self.fetch(sendgrid_client:, name:, query_params:)

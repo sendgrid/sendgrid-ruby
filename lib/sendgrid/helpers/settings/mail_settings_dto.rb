@@ -1,5 +1,5 @@
 module SendGrid
-  class MailSettings
+  class MailSettingsDto
     attr_reader :bcc, :address_whitelist, :bounce_purge, :footer, :forward_spam, :forward_bounce, :plain_content, :spam_check, :template
 
     def self.fetch(sendgrid_client:, name:, query_params:)

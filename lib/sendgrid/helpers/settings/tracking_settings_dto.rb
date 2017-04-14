@@ -1,5 +1,5 @@
 module SendGrid
-  class TrackingSettings
+  class TrackingSettingsDto
     attr_reader :open, :click, :google_analytics, :subscription
     alias :click_tracking :click
     alias :open_tracking :open

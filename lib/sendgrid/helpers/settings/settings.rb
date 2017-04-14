@@ -1,14 +1,14 @@
-require_relative 'mail_settings'
-require_relative 'partner_settings'
-require_relative 'tracking_settings'
-require_relative 'user_settings'
+require_relative 'mail_settings_dto'
+require_relative 'partner_settings_dto'
+require_relative 'tracking_settings_dto'
+require_relative 'user_settings_dto'
 
 module SendGrid
   class Settings
     attr_accessor :sendgrid_client
 
-    SETTING_TYPES = [SendGrid::MailSettings, SendGrid::TrackingSettings,
-                     SendGrid::PartnerSettings, SendGrid::UserSettings]
+    SETTING_TYPES = [SendGrid::MailSettingsDto, SendGrid::TrackingSettingsDto,
+                     SendGrid::PartnerSettingsDto, SendGrid::UserSettingsDto]
 
     def initialize(sendgrid_client:)
       @sendgrid_client = sendgrid_client
