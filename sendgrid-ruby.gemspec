@@ -19,5 +19,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ruby_http_client', '~> 3.0'
   spec.add_dependency 'sinatra', '~> 1.4.7'
   spec.add_development_dependency 'rake', '~> 0'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'faker'
   spec.add_development_dependency 'minitest', '~> 5.9'
 end
