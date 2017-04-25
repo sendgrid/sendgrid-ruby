@@ -1,32 +1,44 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.2.1] - 2016-4-10 ##
+## [4.3.1] - 2017-4-12 ##
+### Fixes
+- #160: Updated sinatra version to 2.0
+- Fixes bundler dependency issues with rails >5.0 and rack 2.0. Solves #159
+- Thanks to [gkats](https://github.com/gkats) for the pull request!
+
+## [4.3.0] - 2017-4-12 ##
+### Added
+- #70: Adds an account settings management helper object
+- See the [helper README](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/settings) for details
+- Thanks to [Kyle Kern](https://github.com/kernkw) for the pull request!
+
+## [4.2.1] - 2017-4-10 ##
 ### Fixed
 - #112: Fixes version ambiguity in gemspec
 - Thanks to [Chris McKnight](https://github.com/cmckni3) for the pull request!
 
-## [4.2.0] - 2016-4-10 ##
+## [4.2.0] - 2017-4-10 ##
 ### Added
 - #148: Set api_key to empty string 
 - This makes creating an API key for a SendGrid subuser who does not have an API key easier. See #146 for details
 - Thanks to [Adam Beck](https://github.com/Gwash3189) for the pull request!
 
-## [4.1.1] - 2016-4-6 ##
+## [4.1.1] - 2017-4-6 ##
 ### Fixed
 - #115 #134: Fix typos in initialize methods
 - Thanks to [Ben Jackson](https://github.com/benjackson84) for the pull request!
 
-## [4.1.0] - 2016-4-6 ##
+## [4.1.0] - 2017-4-6 ##
 ### Add
 - #144: Add [Inbound Email Parse Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/inbound_email.html) support
 - Thanks to [Wataru Sato](https://github.com/awwa) for the pull request!
 
-## [4.0.8] - 2016-2-17 ##
+## [4.0.8] - 2017-2-17 ##
 ### Add
 - Solves #147: Add User Agent string
 
-## [4.0.7] - 2016-1-25 ##
+## [4.0.7] - 2017-1-25 ##
 ### Fixes
 - [Pull Request #7](https://github.com/sendgrid/ruby-http-client/pull/7)
 - Fixes [issue #6](https://github.com/sendgrid/ruby-http-client/issues/6): TLS certificates not verified
