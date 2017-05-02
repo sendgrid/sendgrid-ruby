@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
   spec.add_dependency 'ruby_http_client', '~> 3.0'
-  spec.add_dependency 'sinatra', '2.0.0.rc2'
+  spec.add_dependency 'sinatra', '>= 1.4.7', '< 3'
   spec.add_development_dependency 'rake', '~> 0'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'pry'
