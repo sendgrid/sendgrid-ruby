@@ -5,7 +5,7 @@ require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
 
-    unless File.exist?('/usr/local/bin/prism') || File.exists?(File.join(Dir.pwd, 'prism/bin/prism'))
+    unless File.exist?('/usr/local/bin/prism') || File.exist?(File.join(Dir.pwd, 'prism/bin/prism'))
       if RUBY_PLATFORM =~ /mswin|mingw/
         puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
       else
