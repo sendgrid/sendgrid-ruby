@@ -1,6 +1,9 @@
 language: ruby
 rvm:
 - 2.2
+gemfile:
+- gemfiles/Sinatra_1.gemfile
+- gemfiles/Sinatra_2.gemfile
 before_script:
 - mkdir prism
 - mkdir prism/bin
