@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ['Elmer Thomas', 'Robin Johnson', 'Eddie Zaneski']
   spec.email       = 'dx@sendgrid.com'
   spec.summary     = 'Official SendGrid Gem'
-  spec.description = 'Interact with SendGrids API in native Ruby'
+  spec.description = 'Official SendGrid Gem to Interact with SendGrids API in native Ruby'
   spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
   spec.license     = 'MIT'
   spec.files         = `git ls-files -z`.split("\x0")

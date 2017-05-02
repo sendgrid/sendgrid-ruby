@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.3.2] - 2017-5-1 ##
+### Fixes
+- #161: Fixed problematic Sinatra dependency
+- Brings back Rails 4 compatibility (and Rack 1.x applications, in general), also removes release candidate version constraint (both broken in #160). Moreover, ensures that tests are run against two major Sinatra versions, which should protect from compatibility issues in future, somewhat. Related issue: #159.
+- Thanks to [Sebastian Skałacki](https://github.com/skalee) for the pull request!
+
 ## [4.3.1] - 2017-4-12 ##
 ### Fixes
 - #160: Updated sinatra version to 2.0

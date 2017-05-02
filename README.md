@@ -65,6 +65,7 @@ gem install sendgrid-ruby
 ## Dependencies
 
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
+- [Sinatra](http://www.sinatrarb.com/) - this is only needed if you plan to process [Inbound Email](#inbound).
 
 <a name="quick_start"></a>
 # Quick Start
