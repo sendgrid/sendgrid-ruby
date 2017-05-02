@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.3.3] - 2017-5-2
+### Update
+- #157: Specify required ruby version as '>= 2.2'
+- This library does not support [Ruby 2.1 or below](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/).
+- Thanks to [Ryunosuke Sato](https://github.com/tricknotes) for the pull request!
+
 ## [4.3.2] - 2017-5-1 ##
 ### Fixes
 - #161: Fixed problematic Sinatra dependency

@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Official SendGrid Gem to Interact with SendGrids API in native Ruby'
   spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
 
-  spec.required_ruby_version = '>= 2.0'
+  spec.required_ruby_version = '>= 2.2'
 
   spec.license     = 'MIT'
   spec.files         = `git ls-files -z`.split("\x0")
