@@ -5,7 +5,7 @@ require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
 
-    unless File.exist?('/usr/local/bin/prism') || File.exists?(File.join(Dir.pwd, 'prism/bin/prism'))
+    unless File.exist?('/usr/local/bin/prism') || File.exist?(File.join(Dir.pwd, 'prism/bin/prism'))
       if RUBY_PLATFORM =~ /mswin|mingw/
         puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
       else
@@ -13,7 +13,7 @@ class TestAPI < MiniTest::Test
         IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
           out = io.read
           unless system(out)
-            puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /user/local/bin directory, #{out}"
+            puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory, #{out}"
             exit
           end
         end
@@ -55,7 +55,7 @@ class TestAPI < MiniTest::Test
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("4.0.8", SendGrid::VERSION)
+        assert_equal("4.3.3", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 

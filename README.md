@@ -1,4 +1,4 @@
-[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby)
+[![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby) [![Gem Version](https://badge.fury.io/rb/sendgrid-ruby.svg)](https://badge.fury.io/rb/sendgrid-ruby)
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
 
@@ -16,6 +16,7 @@ We appreciate your continued support, thank you!
 
 * [Installation](#installation)
 * [Quick Start](#quick_start)
+* [Processing Inbound Email](#inbound)
 * [Usage](#usage)
 * [Use Cases](#use_cases)
 * [Announcements](#announcements)
@@ -29,7 +30,7 @@ We appreciate your continued support, thank you!
 
 ## Prerequisites
 
-- Ruby version 2.1+
+- Ruby version >= 2.2
 - The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby)
 
 ## Setup Environment Variables
@@ -64,6 +65,7 @@ gem install sendgrid-ruby
 ## Dependencies
 
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
+- [Sinatra](http://www.sinatrarb.com/) - this is only needed if you plan to process [Inbound Email](#inbound).
 
 <a name="quick_start"></a>
 # Quick Start
@@ -151,6 +153,11 @@ puts response.body
 puts response.headers
 ```
 
+<a name="inbound"></a>
+# Processing Inbound Email
+
+Please see [our helper](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/inbound) for utilizing our Inbound Parse webhook.
+
 <a name="usage"></a>
 # Usage
 
@@ -158,9 +165,10 @@ puts response.headers
 - [Library Usage Docs](https://github.com/sendgrid/sendgrid-ruby/tree/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-ruby/tree/master/examples)
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
-- [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
+- [v3 Web API Mail Send Helper](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/mail) - build a request object payload for a v3 /mail/send API call.
+- [Settings Helper](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/settings)
 
-<a name="use_cases">
+<a name="use_cases"></a>
 # Use Cases
 
 [Examples of common API use cases](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md), such as how to send an email with a transactional template.
@@ -199,5 +207,4 @@ sendgrid-ruby is guided and supported by the SendGrid [Developer Experience Team
 
 sendgrid-ruby is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of SendGrid, Inc.
 
-![SendGrid Logo]
-(https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
