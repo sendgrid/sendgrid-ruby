@@ -81,9 +81,9 @@ require 'sendgrid-ruby'
 include SendGrid
 
 from = Email.new(email: 'test@example.com')
-subject = 'Hello World from the SendGrid Ruby Library!'
+subject = 'Sending with SendGrid is Fun'
 to = Email.new(email: 'test@example.com')
-content = Content.new(type: 'text/plain', value: 'Hello, Email!')
+content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = Mail.new(from, subject, to, content)
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
@@ -111,7 +111,7 @@ data = JSON.parse('{
           "email": "test@example.com"
         }
       ],
-      "subject": "Hello World from the SendGrid Ruby Library!"
+      "subject": "Sending with SendGrid is Fun"
     }
   ],
   "from": {
@@ -120,7 +120,7 @@ data = JSON.parse('{
   "content": [
     {
       "type": "text/plain",
-      "value": "Hello, Email!"
+      "value": "and easy to do anywhere, even with Ruby"
     }
   ]
 }')
