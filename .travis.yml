@@ -1,6 +1,16 @@
 language: ruby
 rvm:
-- 2.2
+- 2.2.6
+- 2.3.4
+- 2.4.1
+gemfile:
+- gemfiles/Sinatra_1.gemfile
+- gemfiles/Sinatra_2.gemfile
+before_script:
+- mkdir prism
+- mkdir prism/bin
+- export PATH=$PATH:$PWD/prism/bin/
+- ./test/prism.sh
 notifications:
   hipchat:
     rooms:
@@ -12,4 +22,8 @@ notifications:
     format: html
     notify: false
 script:
-    - rake
+    - rake test
+    - rake spec
+before_install:
+    - gem update bundler
+

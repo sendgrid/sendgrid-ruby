@@ -4,13 +4,35 @@ require 'minitest/autorun'
 require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
-    def setup
-        if ENV['TRAVIS']
-            host = ENV['MOCK_HOST']
-        else
-            host = "http://localhost:4010"
+
+    unless File.exist?('/usr/local/bin/prism') || File.exist?(File.join(Dir.pwd, 'prism/bin/prism'))
+      if RUBY_PLATFORM =~ /mswin|mingw/
+        puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
+      else
+        puts 'Installing Prism'
+        IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
+          out = io.read
+          unless system(out)
+            puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory, #{out}"
+            exit
+          end
         end
+      end
+    end
+
+    puts 'Activating Prism (~20 seconds)'
+    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
+    sleep(15)
+    puts 'Prism started'
+
+    def setup
+        host = "http://localhost:4010"
         @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: host)
+    end
+
+    Minitest.after_run do
+      Process.kill('TERM', @@prism_pid)
+      puts 'Prism shut down'
     end
 
     def test_init
@@ -22,16 +44,18 @@ class TestAPI < MiniTest::Test
         sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3")
 
         assert_equal("https://api.test.com", sg.host)
+        user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
         test_headers = JSON.parse('
                 {
                     "Authorization": "Bearer SENDGRID_API_KEY",
                     "Accept": "application/json",
-                    "X-Test": "test"
+                    "X-Test": "test",
+                    "User-agent": "' + user_agent + '"
                 }
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("4.0.4", SendGrid::VERSION)
+        assert_equal("4.3.3", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -1850,7 +1874,7 @@ class TestAPI < MiniTest::Test
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 200}')
 
-        response = @sg.client.suppression.spam_report._(email).get(request_headers: headers)
+        response = @sg.client.suppression.spam_reports._(email).get(request_headers: headers)
 
         self.assert_equal('200', response.status_code)
     end

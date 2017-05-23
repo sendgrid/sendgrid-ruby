@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gemspec
+gemspec path: '..'
 
 gem 'ruby_http_client'
-
+gem 'sinatra', '~> 1.4'
