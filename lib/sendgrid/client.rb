@@ -295,7 +295,7 @@ module SendGrid
       res = yield
 
       if raise_exceptions? && res.status != expected_status
-        fail SendGrid::Exception, res.body
+        fail SendGrid::Exception, { code: res.status, headers: res.headers, body: res.body }.to_json
       end
 
       SendGrid::Response.new(code: res.status, headers: res.headers, body: res.body)
