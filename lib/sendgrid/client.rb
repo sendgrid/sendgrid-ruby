@@ -252,6 +252,7 @@ module SendGrid
         conn.request :multipart
         conn.request :url_encoded
         conn.adapter adapter
+        conn.options.open_timeout = 120
         conn.headers['User-Agent'] = user_agent
       end
     end
