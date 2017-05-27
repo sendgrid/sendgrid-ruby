@@ -1,6 +1,25 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.0.0] - 2017-05-27
+### BREAKING CHANGE
+- #108 Fix unexpected `Mail` `#categories`, `#categories=` behavior
+- Fixed Issue #95 Refactor Mail Helper Array Assignments
+- `personalization.to` becomes `personalization.add_to()`
+- `personalization.cc` becomes `personalization.add_cc()`
+- `personalization.bcc` becomes `personalization.add_bcc()`
+- `personalization.headers` becomes `personalization.add_header()`
+- `personalization.substitutions` becomes `personalization.add_substitution()`
+- `personalization.custom_args` becomes `personalization.add_custom_arg()`
+- `mail.personalizations` becomes `mail.add_personalization()`
+- `mail.contents` becomes `mail.add_content()`
+- `mail.attachments` becomes `mail.attachment()`
+- `mail.sections` becomes `mail.add_section()`
+- `mail.headers` becomes `mail.add_header()`
+- `mail.categories` becomes `mail.add_category()`
+- `mail.custom_args` becomes `mail.custom_args()`
+- For a full example of usage, please [see here](https://github.com/sendgrid/sendgrid-ruby/blob/master/examples/helpers/mail/example.rb#L21).
+
 ## [4.3.3] - 2017-5-2
 ### Update
 - #157: Specify required ruby version as '>= 2.2'
@@ -32,7 +51,7 @@ All notable changes to this project will be documented in this file.
 
 ## [4.2.0] - 2017-4-10 ##
 ### Added
-- #148: Set api_key to empty string 
+- #148: Set api_key to empty string
 - This makes creating an API key for a SendGrid subuser who does not have an API key easier. See #146 for details
 - Thanks to [Adam Beck](https://github.com/Gwash3189) for the pull request!
 
