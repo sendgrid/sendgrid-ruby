@@ -51,11 +51,11 @@ mail = Mail.new
 mail.from = Email.new(email: 'test@example.com')
 mail.subject = 'I\'m replacing the subject tag'
 personalization = Personalization.new
-personalization.to = Email.new(email: 'test@example.com')
-personalization.substitutions = Substitution.new(key: '-name-', value: 'Example User')
-personalization.substitutions = Substitution.new(key: '-city-', value: 'Denver')
-mail.personalizations = personalization
-mail.contents = Content.new(type: 'text/html', value: 'I\'m replacing the <strong>body tag</strong>')
+personalization.add_to(Email.new(email: 'test@example.com'))
+personalization.add_substitution(Substitution.new(key: '-name-', value: 'Example User'))
+personalization.add_substitution(Substitution.new(key: '-city-', value: 'Denver'))
+mail.add_personalization(personalization)
+mail.add_content(Content.new(type: 'text/html', value: 'I\'m replacing the <strong>body tag</strong>'))
 mail.template_id = '13b8f94f-bcae-4ec6-b752-70d6cb59f932'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])

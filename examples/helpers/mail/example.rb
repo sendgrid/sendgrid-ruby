@@ -23,41 +23,41 @@ def kitchen_sink
   mail.from = Email.new(email: 'test@example.com')
   mail.subject = 'Hello World from the SendGrid Ruby Library'
   personalization = Personalization.new
-  personalization.to = Email.new(email: 'test1@example.com', name: 'Example User')
-  personalization.to = Email.new(email: 'test2@example.com', name: 'Example User')
-  personalization.cc = Email.new(email: 'test3@example.com', name: 'Example User')
-  personalization.cc = Email.new(email: 'test4@example.com', name: 'Example User')
-  personalization.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
-  personalization.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
+  personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+  personalization.add_to(Email.new(email: 'test2@example.com', name: 'Example User'))
+  personalization.add_cc(Email.new(email: 'test3@example.com', name: 'Example User'))
+  personalization.add_cc(Email.new(email: 'test4@example.com', name: 'Example User'))
+  personalization.add_bcc(Email.new(email: 'test5@example.com', name: 'Example User'))
+  personalization.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
   personalization.subject = 'Hello World from the Personalized SendGrid Ruby Library'
-  personalization.headers = Header.new(key: 'X-Test', value: 'True')
-  personalization.headers = Header.new(key: 'X-Mock', value: 'False')
-  personalization.substitutions = Substitution.new(key: '%name%', value: 'Example User')
-  personalization.substitutions = Substitution.new(key: '%city%', value: 'Denver')
-  personalization.custom_args = CustomArg.new(key: 'user_id', value: '343')
-  personalization.custom_args = CustomArg.new(key: 'type', value: 'marketing')
+  personalization.add_header(Header.new(key: 'X-Test', value: 'True'))
+  personalization.add_header(Header.new(key: 'X-Mock', value: 'False'))
+  personalization.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
+  personalization.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
+  personalization.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
+  personalization.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
   personalization.send_at = 1443636843
-  mail.personalizations = personalization
+  mail.add_personalization(personalization)
 
   personalization2 = Personalization.new
-  personalization2.to = Email.new(email: 'test1@example.com', name: 'Example User')
-  personalization2.to = Email.new(email: 'test2@example.com', name: 'Example User')
-  personalization2.cc = Email.new(email: 'test3@example.com', name: 'Example User')
-  personalization2.cc = Email.new(email: 'test4@example.com', name: 'Example User')
-  personalization2.bcc = Email.new(email: 'test5@example.com', name: 'Example User')
-  personalization2.bcc = Email.new(email: 'test6@example.com', name: 'Example User')
+  personalization2.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+  personalization2.add_to(Email.new(email: 'test2@example.com', name: 'Example User'))
+  personalization2.add_cc(Email.new(email: 'test3@example.com', name: 'Example User'))
+  personalization2.add_cc(Email.new(email: 'test4@example.com', name: 'Example User'))
+  personalization2.add_bcc(Email.new(email: 'test5@example.com', name: 'Example User'))
+  personalization2.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
   personalization2.subject = 'Hello World from the Personalized SendGrid Ruby Library'
-  personalization2.headers = Header.new(key: 'X-Test', value: 'True')
-  personalization2.headers = Header.new(key: 'X-Mock', value: 'False')
-  personalization2.substitutions = Substitution.new(key: '%name%', value: 'Example User')
-  personalization2.substitutions = Substitution.new(key: '%city%', value: 'Denver')
-  personalization2.custom_args = CustomArg.new(key: 'user_id', value: '343')
-  personalization2.custom_args = CustomArg.new(key: 'type', value: 'marketing')
+  personalization2.add_header(Header.new(key: 'X-Test', value: 'True'))
+  personalization2.add_header(Header.new(key: 'X-Mock', value: 'False'))
+  personalization2.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
+  personalization2.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
+  personalization2.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
+  personalization2.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
   personalization2.send_at = 1443636843
   mail.personalizations = personalization2
 
-  mail.contents = Content.new(type: 'text/plain', value: 'some text here')
-  mail.contents = Content.new(type: 'text/html', value: '<html><body>some text here</body></html>')
+  mail.add_content(Content.new(type: 'text/plain', value: 'some text here'))
+  mail.add_content(Content.new(type: 'text/html', value: '<html><body>some text here</body></html>'))
 
   attachment = Attachment.new
   attachment.content = 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12'
@@ -66,7 +66,7 @@ def kitchen_sink
   attachment.disposition = 'attachment'
   attachment.content_id = 'Balance Sheet'
 
-  mail.attachments = attachment
+  mail.add_attachment(attachment)
 
   attachment2 = Attachment.new
   attachment2.content = 'BwdW'
@@ -74,21 +74,21 @@ def kitchen_sink
   attachment2.filename = 'banner.png'
   attachment2.disposition = 'inline'
   attachment2.content_id = 'Banner'
-  mail.attachments = attachment2
+  mail.add_attachment(attachment2)
 
   mail.template_id = '13b8f94f-bcae-4ec6-b752-70d6cb59f932'
 
-  mail.sections = Section.new(key: '%section1%', value: 'Substitution Text for Section 1')
-  mail.sections = Section.new(key: '%section2%', value: 'Substitution Text for Section 2')
+  mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
+  mail.add_section(Section.new(key: '%section2%', value: 'Substitution Text for Section 2'))
 
-  mail.headers = Header.new(key: 'X-Test3', value: 'test3')
-  mail.headers = Header.new(key: 'X-Test4', value: 'test4')
+  mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
+  mail.add_header(Header.new(key: 'X-Test4', value: 'test4'))
 
-  mail.categories = Category.new(name: 'May')
-  mail.categories = Category.new(name: '2016')
+  mail.add_category(Category.new(name: 'May'))
+  mail.add_category(Category.new(name: '2016'))
 
-  mail.custom_args = CustomArg.new(key: 'campaign', value: 'welcome')
-  mail.custom_args = CustomArg.new(key: 'weekday', value: 'morning')
+  mail.add_custom_arg(CustomArg.new(key: 'campaign', value: 'welcome'))
+  mail.add_custom_arg(CustomArg.new(key: 'weekday', value: 'morning'))
 
   mail.send_at = 1443636842
 
