@@ -30,7 +30,7 @@ module SendGrid
         self.from = from_email
         self.subject = subj
         personalization = Personalization.new
-        personalization.to = to_email
+        personalization.add_to(to_email)
         self.add_personalization(personalization)
         self.add_content(cont)
       end
