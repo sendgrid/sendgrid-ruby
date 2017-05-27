@@ -5,7 +5,7 @@ require 'json'
 module SendGrid
   class Mail
 
-    attr_reader :personalizations, :contents, :attachments, :categories
+    attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
@@ -14,10 +14,10 @@ module SendGrid
       @contents = []
       @attachments = []
       @template_id = nil
-      @sections = nil
-      @headers = nil
+      @sections = {}
+      @headers = {}
       @categories = []
-      @custom_args = nil
+      @custom_args = {}
       @send_at = nil
       @batch_id = nil
       @asm = nil
@@ -76,34 +76,19 @@ module SendGrid
       @template_id
     end
 
-    def sections=(sections)
-      @sections = @sections.nil? ? {} : @sections
-      sections = sections.to_json
-      @sections = @sections.merge(sections['section'])
+    def add_section(section)
+      section = section.to_json
+      @sections = @sections.merge(section['section'])
     end
 
-    def sections
-      @sections
+    def add_header(header)
+      header = header.to_json
+      @headers = @headers.merge(header['header'])
     end
 
-    def headers=(headers)
-      @headers = @headers.nil? ? {} : @headers
-      headers = headers.to_json
-      @headers = @headers.merge(headers['header'])
-    end
-
-    def headers
-      @headers
-    end
-
-    def custom_args=(custom_args)
-      @custom_args = @custom_args.nil? ? {} : @custom_args
-      custom_args = custom_args.to_json
-      @custom_args = @custom_args.merge(custom_args['custom_arg'])
-    end
-
-    def custom_args
-      @custom_args
+    def add_custom_arg(custom_arg)
+      custom_arg = custom_arg.to_json
+      @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
     def send_at=(send_at)
@@ -181,7 +166,7 @@ module SendGrid
         'mail_settings' => self.mail_settings,
         'tracking_settings' => self.tracking_settings,
         'reply_to' => self.reply_to
-      }.delete_if { |_, value| value.to_s.strip == '' }
+      }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
     end
   end
 end

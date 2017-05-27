@@ -13,11 +13,11 @@ class TestMail < Minitest::Test
     mail.from = Email.new(email: "test@example.com")
     mail.subject = "Hello World from the SendGrid Ruby Library"
     personalization = Personalization.new
-    personalization.to = Email.new(email: "test@example.com")
+    personalization.add_to(Email.new(email: "test@example.com"))
     mail.add_personalization(personalization)
     mail.add_content(Content.new(type: "text/plain", value: "some text here"))
     mail.add_content(Content.new(type: "text/html", value: "<html><body>some text here</body></html>"))
-    assert_equal(mail.to_json, JSON.parse('{"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"from":{"email":"test@example.com"},"personalizations":[{"to":[{"email":"test@example.com"}]}],"subject":"Hello World from the SendGrid Ruby Library", "attachments": [], "categories": []}'))
+    assert_equal(mail.to_json, JSON.parse('{"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"from":{"email":"test@example.com"},"personalizations":[{"to":[{"email":"test@example.com"}]}],"subject":"Hello World from the SendGrid Ruby Library"}'))
   end
 
   def test_kitchen_sink
@@ -25,36 +25,36 @@ class TestMail < Minitest::Test
     mail.from = Email.new(email: "test@example.com")
     mail.subject = "Hello World from the SendGrid Ruby Library"
     personalization = Personalization.new
-    personalization.to = Email.new(email: "test@example.com", name: "Example User")
-    personalization.to = Email.new(email: "test@example.com", name: "Example User")
-    personalization.cc = Email.new(email: "test@example.com", name: "Example User")
-    personalization.cc = Email.new(email: "test@example.com", name: "Example User")
-    personalization.bcc = Email.new(email: "test@example.com", name: "Example User")
-    personalization.bcc = Email.new(email: "test@example.com", name: "Example User")
+    personalization.add_to(Email.new(email: "test@example.com", name: "Example User"))
+    personalization.add_to(Email.new(email: "test@example.com", name: "Example User"))
+    personalization.add_cc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization.add_cc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization.add_bcc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization.add_bcc(Email.new(email: "test@example.com", name: "Example User"))
     personalization.subject = "Hello World from the Personalized SendGrid Python Library"
-    personalization.headers = Header.new(key: "X-Test", value: "True")
-    personalization.headers = Header.new(key: "X-Mock", value: "False")
-    personalization.substitutions = Substitution.new(key: "%name%", value: "Example User")
-    personalization.substitutions = Substitution.new(key: "%city%", value: "Denver")
-    personalization.custom_args = CustomArg.new(key: "user_id", value: "343")
-    personalization.custom_args = CustomArg.new(key: "type", value: "marketing")
+    personalization.add_header(Header.new(key: "X-Test", value: "True"))
+    personalization.add_header(Header.new(key: "X-Mock", value: "False"))
+    personalization.add_substitution(Substitution.new(key: "%name%", value: "Example User"))
+    personalization.add_substitution(Substitution.new(key: "%city%", value: "Denver"))
+    personalization.add_custom_arg(CustomArg.new(key: "user_id", value: "343"))
+    personalization.add_custom_arg(CustomArg.new(key: "type", value: "marketing"))
     personalization.send_at = 1443636843
     mail.add_personalization(personalization)
 
     personalization2 = Personalization.new
-    personalization2.to = Email.new(email: "test@example.com", name: "Example User")
-    personalization2.to = Email.new(email: "test@example.com", name: "Example User")
-    personalization2.cc = Email.new(email: "test@example.com", name: "Example User")
-    personalization2.cc = Email.new(email: "test@example.com", name: "Example User")
-    personalization2.bcc = Email.new(email: "test@example.com", name: "Example User")
-    personalization2.bcc = Email.new(email: "test@example.com", name: "Example User")
+    personalization2.add_to(Email.new(email: "test@example.com", name: "Example User"))
+    personalization2.add_to(Email.new(email: "test@example.com", name: "Example User"))
+    personalization2.add_cc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization2.add_cc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization2.add_bcc(Email.new(email: "test@example.com", name: "Example User"))
+    personalization2.add_bcc(Email.new(email: "test@example.com", name: "Example User"))
     personalization2.subject = "Hello World from the Personalized SendGrid Python Library"
-    personalization2.headers = Header.new(key: "X-Test", value: "True")
-    personalization2.headers = Header.new(key: "X-Mock", value: "False")
-    personalization2.substitutions = Substitution.new(key: "%name%", value: "Example User")
-    personalization2.substitutions = Substitution.new(key: "%city%", value: "Denver")
-    personalization2.custom_args = CustomArg.new(key: "user_id", value: "343")
-    personalization2.custom_args = CustomArg.new(key: "type", value: "marketing")
+    personalization2.add_header(Header.new(key: "X-Test", value: "True"))
+    personalization2.add_header(Header.new(key: "X-Mock", value: "False"))
+    personalization2.add_substitution(Substitution.new(key: "%name%", value: "Example User"))
+    personalization2.add_substitution(Substitution.new(key: "%city%", value: "Denver"))
+    personalization2.add_custom_arg(CustomArg.new(key: "user_id", value: "343"))
+    personalization2.add_custom_arg(CustomArg.new(key: "type", value: "marketing"))
     personalization2.send_at = 1443636843
     mail.add_personalization(personalization2)
 
@@ -80,17 +80,17 @@ class TestMail < Minitest::Test
 
     mail.template_id = "13b8f94f-bcae-4ec6-b752-70d6cb59f932"
 
-    mail.sections = Section.new(key: "%section1%", value: "Substitution Text for Section 1")
-    mail.sections = Section.new(key: "%section2%", value: "Substitution Text for Section 2")
+    mail.add_section(Section.new(key: "%section1%", value: "Substitution Text for Section 1"))
+    mail.add_section(Section.new(key: "%section2%", value: "Substitution Text for Section 2"))
 
-    mail.headers = Header.new(key: "X-Test3", value: "test3")
-    mail.headers = Header.new(key: "X-Test4", value: "test4")
+    mail.add_header(Header.new(key: "X-Test3", value: "test3"))
+    mail.add_header(Header.new(key: "X-Test4", value: "test4"))
 
     mail.add_category(Category.new(name: "May"))
     mail.add_category(Category.new(name: "2016"))
 
-    mail.custom_args = CustomArg.new(key: "campaign", value: "welcome")
-    mail.custom_args = CustomArg.new(key: "weekday", value: "morning")
+    mail.add_custom_arg(CustomArg.new(key: "campaign", value: "welcome"))
+    mail.add_custom_arg(CustomArg.new(key: "weekday", value: "morning"))
 
     mail.send_at = 1443636842
 
@@ -150,6 +150,63 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_content('foo')
     assert_equal(['foo'.to_json], mail.contents)
+  end
+
+  def test_add_section
+    mail = Mail.new
+    mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
+    expected_json = {
+        "sections"=>{
+                "%section1%"=>"Substitution Text for Section 1"
+            }
+    }
+    assert_equal mail.to_json, expected_json
+    mail.add_section(Section.new(key: '%section2%', value: 'Substitution Text for Section 2'))
+    expected_json = {
+        "sections"=>{
+                "%section1%"=>"Substitution Text for Section 1",
+                "%section2%"=>"Substitution Text for Section 2"
+            }
+    }
+    assert_equal mail.to_json, expected_json
+  end
+
+  def test_add_header
+    mail = Mail.new
+    mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
+    expected_json = {
+        "headers"=>{
+                "X-Test3"=>"test3"
+            }
+    }
+    assert_equal mail.to_json, expected_json
+    mail.add_header(Header.new(key: 'X-Test4', value: 'test4'))
+    expected_json = {
+        "headers"=>{
+                "X-Test3"=>"test3",
+                "X-Test4"=>"test4"
+            }
+    }
+    assert_equal mail.to_json, expected_json
+  end
+
+  def test_add_custom_arg
+    mail = Mail.new
+    mail.add_custom_arg(CustomArg.new(key: 'campaign 1', value: 'welcome 1'))
+    expected_json = {
+        "custom_args"=>{
+                "campaign 1"=>"welcome 1"
+            }
+    }
+    assert_equal mail.to_json, expected_json
+    mail.add_custom_arg(CustomArg.new(key: 'campaign 2', value: 'welcome 2'))
+    expected_json = {
+        "custom_args"=>{
+                "campaign 1"=>"welcome 1",
+                "campaign 2"=>"welcome 2"
+            }
+    }
+    assert_equal mail.to_json, expected_json
   end
 
   def test_add_attachment
