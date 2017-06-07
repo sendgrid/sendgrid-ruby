@@ -54,7 +54,7 @@ def kitchen_sink
   personalization2.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
   personalization2.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
   personalization2.send_at = 1443636843
-  mail.personalizations = personalization2
+  mail.add_personalization(personalization2)
 
   mail.add_content(Content.new(type: 'text/plain', value: 'some text here'))
   mail.add_content(Content.new(type: 'text/html', value: '<html><body>some text here</body></html>'))
@@ -65,7 +65,6 @@ def kitchen_sink
   attachment.filename = 'balance_001.pdf'
   attachment.disposition = 'attachment'
   attachment.content_id = 'Balance Sheet'
-
   mail.add_attachment(attachment)
 
   attachment2 = Attachment.new
