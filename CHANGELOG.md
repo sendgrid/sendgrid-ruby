@@ -13,7 +13,7 @@ All notable changes to this project will be documented in this file.
 - `personalization.custom_args` becomes `personalization.add_custom_arg()`
 - `mail.personalizations` becomes `mail.add_personalization()`
 - `mail.contents` becomes `mail.add_content()`
-- `mail.attachments` becomes `mail.attachment()`
+- `mail.attachments` becomes `mail.add_attachment()`
 - `mail.sections` becomes `mail.add_section()`
 - `mail.headers` becomes `mail.add_header()`
 - `mail.categories` becomes `mail.add_category()`
