@@ -9,15 +9,13 @@ class TestMail < Minitest::Test
   end
 
   def test_hello_world
-    mail = Mail.new
-    mail.from = Email.new(email: "test@example.com")
-    mail.subject = "Hello World from the SendGrid Ruby Library"
-    personalization = Personalization.new
-    personalization.add_to(Email.new(email: "test@example.com"))
-    mail.add_personalization(personalization)
-    mail.add_content(Content.new(type: "text/plain", value: "some text here"))
-    mail.add_content(Content.new(type: "text/html", value: "<html><body>some text here</body></html>"))
-    assert_equal(mail.to_json, JSON.parse('{"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"from":{"email":"test@example.com"},"personalizations":[{"to":[{"email":"test@example.com"}]}],"subject":"Hello World from the SendGrid Ruby Library"}'))
+    from = Email.new(email: 'test@example.com')
+    to = Email.new(email: 'test@example.com')
+    subject = 'Sending with SendGrid is Fun'
+    content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+    mail = Mail.new(from, subject, to, content)
+
+    assert_equal(mail.to_json, JSON.parse('{"from":{"email":"test@example.com"}, "subject":"Sending with SendGrid is Fun", "personalizations":[{"to":[{"email":"test@example.com"}]}], "content":[{"type":"text/plain", "value":"and easy to do anywhere, even with Ruby"}]}'))
   end
 
   def test_kitchen_sink
