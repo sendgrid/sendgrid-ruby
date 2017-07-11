@@ -80,8 +80,8 @@ The following is the minimum needed code to send an email with the [/mail/send H
 require 'sendgrid-ruby'
 include SendGrid
 
-from = Email.new(email: 'test@example.com')
-to = Email.new(email: 'test@example.com')
+from = Email.new(email: 'test1@example.com')
+to = Email.new(email: 'test1@example.com')
 subject = 'Sending with SendGrid is Fun'
 content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = Mail.new(from, subject, to, content)
