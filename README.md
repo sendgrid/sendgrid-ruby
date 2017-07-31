@@ -1,6 +1,7 @@
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby) [![Gem Version](https://badge.fury.io/rb/sendgrid-ruby.svg)](https://badge.fury.io/rb/sendgrid-ruby)
+[![Email Notifications Badge](https://dx.sendgrid.com/badge/ruby)](https://dx.sendgrid.com/newsletter/ruby)
 
-Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
+**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/ruby) for releases and breaking changes.
 
 **This library allows you to quickly and easily use the SendGrid Web API v3 via Ruby.**
 
@@ -178,7 +179,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-ruby/tree/master/li
 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
 
-All updates to this library is documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases).
+All updates to this library are documented in our [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/ruby) for releases and breaking changes.
 
 <a name="roadmap"></a>
 # Roadmap
