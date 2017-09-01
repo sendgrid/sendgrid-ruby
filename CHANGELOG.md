@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [5.1.0] - 2017-9-1 ##
+### Added
+- #173: Update ruby-http-client dependency
+- [#12](https://github.com/sendgrid/ruby-http-client/pull/12) Add a helper that returns the response body as a hash via the `parsed_body` method in the `Response` object.
+- Thanks to [Diego Camargo](https://github.com/belfazt) for the pull request!
+
 ## [5.0.0] - 2017-05-27
 ### BREAKING CHANGE
 - #108 Fix unexpected `Mail` `#categories`, `#categories=` behavior
