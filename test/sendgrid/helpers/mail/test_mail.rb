@@ -3,6 +3,7 @@ require_relative "../../../../lib/sendgrid/client"
 include SendGrid
 require "json"
 require 'minitest/autorun'
+require 'nokogiri'
 
 class TestMail < Minitest::Test
   def setup
