@@ -1,6 +1,9 @@
 # Build the request body for the v3/mail/send endpoint
 # Please see the examples/helpers/mail/example.rb for a demonstration of usage
 require 'json'
+require 'rubygems'
+require 'nokogiri'
+
 
 module SendGrid
   class Mail
@@ -168,5 +171,13 @@ module SendGrid
         'reply_to' => self.reply_to
       }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
     end
+
+    private
+      def generate_plain_text_content
+        if @contents.none? {|content| content['type'] == "text/plain"}
+          html = contents.first['value']
+          self.add_content(Content.new(type: 'text/plain', value: Nokogiri::HTML(html).text))
+        end
+      end
   end
 end
