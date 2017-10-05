@@ -150,6 +150,23 @@ class TestMail < Minitest::Test
     assert_equal(['foo'.to_json], mail.contents)
   end
 
+  def test_generate_plain_text_content
+    mail = Mail.new
+    mail.add_content(Content.new(type: 'text/html', value: '<html><body>some text here</body></html>'))
+    mail.send(:generate_plain_text_content)
+    expected_json = [
+        {
+            'type' => 'text/html',
+            'value' => '<html><body>some text here</body></html>'
+        },
+        {
+            'type' => 'text/plain',
+            'value' => 'some text here'
+        }
+    ].to_json
+    assert_equal mail.contents.to_json, expected_json
+  end
+
   def test_add_section
     mail = Mail.new
     mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
