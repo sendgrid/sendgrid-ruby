@@ -136,7 +136,7 @@ puts response.headers
 ```
 ## Retrieve a specific whitelisted IP
 
-**This endpoint allows you to retreive a specific IP address that has been whitelisted.**
+**This endpoint allows you to retrieve a specific IP address that has been whitelisted.**
 
 You must include the ID for the specific IP address you want to retrieve in your call.
 
@@ -203,7 +203,7 @@ puts response.headers
 ```
 ## Retrieve all alerts
 
-**This endpoint allows you to retieve all of your alerts.**
+**This endpoint allows you to retrieve all of your alerts.**
 
 Alerts allow you to specify an email address to receive notifications regarding your email usage or statistics.
 * Usage alerts allow you to set the threshold at which an alert will be sent.
@@ -288,7 +288,7 @@ puts response.headers
 
 ## Create API keys
 
-**This enpoint allows you to create a new random API Key for the user.**
+**This endpoint allows you to create a new random API Key for the user.**
 
 A JSON request body containing a "name" property is required. If number of maximum keys is reached, HTTP 403 will be returned.
 
@@ -2705,7 +2705,7 @@ puts response.headers
 
 **This endpoint returns a list of all scopes that this user has access to.**
 
-API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html), or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html). API Keys may be assigned certain permissions, or scopes, that limit which API endpoints they are able to access. For a more detailed explanation of how you can use API Key permissios, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html#-API-Key-Permissions) or [Classroom](https://sendgrid.com/docs/Classroom/Basics/API/api_key_permissions.html).
+API Keys can be used to authenticate the use of [SendGrids v3 Web API](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html), or the [Mail API Endpoint](https://sendgrid.com/docs/API_Reference/Web_API/mail.html). API Keys may be assigned certain permissions, or scopes, that limit which API endpoints they are able to access. For a more detailed explanation of how you can use API Key permissions, please visit our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html#-API-Key-Permissions) or [Classroom](https://sendgrid.com/docs/Classroom/Basics/API/api_key_permissions.html).
 
 ### GET /scopes
 
@@ -2821,7 +2821,7 @@ puts response.headers
 ```
 ## Delete a Sender Identity
 
-**This endoint allows you to delete one of your sender identities.**
+**This endpoint allows you to delete one of your sender identities.**
 
 Sender Identities are required to be verified before use. If your domain has been whitelabeled it will auto verify on creation. Otherwise an email will be sent to the `from.email`.
 
@@ -3124,7 +3124,7 @@ puts response.headers
 ```
 ## Retrieve the monthly email statistics for a single subuser
 
-**This endpoint allows you to retrive the monthly email statistics for a specific subuser.**
+**This endpoint allows you to retrieve the monthly email statistics for a specific subuser.**
 
 While you can always view the statistics for all email activity on your account, subuser statistics enable you to view specific segments of your stats for your subusers. Emails sent, bounces, and spam reports are always tracked for subusers. Unsubscribes, clicks, and opens are tracked if you have enabled the required settings.
 
@@ -3620,7 +3620,7 @@ puts response.headers
 
 **This endpoint allows you to create a new version of a template.**
 
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across all templates.
 
 For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
@@ -3647,7 +3647,7 @@ puts response.headers
 
 **This endpoint allows you to edit a version of one of your transactional templates.**
 
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across all templates.
 
 For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
@@ -3679,7 +3679,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve a specific version of a template.**
 
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across all templates.
 
 For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
@@ -3704,7 +3704,7 @@ puts response.headers
 
 **This endpoint allows you to delete one of your transactional template versions.**
 
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across all templates.
 
 For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
 
@@ -3729,7 +3729,7 @@ puts response.headers
 
 **This endpoint allows you to activate a version of one of your templates.**
 
-Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across across all templates.
+Each transactional template can have multiple versions, each version with its own subject and content. Each user can have up to 300 versions across all templates.
 
 
 For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
@@ -3974,7 +3974,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve the current credit balance for your account.**
 
-Your monthly credit allotment limits the number of emails you may send before incurring overage charges. For more information about credits and billing, please visit our [Clssroom](https://sendgrid.com/docs/Classroom/Basics/Billing/billing_info_and_faqs.html).
+Your monthly credit allotment limits the number of emails you may send before incurring overage charges. For more information about credits and billing, please visit our [Classroom](https://sendgrid.com/docs/Classroom/Basics/Billing/billing_info_and_faqs.html).
 
 ### GET /user/credits
 
@@ -4357,7 +4357,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve all of your current inbound parse settings.**
 
-The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the content, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### GET /user/webhooks/parse/settings
 
@@ -4372,7 +4372,7 @@ puts response.headers
 
 **This endpoint allows you to update a specific inbound parse setting.**
 
-The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the content, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### PATCH /user/webhooks/parse/settings/{hostname}
 
@@ -4393,7 +4393,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve a specific inbound parse setting.**
 
-The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the content, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### GET /user/webhooks/parse/settings/{hostname}
 
@@ -4409,7 +4409,7 @@ puts response.headers
 
 **This endpoint allows you to delete a specific inbound parse setting.**
 
-The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the contnet, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
+The inbound parse webhook allows you to have incoming emails parsed, extracting some or all of the content, and then have that content POSTed by SendGrid to a URL of your choosing. For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html).
 
 ### DELETE /user/webhooks/parse/settings/{hostname}
 
@@ -4423,9 +4423,9 @@ puts response.headers
 ```
 ## Retrieves Inbound Parse Webhook statistics.
 
-**This endpoint allows you to retrieve the statistics for your Parse Webhook useage.**
+**This endpoint allows you to retrieve the statistics for your Parse Webhook usage.**
 
-SendGrid's Inbound Parse Webhook allows you to parse the contents and attachments of incomming emails. The Parse API can then POST the parsed emails to a URL that you specify. The Inbound Parse Webhook cannot parse messages greater than 20MB in size, including all attachments.
+SendGrid's Inbound Parse Webhook allows you to parse the contents and attachments of incoming emails. The Parse API can then POST the parsed emails to a URL that you specify. The Inbound Parse Webhook cannot parse messages greater than 20MB in size, including all attachments.
 
 There are a number of pre-made integrations for the SendGrid Parse Webhook which make processing events easy. You can find these integrations in the [Library Index](https://sendgrid.com/docs/Integrate/libraries.html#-Webhook-Libraries).
 
@@ -4751,7 +4751,7 @@ puts response.headers
 ```
 ## Retrieve all IP whitelabels
 
-**This endpoint allows you to retrieve all of the IP whitelabels that have been createdy by this account.**
+**This endpoint allows you to retrieve all of the IP whitelabels that have been created by this account.**
 
 You may include a search key by using the "ip" parameter. This enables you to perform a prefix search for a given IP segment (e.g. "192.").
 
@@ -4894,7 +4894,7 @@ puts response.headers
 **This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
 
 Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+subusers to send mail using their parent's like whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
 Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
@@ -4916,7 +4916,7 @@ puts response.headers
 **This endpoint allows you to disassociate a link whitelabel from a subuser.**
 
 Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+subusers to send mail using their parent's like whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
 Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
@@ -5013,7 +5013,7 @@ puts response.headers
 **This endpoint allows you to associate a link whitelabel with a subuser account.**
 
 Link whitelables can be associated with subusers from the parent account. This functionality allows
-subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+subusers to send mail using their parent's like whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
 Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
