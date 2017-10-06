@@ -133,12 +133,12 @@ msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
 
 # For a detailed description of each of these settings, please see the [documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
-msg.add_to(SendGrid::Email.new('test1@example.com', 'Example User1'))
+msg.add_recipient(SendGrid::Email.new('test1@example.com', 'Example User1'))
 to_emails = [
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
-msg.add_tos(to_emails)
+msg.add_recipients(to_emails)
 
 msg.add_cc(SendGrid::Email.new('test4@example.com', 'Example User4'))
 cc_emails = [
