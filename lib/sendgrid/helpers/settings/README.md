@@ -1,4 +1,4 @@
-**This module allows you to quickly and easily build a Settings object for retreiving or updating you SendGrid Settings.**
+**This module allows you to quickly and easily build a Settings object for retrieving or updating you SendGrid Settings.**
 
 # Quick Start
 
