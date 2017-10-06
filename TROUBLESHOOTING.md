@@ -12,6 +12,7 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 * [Versions](#versions)
 * [Environment Variables and Your SendGrid API Key](#environment)
 * [Using the Package Manager](#package-manager)
+* [Rails Specifics](#rails-specifics)
 
 <a name="migrating"></a>
 ## Migrating from v2 to v3
@@ -109,3 +110,8 @@ Or install it yourself using:
 ```bash
 gem install sendgrid-ruby -v X.X.X
 ```
+
+<a name="rails-specifics"></a>
+## Rails Specifics
+
+- Namespace collision between Rails own `Mail` class and sendgrid class `Mail`. To avoid that issues please use `SendGrid::Mail` instead.
