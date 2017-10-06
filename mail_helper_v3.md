@@ -18,7 +18,7 @@ plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Mail.create_single_email(from, to, subject, plain_text_content, html_content)
 
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 begin
     response = client.send_email(msg)
@@ -38,7 +38,7 @@ The following code assumes you are storing the API key in an [environment variab
 require 'sendgrid-ruby'
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
-tos = [ 
+tos = [
     SendGrid::Email.new('test1@example.com', 'Example User1'),
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
@@ -52,7 +52,7 @@ msg = SendGrid::Mail.create_single_email_to_multiple_recipients(from,
                                                            plain_text_content,
                                                            html_content)
 
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 begin
     response = client.send_email(msg)
@@ -72,7 +72,7 @@ The following code assumes you are storing the API key in an [environment variab
 require 'sendgrid-ruby'
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
-tos = [ 
+tos = [
     SendGrid::Email.new('test1@example.com', 'Example User1'),
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
@@ -99,7 +99,7 @@ msg = SendGrid::Mail.create_multiple_emails_to_multiple_recipients(from,
                                                               html_content,
                                                               substitutions)
 
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 begin
     response = client.send_email(msg)
@@ -116,33 +116,33 @@ puts response.headers
 The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
 subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
-msg = SendGrid::SendGridMessage.new(from, to, subject, plain_text_content, html_content)
+msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
 
 # For a detailed description of each of these settings, please see the [documentation](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
 msg.add_to(SendGrid::Email.new('test1@example.com', 'Example User1'))
-to_emails = [ 
+to_emails = [
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
 msg.add_tos(to_emails)
 
 msg.add_cc(SendGrid::Email.new('test4@example.com', 'Example User4'))
-cc_emails = [ 
+cc_emails = [
     SendGrid::Email.new('test5@example.com', 'Example User5'),
     SendGrid::Email.new('test6@example.com', 'Example User6')
 ];
 msg.add_ccs(cc_emails)
 
 msg.add_bcc(SendGrid::Email.new('test7@example.com', 'Example User7'))
-bcc_emails = [ 
+bcc_emails = [
     SendGrid::Email.new('test8@example.com', 'Example User8'),
     SendGrid::Email.new('test9@example.com', 'Example User9')
 ];
@@ -179,21 +179,21 @@ msg.set_subject('this subject overrides the Global Subject on the default Person
 # If you need to add more [Personalizations](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/personalizations.html), here is an example of adding another Personalization by passing in a personalization index.
 
 msg.add_to(SendGrid::Email.new('test10@example.com', 'Example User10'), 1)
-to_emails = [ 
+to_emails = [
     SendGrid::Email.new('test11@example.com', 'Example User11'),
     SendGrid::Email.new('test12@example.com', 'Example User12')
 ];
 msg.add_tos(to_emails, 1)
 
 msg.add_cc(SendGrid::Email.new('test13@example.com', 'Example User13'), 1)
-cc_emails = [ 
+cc_emails = [
     SendGrid::Email.new('test14@example.com', 'Example User14'),
     SendGrid::Email.new('test15@example.com', 'Example User15')
 ];
 msg.add_ccs(cc_emails, 1)
 
 msg.add_bcc(SendGrid::Email.new('test16@example.com', 'Example User16'), 1)
-bcc_emails = [ 
+bcc_emails = [
     SendGrid::Email.new('test17@example.com', 'Example User17'),
     SendGrid::Email.new('test18@example.com', 'Example User18')
 ];
@@ -292,14 +292,14 @@ puts response.headers
 The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
 subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
-msg = SendGrid::SendGridMessage.new(from, to, subject, plain_text_content, html_content)
+msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
 msg.add_attachment('balance_001.pdf',
                    'base64 encoded content',
                    'application/pdf',
@@ -355,14 +355,14 @@ I hope you are having a great day in -city- :)
 ```
 
 ```ruby
-client = SendGrid::ClientFactory.new(api_key: ENV['SENDGRID_API_KEY'])
+client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
 subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
-msg = SendGrid::SendGridMessage.new(from, to, subject, plain_text_content, html_content)
+msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
 
 substitutions = [
     '-name-' => 'Example User',
