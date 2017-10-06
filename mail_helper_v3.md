@@ -16,7 +16,12 @@ to = SendGrid::Email.new('test@example.com', 'Example User')
 subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
-msg = SendGrid::Mail.create(from, to, subject, plain_text_content, html_content)
+msg = SendGrid::Mail.create(from: from,
+                            tos: to,
+                            subject: subject,
+                            plain_text_content: plain_text_content,
+                            html_content: html_content,
+                            substitutions: {})
 
 client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
@@ -46,11 +51,12 @@ tos = [
 subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
-msg = SendGrid::Mail.create(from,
-                            tos,
-                            subject,
-                            plain_text_content,
-                            html_content)
+msg = SendGrid::Mail.create(from: from,
+                            tos: tos,
+                            subject: subject,
+                            plain_text_content: plain_text_content,
+                            html_content: html_content,
+                            substitutions: {})
 
 client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
@@ -92,12 +98,12 @@ values = [
 substitutions = {
     '-name1-' => values
 }
-msg = SendGrid::Mail.create(from,
-                            tos,
-                            subjects,
-                            plain_text_content,
-                            html_content,
-                            substitutions)
+msg = SendGrid::Mail.create(from: from,
+                            tos: tos,
+                            subject: subjects,
+                            plain_text_content: plain_text_content,
+                            html_content: html_content,
+                            substitutions: substitutions)
 
 client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
