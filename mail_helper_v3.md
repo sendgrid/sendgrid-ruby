@@ -306,8 +306,10 @@ subject = 'Sending with SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
+bytes = File.read('/path/to/the/attachment.pdf')
+encoded = Base64.encode64(bytes)
 msg.add_attachment('balance_001.pdf',
-                   'base64 encoded content',
+                   encoded,
                    'application/pdf',
                    'attachment',
                    'Balance Sheet')
