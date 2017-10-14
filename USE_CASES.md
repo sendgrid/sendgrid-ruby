@@ -3,6 +3,8 @@ This documentation provides examples for specific use cases. Please [open an iss
 # Table of Contents
 
 * [Transactional Templates](#transactional_templates)
+* [How to Setup a Domain Whitelabel](#domain_whitelabel)
+* [How to View Email Statistics](#temail_statistics)
 
 <a name="transactional_templates"></a>
 # Transactional Templates
@@ -112,12 +114,14 @@ puts response.body
 puts response.headers
 ```
 
+<a name="domain_whitelabel"></a>
 # How to Setup a Domain Whitelabel
 
 You can find documentation for how to setup a domain whitelabel via the UI [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/setup_domain_whitelabel.html) and via API [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md#whitelabel).
 
 Find more information about all of SendGrid's whitelabeling related documentation [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/index.html).
 
+<a name="email_statistics"></a>
 # How to View Email Statistics
 
 You can find documentation for how to view your email statistics via the UI [here](https://app.sendgrid.com/statistics) and via API [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md#stats).
