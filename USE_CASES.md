@@ -4,7 +4,7 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 * [Transactional Templates](#transactional_templates)
 * [How to Setup a Domain Whitelabel](#domain_whitelabel)
-* [How to View Email Statistics](#temail_statistics)
+* [How to View Email Statistics](#email_statistics)
 
 <a name="transactional_templates"></a>
 # Transactional Templates
