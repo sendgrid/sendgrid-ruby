@@ -16,7 +16,7 @@ We appreciate your continued support, thank you!
 # Table of Contents
 
 * [Installation](#installation)
-* [Quick Start](#quick_start)
+* [Quick Start](#quick-start)
 * [Processing Inbound Email](#inbound)
 * [Usage](#usage)
 * [Use Cases](#use_cases)
@@ -68,7 +68,7 @@ gem install sendgrid-ruby
 - [Ruby-HTTP-Client](https://github.com/sendgrid/ruby-http-client)
 - [Sinatra](http://www.sinatrarb.com/) - this is only needed if you plan to process [Inbound Email](#inbound).
 
-<a name="quick_start"></a>
+<a name="quick-start"></a>
 # Quick Start
 
 ## Hello Email
