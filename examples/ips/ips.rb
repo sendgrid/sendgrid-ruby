@@ -1,4 +1,4 @@
-require 'sendgrid-ruby'
+require_relative '../../lib/sendgrid-ruby.rb'
 
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
@@ -21,6 +21,19 @@ puts response.headers
 response = sg.client.ips.assigned.get()
 puts response.status_code
 puts response.body
+puts response.headers
+
+##################################################
+# Retrieve unassigned IPs #
+# GET /ips #
+
+params = {}
+response = sg.client.ips.get(query_params: params)
+all_ips = JSON.parse(response.body)
+unassigned_ips = all_ips.select {|ip| ip.subusers.empty?}
+puts response.status_code
+puts response.body
+puts unassigned_ips
 puts response.headers
 
 ##################################################
