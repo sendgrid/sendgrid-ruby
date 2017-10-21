@@ -117,6 +117,8 @@ gem install sendgrid-ruby -v X.X.X
 
 - Namespace collision between Rails own `Mail` class and sendgrid class `Mail`. To avoid that issues please use `SendGrid::Mail` instead.
 
+- Possibility of a namespace collision between the sendgrid class `Email` and your own defined `Email` class. To avoid these issues, you can skip the `include SendGrid` line and use the `SendGrid::` prefix for Email. Please see this [SO answer](https://stackoverflow.com/questions/41508464/rails-model-name-conflict-with-included-gem?noredirect=1#comment70223099_41508464) for specifics.
+
 <a name="request-body"></a>
 ## Viewing the Request Body
 
