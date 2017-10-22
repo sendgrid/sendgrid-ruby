@@ -24,7 +24,8 @@ Es blüht so grün wie Blüten blüh'n im Frühling
     }
 
     json = attachment.to_json
-    
+
+    # Double check that the decoded json matches original input.
     decoded = Base64.decode64(json["content"]).force_encoding('UTF-8').encode
 
     assert_equal(decoded, SAMPLE_INPUT)
