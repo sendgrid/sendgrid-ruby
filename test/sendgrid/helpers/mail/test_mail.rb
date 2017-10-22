@@ -235,4 +235,12 @@ class TestMail < Minitest::Test
       mail.add_category('foo')
     end
   end
+
+  def test_check_for_secrets
+    mail = Mail.new
+    mail.add_content(Content.new(type: 'text/plain', value: 'Sensitive information: SG.a123b456'))
+    assert_raises(SecurityError) do
+      mail.check_for_secrets([/SG.[a-zA-Z0-9_-]*/])
+    end
+  end
 end
