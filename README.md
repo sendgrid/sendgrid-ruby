@@ -26,6 +26,7 @@ We appreciate your continued support, thank you!
 * [How to Contribute](#contribute)
 * [Troubleshooting](#troubleshooting)
 * [About](#about)
+* [License](#license)
 
 <a name="installation"></a>
 # Installation
@@ -208,3 +209,7 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-ruby
 sendgrid-ruby is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
 
 sendgrid-ruby is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of SendGrid, Inc.
+
+<a name="license"></a>
+# License
+[The MIT License (MIT)](LICENSE.txt)
