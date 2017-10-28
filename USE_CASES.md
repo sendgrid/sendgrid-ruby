@@ -114,6 +114,20 @@ puts response.body
 puts response.headers
 ```
 
+## Adding Attachments
+
+```ruby
+attachment = Attachment.new
+attachment.content = Base64.strict_encode64(File.open(fpath, 'rb').read)
+attachment.type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+attachment.filename = fname
+attachment.disposition = 'attachment'
+attachment.content_id = 'Reports Sheet'
+mail.add_attachment(attachment)
+
+```
+Attachments must be base64 encoded, using Base64's strict_encode64 where no line feeds are added.
+
 <a name="domain-whitelabel"></a>
 # How to Setup a Domain Whitelabel
 
