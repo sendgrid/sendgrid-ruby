@@ -26,4 +26,5 @@ script:
     - rake spec
 before_install:
     - gem update bundler
+    - gem install codecov
 

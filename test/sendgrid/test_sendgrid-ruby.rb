@@ -1,4 +1,5 @@
 require_relative '../../lib/sendgrid-ruby.rb'
+require 'test_helper'
 require 'ruby_http_client'
 require 'minitest/autorun'
 require 'minitest/unit'
