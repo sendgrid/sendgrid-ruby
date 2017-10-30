@@ -2709,7 +2709,7 @@ class TestAPI < MiniTest::Test
     end
 
     def test_license_exists
-      assert(File.file?('./LICENSE.md'))
+      assert(File.file?('./LICENSE.txt'))
     end
 
     def test_pull_request_template_exists
