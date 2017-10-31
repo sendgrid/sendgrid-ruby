@@ -49,7 +49,7 @@ I hope you are having a great day in -city- :)
 require 'sendgrid-ruby'
 include SendGrid
 
-mail = Mail.new
+mail = SendGrid::Mail.new
 mail.from = Email.new(email: 'test@example.com')
 mail.subject = 'I\'m replacing the subject tag'
 personalization = Personalization.new

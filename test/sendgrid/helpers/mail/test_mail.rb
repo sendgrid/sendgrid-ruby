@@ -13,13 +13,13 @@ class TestMail < Minitest::Test
     to = Email.new(email: 'test@example.com')
     subject = 'Sending with SendGrid is Fun'
     content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new(from, subject, to, content)
 
     assert_equal(mail.to_json, JSON.parse('{"from":{"email":"test@example.com"}, "subject":"Sending with SendGrid is Fun", "personalizations":[{"to":[{"email":"test@example.com"}]}], "content":[{"type":"text/plain", "value":"and easy to do anywhere, even with Ruby"}]}'))
   end
 
   def test_kitchen_sink
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.from = Email.new(email: "test@example.com")
     mail.subject = "Hello World from the SendGrid Ruby Library"
     personalization = Personalization.new
@@ -119,39 +119,39 @@ class TestMail < Minitest::Test
   end
 
   def test_that_personalizations_is_empty_initially
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     assert_equal([], mail.personalizations)
   end
 
   def test_that_contents_is_empty_initially
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     assert_equal([], mail.contents)
   end
 
   def test_that_attachments_is_empty_initially
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     assert_equal([], mail.attachments)
   end
 
   def test_that_categories_is_empty_initially
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     assert_equal([], mail.categories)
   end
 
   def test_add_personalization
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_personalization('foo')
     assert_equal(['foo'.to_json], mail.personalizations)
   end
 
   def test_add_content
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_content('foo')
     assert_equal(['foo'.to_json], mail.contents)
   end
 
   def test_add_section
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
     expected_json = {
         "sections"=>{
@@ -170,7 +170,7 @@ class TestMail < Minitest::Test
   end
 
   def test_add_header
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
     expected_json = {
         "headers"=>{
@@ -189,7 +189,7 @@ class TestMail < Minitest::Test
   end
 
   def test_add_custom_arg
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_custom_arg(CustomArg.new(key: 'campaign 1', value: 'welcome 1'))
     expected_json = {
         "custom_args"=>{
@@ -208,20 +208,20 @@ class TestMail < Minitest::Test
   end
 
   def test_add_attachment
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_attachment('foo')
     assert_equal(['foo'.to_json], mail.attachments)
   end
 
   def test_add_valid_category
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     category = Category.new(name: 'foo')
     mail.add_category(category)
     assert_equal(['foo'], mail.categories)
   end
 
   def test_add_more_than_1_valid_category
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     category_1 = Category.new(name: 'foo')
     category_2 = Category.new(name: 'bar')
     mail.add_category(category_1)
@@ -230,7 +230,7 @@ class TestMail < Minitest::Test
   end
 
   def test_add_invalid_category
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     assert_raises(NoMethodError) do
       mail.add_category('foo')
     end
