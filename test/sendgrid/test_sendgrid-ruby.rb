@@ -55,7 +55,7 @@ class TestAPI < MiniTest::Test
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("5.1.0", SendGrid::VERSION)
+        assert_equal("5.2.0", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
