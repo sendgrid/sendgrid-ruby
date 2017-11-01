@@ -41,7 +41,8 @@ class TestAPI < MiniTest::Test
                 "X-Test": "test"
             }
         ')
-        sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3")
+        subuser = 'test_user'
+        sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3", impersonate_subuser: subuser)
 
         assert_equal("https://api.test.com", sg.host)
         user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
@@ -50,13 +51,20 @@ class TestAPI < MiniTest::Test
                     "Authorization": "Bearer SENDGRID_API_KEY",
                     "Accept": "application/json",
                     "X-Test": "test",
-                    "User-agent": "' + user_agent + '"
+                    "User-agent": "' + user_agent + '",
+                    "On-Behalf-Of": "' + subuser + '"
                 }
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
         assert_equal("5.2.0", SendGrid::VERSION)
+        assert_equal(subuser, sg.impersonate_subuser)
         assert_instance_of(SendGrid::Client, sg.client)
+    end
+
+    def test_init_when_impersonate_subuser_is_not_given
+        sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", version: "v3")
+        refute_includes(sg.request_headers, 'On-Behalf-Of')
     end
 
     def test_access_settings_activity_get
