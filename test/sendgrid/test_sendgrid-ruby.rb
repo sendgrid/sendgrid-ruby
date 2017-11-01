@@ -59,6 +59,12 @@ class TestAPI < MiniTest::Test
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
+    def test_impersonate_subuser_init
+        temp_subuser = "abcxyz@this.is.a.test.subuser"
+        sg_impersonate = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "http://localhost:4010", impersonate_subuser: temp_subuser)
+        assert_equal(sg_impersonate.impersonate_subuser, temp_subuser)
+    end
+
     def test_access_settings_activity_get
         params = JSON.parse('{"limit": 1}')
         headers = JSON.parse('{"X-Mock": 200}')
