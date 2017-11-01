@@ -2668,6 +2668,15 @@ class TestAPI < MiniTest::Test
         self.assert_equal('200', response.status_code)
     end
 
+
+    def test_license_file_correct_year_range
+        if File.exist?('./LICENSE.txt')
+            # get only the first line from the license txt file
+            year_range = File.open('./LICENSE.txt', &:readline).gsub(/[^\d-]/, '')
+            self.assert_equal("2014-#{Time.now.year}", year_range)
+        end
+    end
+
     def test_docker_exists
       assert(File.file?('./Docker') || File.file?('./docker/Docker'))
     end
