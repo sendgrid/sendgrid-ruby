@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## [6.0.0] - date TBD ##
+### BREAKING CHANGE
+- The sinatra gem is no longer specified as a dependency of this gem.
+  If you would like to use the inbound processing, you must add this gem
+  to your Gemfile. e.g. `gem 'sinatra', '>= 1.4.7', '< 3'`
+
 ## [5.2.0] - 2017-10-30 ##
 ### Added
 - PR #234: Helpers for email statistics - global, category, subuser 
