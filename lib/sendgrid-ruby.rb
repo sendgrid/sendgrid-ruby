@@ -1,5 +1,6 @@
 require_relative 'sendgrid/client'
 require_relative 'sendgrid/version'
+require_relative 'sendgrid/helpers/ip_management/ip_management'
 require_relative 'sendgrid/helpers/mail/asm'
 require_relative 'sendgrid/helpers/mail/attachment'
 require_relative 'sendgrid/helpers/mail/bcc_settings'
