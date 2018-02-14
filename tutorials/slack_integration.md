@@ -11,7 +11,7 @@
 
 ### Overview
 
-This tutorial will go over how to setup a simple integration with Slack that allows us to send email using a slack slash command. You'll need the following to complete this tutorial.
+This tutorial will go over how to set up a simple integration with Slack that allows us to send email using a slack slash command. You'll need the following to complete this tutorial.
 
 * SendGrid API Key
 * Slack OAuth Token
@@ -20,7 +20,7 @@ This tutorial will go over how to setup a simple integration with Slack that all
 * Sinatra 
 * Sendgrid ruby gem
 
-Slack allows us to create [apps](https://api.slack.com/slack-apps). Apps can have different types of capabilities. One such capability is a [slash command](https://api.slack.com/slash-commands). Slash Commands enable Slack users to interact with your app directly from Slack. We will write a simple slash command with following structure.
+Slack allows us to [create apps](https://api.slack.com/slack-apps). Apps can have different types of capabilities. One such capability is a [slash command](https://api.slack.com/slash-commands). Slash Commands enable Slack users to interact with your app directly from Slack. We will write a simple slash command with following structure.
 ```
 /sendmail /to <comma separated list of email ids> /subject <subject message> /body <Plain text body>
 ``` 
@@ -39,7 +39,7 @@ source ./sendgrid.env && source ./slack.env
 
 <a name="endpoint"></a>
 ### Creating endpoint
-Every Slack slash commands needs a publically available endpoint at the time of creating new slash command. Since we are using a development environment, we can use [ngrok](https://ngrok.com/) to expose a locally available endpoint.
+Every Slack slash commands needs a publicly available endpoint at the time of creating new slash command. Since we are using a development environment, we can use [ngrok to expose a locally available endpoint](https://ngrok.com/).
 
 Please follow installation [instructions](https://ngrok.com/download). Once you are able to verify installation with `ngrok help`, expose a local port. We are using [Sinatra](http://www.sinatrarb.com/) as web server which uses `4567` port as default.   
 Run `ngrok http 4567` and keep it running. Copy the **https** forwarding url. It should look like `https://be07f634.ngrok.io`. We will need this in the slack setup step.
@@ -67,10 +67,10 @@ Once you have a functional Slack workspace running, you'll need to:
 <a name="webserver"></a>
 ### Setting Up a webserver
 
-If your do not have `sinatra` installed, use `gem install sinatra`.
+If you do not have `sinatra` installed, use `gem install sinatra`.
 
 Now that you have an installed Slack app let's setup a basic server that will serve our commands:
-Create a `simeple-server.rb` and paste the following code.
+Create a `simple-server.rb` and paste the following code.
 
 ```ruby
 require 'sinatra'
