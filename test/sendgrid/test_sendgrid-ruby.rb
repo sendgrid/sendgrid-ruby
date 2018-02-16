@@ -1,8 +1,15 @@
 require_relative '../../lib/sendgrid-ruby.rb'
-require 'test_helper'
 require 'ruby_http_client'
 require 'minitest/autorun'
 require 'minitest/unit'
+
+if ENV['CI'] == 'true'
+  require 'simplecov'
+  SimpleCov.start
+
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
 
 class TestAPI < MiniTest::Test
 
