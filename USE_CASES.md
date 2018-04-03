@@ -68,6 +68,7 @@ rescue Exception => e
 end
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
@@ -111,6 +112,7 @@ rescue Exception => e
 end
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
