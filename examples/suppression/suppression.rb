@@ -199,3 +199,12 @@ puts response.status_code
 puts response.body
 puts response.headers
 
+##################################################
+# add emails to global suppressions #
+# POST asm/suppressions/gloabl #
+
+request_body = JSON.parse('{"recipient_emails": ["test1@example.com", "test2@example.com"]}')
+response = sg.client.asm.suppressions.global.post(request_body: request_body)
+puts response.status_code
+puts response.body
+puts response.headers
