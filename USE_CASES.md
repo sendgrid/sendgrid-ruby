@@ -176,13 +176,13 @@ Open your command line utility and login: `$ heroku login`
 
 The first thing you'll want to do is create a new Rails application by running the `rails new` command.
 
-Lets, call the app, 'hello'
+Let's call the app, 'hello'
 
 ```ruby
 $ rails new hello
 ```
 
-### Create Heorku Application
+### Create Heroku Application
 
 #5
 
@@ -195,7 +195,7 @@ Creating app... done, ⬢ morning-stream-10053
 https://morning-stream-10053.herokuapp.com/ | https://git.heroku.com/morning-stream-10053.git
 ```
 
-This creates a randomly generated application name and adds heroku as one of your remote destinations so you can push your repo to Heroku easily. If you want a custom name for your application, see Heroku's documentation [here](https://devcenter.heroku.com/articles/creating-apps#creating-a-named-app).
+This creates a randomly generated application name and adds heroku as one of your remote destinations so you can push your repo to Heroku easily. If you want a custom name for your application, [see Heroku's documentation](https://devcenter.heroku.com/articles/creating-apps#creating-a-named-app).
 
 ### Replace SQLite with PostgreSQL
 
@@ -231,6 +231,10 @@ Verify that you installed SendGrid by typing the following on the command line:
 
 ```
 $ heroku addons
+
+Owning App 						Add-on 												Plan 							Price		State
+----------            -------------									-----------				-----		-----
+morning-stream-10053  sendgrid-triangular-76131     sendgrid:starter  free    created             
 ```
 
 ### Configure Environment
@@ -338,7 +342,7 @@ The code in `config/initialize` runs when our app starts. We need to configure s
 
 #18
 
-Lets, generate a mailer
+Let's generate a mailer
 
 ```ruby
 $ rails generate mailer HelloMailer
@@ -376,7 +380,7 @@ class HelloMailer < ApplicationMailer
 end
 ```
 
-This is a simple example, but if you would like to to use a SendGrid Template, have a look at this [example](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md)
+This is a simple example, but if you would like to to use a SendGrid Template, [have a look at this example](https://github.com/sendgrid/sendgrid-ruby/blob/master/USE_CASES.md)
 
 ### Testing
 
@@ -431,4 +435,4 @@ end
 $ git push heroku master
 ```
 
-_Note: This example doesn't use a database, but if your application has a database then migrate your production database to Heroku_ - [instructions](https://devcenter.heroku.com/articles/getting-started-with-rails4#migrate-your-database)
+_Note: This example doesn't use a database, but if your application has a database then [migrate your production database to Heroku_](https://devcenter.heroku.com/articles/getting-started-with-rails4#migrate-your-database)
