@@ -232,7 +232,7 @@ Verify that you installed SendGrid by typing the following on the command line:
 ```
 $ heroku addons
 
-Owning App	Add-on	Plan	Price	State 
+Owning App	Add-on	Plan	Price	State
 morning-stream-10053  sendgrid-triangular-76131     sendgrid:starter  free    created             
 ```
 
@@ -434,4 +434,4 @@ end
 $ git push heroku master
 ```
 
-_Note: This example doesn't use a database, but if your application has a database then [migrate your production database to Heroku_](https://devcenter.heroku.com/articles/getting-started-with-rails4#migrate-your-database)
+_Note: This example doesn't use a database, but if your application has a database then [migrate your production database to Heroku]_(https://devcenter.heroku.com/articles/getting-started-with-rails4#migrate-your-database)
