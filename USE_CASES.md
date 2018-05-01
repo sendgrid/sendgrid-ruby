@@ -232,8 +232,7 @@ Verify that you installed SendGrid by typing the following on the command line:
 ```
 $ heroku addons
 
-Owning App 						Add-on 												Plan 							Price		State
-----------            -------------									-----------				-----		-----
+Owning App						Add-on 				Plan 				Price				State
 morning-stream-10053  sendgrid-triangular-76131     sendgrid:starter  free    created             
 ```
 
