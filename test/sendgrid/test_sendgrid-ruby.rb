@@ -2678,12 +2678,12 @@ class TestAPI < MiniTest::Test
     end
 
     def test_docker_exists
-      assert(File.file?('./Docker') || File.file?('./docker/Docker'))
+      assert(File.file?('./Dockerfile') || File.file?('./docker/Dockerfile'))
     end
 
-    def test_docker_compose_exists
-      assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
-    end
+    # def test_docker_compose_exists
+    #   assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
+    # end
 
     def test_env_sample_exists
       assert(File.file?('./.env_sample'))
