@@ -58,7 +58,7 @@ data = JSON.parse('{
   "state": "Colorado",
   "zip": "80202"
 }')
-sender_id = "test_url_param"
+sender_id = 'test_url_param'
 response = sg.client.senders._(sender_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -68,7 +68,7 @@ puts response.headers
 # View a Sender Identity #
 # GET /senders/{sender_id} #
 
-sender_id = "test_url_param"
+sender_id = 'test_url_param'
 response = sg.client.senders._(sender_id).get
 puts response.status_code
 puts response.body
@@ -78,7 +78,7 @@ puts response.headers
 # Delete a Sender Identity #
 # DELETE /senders/{sender_id} #
 
-sender_id = "test_url_param"
+sender_id = 'test_url_param'
 response = sg.client.senders._(sender_id).delete
 puts response.status_code
 puts response.body
@@ -88,7 +88,7 @@ puts response.headers
 # Resend Sender Identity Verification #
 # POST /senders/{sender_id}/resend_verification #
 
-sender_id = "test_url_param"
+sender_id = 'test_url_param'
 response = sg.client.senders._(sender_id).resend_verification.post
 puts response.status_code
 puts response.body

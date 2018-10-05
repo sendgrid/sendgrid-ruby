@@ -4,7 +4,6 @@ require 'json'
 
 module SendGrid
   class Mail
-
     attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
     attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to

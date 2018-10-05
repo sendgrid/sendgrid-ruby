@@ -62,7 +62,7 @@ puts response.headers
 data = JSON.parse('{
   "name": "new_pool_name"
 }')
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).put(request_body: data)
 puts response.status_code
 puts response.body
@@ -72,7 +72,7 @@ puts response.headers
 # Retrieve all IPs in a specified pool. #
 # GET /ips/pools/{pool_name} #
 
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).get
 puts response.status_code
 puts response.body
@@ -82,7 +82,7 @@ puts response.headers
 # Delete an IP pool. #
 # DELETE /ips/pools/{pool_name} #
 
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).delete
 puts response.status_code
 puts response.body
@@ -95,7 +95,7 @@ puts response.headers
 data = JSON.parse('{
   "ip": "0.0.0.0"
 }')
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).ips.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -105,8 +105,8 @@ puts response.headers
 # Remove an IP address from a pool. #
 # DELETE /ips/pools/{pool_name}/ips/{ip} #
 
-pool_name = "test_url_param"
-ip = "test_url_param"
+pool_name = 'test_url_param'
+ip = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).ips._(ip).delete
 puts response.status_code
 puts response.body
@@ -137,7 +137,7 @@ puts response.headers
 # Retrieve warmup status for a specific IP address #
 # GET /ips/warmup/{ip_address} #
 
-ip_address = "test_url_param"
+ip_address = 'test_url_param'
 response = sg.client.ips.warmup._(ip_address).get
 puts response.status_code
 puts response.body
@@ -147,7 +147,7 @@ puts response.headers
 # Remove an IP from warmup #
 # DELETE /ips/warmup/{ip_address} #
 
-ip_address = "test_url_param"
+ip_address = 'test_url_param'
 response = sg.client.ips.warmup._(ip_address).delete
 puts response.status_code
 puts response.body
@@ -157,7 +157,7 @@ puts response.headers
 # Retrieve all IP pools an IP address belongs to #
 # GET /ips/{ip_address} #
 
-ip_address = "test_url_param"
+ip_address = 'test_url_param'
 response = sg.client.ips._(ip_address).get
 puts response.status_code
 puts response.body

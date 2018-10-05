@@ -36,7 +36,7 @@ def kitchen_sink
   personalization.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
   personalization.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
   personalization.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
-  personalization.send_at = 1443636843
+  personalization.send_at = 1_443_636_843
   mail.add_personalization(personalization)
 
   personalization2 = Personalization.new
@@ -53,7 +53,7 @@ def kitchen_sink
   personalization2.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
   personalization2.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
   personalization2.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
-  personalization2.send_at = 1443636843
+  personalization2.send_at = 1_443_636_843
   mail.add_personalization(personalization2)
 
   mail.add_content(Content.new(type: 'text/plain', value: 'some text here'))
@@ -89,7 +89,7 @@ def kitchen_sink
   mail.add_custom_arg(CustomArg.new(key: 'campaign', value: 'welcome'))
   mail.add_custom_arg(CustomArg.new(key: 'weekday', value: 'morning'))
 
-  mail.send_at = 1443636842
+  mail.send_at = 1_443_636_842
 
   # This must be a valid [batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
   # mail.batch_id = 'sendgrid_batch_id'
@@ -132,8 +132,8 @@ def dynamic_template_data_hello_world
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
   personalization.add_dynamic_template_data(
-    "variable" => [
-      { "foo" => "bar" }, { "foo" => "baz" }
+    'variable' => [
+      { 'foo' => 'bar' }, { 'foo' => 'baz' }
     ]
   )
   mail.add_personalization(personalization)

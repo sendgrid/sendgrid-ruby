@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create a batch ID #
@@ -17,7 +15,7 @@ puts response.headers
 # Validate batch ID #
 # GET /mail/batch/{batch_id} #
 
-batch_id = "test_url_param"
+batch_id = 'test_url_param'
 response = sg.client.mail.batch._(batch_id).get
 puts response.status_code
 puts response.body
@@ -166,8 +164,7 @@ data = JSON.parse('{
     }
   }
 }')
-response = sg.client.mail._("send").post(request_body: data)
+response = sg.client.mail._('send').post(request_body: data)
 puts response.status_code
 puts response.body
 puts response.headers
-

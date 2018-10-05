@@ -1,7 +1,5 @@
 require_relative '../../lib/sendgrid-ruby.rb'
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve a list of scopes for which this user has access. #
