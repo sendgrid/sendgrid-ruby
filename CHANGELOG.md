@@ -198,7 +198,7 @@ All notable changes to this project will be documented in this file.
 ## [4.3.2] - 2017-5-1 ##
 ### Fixes
 - #161: Fixed problematic Sinatra dependency
-- Brings back Rails 4 compatibility (and Rack 1.x applications, in general), also removes release candidate version constraint (both broken in #160). Moreover, ensures that tests are run against two major Sinatra versions, which should protect from compatibility issues in future, somewhat. Related issue: #159.
+- Brings back Rails 4 compatibility (and Rack 1.x applications, in general), also removes release candidate version constraint (both broken in #160). Moreover, ensures that tests are run against two major Sinatra versions, which should protect from compatibility issues in the future, somewhat. Related issue: #159.
 - Thanks to [Sebastian Skałacki](https://github.com/skalee) for the pull request!
 
 ## [4.3.1] - 2017-4-12 ##
@@ -220,8 +220,8 @@ All notable changes to this project will be documented in this file.
 
 ## [4.2.0] - 2017-4-10 ##
 ### Added
-- #148: Set api_key to empty string
-- This makes creating an API key for a SendGrid subuser who does not have an API key easier. See #146 for details
+- #148: Set api_key to an empty string
+- This makes creating an API key for a SendGrid sub-user who does not have an API key easier. See #146 for details
 - Thanks to [Adam Beck](https://github.com/Gwash3189) for the pull request!
 
 ## [4.1.1] - 2017-4-6 ##
