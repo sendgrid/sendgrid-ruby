@@ -10,7 +10,7 @@ class TestAPI < MiniTest::Test
         puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
       else
         puts 'Installing Prism'
-        IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
+        IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/2.x/install.sh']) do |io|
           out = io.read
           unless system(out)
             puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory, #{out}"
@@ -21,7 +21,7 @@ class TestAPI < MiniTest::Test
     end
 
     puts 'Activating Prism (~20 seconds)'
-    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
+    @@prism_pid = spawn('prism mock --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
     sleep(15)
     puts 'Prism started'
 

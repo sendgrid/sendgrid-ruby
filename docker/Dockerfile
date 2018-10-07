@@ -9,4 +9,4 @@ WORKDIR /sources/sendgrid-ruby
 RUN bundle install
 
 # Install prism
-RUN curl https://raw.githubusercontent.com/stoplightio/prism/master/install.sh | sh
+RUN curl https://raw.githubusercontent.com/stoplightio/prism/2.x/install.sh | sh
