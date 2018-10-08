@@ -2,24 +2,13 @@ require 'json'
 
 module SendGrid
   class Category
+
+    include SendGrid::Helpers
+
     attr_accessor :name
 
     def initialize(name: nil)
       @name = name
-    end
-
-    def name=(name)
-      @name = name
-    end
-
-    def name
-      @name
-    end
-
-    def to_json(*)
-      {
-        'category' => name
-      }.delete_if { |_, value| value.to_s.strip == '' }
     end
 
     alias :category :name

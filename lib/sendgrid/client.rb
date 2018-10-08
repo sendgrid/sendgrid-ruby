@@ -19,13 +19,12 @@ module SendGrid
       @host             = host ? host : 'https://api.sendgrid.com'
       @version          = version ? version : 'v3'
       @user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
-      @request_headers  = JSON.parse('
-        {
-          "Authorization": "Bearer ' + @api_key + '",
-          "Accept": "application/json",
-          "User-agent": "' + @user_agent + '"
-        }
-      ')
+
+      @request_headers  = {
+        "Authorization" => %q{Bearer #{@api_key}},
+        "Accept" => "application/json",
+        "User-agent" => @user_agent
+      }
 
       @request_headers = @request_headers.merge(request_headers) if request_headers
       @client = Client.new(host: "#{@host}/#{@version}",
