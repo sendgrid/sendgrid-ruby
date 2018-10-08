@@ -1,3 +1,11 @@
+
+AllCops:
+  Exclude:
+    - examples/**/*
+    - gemfiles/**/*
+    - spec/**/*
+    - test/**/*
+    - vendor/**/*
 Style/GuardClause:
   Enabled: false
 ClassLength:

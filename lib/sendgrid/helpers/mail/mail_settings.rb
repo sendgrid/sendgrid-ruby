@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class MailSettings
-
     include SendGrid::Helpers
 
     attr_writer :sandbox_mode, :footer, :bcc, :spam_check, :bypass_list_management

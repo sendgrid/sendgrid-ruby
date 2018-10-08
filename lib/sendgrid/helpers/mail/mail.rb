@@ -4,14 +4,13 @@ require 'json'
 
 module SendGrid
   class Mail
-
     include SendGrid::Helpers
 
     attr_accessor :subject, :template_id, :send_at, :batch_id, :ip_pool_name
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
     attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
 
-    def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
+    def initialize(from_email = nil, subj = nil, to_email = nil, cont = nil)
       @from = nil
       @subject = nil
       @personalizations = []
@@ -30,13 +29,13 @@ module SendGrid
       @tracking_settings = nil
       @reply_to = nil
 
-      if !(from_email.nil? && subj.nil? && to_email.nil? && cont.nil?)
+      unless from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
         self.from = from_email
         self.subject = subj
         personalization = Personalization.new
         personalization.add_to(to_email)
-        self.add_personalization(personalization)
-        self.add_content(cont)
+        add_personalization(personalization)
+        add_content(cont)
       end
     end
 
@@ -90,6 +89,5 @@ module SendGrid
     def reply_to
       @reply_to.to_json
     end
-
   end
 end

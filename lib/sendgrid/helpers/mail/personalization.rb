@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Personalization
-
     include SendGrid::Helpers
 
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
@@ -26,8 +25,8 @@ module SendGrid
       @tos << to.to_json
     end
 
-    def add_cc(cc)
-      @ccs << cc.to_json
+    def add_cc(carbon_copy)
+      @ccs << carbon_copy.to_json
     end
 
     def add_bcc(bcc)
@@ -52,6 +51,5 @@ module SendGrid
     def add_dynamic_template_data(dynamic_template_data)
       @dynamic_template_data.merge!(dynamic_template_data)
     end
-
   end
 end

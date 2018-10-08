@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class SubscriptionTracking
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :text, :html, :substitution_tag
@@ -13,6 +12,5 @@ module SendGrid
       @html = html
       @substitution_tag = substitution_tag
     end
-
   end
 end

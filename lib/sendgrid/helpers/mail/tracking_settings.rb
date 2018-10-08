@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class TrackingSettings
-
     include SendGrid::Helpers
 
     attr_writer :click_tracking, :open_tracking, :subscription_tracking, :ganalytics
@@ -29,6 +28,5 @@ module SendGrid
     def ganalytics
       @ganalytics.to_json
     end
-
   end
 end

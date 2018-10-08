@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Email
-
     include SendGrid::Helpers
 
     attr_accessor :email, :name
@@ -18,8 +17,7 @@ module SendGrid
 
     def split_email(email)
       split = /(?:(?<address>.+)\s)?<?(?<email>.+@[^>]+)>?/.match(email)
-      return split[:email], split[:address]
+      [split[:email], split[:address]]
     end
-
   end
 end

@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Content
-
     include SendGrid::Helpers
 
     attr_accessor :type, :value
@@ -11,6 +10,5 @@ module SendGrid
       @type = type
       @value = value
     end
-
   end
 end

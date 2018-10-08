@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Footer
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :html, :text
@@ -12,6 +11,5 @@ module SendGrid
       @text = text
       @html = html
     end
-
   end
 end

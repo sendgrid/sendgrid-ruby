@@ -4,12 +4,12 @@ require 'ruby_http_client'
 require 'yaml'
 require 'optparse'
 
-OPTS = {}
+options = {}
 opt = OptionParser.new
-opt.on('--host=HOST') {|v| OPTS[:host] = v}
+opt.on('--host=HOST') { |v| options[:host] = v }
 argv = opt.parse!(ARGV)
 config = YAML.load_file(File.dirname(__FILE__) + '/config.yml')
-host = OPTS[:host] || config['host']
+host = options[:host] || config['host']
 client = SendGrid::Client.new(host: host)
 File.open(argv[0]) do |file|
   data = file.read

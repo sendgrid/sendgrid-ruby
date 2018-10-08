@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class ASM
-
     include SendGrid::Helpers
 
     attr_accessor :group_id, :groups_to_display
@@ -11,6 +10,5 @@ module SendGrid
       @group_id = group_id
       @groups_to_display = groups_to_display
     end
-
   end
 end

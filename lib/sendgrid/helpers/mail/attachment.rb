@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Attachment
-
     include SendGrid::Helpers
 
     attr_accessor :content, :content_id, :disposition, :filename, :type
@@ -14,6 +13,5 @@ module SendGrid
       @disposition = nil
       @content_id = nil
     end
-
   end
 end

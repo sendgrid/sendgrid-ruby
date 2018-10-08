@@ -9,7 +9,10 @@ Rake::TestTask.new do |t|
 end
 
 RSpec::Core::RakeTask.new(:spec)
+desc 'rubocop'
+task :rubocop do
+  sh 'rubocop -c .rubocop.yml --format progress'
+end
 
-desc "Run tests"
-task default: [:spec, :test]
-
+desc 'Run tests'
+task default: %i[rubocop spec test]

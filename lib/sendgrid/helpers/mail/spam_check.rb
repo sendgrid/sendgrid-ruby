@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class SpamCheck
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :threshold, :post_to_url
@@ -12,6 +11,5 @@ module SendGrid
       @threshold = threshold
       @post_to_url = post_to_url
     end
-
   end
 end

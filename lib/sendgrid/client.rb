@@ -15,15 +15,15 @@ module SendGrid
     #                  currently only "v3" is supported
     #
     def initialize(api_key: '', host: nil, request_headers: nil, version: nil)
-      @api_key          = api_key
-      @host             = host ? host : 'https://api.sendgrid.com'
-      @version          = version ? version : 'v3'
-      @user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
+      @api_key = api_key
+      @host = host || 'https://api.sendgrid.com'
+      @version = version || 'v3'
+      @user_agent = "sendgrid/#{SendGrid::VERSION};ruby"
 
-      @request_headers  = {
-        "Authorization" => %q{Bearer #{@api_key}},
-        "Accept" => "application/json",
-        "User-agent" => @user_agent
+      @request_headers = {
+        'Authorization' => %(Bearer #{@api_key}),
+        'Accept' => 'application/json',
+        'User-agent' => @user_agent
       }
 
       @request_headers = @request_headers.merge(request_headers) if request_headers

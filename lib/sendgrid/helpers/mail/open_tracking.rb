@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class OpenTracking
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :substitution_tag
@@ -11,6 +10,5 @@ module SendGrid
       @enable = enable
       @substitution_tag = substitution_tag
     end
-
   end
 end

@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class ClickTracking
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :enable_text
@@ -11,6 +10,5 @@ module SendGrid
       @enable = enable
       @enable_text = enable_text
     end
-
   end
 end

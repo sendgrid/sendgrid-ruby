@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class BccSettings
-
     include SendGrid::Helpers
 
     attr_accessor :enable, :email
@@ -11,6 +10,5 @@ module SendGrid
       @enable = enable
       @email = email
     end
-
   end
 end
