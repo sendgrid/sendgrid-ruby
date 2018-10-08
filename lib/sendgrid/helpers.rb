@@ -1,6 +1,6 @@
 module SendGrid
   module Helpers
-    def as_json
+    def to_json
       return nil if nil?
 
       # remove the setters
