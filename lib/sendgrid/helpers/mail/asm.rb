@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class ASM
     def initialize(group_id: nil, groups_to_display: nil)

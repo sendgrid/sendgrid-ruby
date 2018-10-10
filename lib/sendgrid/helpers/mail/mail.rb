@@ -1,7 +1,5 @@
 # Build the request body for the v3/mail/send endpoint
 # Please see the examples/helpers/mail/example.rb for a demonstration of usage
-require 'json'
-
 module SendGrid
   class Mail
 

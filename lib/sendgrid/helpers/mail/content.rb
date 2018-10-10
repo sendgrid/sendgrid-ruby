@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Content
     def initialize(type: nil, value: nil)

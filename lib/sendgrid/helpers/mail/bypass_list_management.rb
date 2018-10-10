@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class BypassListManagement
     def initialize(enable: nil)

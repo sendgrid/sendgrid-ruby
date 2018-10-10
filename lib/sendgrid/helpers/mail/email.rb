@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Email
     def initialize(email: nil, name: nil)
