@@ -22,9 +22,11 @@ class TestAPI < MiniTest::Test
     end
 
     puts 'Test fixture output going into build_logs directory'
-    FileUtils.mkdir_p('build_logs')
+    @@build_logs_dir = 'build_logs'
+    @@prism_log_name = "#{@@build_logs_dir}/prism-" + Time.now.to_i.to_s + ".log"
+    FileUtils.mkdir_p(@@build_logs_dir)
     puts 'Activating Prism (~20 seconds)'
-    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => 'build_logs/prism-' + Time.now.to_i.to_s + '.log')
+    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => @@prism_log_name)
     sleep(15)
     puts 'Prism started'
 
