@@ -8,35 +8,23 @@ module SendGrid
       @post_to_url = post_to_url
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
-    def threshold=(threshold)
-      @threshold = threshold
-    end
+    attr_writer :threshold
 
-    def threshold
-      @threshold
-    end
+    attr_reader :threshold
 
-    def post_to_url=(post_to_url)
-      @post_to_url = post_to_url
-    end
+    attr_writer :post_to_url
 
-    def post_to_url
-      @post_to_url
-    end
+    attr_reader :post_to_url
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'threshold' => self.threshold,
-        'post_to_url' => self.post_to_url
+        'enable' => enable,
+        'threshold' => threshold,
+        'post_to_url' => post_to_url
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

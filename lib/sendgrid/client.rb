@@ -16,8 +16,8 @@ module SendGrid
     #
     def initialize(api_key: '', host: nil, request_headers: nil, version: nil)
       @api_key          = api_key
-      @host             = host ? host : 'https://api.sendgrid.com'
-      @version          = version ? version : 'v3'
+      @host             = host || 'https://api.sendgrid.com'
+      @version          = version || 'v3'
       @user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
       @request_headers  = JSON.parse('
         {

@@ -5,8 +5,7 @@ require "json"
 require 'minitest/autorun'
 
 class TestMail < Minitest::Test
-  def setup
-  end
+  def setup; end
 
   def test_hello_world
     from = Email.new(email: 'test@example.com')
@@ -36,7 +35,7 @@ class TestMail < Minitest::Test
     personalization.add_substitution(Substitution.new(key: "%city%", value: "Denver"))
     personalization.add_custom_arg(CustomArg.new(key: "user_id", value: "343"))
     personalization.add_custom_arg(CustomArg.new(key: "type", value: "marketing"))
-    personalization.send_at = 1443636843
+    personalization.send_at = 1_443_636_843
     mail.add_personalization(personalization)
 
     personalization2 = Personalization.new
@@ -53,7 +52,7 @@ class TestMail < Minitest::Test
     personalization2.add_substitution(Substitution.new(key: "%city%", value: "Denver"))
     personalization2.add_custom_arg(CustomArg.new(key: "user_id", value: "343"))
     personalization2.add_custom_arg(CustomArg.new(key: "type", value: "marketing"))
-    personalization2.send_at = 1443636843
+    personalization2.send_at = 1_443_636_843
     mail.add_personalization(personalization2)
 
     mail.add_content(Content.new(type: "text/plain", value: "some text here"))
@@ -90,11 +89,11 @@ class TestMail < Minitest::Test
     mail.add_custom_arg(CustomArg.new(key: "campaign", value: "welcome"))
     mail.add_custom_arg(CustomArg.new(key: "weekday", value: "morning"))
 
-    mail.send_at = 1443636842
+    mail.send_at = 1_443_636_842
 
     mail.batch_id = "sendgrid_batch_id"
 
-    mail.asm = ASM.new(group_id: 99, groups_to_display: [4,5,6,7,8])
+    mail.asm = ASM.new(group_id: 99, groups_to_display: [4, 5, 6, 7, 8])
 
     mail.ip_pool_name = "23"
 
@@ -154,17 +153,17 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
     expected_json = {
-        "sections"=>{
-                "%section1%"=>"Substitution Text for Section 1"
-            }
+      "sections" => {
+        "%section1%" => "Substitution Text for Section 1"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_section(Section.new(key: '%section2%', value: 'Substitution Text for Section 2'))
     expected_json = {
-        "sections"=>{
-                "%section1%"=>"Substitution Text for Section 1",
-                "%section2%"=>"Substitution Text for Section 2"
-            }
+      "sections" => {
+        "%section1%" => "Substitution Text for Section 1",
+        "%section2%" => "Substitution Text for Section 2"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -173,17 +172,17 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
     expected_json = {
-        "headers"=>{
-                "X-Test3"=>"test3"
-            }
+      "headers" => {
+        "X-Test3" => "test3"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_header(Header.new(key: 'X-Test4', value: 'test4'))
     expected_json = {
-        "headers"=>{
-                "X-Test3"=>"test3",
-                "X-Test4"=>"test4"
-            }
+      "headers" => {
+        "X-Test3" => "test3",
+        "X-Test4" => "test4"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -192,17 +191,17 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_custom_arg(CustomArg.new(key: 'campaign 1', value: 'welcome 1'))
     expected_json = {
-        "custom_args"=>{
-                "campaign 1"=>"welcome 1"
-            }
+      "custom_args" => {
+        "campaign 1" => "welcome 1"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_custom_arg(CustomArg.new(key: 'campaign 2', value: 'welcome 2'))
     expected_json = {
-        "custom_args"=>{
-                "campaign 1"=>"welcome 1",
-                "campaign 2"=>"welcome 2"
-            }
+      "custom_args" => {
+        "campaign 1" => "welcome 1",
+        "campaign 2" => "welcome 2"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -211,13 +210,13 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_custom_arg(CustomArg.new(key: "Integer", value: 1))
     mail.add_custom_arg(CustomArg.new(key: "Array", value: [1, "a", true]))
-    mail.add_custom_arg(CustomArg.new(key: "Hash", value: {"a" => 1, "b" => 2}))
+    mail.add_custom_arg(CustomArg.new(key: "Hash", value: { "a" => 1, "b" => 2 }))
     expected_json = {
-        "custom_args"=>{
-                "Integer"=>"1",
-                "Array"=>"[1, \"a\", true]",
-                "Hash"=>"{\"a\"=>1, \"b\"=>2}",
-            }
+      "custom_args" => {
+        "Integer" => "1",
+        "Array" => "[1, \"a\", true]",
+        "Hash" => "{\"a\"=>1, \"b\"=>2}"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -241,7 +240,7 @@ class TestMail < Minitest::Test
     category_2 = Category.new(name: 'bar')
     mail.add_category(category_1)
     mail.add_category(category_2)
-    assert_equal(['foo', 'bar'], mail.categories)
+    assert_equal(%w[foo bar], mail.categories)
   end
 
   def test_add_invalid_category

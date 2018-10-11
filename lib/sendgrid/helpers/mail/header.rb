@@ -4,20 +4,16 @@ module SendGrid
   class Header
     def initialize(key: nil, value: nil)
       @header = {}
-      (key.nil? || value.nil?) ? @header = nil : @header[key] = value
+      key.nil? || value.nil? ? @header = nil : @header[key] = value
     end
 
-    def header=(header)
-      @header = header
-    end
+    attr_writer :header
 
-    def header
-      @header
-    end
+    attr_reader :header
 
     def to_json(*)
       {
-        'header' => self.header
+        'header' => header
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

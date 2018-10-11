@@ -4,7 +4,7 @@ describe SendGrid::UserSettingsDto do
   let(:sendgrid_client) { SendGrid::API.new(api_key: 'fake_key').client }
   let(:user_settings) { SendGrid::UserSettingsDto }
   let(:setting_name) { 'enforced_tls' }
-  let(:setting_params) { {require_tls: rand(1..100).even?} }
+  let(:setting_params) { { require_tls: rand(1..100).even? } }
 
   it { should respond_to :enforced_tls }
 

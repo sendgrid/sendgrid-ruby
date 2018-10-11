@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create a transactional template. #
@@ -20,7 +18,7 @@ puts response.headers
 # Retrieve all transactional templates. #
 # GET /templates #
 
-response = sg.client.templates.get()
+response = sg.client.templates.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -43,7 +41,7 @@ puts response.headers
 # GET /templates/{template_id} #
 
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).get()
+response = sg.client.templates._(template_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -53,7 +51,7 @@ puts response.headers
 # DELETE /templates/{template_id} #
 
 template_id = "test_url_param"
-response = sg.client.templates._(template_id).delete()
+response = sg.client.templates._(template_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -63,11 +61,11 @@ puts response.headers
 # POST /templates/{template_id}/versions #
 
 data = JSON.parse('{
-  "active": 1, 
-  "html_content": "<%body%>", 
-  "name": "example_version_name", 
-  "plain_content": "<%body%>", 
-  "subject": "<%subject%>", 
+  "active": 1,
+  "html_content": "<%body%>",
+  "name": "example_version_name",
+  "plain_content": "<%body%>",
+  "subject": "<%subject%>",
   "template_id": "ddb96bbc-9b92-425e-8979-99464621b543"
 }')
 template_id = "test_url_param"
@@ -81,10 +79,10 @@ puts response.headers
 # PATCH /templates/{template_id}/versions/{version_id} #
 
 data = JSON.parse('{
-  "active": 1, 
-  "html_content": "<%body%>", 
-  "name": "updated_example_name", 
-  "plain_content": "<%body%>", 
+  "active": 1,
+  "html_content": "<%body%>",
+  "name": "updated_example_name",
+  "plain_content": "<%body%>",
   "subject": "<%subject%>"
 }')
 template_id = "test_url_param"
@@ -100,7 +98,7 @@ puts response.headers
 
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).get()
+response = sg.client.templates._(template_id).versions._(version_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -111,7 +109,7 @@ puts response.headers
 
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).delete()
+response = sg.client.templates._(template_id).versions._(version_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -122,8 +120,7 @@ puts response.headers
 
 template_id = "test_url_param"
 version_id = "test_url_param"
-response = sg.client.templates._(template_id).versions._(version_id).activate.post()
+response = sg.client.templates._(template_id).versions._(version_id).activate.post
 puts response.status_code
 puts response.body
 puts response.headers
-

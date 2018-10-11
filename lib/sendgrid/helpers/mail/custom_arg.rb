@@ -4,20 +4,16 @@ module SendGrid
   class CustomArg
     def initialize(key: nil, value: nil)
       @custom_arg = {}
-      (key.nil? || value.nil?) ? @custom_arg = nil : @custom_arg[key.to_s] = value.to_s
+      key.nil? || value.nil? ? @custom_arg = nil : @custom_arg[key.to_s] = value.to_s
     end
 
-    def custom_arg=(custom_arg)
-      @custom_arg = custom_arg
-    end
+    attr_writer :custom_arg
 
-    def custom_arg
-      @custom_arg
-    end
+    attr_reader :custom_arg
 
     def to_json(*)
       {
-        'custom_arg' => self.custom_arg
+        'custom_arg' => custom_arg
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

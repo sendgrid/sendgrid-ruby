@@ -1,19 +1,17 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create API keys #
 # POST /api_keys #
 
 data = JSON.parse('{
-  "name": "My API Key", 
-  "sample": "data", 
+  "name": "My API Key",
+  "sample": "data",
   "scopes": [
-    "mail.send", 
-    "alerts.create", 
+    "mail.send",
+    "alerts.create",
     "alerts.read"
   ]
 }')
@@ -37,9 +35,9 @@ puts response.headers
 # PUT /api_keys/{api_key_id} #
 
 data = JSON.parse('{
-  "name": "A New Hope", 
+  "name": "A New Hope",
   "scopes": [
-    "user.profile.read", 
+    "user.profile.read",
     "user.profile.update"
   ]
 }')
@@ -67,7 +65,7 @@ puts response.headers
 # GET /api_keys/{api_key_id} #
 
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).get()
+response = sg.client.api_keys._(api_key_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -77,8 +75,7 @@ puts response.headers
 # DELETE /api_keys/{api_key_id} #
 
 api_key_id = "test_url_param"
-response = sg.client.api_keys._(api_key_id).delete()
+response = sg.client.api_keys._(api_key_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
-

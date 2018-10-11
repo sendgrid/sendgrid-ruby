@@ -7,26 +7,18 @@ module SendGrid
       @value = value
     end
 
-    def type=(type)
-      @type = type
-    end
+    attr_writer :type
 
-    def type
-      @type
-    end
+    attr_reader :type
 
-    def value=(value)
-      @value = value
-    end
+    attr_writer :value
 
-    def value
-      @value
-    end
+    attr_reader :value
 
     def to_json(*)
       {
-        'type' => self.type,
-        'value' => self.value
+        'type' => type,
+        'value' => value
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

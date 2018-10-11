@@ -10,53 +10,33 @@ module SendGrid
       @content_id = nil
     end
 
-    def content=(content)
-      @content = content
-    end
+    attr_writer :content
 
-    def content
-      @content
-    end
+    attr_reader :content
 
-    def type=(type)
-      @type = type
-    end
+    attr_writer :type
 
-    def type
-      @type
-    end
+    attr_reader :type
 
-    def filename=(filename)
-      @filename = filename
-    end
+    attr_writer :filename
 
-    def filename
-      @filename
-    end
+    attr_reader :filename
 
-    def disposition=(disposition)
-      @disposition = disposition
-    end
+    attr_writer :disposition
 
-    def disposition
-      @disposition
-    end
+    attr_reader :disposition
 
-    def content_id=(content_id)
-      @content_id = content_id
-    end
+    attr_writer :content_id
 
-    def content_id
-      @content_id
-    end
+    attr_reader :content_id
 
     def to_json(*)
       {
-        'content' => self.content,
-        'type' => self.type,
-        'filename' => self.filename,
-        'disposition' => self.disposition,
-        'content_id' => self.content_id
+        'content' => content,
+        'type' => type,
+        'filename' => filename,
+        'disposition' => disposition,
+        'content_id' => content_id
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

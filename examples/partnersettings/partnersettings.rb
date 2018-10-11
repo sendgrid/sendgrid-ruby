@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Returns a list of all partner settings. #
@@ -19,8 +17,8 @@ puts response.headers
 # PATCH /partner_settings/new_relic #
 
 data = JSON.parse('{
-  "enable_subuser_statistics": true, 
-  "enabled": true, 
+  "enable_subuser_statistics": true,
+  "enabled": true,
   "license_key": ""
 }')
 response = sg.client.partner_settings.new_relic.patch(request_body: data)
@@ -32,8 +30,7 @@ puts response.headers
 # Returns all New Relic partner settings. #
 # GET /partner_settings/new_relic #
 
-response = sg.client.partner_settings.new_relic.get()
+response = sg.client.partner_settings.new_relic.get
 puts response.status_code
 puts response.body
 puts response.headers
-

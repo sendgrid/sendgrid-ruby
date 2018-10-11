@@ -7,26 +7,18 @@ module SendGrid
       @substitution_tag = substitution_tag
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
-    def substitution_tag=(substitution_tag)
-      @substitution_tag = substitution_tag
-    end
+    attr_writer :substitution_tag
 
-    def substitution_tag
-      @substitution_tag
-    end
+    attr_reader :substitution_tag
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'substitution_tag' => self.substitution_tag
+        'enable' => enable,
+        'substitution_tag' => substitution_tag
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create a Campaign #
@@ -11,21 +9,21 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 data = JSON.parse('{
   "categories": [
     "spring line"
-  ], 
-  "custom_unsubscribe_url": "", 
-  "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>", 
-  "ip_pool": "marketing", 
+  ],
+  "custom_unsubscribe_url": "",
+  "html_content": "<html><head><title></title></head><body><p>Check out our spring line!</p></body></html>",
+  "ip_pool": "marketing",
   "list_ids": [
-    110, 
+    110,
     124
-  ], 
-  "plain_content": "Check out our spring line!", 
+  ],
+  "plain_content": "Check out our spring line!",
   "segment_ids": [
     110
-  ], 
-  "sender_id": 124451, 
-  "subject": "New Products for Spring!", 
-  "suppression_group_id": 42, 
+  ],
+  "sender_id": 124451,
+  "subject": "New Products for Spring!",
+  "suppression_group_id": 42,
   "title": "March Newsletter"
 }')
 response = sg.client.campaigns.post(request_body: data)
@@ -50,10 +48,10 @@ puts response.headers
 data = JSON.parse('{
   "categories": [
     "summer line"
-  ], 
-  "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>", 
-  "plain_content": "Check out our summer line!", 
-  "subject": "New Products for Summer!", 
+  ],
+  "html_content": "<html><head><title></title></head><body><p>Check out our summer line!</p></body></html>",
+  "plain_content": "Check out our summer line!",
+  "subject": "New Products for Summer!",
   "title": "May Newsletter"
 }')
 campaign_id = "test_url_param"
@@ -67,7 +65,7 @@ puts response.headers
 # GET /campaigns/{campaign_id} #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).get()
+response = sg.client.campaigns._(campaign_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -77,7 +75,7 @@ puts response.headers
 # DELETE /campaigns/{campaign_id} #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).delete()
+response = sg.client.campaigns._(campaign_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -113,7 +111,7 @@ puts response.headers
 # GET /campaigns/{campaign_id}/schedules #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.get()
+response = sg.client.campaigns._(campaign_id).schedules.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -123,7 +121,7 @@ puts response.headers
 # DELETE /campaigns/{campaign_id}/schedules #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.delete()
+response = sg.client.campaigns._(campaign_id).schedules.delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -133,7 +131,7 @@ puts response.headers
 # POST /campaigns/{campaign_id}/schedules/now #
 
 campaign_id = "test_url_param"
-response = sg.client.campaigns._(campaign_id).schedules.now.post()
+response = sg.client.campaigns._(campaign_id).schedules.now.post
 puts response.status_code
 puts response.body
 puts response.headers
@@ -150,4 +148,3 @@ response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body: 
 puts response.status_code
 puts response.body
 puts response.headers
-

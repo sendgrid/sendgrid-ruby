@@ -14,7 +14,7 @@ class Main < Sinatra::Base
   end
 
   post settings.config['endpoint'] do
-    filtered = params.select {|k, v| settings.config['keys'].include?(k)}
+    filtered = params.select { |k, _v| settings.config['keys'].include?(k) }
     logger.info JSON.pretty_generate(filtered)
   end
 end

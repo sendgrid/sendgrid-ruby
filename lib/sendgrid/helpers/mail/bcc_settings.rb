@@ -7,26 +7,18 @@ module SendGrid
       @email = email
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
-    def email=(email)
-      @email = email
-    end
+    attr_writer :email
 
-    def email
-      @email
-    end
+    attr_reader :email
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'email' => self.email
+        'enable' => enable,
+        'email' => email
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

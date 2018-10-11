@@ -12,62 +12,38 @@ module SendGrid
       @utm_name = utm_name
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
-    def utm_source=(utm_source)
-      @utm_source = utm_source
-    end
+    attr_writer :utm_source
 
-    def utm_source
-      @utm_source
-    end
+    attr_reader :utm_source
 
-    def utm_medium=(utm_medium)
-      @utm_medium = utm_medium
-    end
+    attr_writer :utm_medium
 
-    def utm_medium
-      @utm_medium
-    end
+    attr_reader :utm_medium
 
-    def utm_term=(utm_term)
-      @utm_term = utm_term
-    end
+    attr_writer :utm_term
 
-    def utm_term
-      @utm_term
-    end
+    attr_reader :utm_term
 
-    def utm_content=(utm_content)
-      @utm_content = utm_content
-    end
+    attr_writer :utm_content
 
-    def utm_content
-      @utm_content
-    end
+    attr_reader :utm_content
 
-    def utm_campaign=(utm_campaign)
-      @utm_campaign = utm_campaign
-    end
+    attr_writer :utm_campaign
 
-    def utm_campaign
-      @utm_campaign
-    end
+    attr_reader :utm_campaign
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'utm_source' => self.utm_source,
-        'utm_medium' => self.utm_medium,
-        'utm_term' => self.utm_term,
-        'utm_content' => self.utm_content,
-        'utm_campaign' => self.utm_campaign
+        'enable' => enable,
+        'utm_source' => utm_source,
+        'utm_medium' => utm_medium,
+        'utm_term' => utm_term,
+        'utm_content' => utm_content,
+        'utm_campaign' => utm_campaign
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

@@ -9,33 +9,25 @@ module SendGrid
       @ganalytics = nil
     end
 
-    def click_tracking=(click_tracking)
-      @click_tracking = click_tracking
-    end
+    attr_writer :click_tracking
 
     def click_tracking
       @click_tracking.nil? ? nil : @click_tracking.to_json
     end
 
-    def open_tracking=(open_tracking)
-      @open_tracking = open_tracking
-    end
+    attr_writer :open_tracking
 
     def open_tracking
       @open_tracking.nil? ? nil : @open_tracking.to_json
     end
 
-    def subscription_tracking=(subscription_tracking)
-      @subscription_tracking = subscription_tracking
-    end
+    attr_writer :subscription_tracking
 
     def subscription_tracking
       @subscription_tracking.nil? ? nil : @subscription_tracking.to_json
     end
 
-    def ganalytics=(ganalytics)
-      @ganalytics = ganalytics
-    end
+    attr_writer :ganalytics
 
     def ganalytics
       @ganalytics.nil? ? nil : @ganalytics.to_json
@@ -43,10 +35,10 @@ module SendGrid
 
     def to_json(*)
       {
-        'click_tracking' => self.click_tracking,
-        'open_tracking' => self.open_tracking,
-        'subscription_tracking' => self.subscription_tracking,
-        'ganalytics' => self.ganalytics
+        'click_tracking' => click_tracking,
+        'open_tracking' => open_tracking,
+        'subscription_tracking' => subscription_tracking,
+        'ganalytics' => ganalytics
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

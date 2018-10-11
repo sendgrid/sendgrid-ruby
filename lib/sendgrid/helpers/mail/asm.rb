@@ -7,26 +7,18 @@ module SendGrid
       @groups_to_display = groups_to_display
     end
 
-    def group_id=(group_id)
-      @group_id = group_id
-    end
+    attr_writer :group_id
 
-    def group_id
-      @group_id
-    end
+    attr_reader :group_id
 
-    def groups_to_display=(groups_to_display)
-      @groups_to_display = groups_to_display
-    end
+    attr_writer :groups_to_display
 
-    def groups_to_display
-      @groups_to_display
-    end
+    attr_reader :groups_to_display
 
     def to_json(*)
       {
-        'group_id' => self.group_id,
-        'groups_to_display' => self.groups_to_display
+        'group_id' => group_id,
+        'groups_to_display' => groups_to_display
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

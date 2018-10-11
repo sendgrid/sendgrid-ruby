@@ -11,31 +11,23 @@ module SendGrid
       end
     end
 
-    def email=(email)
-      @email = email
-    end
+    attr_writer :email
 
-    def email
-      @email
-    end
+    attr_reader :email
 
-    def name=(name)
-      @name = name
-    end
+    attr_writer :name
 
-    def name
-      @name
-    end
+    attr_reader :name
 
     def split_email(email)
       split = /(?:(?<address>.+)\s)?<?(?<email>.+@[^>]+)>?/.match(email)
-      return split[:email], split[:address]
+      [split[:email], split[:address]]
     end
 
     def to_json(*)
       {
-        'email' => self.email,
-        'name' => self.name
+        'email' => email,
+        'name' => name
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

@@ -1,9 +1,9 @@
 module SendGrid
   class TrackingSettingsDto
     attr_reader :open, :click, :google_analytics, :subscription
-    alias :click_tracking :click
-    alias :open_tracking :open
-    alias :subscription_tracking :subscription
+    alias click_tracking click
+    alias open_tracking open
+    alias subscription_tracking subscription
 
     def self.fetch(sendgrid_client:, name:, query_params:)
       name = scrub_alias_names(name.to_s)

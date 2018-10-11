@@ -1,20 +1,18 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create Subuser #
 # POST /subusers #
 
 data = JSON.parse('{
-  "email": "John@example.com", 
+  "email": "John@example.com",
   "ips": [
-    "1.1.1.1", 
+    "1.1.1.1",
     "2.2.2.2"
-  ], 
-  "password": "johns_password", 
+  ],
+  "password": "johns_password",
   "username": "John@example.com"
 }')
 response = sg.client.subusers.post(request_body: data)
@@ -90,7 +88,7 @@ puts response.headers
 # DELETE /subusers/{subuser_name} #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete()
+response = sg.client.subusers._(subuser_name).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -113,7 +111,7 @@ puts response.headers
 # PUT /subusers/{subuser_name}/monitor #
 
 data = JSON.parse('{
-  "email": "example@example.com", 
+  "email": "example@example.com",
   "frequency": 500
 }')
 subuser_name = "test_url_param"
@@ -127,7 +125,7 @@ puts response.headers
 # POST /subusers/{subuser_name}/monitor #
 
 data = JSON.parse('{
-  "email": "example@example.com", 
+  "email": "example@example.com",
   "frequency": 50000
 }')
 subuser_name = "test_url_param"
@@ -141,7 +139,7 @@ puts response.headers
 # GET /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.get()
+response = sg.client.subusers._(subuser_name).monitor.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -151,7 +149,7 @@ puts response.headers
 # DELETE /subusers/{subuser_name}/monitor #
 
 subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete()
+response = sg.client.subusers._(subuser_name).monitor.delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -166,4 +164,3 @@ response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params: pa
 puts response.status_code
 puts response.body
 puts response.headers
-

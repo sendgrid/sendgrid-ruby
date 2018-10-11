@@ -6,17 +6,13 @@ module SendGrid
       @enable = enable
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
     def to_json(*)
       {
-        'enable' => self.enable
+        'enable' => enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -26,17 +22,13 @@ module SendGrid
       @enable = enable
     end
 
-    def enable=(enable)
-      @enable = enable
-    end
+    attr_writer :enable
 
-    def enable
-      @enable
-    end
+    attr_reader :enable
 
     def to_json(*)
       {
-        'enable' => self.enable
+        'enable' => enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
