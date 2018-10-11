@@ -1,6 +1,6 @@
 module SendGrid
   class Ganalytics
-    attr_accessor :enable, :utm_source, :utm_medium, :utm_term, :utm_content, :utm_name
+    attr_accessor :enable, :utm_source, :utm_medium, :utm_term, :utm_content, :utm_name, :utm_campaign
 
     def initialize(enable: nil, utm_source: nil, utm_medium: nil, utm_term: nil, utm_content: nil, utm_campaign: nil, utm_name: nil)
       @enable = enable
