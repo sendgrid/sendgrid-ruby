@@ -146,25 +146,25 @@ class TestPersonalization < Minitest::Test
   def test_dynamic_template_data
     personalization = Personalization.new()
     personalization.dynamic_template_data = {
-        name: "Example User",
-        city: "Denver"
+        "name" => "Example User",
+        "city" => "Denver"
     }
     expected_json = {
-        dynamic_template_data: {
-            name: "Example User",
-            city: "Denver"
+        "dynamic_template_data" => {
+            "name" => "Example User",
+            "city" => "Denver"
         }
     }
     assert_equal personalization.to_json, expected_json
 
     personalization.dynamic_template_data = personalization
                                             .dynamic_template_data
-                                            .merge('date_of_birth', '01.06.1977')
+                                            .merge('date_of_birth' => '01.06.1977')
     expected_json = {
-        dynamic_template_data: {
-            name: "Example User",
-            city: "Denver",
-            date_of_birth: "01.06.197"
+        "dynamic_template_data" => {
+            "name" => "Example User",
+            "city" => "Denver",
+            "date_of_birth" => "01.06.1977"
         }
     }
 
