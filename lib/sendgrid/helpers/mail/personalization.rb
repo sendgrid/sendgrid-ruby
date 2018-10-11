@@ -2,9 +2,8 @@ require 'json'
 
 module SendGrid
   class Personalization
-
-    attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
-      :dynamic_template_data
+    attr_accessor :dynamic_template_data
+    attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args
 
     def initialize
       @tos = []
@@ -51,10 +50,6 @@ module SendGrid
     def add_custom_arg(custom_arg)
       custom_arg = custom_arg.to_json
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
-    end
-
-    def add_dynamic_template_data(dynamic_template_data)
-      @dynamic_template_data.merge!(dynamic_template_data)
     end
 
     def send_at=(send_at)

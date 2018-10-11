@@ -133,15 +133,44 @@ def dynamic_template_data_hello_world
   mail.subject = subject
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
-  personalization.add_dynamic_template_data({
-    "variable" => [
-      {"foo" => "bar"}, {"foo" => "baz"}
+  personalization.dynamic_template_data = {
+    variable: [
+      { foo: 'Bar' },
+      { foo: 'Baz' }
     ]
-  })
+  }
   mail.add_personalization(personalization)
+end
+
+def multiple_personalized_emails_using_one_transactional_template
+  users = [
+    { name: 'John', email: 'john@him.me', voucher_code: 'ioaudiakn' },
+    { name: 'James', email: 'john@him.me', voucher_code: 'qopieoahda' },
+    { name: 'Margaret', email: 'john@him.me', voucher_code: 'adaqwertehd' }
+  ]
+
+  mail = Mail.new
+  mail.template_id = 'YOUR_TEMPLATE_ID_HERE'
+  mail.from = Email.new(email: 'test@example.com')
+  mail.subject = 'SendGrid Dynamic Transactional Templates'
+  users.each do |user|
+    personalization = Personalization.new
+    personalization.add_to(Email.new(email: user[:email]))
+    personalization.dynamic_template_data = {
+      voucher_code: user[:voucher_code],
+      name: user[:name]
+    }
+    mail.add_personalization(personalization)
+  end
+
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  puts response.status_code
+  puts response.body
+  puts response.headers
 end
 
 hello_world
 kitchen_sink
 dynamic_template_data_hello_world
-
+multiple_personalized_emails_using_one_transactional_template
