@@ -15,8 +15,6 @@ module SendGrid
       sendgrid_client.tracking_settings.public_send(name).patch(request_body: request_body)
     end
 
-    private
-
     def self.scrub_alias_names(name)
       name.gsub(/_tracking/, '')
     end

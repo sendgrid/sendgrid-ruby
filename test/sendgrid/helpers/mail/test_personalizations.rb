@@ -7,14 +7,6 @@ class TestPersonalization < Minitest::Test
   def test_add_to
     @personalization = Personalization.new
     @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
-    expected_json = {
-      "to" => [
-        {
-          "email" => "test1@example.com",
-          "name" => "Example User"
-        }
-      ]
-    }
     @personalization.add_to(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
       "to" => [
@@ -34,14 +26,6 @@ class TestPersonalization < Minitest::Test
   def test_add_cc
     @personalization = Personalization.new
     @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))
-    expected_json = {
-      "cc" => [
-        {
-          "email" => "test1@example.com",
-          "name" => "Example User"
-        }
-      ]
-    }
     @personalization.add_cc(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
       "cc" => [
@@ -61,14 +45,6 @@ class TestPersonalization < Minitest::Test
   def test_add_bcc
     @personalization = Personalization.new
     @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Example User'))
-    expected_json = {
-      "bcc" => [
-        {
-          "email" => "test1@example.com",
-          "name" => "Example User"
-        }
-      ]
-    }
     @personalization.add_bcc(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
       "bcc" => [

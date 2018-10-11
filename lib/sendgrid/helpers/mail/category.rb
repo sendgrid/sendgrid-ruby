@@ -8,10 +8,6 @@ module SendGrid
       @name = name
     end
 
-    attr_writer :name
-
-    attr_reader :name
-
     def to_json(*)
       {
         'category' => name

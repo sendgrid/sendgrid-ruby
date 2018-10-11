@@ -236,10 +236,10 @@ class TestMail < Minitest::Test
 
   def test_add_more_than_1_valid_category
     mail = Mail.new
-    category_1 = Category.new(name: 'foo')
-    category_2 = Category.new(name: 'bar')
-    mail.add_category(category_1)
-    mail.add_category(category_2)
+    category1 = Category.new(name: 'foo')
+    category2 = Category.new(name: 'bar')
+    mail.add_category(category1)
+    mail.add_category(category2)
     assert_equal(%w[foo bar], mail.categories)
   end
 
