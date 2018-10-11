@@ -4,6 +4,8 @@ module SendGrid
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
       :dynamic_template_data
 
+    attr_accessor :send_at, :subject
+
     def initialize
       @tos = []
       @ccs = []
@@ -28,14 +30,6 @@ module SendGrid
       @bccs << bcc.to_json
     end
 
-    def subject=(subject)
-      @subject = subject
-    end
-
-    def subject
-      @subject
-    end
-
     def add_header(header)
       header = header.to_json
       @headers = @headers.merge(header['header'])
@@ -53,14 +47,6 @@ module SendGrid
 
     def add_dynamic_template_data(dynamic_template_data)
       @dynamic_template_data.merge!(dynamic_template_data)
-    end
-
-    def send_at=(send_at)
-      @send_at = send_at
-    end
-
-    def send_at
-      @send_at
     end
 
     def to_json(*)

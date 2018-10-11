@@ -5,6 +5,7 @@ module SendGrid
 
     attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
+    attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
@@ -33,10 +34,6 @@ module SendGrid
         self.add_personalization(personalization)
         self.add_content(cont)
       end
-    end
-
-    def from=(from)
-      @from = from
     end
 
     def from
@@ -81,16 +78,8 @@ module SendGrid
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
-    def asm=(asm)
-      @asm = asm
-    end
-
     def asm
       @asm.nil? ? nil : @asm.to_json
-    end
-
-    def mail_settings=(mail_settings)
-      @mail_settings = mail_settings
     end
 
     def mail_settings
@@ -103,10 +92,6 @@ module SendGrid
 
     def tracking_settings
       @tracking_settings.nil? ? nil : @tracking_settings.to_json
-    end
-
-    def reply_to=(reply_to)
-      @reply_to = reply_to
     end
 
     def reply_to

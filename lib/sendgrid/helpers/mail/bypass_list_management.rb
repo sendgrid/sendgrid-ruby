@@ -1,15 +1,9 @@
 module SendGrid
   class BypassListManagement
+    attr_accessor :enable
+
     def initialize(enable: nil)
       @enable = enable
-    end
-
-    def enable=(enable)
-      @enable = enable
-    end
-
-    def enable
-      @enable
     end
 
     def to_json(*)
@@ -20,16 +14,10 @@ module SendGrid
   end
 
   class SandBoxMode
+    attr_accessor :enable
+
     def initialize(enable: nil)
       @enable = enable
-    end
-
-    def enable=(enable)
-      @enable = enable
-    end
-
-    def enable
-      @enable
     end
 
     def to_json(*)

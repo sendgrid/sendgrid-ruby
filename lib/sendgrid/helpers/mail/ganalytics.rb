@@ -1,5 +1,7 @@
 module SendGrid
   class Ganalytics
+    attr_accessor :enable, :utm_source, :utm_medium, :utm_term, :utm_content, :utm_name
+
     def initialize(enable: nil, utm_source: nil, utm_medium: nil, utm_term: nil, utm_content: nil, utm_campaign: nil, utm_name: nil)
       @enable = enable
       @utm_source = utm_source
@@ -8,54 +10,6 @@ module SendGrid
       @utm_content = utm_content
       @utm_campaign = utm_campaign
       @utm_name = utm_name
-    end
-
-    def enable=(enable)
-      @enable = enable
-    end
-
-    def enable
-      @enable
-    end
-
-    def utm_source=(utm_source)
-      @utm_source = utm_source
-    end
-
-    def utm_source
-      @utm_source
-    end
-
-    def utm_medium=(utm_medium)
-      @utm_medium = utm_medium
-    end
-
-    def utm_medium
-      @utm_medium
-    end
-
-    def utm_term=(utm_term)
-      @utm_term = utm_term
-    end
-
-    def utm_term
-      @utm_term
-    end
-
-    def utm_content=(utm_content)
-      @utm_content = utm_content
-    end
-
-    def utm_content
-      @utm_content
-    end
-
-    def utm_campaign=(utm_campaign)
-      @utm_campaign = utm_campaign
-    end
-
-    def utm_campaign
-      @utm_campaign
     end
 
     def to_json(*)
