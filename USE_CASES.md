@@ -50,6 +50,7 @@ mail.from = Email.new(email: 'test@example.com')
 personalization = Personalization.new
 personalization.add_to(Email.new(email: 'test@example.com'))
 personalization.add_dynamic_template_data({
+    "subject" => "Testing Templates",
     "name" => "Example User",
     "city" => "Denver"
   })
@@ -83,7 +84,8 @@ data = JSON.parse('{
         }
       ],
       "dynamic_template_data": {
-        "name": "Example User",
+        "subject": "Testing Templates",
+	"name": "Example User",
         "city": "Denver"
       }
     }
