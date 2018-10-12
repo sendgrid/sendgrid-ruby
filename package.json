@@ -1,0 +1,13 @@
+{
+  "author": "SendGrid <dx@sendgrid.com> (SendGrid.com)",
+  "contributors": [
+    "Elmer Thomas <elmer.thomas@sendgrid.com>"
+  ],
+  "devDependencies": {
+    "changelog-parser": "^2.5.0",
+    "gitexec": "^1.0.0",
+    "node-fetch": "^2.2.0",
+    "parse-github-url": "^1.0.2"
+  },
+  "license": "MIT"
+}

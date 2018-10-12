@@ -1,0 +1,267 @@
+#!/usr/bin/env node
+
+const fs        = require('fs');
+const git       = require('gitexec');
+const path      = require('path');
+const fetch     = require('node-fetch');
+const child     = require('child_process'); 
+const parser    = require('changelog-parser');
+const githubURL = require('parse-github-url');
+
+const ROOT_URL       = 'https://api.github.com/graphql';
+const GITHUB_URL     = 'https://github.com';
+const ROOT_PATH      = path.dirname(__dirname);
+const MAKER_PATH     = path.join(ROOT_PATH, 'node_modules', 'changelog-maker', 'changelog-maker.js');
+const CHANGELOG_PATH = path.join(ROOT_PATH, 'CHANGELOG.md');
+
+const ISSUE_REGEX = /#[1-9]\d*\b/g;
+const MERGE_WORDS = 'Merge pull request';
+
+const MAX_NUM       = 50;
+const FIX_WORDS     = ['fix', 'resolve'];
+const CHANGED_WORDS = ['change'];
+
+/**
+ * Child Process helper */
+function getGit(cmd)
+{
+
+  return new Promise((res, rej) => {
+    const data = [];
+    const ctx = git.execCollect(__dirname, cmd, (err, result) => {
+      if (err) return rej(err);
+      res(result);
+    });
+  }); 
+}
+
+function getRemoteOrigin()
+{
+  return getGit('git remote get-url upstream 2> /dev/null || git remote get-url origin').then(res => githubURL(res));
+}
+
+function getLastTagRef()
+{
+  return getGit('git rev-list -1 --tags=*.*.*').then(res => res.trim().replace('\n', ''));
+}
+
+function getMergesSinceRef(ref)
+{
+  return getGit(`git log ${ref}..master`).then((res) => {
+    const lines = res.split('\n');
+    return lines.filter((res) => {
+      return res.indexOf(MERGE_WORDS) !== -1;
+    }).map(item => item.trim());
+  });
+}
+
+
+function fetchPR (owner, name, number)
+{
+  const query = `
+  query {
+    repository (owner: "${owner}", name: "${name}") 
+    {
+      pullRequest(number: ${number}) {
+        title
+        number
+        mergedAt
+        bodyText
+        url
+        additions
+        deletions
+        author {
+          login
+          url
+          ... on User {
+            name
+          }
+        }
+      } 
+    }
+  }
+  `;
+
+  return fetch(ROOT_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `bearer ${process.env.GITHUB_TOKEN}`
+    },
+    body: JSON.stringify({ query })
+  }).then((res) => res.json());
+}
+
+async function fetchPRs (owner, name, since)
+{
+  const entries = await getMergesSinceRef(since).then(res => {
+    return res.map(item => {
+      const issue_str = item.match(ISSUE_REGEX)[0];
+      return issue_str.substr(1);
+    });
+  });
+
+  const requests = [];
+  for (let i = 0; i < entries.length; i++)
+    requests.push(fetchPR (owner, name, entries[i]));
+  return Promise.all(requests);
+}
+
+/**
+ * Changelog Helpers */
+function checkAgainstWords (title, words)
+{
+  title = title.toLowerCase();
+  for (let i = 0; i < words.length; i++)
+    if (title.indexOf(words[0]) !== -1) return true;
+  return false; 
+}
+function groupChangelogItems (items)
+{
+  const added   = [];
+  const fixed   = [];
+  const changed = [];
+
+  for (let i = 0; i < items.length; i++)
+  {
+    const item  = items[i];
+    const title = item.title;
+    
+    if (checkAgainstWords(title, FIX_WORDS))
+    {
+      fixed.push(item);
+      continue;
+    }
+
+    if (checkAgainstWords(title, CHANGED_WORDS))
+    {
+      changed.push(item);
+      continue;
+    }
+
+    added.push(item);
+  }
+
+  return { added, fixed, changed };
+}
+
+
+function writeChangelogItems (stream, type, data)
+{
+  const { items, repo } = data;
+  if (items.length < 1) return;
+  stream.write(`### ${type}\n`);
+  for (let i = 0; i < items.length; i++)
+    writeChangelogLine(stream, repo, items[i]);
+  stream.write('\n');
+}
+
+function writeChangelogHead (stream, title, description)
+{
+  stream.write(`# ${title}\n`);
+  stream.write(`${description}\n\n`);
+}
+
+function writeChangelogEntry (stream, content)
+{
+  const items = groupChangelogItems(content.items);
+  const repo  = content.repo;
+
+  /**
+   * Date formatting */
+  const now   = new Date();
+  const year  = now.getFullYear();
+
+  let month = now.getMonth() + 1;
+  month = month < 10 ? `0${month}` : month;
+
+  let day = now.getDate();
+  day = day < 10 ? `0${day}` : month;
+
+  /**
+   * Write changelog */
+  stream.write(`## [${content.version}] - ${year}-${month}-${day}\n`);
+  writeChangelogItems(stream, 'Added', { repo, items: items.added });
+  writeChangelogItems(stream, 'Changed', { repo, items: items.changed });
+  writeChangelogItems(stream, 'Fixed', { repo, items: items.fixed });
+  stream.write(`\n`);
+}
+
+function writeChangelogExistingEntry (stream, content)
+{
+  stream.write(`## ${content.title}\n`);
+  stream.write(`${content.body}\n\n\n`);
+}
+
+function writeChangelogLine (stream, repo, data)
+{
+  const author = data.author;
+  const name   = author.name || author.login;
+
+  const title       = data.title    || '';
+  const description = data.bodyText || '';
+  const firstLine   = description.split('\n')[0];
+
+
+  let line = '- ';
+  line += `[PR #${data.number}](${data.url}): ${data.title}`;
+
+  if (firstLine)
+  {
+    /**
+     * We'll analyze the first line to see if
+     * we find a reference to an issue/PR */
+    const has_issue = ISSUE_REGEX.test(firstLine);
+    if (has_issue)
+    {
+      const linked = firstLine.replace(ISSUE_REGEX, (match) => {
+        const issue_num = match.substr(1);
+        return `[${match}](${GITHUB_URL}/${repo}/issues/${issue_num})`;
+      });
+      line += `, ${linked.toLowerCase()}`;
+    }
+  }
+
+  line += `. Thanks [${name}](${author.url}) for the PR!\n`;
+  stream.write(line);
+}
+
+/**
+ * Entry point */
+const version = process.argv[2];
+if (!version)
+{
+  console.error("No version number given");
+  process.exit(1);
+}
+
+parser(CHANGELOG_PATH)
+  .then(async originalContent => {
+    const origin = await getRemoteOrigin();
+    const tagRef = await getLastTagRef();
+    const items  = await fetchPRs(origin.owner, origin.name, tagRef).then(res => {
+      return res.filter(item => !item.errors)
+                .map(item => item.data.repository.pullRequest);
+    });
+
+    if (items.length < 1) throw new Error("Couldn't fetch data from GitHub!");
+
+    /**
+     * Write new CHANGELOG.md */
+    const stream  = fs.createWriteStream(path.join(ROOT_PATH, 'CHANGELOG.md'));
+    writeChangelogHead(stream, originalContent.title, originalContent.description);
+    writeChangelogEntry(stream, { repo: `${origin.owner}/${origin.name}`, version, items })
+
+    /**
+     * Write the already existing items */
+    const existingVersions = originalContent.versions;
+    for (let i = 0; i < existingVersions.length; i++)
+      writeChangelogExistingEntry(stream, existingVersions[i]);
+
+    stream.end();
+    console.log(`Changelog updated, the new version is ${version}`);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
