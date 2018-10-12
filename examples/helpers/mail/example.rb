@@ -129,8 +129,6 @@ def dynamic_template_data_hello_world
   mail = Mail.new
   mail.template_id = '' # a non-legacy template id
   mail.from = Email.new(email: 'test@example.com')
-  subject = 'Dynamic Template Data Hello World from the SendGrid Ruby Library'
-  mail.subject = subject
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
   personalization.add_dynamic_template_data({
@@ -139,6 +137,15 @@ def dynamic_template_data_hello_world
     ]
   })
   mail.add_personalization(personalization)
+  
+  # puts JSON.pretty_generate(mail.to_json)
+  puts mail.to_json
+
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  puts response.status_code
+  puts response.body
+  puts response.headers
 end
 
 hello_world
