@@ -17,6 +17,10 @@ Template ID (replace with your own):
 ```text
 d-2c214ac919e84170b21855cc129b4a5f
 ```
+Email Subject:
+```text
+{{subject}}
+```
 
 Template Body:
 
