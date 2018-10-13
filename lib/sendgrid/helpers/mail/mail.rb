@@ -12,7 +12,6 @@ module SendGrid
                 :sections,
                 :headers,
                 :custom_args,
-                :template_id,
                 :send_at,
                 :batch_id,
                 :ip_pool_name
@@ -21,8 +20,10 @@ module SendGrid
                 :asm,
                 :mail_settings,
                 :tracking_settings,
-                :reply_to,
-                :subject
+                :reply_to
+
+    attr_accessor :subject,
+                  :template_id
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
