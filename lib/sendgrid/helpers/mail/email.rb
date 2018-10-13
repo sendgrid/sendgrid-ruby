@@ -17,7 +17,7 @@ module SendGrid
 
     def split_email(email)
       split = /(?:(?<address>.+)\s)?<?(?<email>.+@[^>]+)>?/.match(email)
-      split[:email], split[:address]
+      return split[:email], split[:address]
     end
 
     def to_json(*)
