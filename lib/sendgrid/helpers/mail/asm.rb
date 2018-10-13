@@ -3,7 +3,7 @@ require 'json'
 module SendGrid
   # asm
   class ASM
-    attr_accessor :group_id, groups_to_display
+    attr_accessor :group_id, :groups_to_display
 
     def initialize(group_id: nil, groups_to_display: nil)
       @group_id = group_id
