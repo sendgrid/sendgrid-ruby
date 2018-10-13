@@ -1,7 +1,7 @@
 require 'json'
 
 module SendGrid
-  # asm
+  # ASM
   class ASM
     attr_accessor :group_id, :groups_to_display
 

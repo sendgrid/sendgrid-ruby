@@ -3,9 +3,26 @@
 require 'json'
 
 module SendGrid
+  # Mail
   class Mail
+    attr_reader :personalizations,
+                :contents,
+                :attachments,
+                :categories,
+                :sections,
+                :headers,
+                :custom_args,
+                :subject,
+                :template_id,
+                :send_at,
+                :batch_id,
+                :ip_pool_name
 
-    attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
+    attr_writer :from,
+                :asm,
+                :mail_settings,
+                :tracking_settings,
+                :reply_to
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
@@ -36,20 +53,8 @@ module SendGrid
       end
     end
 
-    def from=(from)
-      @from = from
-    end
-
     def from
       @from.nil? ? nil : @from.to_json
-    end
-
-    def subject=(subject)
-      @subject = subject
-    end
-
-    def subject
-      @subject
     end
 
     def add_personalization(personalization)
@@ -68,14 +73,6 @@ module SendGrid
       @categories << category.name
     end
 
-    def template_id=(template_id)
-      @template_id = template_id
-    end
-
-    def template_id
-      @template_id
-    end
-
     def add_section(section)
       section = section.to_json
       @sections = @sections.merge(section['section'])
@@ -91,56 +88,16 @@ module SendGrid
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
-    def send_at=(send_at)
-      @send_at = send_at
-    end
-
-    def send_at
-      @send_at
-    end
-
-    def batch_id=(batch_id)
-      @batch_id = batch_id
-    end
-
-    def batch_id
-      @batch_id
-    end
-
-    def asm=(asm)
-      @asm = asm
-    end
-
     def asm
       @asm.nil? ? nil : @asm.to_json
-    end
-
-    def ip_pool_name=(ip_pool_name)
-      @ip_pool_name = ip_pool_name
-    end
-
-    def ip_pool_name
-      @ip_pool_name
-    end
-
-    def mail_settings=(mail_settings)
-      @mail_settings = mail_settings
     end
 
     def mail_settings
       @mail_settings.nil? ? nil : @mail_settings.to_json
     end
 
-    def tracking_settings=(tracking_settings)
-      @tracking_settings = tracking_settings
-    end
-
     def tracking_settings
       @tracking_settings.nil? ? nil : @tracking_settings.to_json
-    end
-
-    def reply_to=(reply_to)
-      @reply_to = reply_to
     end
 
     def reply_to
@@ -149,23 +106,23 @@ module SendGrid
 
     def to_json(*)
       {
-        'from' => self.from,
-        'subject' => self.subject,
-        'personalizations' => self.personalizations,
-        'content' => self.contents,
-        'attachments' => self.attachments,
-        'template_id' => self.template_id,
-        'sections' => self.sections,
-        'headers' => self.headers,
-        'categories' => self.categories,
-        'custom_args' => self.custom_args,
-        'send_at' => self.send_at,
-        'batch_id' => self.batch_id,
-        'asm' => self.asm,
-        'ip_pool_name' => self.ip_pool_name,
-        'mail_settings' => self.mail_settings,
-        'tracking_settings' => self.tracking_settings,
-        'reply_to' => self.reply_to
+        'from' => from,
+        'subject' => subject,
+        'personalizations' => personalizations,
+        'content' => contents,
+        'attachments' => attachments,
+        'template_id' => template_id,
+        'sections' => sections,
+        'headers' => headers,
+        'categories' => categories,
+        'custom_args' => custom_args,
+        'send_at' => send_at,
+        'batch_id' => batch_id,
+        'asm' => asm,
+        'ip_pool_name' => ip_pool_name,
+        'mail_settings' => mail_settings,
+        'tracking_settings' => tracking_settings,
+        'reply_to' => reply_to
       }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
     end
   end

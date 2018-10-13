@@ -1,10 +1,18 @@
 require 'json'
 
 module SendGrid
+  # Personalization
   class Personalization
+    attr_reader :tos,
+                :ccs,
+                :bccs,
+                :headers,
+                :substitutions,
+                :custom_args,
+                :dynamic_template_data
 
-    attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
-      :dynamic_template_data
+    attr_accessor :subject,
+                  :send_at
 
     def initialize
       @tos = []
@@ -30,14 +38,6 @@ module SendGrid
       @bccs << bcc.to_json
     end
 
-    def subject=(subject)
-      @subject = subject
-    end
-
-    def subject
-      @subject
-    end
-
     def add_header(header)
       header = header.to_json
       @headers = @headers.merge(header['header'])
@@ -57,25 +57,17 @@ module SendGrid
       @dynamic_template_data.merge!(dynamic_template_data)
     end
 
-    def send_at=(send_at)
-      @send_at = send_at
-    end
-
-    def send_at
-      @send_at
-    end
-
     def to_json(*)
       {
-        'to' => self.tos,
-        'cc' => self.ccs,
-        'bcc' => self.bccs,
-        'subject' => self.subject,
-        'headers' => self.headers,
-        'substitutions' => self.substitutions,
-        'custom_args' => self.custom_args,
-        'dynamic_template_data' => self.dynamic_template_data,
-        'send_at' => self.send_at
+        'to' => tos,
+        'cc' => ccs,
+        'bcc' => bccs,
+        'subject' => subject,
+        'headers' => headers,
+        'substitutions' => substitutions,
+        'custom_args' => custom_args,
+        'dynamic_template_data' => dynamic_template_data,
+        'send_at' => send_at
       }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
     end
   end
