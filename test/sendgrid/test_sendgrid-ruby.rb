@@ -1,4 +1,5 @@
 require_relative '../../lib/sendgrid-ruby.rb'
+require 'fileutils'
 require 'ruby_http_client'
 require 'minitest/autorun'
 require 'minitest/unit'
@@ -20,8 +21,12 @@ class TestAPI < MiniTest::Test
       end
     end
 
+    puts 'Test fixture output going into build_logs directory'
+    @@build_logs_dir = 'build_logs'
+    @@prism_log_name = "#{@@build_logs_dir}/prism-" + Time.now.to_i.to_s + ".log"
+    FileUtils.mkdir_p(@@build_logs_dir)
     puts 'Activating Prism (~20 seconds)'
-    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
+    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => @@prism_log_name)
     sleep(15)
     puts 'Prism started'
 
