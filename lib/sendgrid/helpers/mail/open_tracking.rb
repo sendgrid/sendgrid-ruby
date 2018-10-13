@@ -3,7 +3,8 @@ require 'json'
 module SendGrid
   # OpenTracking
   class OpenTracking
-    attr_accessor :enable, :substitution_tag
+    attr_accessor :enable,
+                  :substitution_tag
 
     def initialize(enable: nil, substitution_tag: nil)
       @enable = enable
