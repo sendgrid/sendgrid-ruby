@@ -11,10 +11,7 @@ module SendGrid
                 :categories,
                 :sections,
                 :headers,
-                :custom_args,
-                :send_at,
-                :batch_id,
-                :ip_pool_name
+                :custom_args
 
     attr_writer :from,
                 :asm,
@@ -23,7 +20,10 @@ module SendGrid
                 :reply_to
 
     attr_accessor :subject,
-                  :template_id
+                  :template_id,
+                  :send_at,
+                  :batch_id,
+                  :ip_pool_name
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
       @from = nil
