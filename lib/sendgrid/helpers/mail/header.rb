@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class Header
+
+    include SendGrid::Helpers
+
     def initialize(key: nil, value: nil)
       @header = {}
       (key.nil? || value.nil?) ? @header = nil : @header[key] = value
@@ -15,10 +18,5 @@ module SendGrid
       @header
     end
 
-    def to_json(*)
-      {
-        'header' => self.header
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

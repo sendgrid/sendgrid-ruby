@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class ClickTracking
+
+    include SendGrid::Helpers
+
     def initialize(enable: nil, enable_text: nil)
       @enable = enable
       @enable_text = enable_text
@@ -23,11 +26,5 @@ module SendGrid
       @enable_text
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable,
-        'enable_text' => self.enable_text
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

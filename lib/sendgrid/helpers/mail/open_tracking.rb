@@ -23,11 +23,6 @@ module SendGrid
       @substitution_tag
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable,
-        'substitution_tag' => self.substitution_tag
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
+    include SendGrid::Helpers
   end
 end

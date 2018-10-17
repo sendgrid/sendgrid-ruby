@@ -2,6 +2,7 @@ require 'json'
 
 module SendGrid
   class TrackingSettings
+
     def initialize
       @click_tracking = nil
       @open_tracking = nil

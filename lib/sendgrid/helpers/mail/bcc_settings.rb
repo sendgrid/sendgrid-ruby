@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class BccSettings
+
+    include SendGrid::Helpers
+
     def initialize(enable: nil, email: nil)
       @enable = enable
       @email = email
@@ -23,11 +26,5 @@ module SendGrid
       @email
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable,
-        'email' => self.email
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

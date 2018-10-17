@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class Content
+
+    include SendGrid::Helpers
+
     def initialize(type: nil, value: nil)
       @type = type
       @value = value
@@ -23,11 +26,5 @@ module SendGrid
       @value
     end
 
-    def to_json(*)
-      {
-        'type' => self.type,
-        'value' => self.value
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

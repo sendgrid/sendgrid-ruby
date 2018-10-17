@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class BypassListManagement
+
+    include SendGrid::Helpers
+
     def initialize(enable: nil)
       @enable = enable
     end
@@ -14,14 +17,12 @@ module SendGrid
       @enable
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 
   class SandBoxMode
+
+    include SendGrid::Helpers
+
     def initialize(enable: nil)
       @enable = enable
     end
@@ -34,10 +35,5 @@ module SendGrid
       @enable
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

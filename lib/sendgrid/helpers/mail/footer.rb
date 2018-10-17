@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class Footer
+
+    include SendGrid::Helpers
+
     def initialize(enable: nil, text: nil, html: nil)
       @enable = enable
       @text = text
@@ -32,12 +35,5 @@ module SendGrid
       @html
     end
 
-    def to_json(*)
-      {
-        'enable' => self.enable,
-        'text' => self.text,
-        'html' => self.html
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end

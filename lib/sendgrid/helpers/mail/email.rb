@@ -1,7 +1,11 @@
+require 'pry'
 require 'json'
 
 module SendGrid
   class Email
+
+    include SendGrid::Helpers
+
     def initialize(email: nil, name: nil)
       if name
         @email = email
@@ -32,11 +36,5 @@ module SendGrid
       return split[:email], split[:address]
     end
 
-    def to_json(*)
-      {
-        'email' => self.email,
-        'name' => self.name
-      }.delete_if { |_, value| value.to_s.strip == '' }
-    end
   end
 end
