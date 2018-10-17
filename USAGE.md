@@ -804,7 +804,7 @@ For more information:
 * [User Guide > Marketing Campaigns](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/index.html)
 
 ### PATCH /campaigns/{campaign_id}
-
+#### Without helpers
 
 ```ruby
 data = JSON.parse('{
@@ -822,6 +822,8 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
+#### With helpers
+
 ## Retrieve a single campaign
 
 **This endpoint allows you to retrieve a specific campaign.**
@@ -1585,7 +1587,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### POST /contactdb/segments
-
+#### Without helpers
 
 ```ruby
 data = JSON.parse('{
@@ -1617,6 +1619,19 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
+#### With helpers
+```ruby
+conditions = [
+  SegmentCondition.new(field: "last_name", operator: SegmentCondition::Operator::EQ, value: "Miller"),
+  SegmentCondition.new(and_or: SegmentCondition::AndOr::AND, field: "last_clicked", operator: SegmentCondition::Operator::GT, value: "01/02/2015"),
+  SegmentCondition.new(and_or: SegmentCondition::AndOr::OR, field: "clicks.campaign_identifier", operator: SegmentCondition::Operator::EQ, value: "513")
+]
+data = Segment.new(list_id: 4, name: "Last Name Miller", conditions: conditions).data
+response = sg.client.contactdb.segments.post(request_body: data)
+puts response.status_code
+puts response.body
+puts response.headers
+```
 ## Retrieve all segments
 
 **This endpoint allows you to retrieve all of your segments.**
@@ -1643,7 +1658,7 @@ The Contacts API helps you manage your [Marketing Campaigns](https://sendgrid.co
 For more information about segments in Marketing Campaigns, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/lists.html#-Create-a-Segment).
 
 ### PATCH /contactdb/segments/{segment_id}
-
+#### Without helpers
 
 ```ruby
 data = JSON.parse('{
@@ -1658,6 +1673,19 @@ data = JSON.parse('{
   "list_id": 5,
   "name": "The Millers"
 }')
+params = JSON.parse('{"segment_id": "test_string"}')
+segment_id = "test_url_param"
+response = sg.client.contactdb.segments._(segment_id).patch(request_body: data, query_params: params)
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+#### With helpers
+
+```ruby
+conditions = [SegmentCondition.new(field: "last_name", operator: SegmentCondition::Operator::EQ, value: "Miller")]
+data = Segment.new(list_id: 5, name: "The Millers", conditions: conditions).data
 params = JSON.parse('{"segment_id": "test_string"}')
 segment_id = "test_url_param"
 response = sg.client.contactdb.segments._(segment_id).patch(request_body: data, query_params: params)
