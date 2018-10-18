@@ -68,6 +68,18 @@ module SendGrid
       @categories << category.name
     end
 
+    def template_id=(template_id)
+      if valid_template?(template_id)
+        @template_id = template_id
+      else
+        raise ArgumentError.new("A template for that template_id doesn't exist.")
+      end
+    end
+
+    def template_id
+      @template_id
+    end
+
     def add_section(section)
       section = section.to_json
       @sections = @sections.merge(section['section'])
@@ -113,6 +125,12 @@ module SendGrid
 
     def reply_to
       @reply_to.nil? ? nil : @reply_to.to_json
+    end
+
+    def valid_template?(template_id)
+      sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+      template = sg.client.templates._(template_id).get()
+      template.status_code == "200" ? true : false
     end
 
     def to_json(*)

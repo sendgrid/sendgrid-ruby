@@ -169,6 +169,13 @@ class TestMail < Minitest::Test
     assert_equal mail.to_json, expected_json
   end
 
+  def test_invalid_template
+    mail = Mail.new
+    assert_raises ArgumentError do
+      mail.template_id = '13b8f94f-bcae-4ec6-b752-70d6cb59f932'
+    end
+  end
+
   def test_add_header
     mail = SendGrid::Mail.new
     mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
