@@ -42,15 +42,15 @@ module SendGrid
     end
 
     def from
-      @from.nil? ? nil : @from.to_json
+      @from.nil? ? nil : @from.to_hash
     end
 
     def add_personalization(personalization)
-      @personalizations << personalization.to_json
+      @personalizations << personalization.to_hash
     end
 
     def add_content(content)
-      @contents << content.to_json
+      @contents << content.to_hash
     end
 
     def check_for_secrets(patterns)
@@ -61,7 +61,7 @@ module SendGrid
     end
 
     def add_attachment(attachment)
-      @attachments << attachment.to_json
+      @attachments << attachment.to_hash
     end
 
     def add_category(category)
@@ -69,17 +69,17 @@ module SendGrid
     end
 
     def add_section(section)
-      section = section.to_json
+      section = section.to_hash
       @sections = @sections.merge(section['section'])
     end
 
     def add_header(header)
-      header = header.to_json
+      header = header.to_hash
       @headers = @headers.merge(header['header'])
     end
 
     def add_custom_arg(custom_arg)
-      custom_arg = custom_arg.to_json
+      custom_arg = custom_arg.to_hash
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
@@ -88,7 +88,7 @@ module SendGrid
     end
 
     def asm
-      @asm.nil? ? nil : @asm.to_json
+      @asm.nil? ? nil : @asm.to_hash
     end
 
     def mail_settings=(mail_settings)
@@ -96,7 +96,7 @@ module SendGrid
     end
 
     def mail_settings
-      @mail_settings.nil? ? nil : @mail_settings.to_json
+      @mail_settings.nil? ? nil : @mail_settings.to_hash
     end
 
     def tracking_settings=(tracking_settings)
@@ -104,7 +104,7 @@ module SendGrid
     end
 
     def tracking_settings
-      @tracking_settings.nil? ? nil : @tracking_settings.to_json
+      @tracking_settings.nil? ? nil : @tracking_settings.to_hash
     end
 
     def reply_to=(reply_to)
@@ -112,10 +112,10 @@ module SendGrid
     end
 
     def reply_to
-      @reply_to.nil? ? nil : @reply_to.to_json
+      @reply_to.nil? ? nil : @reply_to.to_hash
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'from' => self.from,
         'subject' => self.subject,

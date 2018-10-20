@@ -32,7 +32,7 @@ module SendGrid
       @post_to_url
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable,
         'threshold' => self.threshold,

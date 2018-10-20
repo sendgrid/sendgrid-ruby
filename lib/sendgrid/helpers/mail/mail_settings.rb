@@ -15,7 +15,7 @@ module SendGrid
     end
 
     def sandbox_mode
-      @sandbox_mode.nil? ? nil : @sandbox_mode.to_json
+      @sandbox_mode.nil? ? nil : @sandbox_mode.to_hash
     end
 
     def bypass_list_management=(bypass_list_management)
@@ -23,7 +23,7 @@ module SendGrid
     end
 
     def bypass_list_management
-      @bypass_list_management.nil? ? nil : @bypass_list_management.to_json
+      @bypass_list_management.nil? ? nil : @bypass_list_management.to_hash
     end
 
     def footer=(footer)
@@ -31,7 +31,7 @@ module SendGrid
     end
 
     def footer
-      @footer.nil? ? nil : @footer.to_json
+      @footer.nil? ? nil : @footer.to_hash
     end
 
     def bcc=(bcc)
@@ -39,7 +39,7 @@ module SendGrid
     end
 
     def bcc
-      @bcc.nil? ? nil : @bcc.to_json
+      @bcc.nil? ? nil : @bcc.to_hash
     end
 
     def spam_check=(spam_check)
@@ -47,10 +47,10 @@ module SendGrid
     end
 
     def spam_check
-      @spam_check.nil? ? nil : @spam_check.to_json
+      @spam_check.nil? ? nil : @spam_check.to_hash
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'bcc' => self.bcc,
         'bypass_list_management' => self.bypass_list_management,

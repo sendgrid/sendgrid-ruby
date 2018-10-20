@@ -1,5 +1,10 @@
 require_relative '../../../../lib/sendgrid/helpers/mail/personalization'
+require_relative '../../../../lib/sendgrid/helpers/mail/email'
+require_relative '../../../../lib/sendgrid/helpers/mail/header'
+require_relative '../../../../lib/sendgrid/helpers/mail/substitution'
+require_relative '../../../../lib/sendgrid/helpers/mail/custom_arg'
 require 'minitest/autorun'
+require 'pry'
 
 class TestPersonalization < Minitest::Test
 
@@ -29,7 +34,7 @@ class TestPersonalization < Minitest::Test
             }
         ]
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_cc
@@ -56,7 +61,7 @@ class TestPersonalization < Minitest::Test
             }
         ]
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_bcc
@@ -83,7 +88,8 @@ class TestPersonalization < Minitest::Test
             }
         ]
     }
-    assert_equal @personalization.to_json, expected_json
+
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_header
@@ -94,7 +100,7 @@ class TestPersonalization < Minitest::Test
                 "X-Test"=>"True"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
     @personalization.add_header(Header.new(key: 'X-Test 1', value: 'False'))
     expected_json = {
         "headers"=>{
@@ -102,7 +108,7 @@ class TestPersonalization < Minitest::Test
                 "X-Test 1"=>"False"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_substitution
@@ -113,7 +119,7 @@ class TestPersonalization < Minitest::Test
                 "%name%"=>"Example User"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
     @personalization.add_substitution(Substitution.new(key: '%name 1%', value: 'Example User 1'))
     expected_json = {
         "substitutions"=>{
@@ -121,7 +127,7 @@ class TestPersonalization < Minitest::Test
                 "%name 1%"=>"Example User 1"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_custom_arg
@@ -132,7 +138,7 @@ class TestPersonalization < Minitest::Test
                 "user_id"=>"343"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
     @personalization.add_custom_arg(CustomArg.new(key: 'city', value: 'denver'))
     expected_json = {
         "custom_args"=>{
@@ -140,7 +146,7 @@ class TestPersonalization < Minitest::Test
                 "city"=>"denver"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
   def test_add_dynamic_template_data
@@ -155,7 +161,7 @@ class TestPersonalization < Minitest::Test
                 "city"=>"Denver"
             }
     }
-    assert_equal @personalization.to_json, expected_json
+    assert_equal @personalization.to_hash, expected_json
   end
 
 end

@@ -23,7 +23,7 @@ module SendGrid
       @email
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable,
         'email' => self.email

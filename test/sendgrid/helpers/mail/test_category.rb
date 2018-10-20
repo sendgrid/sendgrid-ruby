@@ -21,7 +21,7 @@ class TestCategory < Minitest::Test
     expected_json = {
       'category' => 'foo'
     }
-    assert_equal @category.to_json, expected_json
+    assert_equal @category.to_hash, expected_json
   end
 
 end

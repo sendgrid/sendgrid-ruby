@@ -23,7 +23,7 @@ module SendGrid
       @groups_to_display
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'group_id' => self.group_id,
         'groups_to_display' => self.groups_to_display

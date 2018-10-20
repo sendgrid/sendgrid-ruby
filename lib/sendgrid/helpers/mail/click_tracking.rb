@@ -23,7 +23,7 @@ module SendGrid
       @enable_text
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable,
         'enable_text' => self.enable_text

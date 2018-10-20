@@ -60,7 +60,7 @@ module SendGrid
       @utm_campaign
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable,
         'utm_source' => self.utm_source,

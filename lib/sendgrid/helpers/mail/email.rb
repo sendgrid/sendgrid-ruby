@@ -19,7 +19,7 @@ module SendGrid
       return split[:email], split[:address]
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'email' => self.email,
         'name' => self.name

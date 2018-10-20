@@ -8,7 +8,15 @@ module SendGrid
       @name = name
     end
 
-    def to_json(*)
+    def name=(name)
+      @name = name
+    end
+
+    def name
+      @name
+    end
+
+    def to_hash(*)
       {
         'category' => name
       }.delete_if { |_, value| value.to_s.strip == '' }

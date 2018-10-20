@@ -15,7 +15,7 @@ module SendGrid
       @section
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'section' => self.section
       }.delete_if { |_, value| value.to_s.strip == '' }
