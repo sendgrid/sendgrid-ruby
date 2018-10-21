@@ -26,4 +26,10 @@ script:
     - rake spec
 before_install:
     - gem update bundler
-
+deploy:
+  provider: rubygems
+  api_key: $RUBYGEM_API_KEY
+  on:
+    tags: true
+    rvm: 2.4.1
+    gemfile: gemfiles/Sinatra_2.gemfile
