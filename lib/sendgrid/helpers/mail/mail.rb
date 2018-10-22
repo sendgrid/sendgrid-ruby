@@ -60,6 +60,13 @@ module SendGrid
       @contents << content.to_json
     end
 
+    def check_for_secrets(patterns)
+      contents = @contents.map { |content| content['value'] }.join(' ')
+      patterns.each do |pattern|
+        raise SecurityError.new('Content contains sensitive information.') if contents.match(pattern)
+      end
+    end
+
     def add_attachment(attachment)
       @attachments << attachment.to_json
     end
