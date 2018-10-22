@@ -1,13 +1,19 @@
 Hello! Thank you for choosing to help contribute to one of the SendGrid open source libraries. There are many ways you can contribute and help is always welcome.  We simply ask that you follow the following contribution policies.
 
-- [CLAs and CCLAs](#cla)
-- [Roadmap & Milestones](#roadmap)
+- [CLAs and CCLAs](#clas-and-cclas)
 - [Feature Request](#feature-request)
 - [Submit a Bug Report](#submit-a-bug-report)
+    - [Please use our Bug Report Template](#please-use-our-bug-report-template)
 - [Improvements to the Codebase](#improvements-to-the-codebase)
-- [Understanding the Code Base](#understanding-the-codebase)
+    - [Development Environment](#development-environment)
+        - [Install and Run Locally](#install-and-run-locally)
+            - [Prerequisites](#prerequisites)
+            - [Initial setup:](#initial-setup)
+- [Environment Variables](#environment-variables)
+            - [Execute:](#execute)
+- [Understanding the Code Base](#understanding-the-code-base)
 - [Testing](#testing)
-- [Style Guidelines & Naming Conventions](#style-guidelines-and-naming-conventions)
+- [Style Guidelines & Naming Conventions](#style-guidelines--naming-conventions)
 - [Creating a Pull Request](#creating-a-pull-request)
 
 <a name="roadmap"></a>
@@ -83,7 +89,7 @@ We welcome direct contributions to the sendgrid-ruby code base. Thank you!
    bundle install
    ```
 
-## Environment Variables
+### Environment Variables
 
 First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-ruby).
 
@@ -163,8 +169,10 @@ Please run your code through:
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/sendgrid/sendgrid-ruby
+   
    # Navigate to the newly cloned directory
    cd sendgrid-ruby
+   
    # Assign the original repo to a remote called "upstream"
    git remote add upstream https://github.com/sendgrid/sendgrid-ruby
    ```

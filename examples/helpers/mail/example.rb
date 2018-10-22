@@ -125,5 +125,23 @@ def kitchen_sink
   puts response.headers
 end
 
+def dynamic_template_data_hello_world
+  mail = Mail.new
+  mail.template_id = '' # a non-legacy template id
+  mail.from = Email.new(email: 'test@example.com')
+  subject = 'Dynamic Template Data Hello World from the SendGrid Ruby Library'
+  mail.subject = subject
+  personalization = Personalization.new
+  personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+  personalization.add_dynamic_template_data({
+    "variable" => [
+      {"foo" => "bar"}, {"foo" => "baz"}
+    ]
+  })
+  mail.add_personalization(personalization)
+end
+
 hello_world
 kitchen_sink
+dynamic_template_data_hello_world
+

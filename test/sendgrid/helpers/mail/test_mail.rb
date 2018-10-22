@@ -207,6 +207,21 @@ class TestMail < Minitest::Test
     assert_equal mail.to_json, expected_json
   end
 
+  def test_add_non_string_custom_arg
+    mail = Mail.new
+    mail.add_custom_arg(CustomArg.new(key: "Integer", value: 1))
+    mail.add_custom_arg(CustomArg.new(key: "Array", value: [1, "a", true]))
+    mail.add_custom_arg(CustomArg.new(key: "Hash", value: {"a" => 1, "b" => 2}))
+    expected_json = {
+        "custom_args"=>{
+                "Integer"=>"1",
+                "Array"=>"[1, \"a\", true]",
+                "Hash"=>"{\"a\"=>1, \"b\"=>2}",
+            }
+    }
+    assert_equal mail.to_json, expected_json
+  end
+
   def test_add_attachment
     mail = SendGrid::Mail.new
     mail.add_attachment('foo')
@@ -233,6 +248,14 @@ class TestMail < Minitest::Test
     mail = SendGrid::Mail.new
     assert_raises(NoMethodError) do
       mail.add_category('foo')
+    end
+  end
+
+  def test_check_for_secrets
+    mail = Mail.new
+    mail.add_content(Content.new(type: 'text/plain', value: 'Sensitive information: SG.a123b456'))
+    assert_raises(SecurityError) do
+      mail.check_for_secrets([/SG.[a-zA-Z0-9_-]*/])
     end
   end
 end

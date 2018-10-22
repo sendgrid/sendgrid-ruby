@@ -30,7 +30,7 @@ bundle install
 ruby ./lib/sendgrid/helpers/inbound/send.rb ./lib/sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/master/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/inbound/sample_data).
 
 View the results in the first terminal.
 
