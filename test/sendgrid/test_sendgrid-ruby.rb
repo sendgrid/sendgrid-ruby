@@ -57,8 +57,8 @@ class TestAPI < MiniTest::Test
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
-        assert_equal("5.2.0", SendGrid::VERSION)
         assert_equal(subuser, sg.impersonate_subuser)
+        assert_equal("5.3.0", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -2676,13 +2676,22 @@ class TestAPI < MiniTest::Test
         self.assert_equal('200', response.status_code)
     end
 
-    def test_docker_exists
-      assert(File.file?('./Docker') || File.file?('./docker/Docker'))
+
+    def test_license_file_correct_year_range
+        if File.exist?('./LICENSE.txt')
+            # get only the first line from the license txt file
+            year_range = File.open('./LICENSE.txt', &:readline).gsub(/[^\d-]/, '')
+            self.assert_equal("2014-#{Time.now.year}", year_range)
+        end
     end
 
-    def test_docker_compose_exists
-      assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
+    def test_docker_exists
+      assert(File.file?('./Dockerfile') || File.file?('./docker/Dockerfile'))
     end
+
+    # def test_docker_compose_exists
+    #   assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
+    # end
 
     def test_env_sample_exists
       assert(File.file?('./.env_sample'))

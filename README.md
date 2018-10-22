@@ -10,7 +10,7 @@ Version 3.X.X+ of this library provides full support for all SendGrid [Web API v
 
 This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-ruby/issues) and [pull requests](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
-Please browse the rest of this README for further detail.
+Please browse the rest of this README for further details.
 
 We appreciate your continued support, thank you!
 
@@ -83,16 +83,17 @@ The following is the minimum needed code to send an email with the [/mail/send H
 require 'sendgrid-ruby'
 include SendGrid
 
-from = Email.new(email: 'test@example.com')
-to = Email.new(email: 'test@example.com')
+from = SendGrid::Email.new(email: 'test@example.com')
+to = SendGrid::Email.new(email: 'test@example.com')
 subject = 'Sending with SendGrid is Fun'
-content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
-mail = Mail.new(from, subject, to, content)
+content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+mail = SendGrid::Mail.new(from, subject, to, content)
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
@@ -131,6 +132,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
@@ -142,6 +144,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client.suppression.bounces.get()
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
@@ -153,6 +156,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 response = sg.client._("suppression/bounces").get()
 puts response.status_code
 puts response.body
+puts response.parsed_body
 puts response.headers
 ```
 
@@ -197,6 +201,7 @@ We encourage contribution to our libraries (you might even score some nifty swag
 - [Bug Reports](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md#submit_a_bug_report)
 - [Sign the CLA to Create a Pull Request](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md#cla)
 - [Improvements to the Codebase](https://github.com/sendgrid/sendgrid-ruby/tree/master/CONTRIBUTING.md#improvements_to_the_codebase)
+- [Review Pull Requests](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md#code-reviews)
 
 <a name="troubleshooting"></a>
 # Troubleshooting
