@@ -7,7 +7,7 @@ def hello_world
   subject = 'Hello World from the SendGrid Ruby Library'
   to = Email.new(email: 'test@example.com')
   content = Content.new(type: 'text/plain', value: 'some text here')
-  mail = Mail.new(from, subject, to, content)
+  mail = SendGrid::Mail.new(from, subject, to, content)
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
@@ -19,7 +19,7 @@ def hello_world
 end
 
 def kitchen_sink
-  mail = Mail.new
+  mail = SendGrid::Mail.new
   mail.from = Email.new(email: 'test@example.com')
   mail.subject = 'Hello World from the SendGrid Ruby Library'
   personalization = Personalization.new
