@@ -5,6 +5,7 @@ require 'json'
 module SendGrid
   class Mail
 
+    attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
@@ -44,14 +45,6 @@ module SendGrid
       @from.nil? ? nil : @from.to_json
     end
 
-    def subject=(subject)
-      @subject = subject
-    end
-
-    def subject
-      @subject
-    end
-
     def add_personalization(personalization)
       @personalizations << personalization.to_json
     end
@@ -60,20 +53,19 @@ module SendGrid
       @contents << content.to_json
     end
 
+    def check_for_secrets(patterns)
+      contents = @contents.map { |content| content['value'] }.join(' ')
+      patterns.each do |pattern|
+        raise SecurityError.new('Content contains sensitive information.') if contents.match(pattern)
+      end
+    end
+
     def add_attachment(attachment)
       @attachments << attachment.to_json
     end
 
     def add_category(category)
       @categories << category.name
-    end
-
-    def template_id=(template_id)
-      @template_id = template_id
-    end
-
-    def template_id
-      @template_id
     end
 
     def add_section(section)
@@ -91,36 +83,12 @@ module SendGrid
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
-    def send_at=(send_at)
-      @send_at = send_at
-    end
-
-    def send_at
-      @send_at
-    end
-
-    def batch_id=(batch_id)
-      @batch_id = batch_id
-    end
-
-    def batch_id
-      @batch_id
-    end
-
     def asm=(asm)
       @asm = asm
     end
 
     def asm
       @asm.nil? ? nil : @asm.to_json
-    end
-
-    def ip_pool_name=(ip_pool_name)
-      @ip_pool_name = ip_pool_name
-    end
-
-    def ip_pool_name
-      @ip_pool_name
     end
 
     def mail_settings=(mail_settings)
