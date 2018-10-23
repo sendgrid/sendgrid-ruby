@@ -7,7 +7,7 @@ def hello_world
   subject = 'Hello World from the SendGrid Ruby Library'
   to = Email.new(email: 'test@example.com')
   content = Content.new(type: 'text/plain', value: 'some text here')
-  mail = Mail.new(from, subject, to, content)
+  mail = SendGrid::Mail.new(from, subject, to, content)
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
@@ -19,7 +19,7 @@ def hello_world
 end
 
 def kitchen_sink
-  mail = Mail.new
+  mail = SendGrid::Mail.new
   mail.from = Email.new(email: 'test@example.com')
   mail.subject = 'Hello World from the SendGrid Ruby Library'
   personalization = Personalization.new
@@ -125,5 +125,23 @@ def kitchen_sink
   puts response.headers
 end
 
+def dynamic_template_data_hello_world
+  mail = Mail.new
+  mail.template_id = '' # a non-legacy template id
+  mail.from = Email.new(email: 'test@example.com')
+  subject = 'Dynamic Template Data Hello World from the SendGrid Ruby Library'
+  mail.subject = subject
+  personalization = Personalization.new
+  personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+  personalization.add_dynamic_template_data({
+    "variable" => [
+      {"foo" => "bar"}, {"foo" => "baz"}
+    ]
+  })
+  mail.add_personalization(personalization)
+end
+
 hello_world
 kitchen_sink
+dynamic_template_data_hello_world
+
