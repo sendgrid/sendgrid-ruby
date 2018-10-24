@@ -2745,7 +2745,19 @@ class TestAPI < MiniTest::Test
       assert(File.file?('./USAGE.md'))
     end
 
-    def test_use_cases_exists
-      assert(File.file?('./USE_CASES.md'))
+    def test_use_cases_domain_whitelabel_exists
+        assert(File.file?('./use-cases/domain-whitelabel.md'))
+    end
+
+    def test_use_cases_email_statistics_exists
+        assert(File.file?('./use-cases/email-statistics.md'))
+    end
+
+    def test_use_cases_readme_exists
+        assert(File.file?('./use-cases/README.md'))
+    end
+
+    def test_use_cases_transactional_templates_exists
+        assert(File.file?('./use-cases/transactional-templates.md'))
     end
 end
