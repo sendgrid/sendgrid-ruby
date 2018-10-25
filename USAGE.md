@@ -3813,9 +3813,9 @@ puts response.headers
 
 **This endpoint allows you to update your current setting for Google Analytics.**
 
-For more information about using Google Analytics, please refer to [Googles URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
+For more information about using Google Analytics, please refer to [Google's URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
 
-We default the settings to Googles recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
+We default the settings to Google's recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
 
 You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
 
@@ -3842,9 +3842,9 @@ puts response.headers
 
 **This endpoint allows you to retrieve your current setting for Google Analytics.**
 
-For more information about using Google Analytics, please refer to [Googles URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
+For more information about using Google Analytics, please refer to [Google's URL Builder](https://support.google.com/analytics/answer/1033867?hl=en) and their article on ["Best Practices for Campaign Building"](https://support.google.com/analytics/answer/1037445).
 
-We default the settings to Googles recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
+We default the settings to Google's recommendations. For more information, see [Google Analytics Demystified](https://sendgrid.com/docs/Classroom/Track/Collecting_Data/google_analytics_demystified_ga_statistics_vs_sg_statistics.html).
 
 You can track a variety of the actions your recipients may take when interacting with your emails including opening your emails, clicking on links in your emails, and subscribing to (or unsubscribing from) your emails.
 
@@ -4893,7 +4893,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
@@ -4915,7 +4915,7 @@ puts response.headers
 
 **This endpoint allows you to disassociate a link whitelabel from a subuser.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
@@ -5012,7 +5012,7 @@ puts response.headers
 
 **This endpoint allows you to associate a link whitelabel with a subuser account.**
 
-Link whitelables can be associated with subusers from the parent account. This functionality allows
+Link whitelabels can be associated with subusers from the parent account. This functionality allows
 subusers to send mail using their parent's link whitelabels. To associate a link whitelabel, the parent account
 must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
 
