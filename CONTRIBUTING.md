@@ -202,7 +202,7 @@ Please run your code through:
 
 4b. Create or update the example code that demonstrates the functionality of this change to the code.
 
-5. Locally merge (or rebase) the upstream development branch into your topic branch:
+5. Locally merge (or rebase) the upstream development into your topic branch:
 
    ```bash
    git pull [--rebase] upstream development
