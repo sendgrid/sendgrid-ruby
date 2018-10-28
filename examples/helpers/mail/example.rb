@@ -8,11 +8,11 @@ def hello_world
   to = Email.new(email: 'test@example.com')
   content = Content.new(type: 'text/plain', value: 'some text here')
   mail = Mail.new(from, subject, to, content)
-  # puts JSON.pretty_generate(mail.to_json)
-  puts mail.to_json
+  # puts JSON.pretty_generate(mail.to_hash)
+  puts mail.to_hash
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  response = sg.client.mail._('send').post(request_body: mail.to_hash)
   puts response.status_code
   puts response.body
   puts response.headers
@@ -115,11 +115,11 @@ def kitchen_sink
 
   mail.reply_to = Email.new(email: 'test@example.com')
 
-  # puts JSON.pretty_generate(mail.to_json)
-  puts mail.to_json
+  # puts JSON.pretty_generate(mail.to_hash)
+  puts mail.to_hash
 
   sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
-  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  response = sg.client.mail._('send').post(request_body: mail.to_hash)
   puts response.status_code
   puts response.body
   puts response.headers

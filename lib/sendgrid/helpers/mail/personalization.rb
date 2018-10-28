@@ -17,15 +17,15 @@ module SendGrid
     end
 
     def add_to(to)
-      @tos << to.to_json
+      @tos << to.to_hash
     end
 
     def add_cc(cc)
-      @ccs << cc.to_json
+      @ccs << cc.to_hash
     end
 
     def add_bcc(bcc)
-      @bccs << bcc.to_json
+      @bccs << bcc.to_hash
     end
 
     def subject=(subject)
@@ -37,17 +37,17 @@ module SendGrid
     end
 
     def add_header(header)
-      header = header.to_json
+      header = header.to_hash
       @headers = @headers.merge(header['header'])
     end
 
     def add_substitution(substitution)
-      substitution = substitution.to_json
+      substitution = substitution.to_hash
       @substitutions = @substitutions.merge(substitution['substitution'])
     end
 
     def add_custom_arg(custom_arg)
-      custom_arg = custom_arg.to_json
+      custom_arg = custom_arg.to_hash
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
@@ -59,7 +59,7 @@ module SendGrid
       @send_at
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'to' => self.tos,
         'cc' => self.ccs,

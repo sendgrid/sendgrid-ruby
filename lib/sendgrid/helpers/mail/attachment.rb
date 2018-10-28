@@ -50,7 +50,7 @@ module SendGrid
       @content_id
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'content' => self.content,
         'type' => self.type,

@@ -14,7 +14,7 @@ module SendGrid
       @enable
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable
       }.delete_if { |_, value| value.to_s.strip == '' }
@@ -34,7 +34,7 @@ module SendGrid
       @enable
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable
       }.delete_if { |_, value| value.to_s.strip == '' }

@@ -15,7 +15,7 @@ class TestMail < Minitest::Test
     content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
     mail = Mail.new(from, subject, to, content)
 
-    assert_equal(mail.to_json, JSON.parse('{"from":{"email":"test@example.com"}, "subject":"Sending with SendGrid is Fun", "personalizations":[{"to":[{"email":"test@example.com"}]}], "content":[{"type":"text/plain", "value":"and easy to do anywhere, even with Ruby"}]}'))
+    assert_equal(mail.to_hash, JSON.parse('{"from":{"email":"test@example.com"}, "subject":"Sending with SendGrid is Fun", "personalizations":[{"to":[{"email":"test@example.com"}]}], "content":[{"type":"text/plain", "value":"and easy to do anywhere, even with Ruby"}]}'))
   end
 
   def test_kitchen_sink
@@ -115,7 +115,7 @@ class TestMail < Minitest::Test
 
     mail.reply_to = Email.new(email: "test@example.com")
 
-    assert_equal(mail.to_json, JSON.parse('{"asm":{"group_id":99,"groups_to_display":[4,5,6,7,8]},"attachments":[{"content":"TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12","content_id":"Balance Sheet","disposition":"attachment","filename":"balance_001.pdf","type":"application/pdf"},{"content":"BwdW","content_id":"Banner","disposition":"inline","filename":"banner.png","type":"image/png"}],"batch_id":"sendgrid_batch_id","categories":["May","2016"],"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"custom_args":{"campaign":"welcome","weekday":"morning"},"from":{"email":"test@example.com"},"headers":{"X-Test3":"test3","X-Test4":"test4"},"ip_pool_name":"23","mail_settings":{"bcc":{"email":"test@example.com","enable":true},"bypass_list_management":{"enable":true},"footer":{"enable":true,"html":"<html><body>Footer Text</body></html>","text":"Footer Text"},"sandbox_mode":{"enable":true},"spam_check":{"enable":true,"post_to_url":"https://spamcatcher.sendgrid.com","threshold":1}},"personalizations":[{"bcc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"cc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized SendGrid Python Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}]},{"bcc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"cc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized SendGrid Python Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}]}],"reply_to":{"email":"test@example.com"},"sections":{"%section1%":"Substitution Text for Section 1","%section2%":"Substitution Text for Section 2"},"send_at":1443636842,"subject":"Hello World from the SendGrid Ruby Library","template_id":"13b8f94f-bcae-4ec6-b752-70d6cb59f932","tracking_settings":{"click_tracking":{"enable":false,"enable_text":false},"ganalytics":{"enable":true,"utm_campaign":"some campaign","utm_content":"some content","utm_medium":"some medium","utm_source":"some source","utm_term":"some term"},"open_tracking":{"enable":true,"substitution_tag":"Optional tag to replace with the open image in the body of the message"},"subscription_tracking":{"enable":true,"html":"html to insert into the text/html portion of the message","substitution_tag":"Optional tag to replace with the open image in the body of the message","text":"text to insert into the text/plain portion of the message"}}}'))
+    assert_equal(mail.to_hash, JSON.parse('{"asm":{"group_id":99,"groups_to_display":[4,5,6,7,8]},"attachments":[{"content":"TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12","content_id":"Balance Sheet","disposition":"attachment","filename":"balance_001.pdf","type":"application/pdf"},{"content":"BwdW","content_id":"Banner","disposition":"inline","filename":"banner.png","type":"image/png"}],"batch_id":"sendgrid_batch_id","categories":["May","2016"],"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"custom_args":{"campaign":"welcome","weekday":"morning"},"from":{"email":"test@example.com"},"headers":{"X-Test3":"test3","X-Test4":"test4"},"ip_pool_name":"23","mail_settings":{"bcc":{"email":"test@example.com","enable":true},"bypass_list_management":{"enable":true},"footer":{"enable":true,"html":"<html><body>Footer Text</body></html>","text":"Footer Text"},"sandbox_mode":{"enable":true},"spam_check":{"enable":true,"post_to_url":"https://spamcatcher.sendgrid.com","threshold":1}},"personalizations":[{"bcc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"cc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized SendGrid Python Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}]},{"bcc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"cc":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized SendGrid Python Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test@example.com","name":"Example User"},{"email":"test@example.com","name":"Example User"}]}],"reply_to":{"email":"test@example.com"},"sections":{"%section1%":"Substitution Text for Section 1","%section2%":"Substitution Text for Section 2"},"send_at":1443636842,"subject":"Hello World from the SendGrid Ruby Library","template_id":"13b8f94f-bcae-4ec6-b752-70d6cb59f932","tracking_settings":{"click_tracking":{"enable":false,"enable_text":false},"ganalytics":{"enable":true,"utm_campaign":"some campaign","utm_content":"some content","utm_medium":"some medium","utm_source":"some source","utm_term":"some term"},"open_tracking":{"enable":true,"substitution_tag":"Optional tag to replace with the open image in the body of the message"},"subscription_tracking":{"enable":true,"html":"html to insert into the text/html portion of the message","substitution_tag":"Optional tag to replace with the open image in the body of the message","text":"text to insert into the text/plain portion of the message"}}}'))
   end
 
   def test_that_personalizations_is_empty_initially
@@ -141,13 +141,13 @@ class TestMail < Minitest::Test
   def test_add_personalization
     mail = Mail.new
     mail.add_personalization('foo')
-    assert_equal(['foo'.to_json], mail.personalizations)
+    assert_equal(['foo'.to_hash], mail.personalizations)
   end
 
   def test_add_content
     mail = Mail.new
     mail.add_content('foo')
-    assert_equal(['foo'.to_json], mail.contents)
+    assert_equal(['foo'.to_hash], mail.contents)
   end
 
   def test_add_section
@@ -158,7 +158,7 @@ class TestMail < Minitest::Test
                 "%section1%"=>"Substitution Text for Section 1"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
     mail.add_section(Section.new(key: '%section2%', value: 'Substitution Text for Section 2'))
     expected_json = {
         "sections"=>{
@@ -166,7 +166,7 @@ class TestMail < Minitest::Test
                 "%section2%"=>"Substitution Text for Section 2"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
   end
 
   def test_add_header
@@ -177,7 +177,7 @@ class TestMail < Minitest::Test
                 "X-Test3"=>"test3"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
     mail.add_header(Header.new(key: 'X-Test4', value: 'test4'))
     expected_json = {
         "headers"=>{
@@ -185,7 +185,7 @@ class TestMail < Minitest::Test
                 "X-Test4"=>"test4"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
   end
 
   def test_add_custom_arg
@@ -196,7 +196,7 @@ class TestMail < Minitest::Test
                 "campaign 1"=>"welcome 1"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
     mail.add_custom_arg(CustomArg.new(key: 'campaign 2', value: 'welcome 2'))
     expected_json = {
         "custom_args"=>{
@@ -204,13 +204,13 @@ class TestMail < Minitest::Test
                 "campaign 2"=>"welcome 2"
             }
     }
-    assert_equal mail.to_json, expected_json
+    assert_equal mail.to_hash, expected_json
   end
 
   def test_add_attachment
     mail = Mail.new
     mail.add_attachment('foo')
-    assert_equal(['foo'.to_json], mail.attachments)
+    assert_equal(['foo'.to_hash], mail.attachments)
   end
 
   def test_add_valid_category

@@ -14,7 +14,7 @@ module SendGrid
     end
 
     def click_tracking
-      @click_tracking.nil? ? nil : @click_tracking.to_json
+      @click_tracking.nil? ? nil : @click_tracking.to_hash
     end
 
     def open_tracking=(open_tracking)
@@ -22,7 +22,7 @@ module SendGrid
     end
 
     def open_tracking
-      @open_tracking.nil? ? nil : @open_tracking.to_json
+      @open_tracking.nil? ? nil : @open_tracking.to_hash
     end
 
     def subscription_tracking=(subscription_tracking)
@@ -30,7 +30,7 @@ module SendGrid
     end
 
     def subscription_tracking
-      @subscription_tracking.nil? ? nil : @subscription_tracking.to_json
+      @subscription_tracking.nil? ? nil : @subscription_tracking.to_hash
     end
 
     def ganalytics=(ganalytics)
@@ -38,10 +38,10 @@ module SendGrid
     end
 
     def ganalytics
-      @ganalytics.nil? ? nil : @ganalytics.to_json
+      @ganalytics.nil? ? nil : @ganalytics.to_hash
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'click_tracking' => self.click_tracking,
         'open_tracking' => self.open_tracking,

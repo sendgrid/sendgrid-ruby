@@ -16,7 +16,7 @@ module SendGrid
       @name
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'category' => name
       }.delete_if { |_, value| value.to_s.strip == '' }

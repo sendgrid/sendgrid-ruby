@@ -32,7 +32,7 @@ module SendGrid
       @html
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'enable' => self.enable,
         'text' => self.text,

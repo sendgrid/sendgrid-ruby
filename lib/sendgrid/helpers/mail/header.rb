@@ -15,7 +15,7 @@ module SendGrid
       @header
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'header' => self.header
       }.delete_if { |_, value| value.to_s.strip == '' }

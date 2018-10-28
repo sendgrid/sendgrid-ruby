@@ -62,7 +62,7 @@ mail.template_id = '13b8f94f-bcae-4ec6-b752-70d6cb59f932'
 
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 begin
-    response = sg.client.mail._("send").post(request_body: mail.to_json)
+    response = sg.client.mail._("send").post(request_body: mail.to_hash)
 rescue Exception => e
     puts e.message
 end

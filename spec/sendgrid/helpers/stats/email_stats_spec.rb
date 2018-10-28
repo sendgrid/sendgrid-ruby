@@ -51,7 +51,7 @@ describe SendGrid::EmailStats do
 
   describe 'successful response' do
     before do
-      allow_any_instance_of(SendGrid::Response).to receive(:body) { sample_response.to_json }
+      allow_any_instance_of(SendGrid::Response).to receive(:body) { sample_response.to_hash }
     end
 
     describe '#by_day' do
@@ -99,7 +99,7 @@ describe SendGrid::EmailStats do
 
   describe 'error response' do
     before do
-      allow_any_instance_of(SendGrid::Response).to receive(:body) { error_response.to_json }
+      allow_any_instance_of(SendGrid::Response).to receive(:body) { error_response.to_hash }
     end
 
     it 'fetches data aggregated by month' do

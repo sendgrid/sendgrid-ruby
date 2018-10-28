@@ -11,7 +11,7 @@ class TestEmail < Minitest::Test
         "email"=>"test1@example.com",
         "name"=>"Example User"
     }
-    assert_equal @email.to_json, expected_json
+    assert_equal @email.to_hash, expected_json
   end
 
   def test_split_email_only_email
@@ -19,7 +19,7 @@ class TestEmail < Minitest::Test
     expected_json = {
         "email"=>"test1@example.com",
     }
-    assert_equal @email.to_json, expected_json
+    assert_equal @email.to_hash, expected_json
   end
 
   def test_split_email_name_and_email
@@ -28,7 +28,7 @@ class TestEmail < Minitest::Test
         "email"=>"test1@example.com",
         "name"=>"Example User"
     }
-    assert_equal @email.to_json, expected_json
+    assert_equal @email.to_hash, expected_json
   end
 
 end

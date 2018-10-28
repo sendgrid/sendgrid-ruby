@@ -15,7 +15,7 @@ module SendGrid
       @custom_arg
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'custom_arg' => self.custom_arg
       }.delete_if { |_, value| value.to_s.strip == '' }

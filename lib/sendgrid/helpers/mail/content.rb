@@ -23,7 +23,7 @@ module SendGrid
       @value
     end
 
-    def to_json(*)
+    def to_hash(*)
       {
         'type' => self.type,
         'value' => self.value

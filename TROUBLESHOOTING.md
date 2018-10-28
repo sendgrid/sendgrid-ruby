@@ -61,7 +61,7 @@ To read the error message returned by SendGrid's API:
 
 ```ruby
 begin
-    response = sg.client.mail._("send").post(request_body: mail.to_json)
+    response = sg.client.mail._("send").post(request_body: mail.to_hash)
 rescue Exception => e
     puts e.message
 end
@@ -124,7 +124,7 @@ gem install sendgrid-ruby -v X.X.X
 
 When debugging or testing, it may be useful to examine the raw request header to compare against the [documented format](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
-You can do this before `response = sg.client.mail._('send').post(request_body: mail.to_json)` like so:
+You can do this before `response = sg.client.mail._('send').post(request_body: mail.to_hash)` like so:
 
 ```ruby
 puts mail
