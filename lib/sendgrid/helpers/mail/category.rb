@@ -8,14 +8,6 @@ module SendGrid
       @name = name
     end
 
-    def name=(name)
-      @name = name
-    end
-
-    def name
-      @name
-    end
-
     def to_hash(*)
       {
         'category' => name

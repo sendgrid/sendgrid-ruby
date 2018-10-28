@@ -8,6 +8,19 @@
 * [Contributing](#contributing)
 
 <a name="quick_start_local_sample"></a>
+
+
+# Installation
+
+In addition to the installation instructions in
+[the main readme](https://github.com/sendgrid/sendgrid-ruby/tree/master/#installation),
+you must also add sinatra to your Gemfile:
+
+```
+gem 'sinatra', '>= 1.4.7', '< 3'
+```
+
+
 # Quick Start for Local Testing with Sample Data
 
 ```bash
@@ -30,7 +43,7 @@ bundle install
 ruby ./lib/sendgrid/helpers/inbound/send.rb ./lib/sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/master/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/inbound/sample_data).
 
 View the results in the first terminal.
 
