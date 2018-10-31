@@ -1270,6 +1270,20 @@ class TestAPI < MiniTest::Test
         self.assert_equal('202', response.status_code)
     end
 
+    def test_mail_invalid_email_address
+        from = SendGrid::Email.new(email: 'test@example.com')
+        to = SendGrid::Email.new(email: 7)
+        subject = 'Sending with SendGrid is Fun'
+        content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+        headers = JSON.parse('{"X-Mock": 200}')
+
+        assert_raises SendGrid::EmailAddressTypeError do
+          mail = SendGrid::Mail.new(from, subject, to, content)
+          data = mail.to_json
+          @sg.client.mail._("send").post(request_body: data, request_headers: headers)
+        end
+    end
+
     def test_mail_settings_get
         params = JSON.parse('{"limit": 1, "offset": 1}')
         headers = JSON.parse('{"X-Mock": 200}')

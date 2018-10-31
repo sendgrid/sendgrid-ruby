@@ -27,6 +27,9 @@ module SendGrid
       @reply_to = nil
 
       if !(from_email.nil? && subj.nil? && to_email.nil? && cont.nil?)
+        validate_email_address!(from_email.email)
+        validate_email_address!(to_email.email)
+
         self.from = from_email
         self.subject = subj
         personalization = Personalization.new
@@ -167,6 +170,10 @@ module SendGrid
         'tracking_settings' => self.tracking_settings,
         'reply_to' => self.reply_to
       }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
+    end
+
+    def validate_email_address!(email_address)
+      raise EmailAddressTypeError unless email_address.is_a? String
     end
   end
 end
