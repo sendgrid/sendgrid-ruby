@@ -143,4 +143,19 @@ class TestPersonalization < Minitest::Test
     assert_equal @personalization.to_json, expected_json
   end
 
+  def test_add_dynamic_template_data
+    @personalization = Personalization.new()
+    @personalization.add_dynamic_template_data({
+        "name"=>"Example User",
+        "city"=> "Denver"
+    })
+    expected_json = {
+        "dynamic_template_data"=>{
+                "name"=>"Example User",
+                "city"=>"Denver"
+            }
+    }
+    assert_equal @personalization.to_json, expected_json
+  end
+
 end

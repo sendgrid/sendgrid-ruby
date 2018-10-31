@@ -1,6 +1,33 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [6.0.0] - date TBD ##
+### BREAKING CHANGE
+- The sinatra gem is no longer specified as a dependency of this gem.
+  If you would like to use the inbound processing, you must add this gem
+  to your Gemfile. e.g. `gem 'sinatra', '>= 1.4.7', '< 3'`
+
+## [5.3.0] - 2018-10-12 ##
+### Added
+- [PR #300](https://github.com/sendgrid/sendgrid-ruby/pull/300): Support for Dynamic Templates. Big thanks to [@nedcampion](https://github.com/nedcampion) for the PR!
+- [PR #178](https://github.com/sendgrid/sendgrid-ruby/pull/178): Convert key/value arguments to CustomArgs to strings. Big thanks to [@sitaramshelke](https://github.com/sitaramshelke) for the PR!
+- [PR #258](https://github.com/sendgrid/sendgrid-ruby/pull/258): Added unittest to check for specific repo files. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+- [PR #255](https://github.com/sendgrid/sendgrid-ruby/pull/255): Add a unittest to check the license.md file date range. Big thanks to [@prashuchaudhary](https://github.com/prashuchaudhary) for the PR!
+- [PR #181](https://github.com/sendgrid/sendgrid-ruby/pull/181): Add Docker. Big thanks to [@shrivara](https://github.com/shrivara) for the PR!
+- [PR #248](https://github.com/sendgrid/sendgrid-ruby/pull/248): Added .codeclimate.yml. Big thanks to [@proton](https://github.com/proton) for the PR!
+- [PR #260](https://github.com/sendgrid/sendgrid-ruby/pull/260): Update ruby-http-client dependency to support v3.3.0. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+- [PR #304](https://github.com/sendgrid/sendgrid-ruby/pull/304): Readability update for documentation. Big thanks to [@af4ro](https://github.com/af4ro) for the PR!
+- [PR #306](https://github.com/sendgrid/sendgrid-ruby/pull/306): Update example to work in Rails console. Big thanks to [@RogerPodacter](https://github.com/RogerPodacter) for the PR!
+
+### Fixes
+- [PR #252](https://github.com/sendgrid/sendgrid-ruby/pull/252): Update LICENSE, set correct year. Big thanks to [@pushkyn](https://github.com/pushkyn) for the PR!
+- [PR #257](https://github.com/sendgrid/sendgrid-ruby/pull/257): README.md typo fix. Big thanks to [@shucon](https://github.com/shucon) for the PR!
+
+## [5.2.0] - 2017-10-30 ##
+### Added
+- PR #234: Helpers for email statistics - global, category, subuser 
+- Thanks to [Awin Abi](https://github.com/awinabi) for the pull request!
+
 ## [5.1.0] - 2017-9-1 ##
 ### Added
 - #173: Update ruby-http-client dependency
