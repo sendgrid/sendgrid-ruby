@@ -2937,7 +2937,7 @@ A domain authentication allows you to remove the via or sent on behalf of messag
 
 Domain authentications can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's authenticated domains. To associate a domain authentication with a subuser, the parent account must first create the domain authentication and validate it. The parent may then associate the domain authentication via the subuser management tools.
 
-For more information on domain authentication, please see our [User Guide]((https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
+For more information on domain authentication, please see our [User Guide](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/)
 
 ## URI Parameters
 | URI Parameter   | Type  | Description  |
