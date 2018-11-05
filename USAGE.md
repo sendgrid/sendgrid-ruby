@@ -3218,7 +3218,7 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
-## Validate a reverse DNS
+## Validate a reverse DNS record
 
 **This endpoint allows you to validate a reverse DNS record.**
 
