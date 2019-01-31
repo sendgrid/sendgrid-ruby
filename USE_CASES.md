@@ -10,7 +10,7 @@ This documentation provides examples for specific use cases. Please [open an iss
 <a name="transactional-templates"></a>
 # Transactional Templates
 
-For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
+For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/ui/sending-email/create-and-edit-legacy-transactional-templates/). Following is the template content we used for testing.
 
 Template ID (replace with your own):
 
