@@ -4026,7 +4026,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).get()
+response = sg.client.suppression.spam_reports._(email).get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -4044,7 +4044,7 @@ For more information, please see our [User Guide](https://sendgrid.com/docs/User
 
 ```ruby
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete()
+response = sg.client.suppression.spam_reports._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
