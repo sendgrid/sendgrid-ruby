@@ -9,10 +9,11 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 * [Continue Using v2](#v2)
 * [Testing v3 /mail/send Calls Directly](#testing)
 * [Error Messages](#error)
-* [Versions](#versions)
+* [Versioning](#versioning)
 * [Environment Variables and Your SendGrid API Key](#environment)
 * [Using the Package Manager](#package-manager)
 * [Rails Specifics](#rails-specifics)
+* [Ruby Versions](#ruby-versions)
 * [Viewing the Request Body](#request-body)
 
 <a name="migrating"></a>
@@ -67,8 +68,8 @@ rescue Exception => e
 end
 ```
 
-<a name="versions"></a>
-## Versions
+<a name="versioning"></a>
+## Versioning
 
 We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases) section.
 
@@ -118,6 +119,11 @@ gem install sendgrid-ruby -v X.X.X
 - Namespace collision between Rails own `Mail` class and sendgrid class `Mail`. To avoid that issues please use `SendGrid::Mail` instead.
 
 - Possibility of a namespace collision between the sendgrid class `Email` and your own defined `Email` class. To avoid these issues, you can skip the `include SendGrid` line and use the `SendGrid::` prefix for Email. Please see this [SO answer](https://stackoverflow.com/questions/41508464/rails-model-name-conflict-with-included-gem?noredirect=1#comment70223099_41508464) for specifics.
+
+<a name="ruby-versions"></a>
+## Ruby Versions
+
+This SDK [does not work with ruby version 2.6.0](https://github.com/sendgrid/sendgrid-ruby/issues/378) because of [this bug](https://bugs.ruby-lang.org/issues/15468). Please use any other [supported version](https://github.com/sendgrid/sendgrid-ruby#prerequisites).
 
 <a name="request-body"></a>
 ## Viewing the Request Body
