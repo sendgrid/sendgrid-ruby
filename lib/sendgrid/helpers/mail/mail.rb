@@ -9,6 +9,11 @@ module SendGrid
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
 
     def initialize(from_email=nil, subj=nil, to_email=nil, cont=nil)
+      raise ArgumentError.new unless from_email.nil? || from_email.is_a?(Email)
+      raise ArgumentError.new unless subj.nil? || subj.is_a?(String)
+      raise ArgumentError.new unless to_email.nil? || to_email.is_a?(Email)
+      raise ArgumentError.new unless cont.nil? || cont.is_a?(Content)
+
       @from = nil
       @subject = nil
       @personalizations = []
@@ -27,14 +32,19 @@ module SendGrid
       @tracking_settings = nil
       @reply_to = nil
 
-      if !(from_email.nil? && subj.nil? && to_email.nil? && cont.nil?)
-        self.from = from_email
-        self.subject = subj
+      # accept String OR Email inputs
+      from_email = Email.new(email: from_email) if from_email.is_a?(String)
+      to_email = Email.new(email: to_email) if to_email.is_a?(String)
+
+      self.from = from_email if from_email
+      self.subject = subj if subj
+      if to_email
         personalization = Personalization.new
         personalization.add_to(to_email)
         self.add_personalization(personalization)
-        self.add_content(cont)
       end
+      self.add_content(cont) if cont
+      self
     end
 
     def from=(from)

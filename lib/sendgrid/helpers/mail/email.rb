@@ -6,6 +6,9 @@ module SendGrid
     attr_accessor :email, :name
 
     def initialize(email: nil, name: nil)
+      raise ArgumentError.new unless email.nil? || email.is_a?(String)
+      raise ArgumentError.new unless name.nil? || name.is_a?(String)
+
       if name
         @email = email
         @name = name

@@ -20,6 +20,9 @@ test.rb
 .repl_history
 build/
 
+## Specific to IntelliJ / RubyMine:
+/.idea
+
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
