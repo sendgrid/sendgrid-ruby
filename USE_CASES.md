@@ -2,10 +2,24 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 # Table of Contents
 
-* [Transactional Templates](#transactional-templates)
-* [Legacy Templates](#legacy-templates)
-* [How to Setup a Domain Authentication](#domain-authentication)
-* [How to View Email Statistics](#email-statistics)
+- [Table of Contents](#table-of-contents)
+- [Transactional Templates](#transactional-templates)
+  - [With Mail Helper Class](#with-mail-helper-class)
+  - [Without Mail Helper Class](#without-mail-helper-class)
+- [Legacy Templates](#legacy-templates)
+  - [With Mail Helper Class](#with-mail-helper-class-1)
+  - [Without Mail Helper Class](#without-mail-helper-class-1)
+  - [Adding Attachments](#adding-attachments)
+- [How to Setup a Domain Authentication](#how-to-setup-a-domain-authentication)
+- [How to View Email Statistics](#how-to-view-email-statistics)
+- [Send a SMS Message](#send-a-sms-message)
+  - [1. Obtain a Free Twilio Account](#1-obtain-a-free-twilio-account)
+  - [2. Update Your Environment Variables](#2-update-your-environment-variables)
+    - [Mac](#mac)
+    - [Windows](#windows)
+  - [3. Install the Twilio Helper Library](#3-install-the-twilio-helper-library)
+  - [4. Setup Work](#4-setup-work)
+  - [5. Send an SMS](#5-send-an-sms)
 
 <a name="transactional-templates"></a>
 # Transactional Templates
@@ -85,7 +99,7 @@ data = JSON.parse('{
       ],
       "dynamic_template_data": {
         "subject": "Testing Templates",
-	"name": "Example User",
+	      "name": "Example User",
         "city": "Denver"
       }
     }
@@ -236,7 +250,7 @@ Find more information about all of SendGrid's authentication related documentati
 
 You can find documentation for how to view your email statistics via the UI [here](https://app.sendgrid.com/statistics) and via API [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md#stats).
 
-Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as SendGrid processes your email.
+Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as Twilio SendGrid processes your email.
 
 You can also use the email statistics helper to make it easier to interact with the API.
 
@@ -285,3 +299,80 @@ if !email_stats.error?
 end
 
 ```
+
+<a name="sms"></a>
+# Send a SMS Message
+
+Following are the steps to add Twilio SMS to your app:
+
+## 1. Obtain a Free Twilio Account
+
+Sign up for a free Twilio account [here](https://www.twilio.com/try-twilio?source=sendgrid-ruby).
+
+## 2. Update Your Environment Variables
+
+You can obtain your Account Sid and Auth Token from [twilio.com/console](https://twilio.com/console).
+
+### Mac
+
+```bash
+echo "export TWILIO_ACCOUNT_SID='YOUR_TWILIO_ACCOUNT_SID'" > twilio.env
+echo "export TWILIO_AUTH_TOKEN='YOUR_TWILIO_AUTH_TOKEN'" >> twilio.env
+echo "twilio.env" >> .gitignore
+source ./twilio.env
+```
+
+### Windows
+
+Temporarily set the environment variable (accessible only during the current CLI session):
+
+```bash
+set TWILIO_ACCOUNT_SID=YOUR_TWILIO_ACCOUNT_SID
+set TWILIO_AUTH_TOKEN=YOUR_TWILIO_AUTH_TOKEN
+```
+
+Permanently set the environment variable (accessible in all subsequent CLI sessions):
+
+```bash
+setx TWILIO_ACCOUNT_SID "YOUR_TWILIO_ACCOUNT_SID"
+setx TWILIO_AUTH_TOKEN "YOUR_TWILIO_AUTH_TOKEN"
+```
+
+## 3. Install the Twilio Helper Library
+
+To install using [Bundler][bundler] grab the latest stable version:
+
+```ruby
+gem 'twilio-ruby', '~> 5.23.1'
+```
+
+To manually install `twilio-ruby` via [Rubygems][rubygems] simply gem install:
+
+```bash
+gem install twilio-ruby -v 5.23.1
+```
+
+## 4. Setup Work
+
+```ruby
+require 'twilio-ruby'
+
+# put your own credentials here
+account_sid = ENV['TWILIO_ACCOUNT_SID']
+auth_token = ENV['TWILIO_AUTH_TOKEN']
+
+# set up a client to talk to the Twilio REST API
+@client = Twilio::REST::Client.new account_sid, auth_token
+```
+
+## 5. Send an SMS
+
+```ruby
+@client.api.account.messages.create(
+  from: '+14159341234',
+  to: '+16105557069',
+  body: 'Hey there!'
+)
+```
+
+For more information, please visit the [Twilio SMS Ruby documentation](https://www.twilio.com/docs/sms/quickstart/ruby).
