@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version     = SendGrid::VERSION
   spec.authors     = ['Elmer Thomas', 'Robin Johnson', 'Eddie Zaneski']
   spec.email       = 'dx@sendgrid.com'
-  spec.summary     = 'Official SendGrid Gem'
-  spec.description = 'Official SendGrid Gem to Interact with SendGrids API in native Ruby'
+  spec.summary     = 'Official Twilio SendGrid Gem'
+  spec.description = 'Official Twilio SendGrid Gem to Interact with Twilio SendGrids API in native Ruby'
   spec.homepage    = 'http://github.com/sendgrid/sendgrid-ruby'
 
   spec.required_ruby_version = '>= 2.2'

@@ -1,20 +1,20 @@
-If you have a non-library SendGrid issue, please contact our [support team](https://support.sendgrid.com).
+If you have a non-library Twilio SendGrid issue, please contact our [support team](https://support.sendgrid.com).
 
 If you can't find a solution below, please open an [issue](https://github.com/sendgrid/sendgrid-ruby/issues).
 
 
 ## Table of Contents
 
-* [Migrating from v2 to v3](#migrating)
-* [Continue Using v2](#v2)
-* [Testing v3 /mail/send Calls Directly](#testing)
-* [Error Messages](#error)
+* [Migrating from v2 to v3](#migrating-from-v2-to-v3)
+* [Continue Using v2](#continue-using-v2)
+* [Testing v3 /mail/send Calls Directly](#testing-v3-mailsend-calls-directly)
+* [Error Messages](#error-messages)
 * [Versioning](#versioning)
-* [Environment Variables and Your SendGrid API Key](#environment)
-* [Using the Package Manager](#package-manager)
+* [Environment Variables and Your Twilio SendGrid API Key](#environment-variables-and-your-twilio-sendgrid-api-key)
+* [Using the Package Manager](#using-the-package-manager)
 * [Rails Specifics](#rails-specifics)
 * [Ruby Versions](#ruby-versions)
-* [Viewing the Request Body](#request-body)
+* [Viewing the Request Body](#viewing-the-request-body)
 
 <a name="migrating"></a>
 ## Migrating from v2 to v3
@@ -74,11 +74,11 @@ end
 We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases) section.
 
 <a name="environment"></a>
-## Environment Variables and Your SendGrid API Key
+## Environment Variables and Your Twilio SendGrid API Key
 
-All of our examples assume you are using [environment variables](https://github.com/sendgrid/sendgrid-ruby#setup-environment-variables) to hold your SendGrid API key.
+All of our examples assume you are using [environment variables](https://github.com/sendgrid/sendgrid-ruby#setup-environment-variables) to hold your Twilio SendGrid API key.
 
-If you choose to add your SendGrid API key directly (not recommended):
+If you choose to add your Twilio SendGrid API key directly (not recommended):
 
 `sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])`
 
@@ -86,7 +86,7 @@ becomes
 
 `sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY')`
 
-In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual SendGrid API Key.
+In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual Twilio SendGrid API Key.
 
 <a name="package-manager"></a>
 ## Using the Package Manager

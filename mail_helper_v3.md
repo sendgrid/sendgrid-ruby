@@ -13,7 +13,7 @@ require 'sendgrid-ruby'
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Mail.create(from: from,
@@ -48,7 +48,7 @@ tos = [
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Mail.create(from: from,
@@ -84,9 +84,9 @@ tos = [
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
 subjects = [
-    'Sending with SendGrid is Fun',
-    'Sending with SendGrid is Super Fun',
-    'Sending with SendGrid is Super Duper Fun'
+    'Sending with Twilio SendGrid is Fun',
+    'Sending with Twilio SendGrid is Super Fun',
+    'Sending with Twilio SendGrid is Super Duper Fun'
 ];
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
@@ -126,7 +126,7 @@ client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
@@ -237,7 +237,7 @@ msg.set_subject('this subject overrides the Global Subject on the second Persona
 
 msg.set_from(SendGrid::Email.new('test0@example.com', 'Example User0'))
 
-msg.set_global_subject('Sending with SendGrid is Fun');
+msg.set_global_subject('Sending with Twilio SendGrid is Fun');
 
 msg.add_content(MimeType::Text, 'and easy to do anywhere, even with Ruby')
 msg.add_content(MimeType::Html, '<strong>and easy to do anywhere, even with Ruby</strong>')
@@ -302,7 +302,7 @@ client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
@@ -367,7 +367,7 @@ client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)

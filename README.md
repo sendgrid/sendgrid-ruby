@@ -1,4 +1,4 @@
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![Twilio SendGrid Logo](https://github.com/sendgrid/sendgrid-python/raw/master/twilio_sendgrid_logo.png)
 
 [![Travis Badge](https://travis-ci.org/sendgrid/sendgrid-ruby.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-ruby) 
 [![Gem Version](https://badge.fury.io/rb/sendgrid-ruby.svg)](https://badge.fury.io/rb/sendgrid-ruby)
@@ -10,11 +10,11 @@
 
 **NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/ruby) for releases and breaking changes.
 
-**This library allows you to quickly and easily use the SendGrid Web API v3 via Ruby.**
+**This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Ruby.**
 
-Version 3.X.X+ of this library provides full support for all SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
+Version 3.X.X+ of this library provides full support for all Twilio SendGrid [Web API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html) endpoints, including the new [v3 /mail/send](https://sendgrid.com/blog/introducing-v3mailsend-sendgrids-new-mail-endpoint).
 
-This library represents the beginning of a new path for SendGrid. We want this library to be community driven and SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-ruby/issues) and [pull requests](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
+This library represents the beginning of a new path for Twilio SendGrid. We want this library to be community driven and Twilio SendGrid led. We need your help to realize this goal. To help make sure we are building the right things in the right order, we ask that you create [issues](https://github.com/sendgrid/sendgrid-ruby/issues) and [pull requests](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md) or simply upvote or comment on existing issues or pull requests.
 
 Please browse the rest of this README for further details.
 
@@ -47,7 +47,7 @@ We appreciate your continued support, thank you!
 ## Prerequisites
 
 - Ruby version >= 2.2 (except version [2.6.0](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#ruby-versions))
-- The SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby)
+- The Twilio SendGrid service, starting at the [free level](https://sendgrid.com/free?source=sendgrid-ruby)
 
 ## Setup Environment Variables
 
@@ -97,7 +97,7 @@ include SendGrid
 
 from = SendGrid::Email.new(email: 'test@example.com')
 to = SendGrid::Email.new(email: 'test@example.com')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
 
@@ -127,7 +127,7 @@ data = JSON.parse('{
           "email": "test@example.com"
         }
       ],
-      "subject": "Sending with SendGrid is Fun"
+      "subject": "Sending with Twilio SendGrid is Fun"
     }
   ],
   "from": {
@@ -180,7 +180,7 @@ Please see [our helper](https://github.com/sendgrid/sendgrid-ruby/tree/master/li
 <a name="usage"></a>
 # Usage
 
-- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
+- [Twilio SendGrid Docs](https://sendgrid.com/docs/API_Reference/index.html)
 - [Library Usage Docs](https://github.com/sendgrid/sendgrid-ruby/tree/master/USAGE.md)
 - [Example Code](https://github.com/sendgrid/sendgrid-ruby/tree/master/examples)
 - [How-to: Migration from v2 to v3](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/how_to_migrate_from_v2_to_v3_mail_send.html)
@@ -223,7 +223,7 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-ruby
 <a name="about"></a>
 # About
 
-sendgrid-ruby is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
+sendgrid-ruby is guided and supported by the [Developer Experience Team](mailto:dx@sendgrid.com).
 
 sendgrid-ruby is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of SendGrid, Inc.
 

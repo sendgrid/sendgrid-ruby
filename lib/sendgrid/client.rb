@@ -1,4 +1,4 @@
-# Quickly and easily access the SendGrid API.
+# Quickly and easily access the Twilio SendGrid API.
 require 'ruby_http_client'
 require_relative 'version'
 
@@ -8,7 +8,7 @@ module SendGrid
     attr_accessor :client
     attr_reader :request_headers, :host, :version, :impersonate_subuser
     # * *Args*    :
-    #   - +api_key+ -> your SendGrid API key
+    #   - +api_key+ -> your Twilio SendGrid API key
     #   - +host+ -> the base URL for the API
     #   - +request_headers+ -> any headers that you want to be globally applied
     #   - +version+ -> the version of the API you wish to access,
