@@ -5,17 +5,16 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Migrating from v2 to v3](#migrating-from-v2-to-v3)
-- [Continue Using v2](#continue-using-v2)
-- [Testing v3 /mail/send Calls Directly](#testing-v3-mailsend-calls-directly)
-- [Error Messages](#error-messages)
-- [Versioning](#versioning)
-- [Environment Variables and Your Twilio SendGrid API Key](#environment-variables-and-your-twilio-sendgrid-api-key)
-- [Using the Package Manager](#using-the-package-manager)
-- [Rails Specifics](#rails-specifics)
-- [Ruby Versions](#ruby-versions)
-- [Viewing the Request Body](#viewing-the-request-body)
+* [Migrating from v2 to v3](#migrating-from-v2-to-v3)
+* [Continue Using v2](#continue-using-v2)
+* [Testing v3 /mail/send Calls Directly](#testing-v3-mailsend-calls-directly)
+* [Error Messages](#error-messages)
+* [Versioning](#versioning)
+* [Environment Variables and Your Twilio SendGrid API Key](#environment-variables-and-your-twilio-sendgrid-api-key)
+* [Using the Package Manager](#using-the-package-manager)
+* [Rails Specifics](#rails-specifics)
+* [Ruby Versions](#ruby-versions)
+* [Viewing the Request Body](#viewing-the-request-body)
 
 <a name="migrating"></a>
 ## Migrating from v2 to v3

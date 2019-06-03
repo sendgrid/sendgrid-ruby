@@ -2,24 +2,23 @@ This documentation provides examples for specific use cases. Please [open an iss
 
 # Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Transactional Templates](#transactional-templates)
-  - [With Mail Helper Class](#with-mail-helper-class)
-  - [Without Mail Helper Class](#without-mail-helper-class)
-- [Legacy Templates](#legacy-templates)
-  - [With Mail Helper Class](#with-mail-helper-class-1)
-  - [Without Mail Helper Class](#without-mail-helper-class-1)
-  - [Adding Attachments](#adding-attachments)
-- [How to Setup a Domain Authentication](#how-to-setup-a-domain-authentication)
-- [How to View Email Statistics](#how-to-view-email-statistics)
-- [Send a SMS Message](#send-a-sms-message)
-  - [1. Obtain a Free Twilio Account](#1-obtain-a-free-twilio-account)
-  - [2. Update Your Environment Variables](#2-update-your-environment-variables)
-    - [Mac](#mac)
-    - [Windows](#windows)
-  - [3. Install the Twilio Helper Library](#3-install-the-twilio-helper-library)
-  - [4. Setup Work](#4-setup-work)
-  - [5. Send an SMS](#5-send-an-sms)
+* [Transactional Templates](#transactional-templates)
+  * [With Mail Helper Class](#with-mail-helper-class)
+  * [Without Mail Helper Class](#without-mail-helper-class)
+* [Legacy Templates](#legacy-templates)
+  * [With Mail Helper Class](#with-mail-helper-class-1)
+  * [Without Mail Helper Class](#without-mail-helper-class-1)
+  * [Adding Attachments](#adding-attachments)
+* [How to Setup a Domain Authentication](#how-to-setup-a-domain-authentication)
+* [How to View Email Statistics](#how-to-view-email-statistics)
+* [Send a SMS Message](#send-a-sms-message)
+  * [1. Obtain a Free Twilio Account](#1-obtain-a-free-twilio-account)
+  * [2. Update Your Environment Variables](#2-update-your-environment-variables)
+    * [Mac](#mac)
+    * [Windows](#windows)
+  * [3. Install the Twilio Helper Library](#3-install-the-twilio-helper-library)
+  * [4. Setup Work](#4-setup-work)
+  * [5. Send an SMS](#5-send-an-sms)
 
 <a name="transactional-templates"></a>
 # Transactional Templates
@@ -99,7 +98,7 @@ data = JSON.parse('{
       ],
       "dynamic_template_data": {
         "subject": "Testing Templates",
-	      "name": "Example User",
+        "name": "Example User",
         "city": "Denver"
       }
     }

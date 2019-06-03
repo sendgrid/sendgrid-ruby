@@ -36,6 +36,6 @@ Finally, just a reminder, changes to the Twilio SendGrid repositories will only 
 
 Twilio SendGrid thanks the following, on which it draws for content and inspiration:
 
-* [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/)  
+* [Ruby Community Code of Conduct](https://www.python.org/psf/codeofconduct/)  
 * [Open Source Initiative General Code of Conduct](https://opensource.org/codeofconduct) 
 * [Apache Code of Conduct](https://www.apache.org/foundation/policies/conduct.html) 
