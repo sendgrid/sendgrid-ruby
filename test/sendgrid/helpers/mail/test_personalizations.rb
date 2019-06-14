@@ -30,6 +30,20 @@ class TestPersonalization < Minitest::Test
         ]
     }
     assert_equal @personalization.to_json, expected_json
+    @personalization.add_to(Email.new(email: 'test2@example.com', name: 'Duplicate Example User 2'))
+    expected_json = {
+        "to"=>[
+            {
+                "email"=>"test1@example.com",
+                "name"=>"Example User"
+            },
+            {
+                "email"=>"test2@example.com",
+                "name"=>"Example User 2"
+            }
+        ]
+    }
+    assert_equal @personalization.to_json, expected_json
   end
 
   def test_add_cc
@@ -57,6 +71,20 @@ class TestPersonalization < Minitest::Test
         ]
     }
     assert_equal @personalization.to_json, expected_json
+    @personalization.add_cc(Email.new(email: 'test2@example.com', name: 'Duplicate Example User 2'))
+    expected_json = {
+        "cc"=>[
+            {
+                "email"=>"test1@example.com",
+                "name"=>"Example User"
+            },
+            {
+                "email"=>"test2@example.com",
+                "name"=>"Example User 2"
+            }
+        ]
+    }
+    assert_equal @personalization.to_json, expected_json
   end
 
   def test_add_bcc
@@ -71,6 +99,20 @@ class TestPersonalization < Minitest::Test
         ]
     }
     @personalization.add_bcc(Email.new(email: 'test2@example.com', name: 'Example User 2'))
+    expected_json = {
+        "bcc"=>[
+            {
+                "email"=>"test1@example.com",
+                "name"=>"Example User"
+            },
+            {
+                "email"=>"test2@example.com",
+                "name"=>"Example User 2"
+            }
+        ]
+    }
+    assert_equal @personalization.to_json, expected_json
+    @personalization.add_bcc(Email.new(email: 'test2@example.com', name: 'Duplicate of Example User 2'))
     expected_json = {
         "bcc"=>[
             {

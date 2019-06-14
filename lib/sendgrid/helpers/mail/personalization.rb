@@ -19,15 +19,24 @@ module SendGrid
     end
 
     def add_to(to)
-      @tos << to.to_json
+      json_to = to.to_json
+      unless @tos.include?(json_to) || @ccs.include?(json_to) || @bccs.include?(json_to)
+         @tos << json_to
+      end
     end
 
     def add_cc(cc)
-      @ccs << cc.to_json
+      json_cc = cc.to_json
+      unless @tos.include?(json_cc) || @ccs.include?(json_cc) || @bccs.include?(json_cc)
+        @ccs << json_cc
+      end
     end
 
     def add_bcc(bcc)
-      @bccs << bcc.to_json
+      json_bcc = bcc.to_json
+      unless @tos.include?(json_bcc) || @ccs.include?(json_bcc) || @bccs.include?(json_bcc)
+        @bccs << json_bcc
+      end
     end
 
     def subject=(subject)
