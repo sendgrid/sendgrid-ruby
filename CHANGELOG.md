@@ -1,7 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [6.0.0] - 2019-06-04 ##
+[2019-06-04] Version 6.0.0
+--------------------------
 ### BREAKING CHANGE
 - [PR #284](https://github.com/sendgrid/sendgrid-ruby/pull/284): The sinatra gem is no longer specified as a dependency of this gem. If you would like to use the inbound processing, please follow the [upgrade guide](https://github.com/sendgrid/sendgrid-ruby/blob/master/UPGRADE.md). Big thanks to [@jjb](https://github.com/jjb) for the PR!
 
