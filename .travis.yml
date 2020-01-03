@@ -27,3 +27,4 @@ deploy:
   on:
     tags: true
     rvm: '2.4'
+    gem: gemfiles/Sinatra_1.gemfile
