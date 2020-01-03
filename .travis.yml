@@ -1,8 +1,10 @@
 language: ruby
 rvm:
-- 2.2.6
-- 2.3.4
-- 2.4.1
+- ruby-head
+- 2.6
+- 2.5
+- 2.4
+- jruby
 gemfile:
 - gemfiles/Sinatra_1.gemfile
 - gemfiles/Sinatra_2.gemfile
@@ -10,20 +12,18 @@ before_script:
 - mkdir prism
 - mkdir prism/bin
 - export PATH=$PATH:$PWD/prism/bin/
-- ./test/prism.sh
-notifications:
-  hipchat:
-    rooms:
-      secure: gYBEwOGBTxHE2nrxsHQqp2UdjRtCX04wVLYEimeT9RG/0LClS4nzJF7DaXLWlAwgLPmk+KV2+nXuLO5oausBr9ODmWhho8G0F90RPR47NupcvT1RM+I2ZbxSjHCUICL22mdnZd8ye/mrk/YtFWYmgmH7ILRK3BuYovXFoKoRnLg=
-    template:
-    - '<a href="https://travis-ci.org/%{repository}/builds/%{build_id}">%{repository}
-      Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on GitHub</a>'
-    format: html
-    notify: false
-script:
-    - rake test
-    - rake spec
-before_install:
-    - gem update bundler
-
+- "./test/prism.sh"
+install: make install
+script: make test
+matrix:
+  allow_failures:
+  - rvm: ruby-head
+  fast_finish: true
+deploy:
+  provider: rubygems
+  api_key:
+    secure: CWlfN170i/fHPrIufHHLWQ0utjuhxf4ELSxKeypIuO2CNTqNMzocDAa2vxMt4XfO6d2wFPV/LC+IHR7i+sp7PKvjRoa4BLUUxjfBNDboc0gGESeUYlAxwsJo0tOVCNmpxgjQKqtPLz/19A/v/xpxLv2Im/9Idqa5ATd06sMDdM8=
+  gem: sendgrid-ruby
+  on:
+    tags: true
+    rvm: '2.4'
