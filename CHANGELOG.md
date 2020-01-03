@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-01-03] Version 6.0.1
+--------------------------
+**Library - Chore**
+- [PR #400](https://github.com/sendgrid/sendgrid-ruby/pull/400): Add auto-deploy to travis.yml. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+- [PR #399](https://github.com/sendgrid/sendgrid-ruby/pull/399): Add testing to Makefile. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+- [PR #396](https://github.com/sendgrid/sendgrid-ruby/pull/396): Adding Makefile to assist with automation. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+**Library - Fix**
+- [PR #321](https://github.com/sendgrid/sendgrid-ruby/pull/321): TROUBLESHOOTING.md broken link fix. Thanks to [@arshadkazmi42](https://github.com/arshadkazmi42)!
+
+
 [2019-06-04] Version 6.0.0
 --------------------------
 ### BREAKING CHANGE
