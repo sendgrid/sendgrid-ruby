@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-01-08] Version 6.0.2
+--------------------------
+**Library - Fix**
+- [PR #401](https://github.com/sendgrid/sendgrid-ruby/pull/401): Only try to deploy once to rubygems. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
 [2020-01-03] Version 6.0.1
 --------------------------
 **Library - Chore**
