@@ -2678,10 +2678,10 @@ class TestAPI < MiniTest::Test
 
 
     def test_license_file_correct_year_range
-        if File.exist?('./LICENSE.txt')
+        if File.exist?('./LICENSE.md')
             # get only the first line from the license txt file
-            year_range = File.open('./LICENSE.txt', &:readline).gsub(/[^\d-]/, '')
-            self.assert_equal("2014-#{Time.now.year}", year_range)
+            year_range = File.open('./LICENSE.md', &:readline).gsub(/[^\d-]/, '')
+            self.assert_equal("#{Time.now.year}", year_range)
         end
     end
 
@@ -2722,15 +2722,15 @@ class TestAPI < MiniTest::Test
     end
 
     def test_issue_template_exists
-      assert(File.file?('./.github/ISSUE_TEMPLATE'))
+      assert(File.file?('./ISSUE_TEMPLATE.md'))
     end
 
     def test_license_exists
-      assert(File.file?('./LICENSE.txt'))
+      assert(File.file?('./LICENSE.md'))
     end
 
     def test_pull_request_template_exists
-      assert(File.file?('./.github/PULL_REQUEST_TEMPLATE'))
+      assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
     end
 
     def test_readme_exists
