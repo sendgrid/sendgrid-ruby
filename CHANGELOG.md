@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-01-22] Version 6.0.3
+--------------------------
+**Library - Docs**
+- [PR #402](https://github.com/sendgrid/sendgrid-ruby/pull/402): baseline all the templated markdown docs. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-01-08] Version 6.0.2
 --------------------------
 **Library - Fix**
