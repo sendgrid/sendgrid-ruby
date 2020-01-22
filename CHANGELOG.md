@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-01-22] Version 6.0.4
+--------------------------
+**Library - Fix**
+- [PR #404](https://github.com/sendgrid/sendgrid-ruby/pull/404): add skip_cleanup flag to fix travis deploy. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
 [2020-01-22] Version 6.0.3
 --------------------------
 **Library - Docs**
