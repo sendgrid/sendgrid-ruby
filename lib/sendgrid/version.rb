@@ -1,3 +1,3 @@
 module SendGrid
-  VERSION = '6.0.5'
+  VERSION = '6.0.4'
 end
