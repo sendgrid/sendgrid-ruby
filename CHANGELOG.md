@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-02-19] Version 6.1.0
+--------------------------
+**Library - Feature**
+- [PR #405](https://github.com/sendgrid/sendgrid-ruby/pull/405): Use latest SendGrid HTTP Client. Thanks to [@saveav](https://github.com/saveav)!
+
+
 [2020-01-22] Version 6.0.4
 --------------------------
 **Library - Fix**
