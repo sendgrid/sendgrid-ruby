@@ -1,7 +1,7 @@
 .PHONY: install test
 
 install:
-	gem install bundler:1.17.3; bundle install
+	gem install bundler:2.1.2; bundle install
 
 test:
 	bundle exec rake spec
