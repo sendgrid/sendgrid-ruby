@@ -1,23 +1,24 @@
 language: ruby
 rvm:
-- ruby-head
-- 2.6
-- 2.5
-- 2.4
-- jruby
+  - ruby-head
+  - 2.7
+  - 2.6
+  - 2.5
+  - 2.4
+  - jruby
 gemfile:
-- gemfiles/Sinatra_1.gemfile
-- gemfiles/Sinatra_2.gemfile
+  - gemfiles/Sinatra_1.gemfile
+  - gemfiles/Sinatra_2.gemfile
 before_script:
-- mkdir prism
-- mkdir prism/bin
-- export PATH=$PATH:$PWD/prism/bin/
-- "./test/prism.sh"
+  - mkdir prism
+  - mkdir prism/bin
+  - export PATH=$PATH:$PWD/prism/bin/
+  - "./test/prism.sh"
 install: make install
 script: make test
 matrix:
   allow_failures:
-  - rvm: ruby-head
+    - rvm: ruby-head
   fast_finish: true
 deploy:
   provider: rubygems
