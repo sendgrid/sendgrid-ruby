@@ -58,7 +58,7 @@ class TestAPI < MiniTest::Test
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
         assert_equal(subuser, sg.impersonate_subuser)
-        assert_equal("5.3.0", SendGrid::VERSION)
+        assert_equal("6.1.0", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -1184,8 +1184,8 @@ class TestAPI < MiniTest::Test
     },
     "footer": {
       "enable": true,
-      "html": "<p>Thanks</br>The SendGrid Team</p>",
-      "text": "Thanks,/n The SendGrid Team"
+      "html": "<p>Thanks</br>The Twilio SendGrid Team</p>",
+      "text": "Thanks,/n The Twilio SendGrid Team"
     },
     "sandbox_mode": {
       "enable": false
@@ -1891,7 +1891,7 @@ class TestAPI < MiniTest::Test
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
 
-        response = @sg.client.suppression.spam_report._(email).delete(request_headers: headers)
+        response = @sg.client.suppression.spam_reports._(email).delete(request_headers: headers)
 
         self.assert_equal('204', response.status_code)
     end
@@ -2678,10 +2678,10 @@ class TestAPI < MiniTest::Test
 
 
     def test_license_file_correct_year_range
-        if File.exist?('./LICENSE.txt')
+        if File.exist?('./LICENSE.md')
             # get only the first line from the license txt file
-            year_range = File.open('./LICENSE.txt', &:readline).gsub(/[^\d-]/, '')
-            self.assert_equal("2014-#{Time.now.year}", year_range)
+            year_range = File.open('./LICENSE.md', &:readline).gsub(/[^\d-]/, '')
+            self.assert_equal("#{Time.now.year}", year_range)
         end
     end
 
@@ -2722,15 +2722,15 @@ class TestAPI < MiniTest::Test
     end
 
     def test_issue_template_exists
-      assert(File.file?('./.github/ISSUE_TEMPLATE'))
+      assert(File.file?('./ISSUE_TEMPLATE.md'))
     end
 
     def test_license_exists
-      assert(File.file?('./LICENSE.txt'))
+      assert(File.file?('./LICENSE.md'))
     end
 
     def test_pull_request_template_exists
-      assert(File.file?('./.github/PULL_REQUEST_TEMPLATE'))
+      assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
     end
 
     def test_readme_exists
