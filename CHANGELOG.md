@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-03-04] Version 6.1.1
+--------------------------
+**Library - Docs**
+- [PR #375](https://github.com/sendgrid/sendgrid-ruby/pull/375): update bug template URL. Thanks to [@divyanshu-rawat](https://github.com/divyanshu-rawat)!
+- [PR #385](https://github.com/sendgrid/sendgrid-ruby/pull/385): Remove announcements (the job posting is filled?). Thanks to [@deyton](https://github.com/deyton)!
+
+**Library - Chore**
+- [PR #409](https://github.com/sendgrid/sendgrid-ruby/pull/409): bump `bundler` version to 2.1.2. Thanks to [@chhhris](https://github.com/chhhris)!
+- [PR #408](https://github.com/sendgrid/sendgrid-ruby/pull/408): add Ruby 2.7 to Travis. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-02-19] Version 6.1.0
 --------------------------
 **Library - Feature**
