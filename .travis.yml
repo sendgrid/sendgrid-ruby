@@ -28,5 +28,4 @@ deploy:
   on:
     tags: true
     rvm: '2.4'
-    gem: gemfiles/Sinatra_1.gemfile
-    skip_cleanup: true
+    condition: '$BUNDLE_GEMFILE == *"gemfiles/Sinatra_1.gemfile"'
