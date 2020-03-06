@@ -1,6 +1,94 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-03-04] Version 6.1.1
+--------------------------
+**Library - Docs**
+- [PR #375](https://github.com/sendgrid/sendgrid-ruby/pull/375): update bug template URL. Thanks to [@divyanshu-rawat](https://github.com/divyanshu-rawat)!
+- [PR #385](https://github.com/sendgrid/sendgrid-ruby/pull/385): Remove announcements (the job posting is filled?). Thanks to [@deyton](https://github.com/deyton)!
+
+**Library - Chore**
+- [PR #409](https://github.com/sendgrid/sendgrid-ruby/pull/409): bump `bundler` version to 2.1.2. Thanks to [@chhhris](https://github.com/chhhris)!
+- [PR #408](https://github.com/sendgrid/sendgrid-ruby/pull/408): add Ruby 2.7 to Travis. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-02-19] Version 6.1.0
+--------------------------
+**Library - Feature**
+- [PR #405](https://github.com/sendgrid/sendgrid-ruby/pull/405): Use latest SendGrid HTTP Client. Thanks to [@saveav](https://github.com/saveav)!
+
+
+[2020-01-22] Version 6.0.4
+--------------------------
+**Library - Fix**
+- [PR #404](https://github.com/sendgrid/sendgrid-ruby/pull/404): add skip_cleanup flag to fix travis deploy. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
+[2020-01-22] Version 6.0.3
+--------------------------
+**Library - Docs**
+- [PR #402](https://github.com/sendgrid/sendgrid-ruby/pull/402): baseline all the templated markdown docs. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
+[2020-01-08] Version 6.0.2
+--------------------------
+**Library - Fix**
+- [PR #401](https://github.com/sendgrid/sendgrid-ruby/pull/401): Only try to deploy once to rubygems. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
+[2020-01-03] Version 6.0.1
+--------------------------
+**Library - Chore**
+- [PR #400](https://github.com/sendgrid/sendgrid-ruby/pull/400): Add auto-deploy to travis.yml. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+- [PR #399](https://github.com/sendgrid/sendgrid-ruby/pull/399): Add testing to Makefile. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+- [PR #396](https://github.com/sendgrid/sendgrid-ruby/pull/396): Adding Makefile to assist with automation. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+**Library - Fix**
+- [PR #321](https://github.com/sendgrid/sendgrid-ruby/pull/321): TROUBLESHOOTING.md broken link fix. Thanks to [@arshadkazmi42](https://github.com/arshadkazmi42)!
+
+
+[2019-06-04] Version 6.0.0
+--------------------------
+### BREAKING CHANGE
+- [PR #284](https://github.com/sendgrid/sendgrid-ruby/pull/284): The sinatra gem is no longer specified as a dependency of this gem. If you would like to use the inbound processing, please follow the [upgrade guide](https://github.com/sendgrid/sendgrid-ruby/blob/master/UPGRADE.md). Big thanks to [@jjb](https://github.com/jjb) for the PR!
+
+### Added
+- [PR #271](https://github.com/sendgrid/sendgrid-ruby/pull/271): Add ability to impersonate a subuser. Big thanks to [@danilospa](https://github.com/danilospa) for the PR!
+- [PR #278](https://github.com/sendgrid/sendgrid-ruby/pull/278): Make SendGrid permissions management easy. Big thanks to [@sony-mathew](https://github.com/sony-mathew) for the PR!
+- [PR #343](https://github.com/sendgrid/sendgrid-ruby/pull/343) and [PR #345](https://github.com/sendgrid/sendgrid-ruby/pull/345): Update README.md with examples for dynamic templates and corrections to the old legacy template example. Big thanks to [@kylearoberts](https://github.com/kylearoberts) for the PR!
+- [PR #216](https://github.com/sendgrid/sendgrid-ruby/pull/216): Get unassigned IPs example. Big thanks to [@cristianossd](https://github.com/cristianossd) for the PR!
+- [PR #231](https://github.com/sendgrid/sendgrid-ruby/pull/231): Add support for IO objects set as Attachment content. Big thanks to [@awj](https://github.com/awj) for the PR!
+- [PR #232](https://github.com/sendgrid/sendgrid-ruby/pull/232): Add method to check email content for secret keys. Big thanks to [@jaredsilver](https://github.com/jaredsilver) for the PR!
+- [PR #236](https://github.com/sendgrid/sendgrid-ruby/pull/236): Add an IpManagement helper. Big thanks to [@brokenthumbs](https://github.com/brokenthumbs) for the PR!
+- [PR #264](https://github.com/sendgrid/sendgrid-ruby/pull/264): Add Email Statistics helper example. Big thanks to [@jeremyjung](https://github.com/jeremyjung) for the PR!
+- [PR #246](https://github.com/sendgrid/sendgrid-ruby/pull/246): Modified Mail Class calling examples with SendGrid::Mail. Big thanks to [@rohan-techfreak](https://github.com/rohan-techfreak) for the PR!
+- [PR #268](https://github.com/sendgrid/sendgrid-ruby/pull/268): Added Code Review to CONTRIBUTING.md. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+- [PR #276](https://github.com/sendgrid/sendgrid-ruby/pull/276): Codebase Improvement: Use attr_accessor instead of getters and setters. Big thanks to [@rahul26goyal](https://github.com/rahul26goyal) for the PR!
+- [PR #365](https://github.com/sendgrid/sendgrid-ruby/pull/365): Add our Developer Experience Engineer career opportunity to the README. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+
+### Fixes
+- [PR #262](https://github.com/sendgrid/sendgrid-ruby/pull/262): Fix CONTRIBUTING.md formatting. Big thanks to [@thepriefy](https://github.com/thepriefy) for the PR!
+- [PR #277](https://github.com/sendgrid/sendgrid-ruby/pull/277): Fix travis warning. Big thanks to [@rahul26goyal](https://github.com/rahul26goyal) for the PR!
+- [PR #303](https://github.com/sendgrid/sendgrid-ruby/pull/303): Update readme tags and fix minor test failures. Big thanks to [@af4ro](https://github.com/af4ro) for the PR!
+- [PR #370](https://github.com/sendgrid/sendgrid-ruby/pull/370): Remove references to "Whitelabel". Big thanks to [@crweiner](https://github.com/crweiner) for the PR!
+- [PR #383](https://github.com/sendgrid/sendgrid-ruby/pull/383): Correct endpoint for single spam report requests. Big thanks to [@bermannoah](https://github.com/bermannoah) for the PR!
+
+## [5.3.0] - 2018-10-12 ##
+### Added
+- [PR #300](https://github.com/sendgrid/sendgrid-ruby/pull/300): Support for Dynamic Templates. Big thanks to [@nedcampion](https://github.com/nedcampion) for the PR!
+- [PR #178](https://github.com/sendgrid/sendgrid-ruby/pull/178): Convert key/value arguments to CustomArgs to strings. Big thanks to [@sitaramshelke](https://github.com/sitaramshelke) for the PR!
+- [PR #258](https://github.com/sendgrid/sendgrid-ruby/pull/258): Added unittest to check for specific repo files. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+- [PR #255](https://github.com/sendgrid/sendgrid-ruby/pull/255): Add a unittest to check the license.md file date range. Big thanks to [@prashuchaudhary](https://github.com/prashuchaudhary) for the PR!
+- [PR #181](https://github.com/sendgrid/sendgrid-ruby/pull/181): Add Docker. Big thanks to [@shrivara](https://github.com/shrivara) for the PR!
+- [PR #248](https://github.com/sendgrid/sendgrid-ruby/pull/248): Added .codeclimate.yml. Big thanks to [@proton](https://github.com/proton) for the PR!
+- [PR #260](https://github.com/sendgrid/sendgrid-ruby/pull/260): Update ruby-http-client dependency to support v3.3.0. Big thanks to [@mptap](https://github.com/mptap) for the PR!
+- [PR #304](https://github.com/sendgrid/sendgrid-ruby/pull/304): Readability update for documentation. Big thanks to [@af4ro](https://github.com/af4ro) for the PR!
+- [PR #306](https://github.com/sendgrid/sendgrid-ruby/pull/306): Update example to work in Rails console. Big thanks to [@RogerPodacter](https://github.com/RogerPodacter) for the PR!
+
+### Fixes
+- [PR #252](https://github.com/sendgrid/sendgrid-ruby/pull/252): Update LICENSE, set correct year. Big thanks to [@pushkyn](https://github.com/pushkyn) for the PR!
+- [PR #257](https://github.com/sendgrid/sendgrid-ruby/pull/257): README.md typo fix. Big thanks to [@shucon](https://github.com/shucon) for the PR!
+
 ## [5.2.0] - 2017-10-30 ##
 ### Added
 - PR #234: Helpers for email statistics - global, category, subuser 

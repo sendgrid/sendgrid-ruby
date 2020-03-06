@@ -1,5 +1,8 @@
 module SendGrid
   class Email
+
+    attr_accessor :email, :name
+
     def initialize(email: nil, name: nil)
       if name
         @email = email
@@ -7,22 +10,6 @@ module SendGrid
       else
         @email, @name = split_email(email)
       end
-    end
-
-    def email=(email)
-      @email = email
-    end
-
-    def email
-      @email
-    end
-
-    def name=(name)
-      @name = name
-    end
-
-    def name
-      @name
     end
 
     def split_email(email)
