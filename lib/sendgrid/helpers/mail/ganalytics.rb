@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Ganalytics
     def initialize(enable: nil, utm_source: nil, utm_medium: nil, utm_term: nil, utm_content: nil, utm_campaign: nil, utm_name: nil)
