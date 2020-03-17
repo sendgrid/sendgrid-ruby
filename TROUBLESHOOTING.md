@@ -133,5 +133,5 @@ When debugging or testing, it may be useful to examine the raw request header to
 You can do this before `response = sg.client.mail._('send').post(request_body: mail.to_json)` like so:
 
 ```ruby
-puts mail
+puts mail.to_json
 ```
