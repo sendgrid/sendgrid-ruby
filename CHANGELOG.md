@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-03-18] Version 6.1.2
+--------------------------
+**Library - Chore**
+- [PR #337](https://github.com/sendgrid/sendgrid-ruby/pull/337): Remove unnecessary require statements. Thanks to [@moutten](https://github.com/moutten)!
+- [PR #354](https://github.com/sendgrid/sendgrid-ruby/pull/354): Update Dockerfile ruby version. Thanks to [@Rovel](https://github.com/Rovel)!
+
+**Library - Fix**
+- [PR #412](https://github.com/sendgrid/sendgrid-ruby/pull/412): loosen the ruby_http_client version constraint. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-03-04] Version 6.1.1
 --------------------------
 **Library - Docs**
