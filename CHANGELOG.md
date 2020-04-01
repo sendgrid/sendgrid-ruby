@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-04-01] Version 6.1.3
+--------------------------
+**Library - Docs**
+- [PR #414](https://github.com/sendgrid/sendgrid-ruby/pull/414): support verbiage for login issues. Thanks to [@adamchasetaylor](https://github.com/adamchasetaylor)!
+
+**Library - Chore**
+- [PR #413](https://github.com/sendgrid/sendgrid-ruby/pull/413): upgrade rake dev dependency. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-03-18] Version 6.1.2
 --------------------------
 **Library - Chore**
