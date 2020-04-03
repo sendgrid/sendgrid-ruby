@@ -29,3 +29,11 @@ deploy:
     tags: true
     rvm: '2.4'
     condition: '$BUNDLE_GEMFILE == *"gemfiles/Sinatra_1.gemfile"'
+
+notifications:
+  slack:
+    if: branch = master
+    on_success: never
+    on_failure: change
+    rooms:
+      - secure: QwoVrGveeA1bo/26fO2A+OQHmUX69NLaC214qd18C1Z8ztYMHkd05/9+k9HFb+PSdPkGLSeYOPWAKJUqJWB7HfGINNGpRGIPFcmfB7vhvvLFnhud/SAdQPRZ+SCeZPdpZcjpVRLYENKv259ucGPBCPFXh1HfJF92R0IrKeW5CII=
