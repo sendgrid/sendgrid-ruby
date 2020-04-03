@@ -51,7 +51,7 @@ class TestAPI < MiniTest::Test
                     "Authorization": "Bearer SENDGRID_API_KEY",
                     "Accept": "application/json",
                     "X-Test": "test",
-                    "User-agent": "' + user_agent + '",
+                    "User-Agent": "' + user_agent + '",
                     "On-Behalf-Of": "' + subuser + '"
                 }
             ')
