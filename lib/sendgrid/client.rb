@@ -24,7 +24,7 @@ module SendGrid
         {
           "Authorization": "Bearer ' + @api_key + '",
           "Accept": "application/json",
-          "User-agent": "' + @user_agent + '"
+          "User-Agent": "' + @user_agent + '"
         }
       ')
       @request_headers['On-Behalf-Of'] = @impersonate_subuser if @impersonate_subuser
