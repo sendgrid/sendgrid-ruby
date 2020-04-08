@@ -217,9 +217,11 @@ Please see our [troubleshooting guide](https://github.com/sendgrid/sendgrid-ruby
 <a name="about"></a>
 # About
 
-sendgrid-ruby is guided and supported by the [Developer Experience Team](mailto:dx@sendgrid.com).
+sendgrid-ruby is maintained and funded by Twilio SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of Twilio SendGrid, Inc.
 
-sendgrid-ruby is maintained and funded by SendGrid, Inc. The names and logos for sendgrid-ruby are trademarks of SendGrid, Inc.
+If you need help installing or using the library, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).
+
+If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
 
 <a name="license"></a>
 # License
