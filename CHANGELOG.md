@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-04-15] Version 6.1.4
+--------------------------
+**Library - Fix**
+- [PR #416](https://github.com/sendgrid/sendgrid-ruby/pull/416): correct the User-Agent casing. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-04-01] Version 6.1.3
 --------------------------
 **Library - Docs**
