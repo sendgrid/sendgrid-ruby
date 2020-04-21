@@ -11,14 +11,8 @@ This documentation provides examples for specific use cases. Please [open an iss
   * [Adding Attachments](#adding-attachments)
 * [How to Setup a Domain Authentication](#how-to-setup-a-domain-authentication)
 * [How to View Email Statistics](#how-to-view-email-statistics)
-* [Send a SMS Message](#send-a-sms-message)
-  * [1. Obtain a Free Twilio Account](#1-obtain-a-free-twilio-account)
-  * [2. Update Your Environment Variables](#2-update-your-environment-variables)
-    * [Mac](#mac)
-    * [Windows](#windows)
-  * [3. Install the Twilio Helper Library](#3-install-the-twilio-helper-library)
-  * [4. Setup Work](#4-setup-work)
-  * [5. Send an SMS](#5-send-an-sms)
+* [Send an Email With Twilio Email (Pilot)](#send-an-email-with-twilio-email-pilot)
+* [Send an SMS Message](#send-an-sms-message)
 
 <a name="transactional-templates"></a>
 # Transactional Templates
@@ -299,59 +293,98 @@ end
 
 ```
 
-<a name="sms"></a>
-# Send a SMS Message
+# Send an Email With Twilio Email (Pilot)
 
-Following are the steps to add Twilio SMS to your app:
-
-## 1. Obtain a Free Twilio Account
+### 1. Obtain a Free Twilio Account
 
 Sign up for a free Twilio account [here](https://www.twilio.com/try-twilio?source=sendgrid-ruby).
 
-## 2. Update Your Environment Variables
+### 2. Set Up Your Environment Variables
 
-You can obtain your Account Sid and Auth Token from [twilio.com/console](https://twilio.com/console).
+The Twilio API allows for authentication using with either an API key/secret or your Account SID/Auth Token. You can create an API key [here](https://twil.io/get-api-key) or obtain your Account SID and Auth Token [here](https://twil.io/console).
 
-### Mac
+Once you have those, follow the steps below based on your operating system.
+
+#### Linux/Mac
 
 ```bash
+echo "export TWILIO_API_KEY='YOUR_TWILIO_API_KEY'" > twilio.env
+echo "export TWILIO_API_SECRET='YOUR_TWILIO_API_SECRET'" >> twilio.env
+
+# or
+
 echo "export TWILIO_ACCOUNT_SID='YOUR_TWILIO_ACCOUNT_SID'" > twilio.env
 echo "export TWILIO_AUTH_TOKEN='YOUR_TWILIO_AUTH_TOKEN'" >> twilio.env
+```
+
+Then:
+
+```bash
 echo "twilio.env" >> .gitignore
 source ./twilio.env
 ```
 
-### Windows
+#### Windows
 
 Temporarily set the environment variable (accessible only during the current CLI session):
 
 ```bash
+set TWILIO_API_KEY=YOUR_TWILIO_API_KEY
+set TWILIO_API_SECRET=YOUR_TWILIO_API_SECRET
+
+: or
+
 set TWILIO_ACCOUNT_SID=YOUR_TWILIO_ACCOUNT_SID
 set TWILIO_AUTH_TOKEN=YOUR_TWILIO_AUTH_TOKEN
 ```
 
-Permanently set the environment variable (accessible in all subsequent CLI sessions):
+Or permanently set the environment variable (accessible in all subsequent CLI sessions):
 
 ```bash
+setx TWILIO_API_KEY "YOUR_TWILIO_API_KEY"
+setx TWILIO_API_SECRET "YOUR_TWILIO_API_SECRET"
+
+: or
+
 setx TWILIO_ACCOUNT_SID "YOUR_TWILIO_ACCOUNT_SID"
 setx TWILIO_AUTH_TOKEN "YOUR_TWILIO_AUTH_TOKEN"
 ```
 
-## 3. Install the Twilio Helper Library
-
-To install using [Bundler][bundler] grab the latest stable version:
+### 3. Initialize the Twilio Email Client
 
 ```ruby
-gem 'twilio-ruby', '~> 5.23.1'
+mail_client = TwilioEmail::API(username: ENV['TWILIO_API_KEY'], password: ENV['TWILIO_API_SECRET'])
+
+# or
+
+mail_client = TwilioEmail::API(username: ENV['TWILIO_ACCOUNT_SID'], password: ENV['TWILIO_AUTH_TOKEN'])
 ```
 
-To manually install `twilio-ruby` via [Rubygems][rubygems] simply gem install:
+This client has the same interface as the `SendGrid::API` client.
+
+# Send an SMS Message
+
+First, follow the above steps for creating a Twilio account and setting up environment variables with the proper credentials.
+
+Then, install the Twilio Helper Library. Add this line to your application's Gemfile:
 
 ```bash
-gem install twilio-ruby -v 5.23.1
+gem 'twilio-ruby'
 ```
 
-## 4. Setup Work
+And then execute:
+
+```bash
+bundle
+```
+
+Or install it yourself using:
+
+```bash
+gem install twilio-ruby
+```
+
+Finally, send a message.
 
 ```ruby
 require 'twilio-ruby'
@@ -362,11 +395,6 @@ auth_token = ENV['TWILIO_AUTH_TOKEN']
 
 # set up a client to talk to the Twilio REST API
 @client = Twilio::REST::Client.new account_sid, auth_token
-```
-
-## 5. Send an SMS
-
-```ruby
 @client.api.account.messages.create(
   from: '+14159341234',
   to: '+16105557069',
