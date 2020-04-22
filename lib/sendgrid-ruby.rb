@@ -1,4 +1,6 @@
-require_relative 'sendgrid/client'
+require_relative 'sendgrid/base_interface'
+require_relative 'sendgrid/sendgrid'
+require_relative 'sendgrid/twilio_email'
 require_relative 'sendgrid/version'
 require_relative 'sendgrid/helpers/ip_management/ip_management'
 require_relative 'sendgrid/helpers/mail/asm'
