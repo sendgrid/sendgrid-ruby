@@ -1,25 +1,17 @@
 language: ruby
-rvm:
-  - ruby-head
-  - 2.7
-  - 2.6
-  - 2.5
-  - 2.4
-  - jruby-9.2
+env:
+  - version=ruby:2.7
+  - version=ruby:2.6
+  - version=ruby:2.5
+  - version=ruby:2.4
+  - version=jruby:9.2
+
 gemfile:
   - gemfiles/Sinatra_1.gemfile
   - gemfiles/Sinatra_2.gemfile
-before_script:
-  - mkdir prism
-  - mkdir prism/bin
-  - export PATH=$PATH:$PWD/prism/bin/
-  - "./test/prism.sh"
-install: make install
-script: make test
-matrix:
-  allow_failures:
-    - rvm: ruby-head
-  fast_finish: true
+
+script: make test-docker
+
 deploy:
   provider: rubygems
   api_key:
@@ -27,8 +19,7 @@ deploy:
   gem: sendgrid-ruby
   on:
     tags: true
-    rvm: '2.4'
-    condition: '$BUNDLE_GEMFILE == *"gemfiles/Sinatra_1.gemfile"'
+    condition: $version=ruby:2.4 AND '$BUNDLE_GEMFILE == *"gemfiles/Sinatra_1.gemfile"'
 
 notifications:
   slack:
