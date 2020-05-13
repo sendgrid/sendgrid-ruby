@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-05-13] Version 6.2.1
+--------------------------
+**Library - Fix**
+- [PR #421](https://github.com/sendgrid/sendgrid-ruby/pull/421): migrate to common prism setup. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-04-29] Version 6.2.0
 --------------------------
 **Library - Feature**
