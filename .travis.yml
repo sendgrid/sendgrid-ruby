@@ -19,7 +19,7 @@ deploy:
   gem: sendgrid-ruby
   on:
     tags: true
-    condition: env(version)=ruby:2.4 AND '$BUNDLE_GEMFILE == *"gemfiles/Sinatra_1.gemfile"'
+    condition: $version = ruby:2.4 && $BUNDLE_GEMFILE = *"gemfiles/Sinatra_1.gemfile"
 
 notifications:
   slack:
