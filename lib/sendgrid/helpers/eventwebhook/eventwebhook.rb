@@ -16,6 +16,7 @@ module SendGrid
     end
 
     def verify_engine
+      # JRuby does not fully support ECDSA: https://github.com/jruby/jruby-openssl/issues/193
       if RUBY_PLATFORM == "java"
         raise NotSupportedError, "Event Webhook verfication is not supported by JRuby"
       end
