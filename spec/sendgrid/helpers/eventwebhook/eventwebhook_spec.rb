@@ -70,6 +70,16 @@ describe SendGrid::EventWebhook do
   end
 end
 
+describe SendGrid::EventWebhookHeader do
+  it 'sets the signature header constant' do
+    expect(SendGrid::EventWebhookHeader::SIGNATURE).to eq("HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_SIGNATURE")
+  end
+
+  it 'sets the timestamp header constant' do
+    expect(SendGrid::EventWebhookHeader::TIMESTAMP).to eq("HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_TIMESTAMP")
+  end
+end
+
 def verify(public_key, payload, signature, timestamp)
   ew = SendGrid::EventWebhook.new
   ec_public_key = ew.convert_public_key_to_ecdsa(public_key)
