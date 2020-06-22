@@ -1,4 +1,7 @@
-require 'starkbank-ecdsa'
+require 'base64'
+require 'digest'
+require 'openssl'
+
 module SendGrid
   # This class allows you to use the Event Webhook feature. Read the docs for
   # more details: https://sendgrid.com/docs/for-developers/tracking-events/event
@@ -8,7 +11,7 @@ module SendGrid
     #
     def convert_public_key_to_ecdsa(public_key)
       verify_engine
-      EllipticCurve::PublicKey.fromString(public_key)
+      OpenSSL::PKey::EC.new(Base64.decode64(public_key))
     end
 
     # * *Args* :
@@ -19,9 +22,10 @@ module SendGrid
     def verify_signature(public_key, payload, signature, timestamp)
       verify_engine
       timestamped_playload = timestamp + payload
-      decoded_signature = EllipticCurve::Signature.fromBase64(signature)
+      payload_digest = Digest::SHA256.digest(timestamped_playload)
+      decoded_signature = Base64.decode64(signature)
 
-      EllipticCurve::Ecdsa.verify(timestamped_playload, decoded_signature, public_key)
+      public_key.dsa_verify_asn1(payload_digest, decoded_signature)
     end
 
     def verify_engine
