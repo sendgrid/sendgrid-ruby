@@ -16,7 +16,7 @@ unless RUBY_PLATFORM == 'java'
         end.not_to raise_error
       end
 
-      it 'should initialize with an app, public keys and paths' do
+      it 'should initialize with an app, public key and paths' do
         expect do
           Rack::SendGridWebhookVerification.new(@app, 'ABC', /\/email/, /\/event/)
         end.not_to raise_error
