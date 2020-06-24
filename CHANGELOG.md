@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-06-24] Version 6.3.0
+--------------------------
+**Library - Feature**
+- [PR #428](https://github.com/sendgrid/sendgrid-ruby/pull/428): adds rack middleware to make request verification easier in rack apps. Thanks to [@philnash](https://github.com/philnash)!
+- [PR #425](https://github.com/sendgrid/sendgrid-ruby/pull/425): verify signature from event webhook. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Fix**
+- [PR #427](https://github.com/sendgrid/sendgrid-ruby/pull/427): drop the starkbank dependency. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-05-13] Version 6.2.1
 --------------------------
 **Library - Fix**
