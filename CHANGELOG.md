@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-06-25] Version 6.3.1
+--------------------------
+
+
 [2020-06-24] Version 6.3.0
 --------------------------
 **Library - Feature**
