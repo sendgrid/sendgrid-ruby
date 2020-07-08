@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-07-08] Version 6.3.2
+--------------------------
+**Library - Test**
+- [PR #368](https://github.com/sendgrid/sendgrid-ruby/pull/368): add Simplecov Local Enhancements. Thanks to [@RolandBurrows](https://github.com/RolandBurrows)!
+
+
 [2020-06-25] Version 6.3.1
 --------------------------
 
