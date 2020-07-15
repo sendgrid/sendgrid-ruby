@@ -2652,22 +2652,15 @@ class TestAPI < MiniTest::Test
         self.assert_equal('200', response.status_code)
     end
 
-
-    def test_license_file_correct_year_range
-        if File.exist?('./LICENSE.md')
-            # get only the first line from the license txt file
-            year_range = File.open('./LICENSE.md', &:readline).gsub(/[^\d-]/, '')
-            self.assert_equal("#{Time.now.year}", year_range)
-        end
+    def test_license_file_year
+        # Read the third line from the license file
+        year = IO.readlines('./LICENSE.md')[2].gsub(/[^\d]/, '')
+        self.assert_equal("#{Time.now.year}", year)
     end
 
     def test_docker_exists
       assert(File.file?('./Docker') || File.file?('./docker/Dockerfile'))
     end
-
-    # def test_docker_compose_exists
-    #   assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
-    # end
 
     def test_env_sample_exists
       assert(File.file?('./.env_sample'))
@@ -2705,7 +2698,7 @@ class TestAPI < MiniTest::Test
       assert(File.file?('./LICENSE.md'))
     end
 
-    def test_pull_request_template_exists
+    def test_pr_template_exists
       assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
     end
 
