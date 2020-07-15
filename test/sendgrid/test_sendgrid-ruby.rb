@@ -2659,74 +2659,62 @@ class TestAPI < MiniTest::Test
     end
 
     def test_docker_exists
-      assert(File.file?('./Docker') || File.file?('./docker/Dockerfile'))
+        assert(File.file?('./Docker') || File.file?('./docker/Dockerfile'))
     end
 
     def test_env_sample_exists
-      assert(File.file?('./.env_sample'))
+        assert(File.file?('./.env_sample'))
     end
 
     def test_gitignore_exists
-      assert(File.file?('./.gitignore'))
+        assert(File.file?('./.gitignore'))
     end
 
     def test_travis_exists
-      assert(File.file?('./.travis.yml'))
+        assert(File.file?('./.travis.yml'))
     end
 
     def test_codeclimate_exists
-      assert(File.file?('./.codeclimate.yml'))
+        assert(File.file?('./.codeclimate.yml'))
     end
 
     def test_changelog_exists
-      assert(File.file?('./CHANGELOG.md'))
+        assert(File.file?('./CHANGELOG.md'))
     end
 
     def test_code_of_conduct_exists
-      assert(File.file?('./CODE_OF_CONDUCT.md'))
+        assert(File.file?('./CODE_OF_CONDUCT.md'))
     end
 
     def test_contributing_exists
-      assert(File.file?('./CONTRIBUTING.md'))
+        assert(File.file?('./CONTRIBUTING.md'))
     end
 
     def test_issue_template_exists
-      assert(File.file?('./ISSUE_TEMPLATE.md'))
+        assert(File.file?('./ISSUE_TEMPLATE.md'))
     end
 
     def test_license_exists
-      assert(File.file?('./LICENSE.md'))
+        assert(File.file?('./LICENSE.md'))
     end
 
     def test_pr_template_exists
-      assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
+        assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
     end
 
     def test_readme_exists
-      assert(File.file?('./README.md'))
+        assert(File.file?('./README.md'))
     end
 
     def test_troubleshooting_exists
-      assert(File.file?('./TROUBLESHOOTING.md'))
+        assert(File.file?('./TROUBLESHOOTING.md'))
     end
 
     def test_usage_exists
-      assert(File.file?('./USAGE.md'))
-    end
-
-    def test_use_cases_domain_whitelabel_exists
-        assert(File.file?('./use-cases/domain-whitelabel.md'))
-    end
-
-    def test_use_cases_email_statistics_exists
-        assert(File.file?('./use-cases/email-statistics.md'))
+        assert(File.file?('./USAGE.md'))
     end
 
     def test_use_cases_readme_exists
         assert(File.file?('./use-cases/README.md'))
-    end
-
-    def test_use_cases_transactional_templates_exists
-        assert(File.file?('./use-cases/transactional-templates.md'))
     end
 end
