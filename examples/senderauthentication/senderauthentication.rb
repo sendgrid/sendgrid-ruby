@@ -5,7 +5,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
 
 ##################################################
-# Create a domain whitelabel. #
+# Create a domain authentication. #
 # POST /whitelabel/domains #
 
 data = JSON.parse('{
@@ -26,7 +26,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# List all domain whitelabels. #
+# List all domain authentications. #
 # GET /whitelabel/domains #
 
 params = JSON.parse('{"username": "test_string", "domain": "test_string", "exclude_subusers": "true", "limit": 1, "offset": 1}')
@@ -36,7 +36,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Get the default domain whitelabel. #
+# Get the default domain authentication. #
 # GET /whitelabel/domains/default #
 
 response = sg.client.whitelabel.domains.default.get()
@@ -45,7 +45,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# List the domain whitelabel associated with the given user. #
+# List the domain authentication associated with the given user. #
 # GET /whitelabel/domains/subuser #
 
 response = sg.client.whitelabel.domains.subuser.get()
@@ -54,7 +54,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Disassociate a domain whitelabel from a given user. #
+# Disassociate a domain authentication from a given user. #
 # DELETE /whitelabel/domains/subuser #
 
 response = sg.client.whitelabel.domains.subuser.delete()
@@ -63,7 +63,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Update a domain whitelabel. #
+# Update a domain authentication. #
 # PATCH /whitelabel/domains/{domain_id} #
 
 data = JSON.parse('{
@@ -77,7 +77,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve a domain whitelabel. #
+# Retrieve a domain authentication. #
 # GET /whitelabel/domains/{domain_id} #
 
 domain_id = "test_url_param"
@@ -87,7 +87,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Delete a domain whitelabel. #
+# Delete a domain authentication. #
 # DELETE /whitelabel/domains/{domain_id} #
 
 domain_id = "test_url_param"
@@ -97,7 +97,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Associate a domain whitelabel with a given user. #
+# Associate a domain authentication with a given user. #
 # POST /whitelabel/domains/{domain_id}/subuser #
 
 data = JSON.parse('{
@@ -110,7 +110,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Add an IP to a domain whitelabel. #
+# Add an IP to a domain authentication. #
 # POST /whitelabel/domains/{id}/ips #
 
 data = JSON.parse('{
@@ -123,7 +123,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Remove an IP from a domain whitelabel. #
+# Remove an IP from a domain authentication. #
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
 id = "test_url_param"
@@ -134,7 +134,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Validate a domain whitelabel. #
+# Validate a domain authentication. #
 # POST /whitelabel/domains/{id}/validate #
 
 id = "test_url_param"
@@ -144,7 +144,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Create an IP whitelabel #
+# Create a reverse DNS record #
 # POST /whitelabel/ips #
 
 data = JSON.parse('{
@@ -158,7 +158,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve all IP whitelabels #
+# Retrieve a reverse DNS record #
 # GET /whitelabel/ips #
 
 params = JSON.parse('{"ip": "test_string", "limit": 1, "offset": 1}')
@@ -168,7 +168,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve an IP whitelabel #
+# Retrieve a reverse DNS record #
 # GET /whitelabel/ips/{id} #
 
 id = "test_url_param"
@@ -178,7 +178,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Delete an IP whitelabel #
+# Delete a reverse DNS record #
 # DELETE /whitelabel/ips/{id} #
 
 id = "test_url_param"
@@ -188,7 +188,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Validate an IP whitelabel #
+# Validate a reverse DNS record #
 # POST /whitelabel/ips/{id}/validate #
 
 id = "test_url_param"
@@ -198,7 +198,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Create a Link Whitelabel #
+# Create a Branded Link #
 # POST /whitelabel/links #
 
 data = JSON.parse('{
@@ -213,7 +213,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve all link whitelabels #
+# Retrieve all link brandings #
 # GET /whitelabel/links #
 
 params = JSON.parse('{"limit": 1}')
@@ -223,7 +223,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve a Default Link Whitelabel #
+# Retrieve a Default Link Branding #
 # GET /whitelabel/links/default #
 
 params = JSON.parse('{"domain": "test_string"}')
@@ -233,7 +233,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve Associated Link Whitelabel #
+# Retrieve Associated Link Branding #
 # GET /whitelabel/links/subuser #
 
 params = JSON.parse('{"username": "test_string"}')
@@ -243,7 +243,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Disassociate a Link Whitelabel #
+# Disassociate a Link Branding #
 # DELETE /whitelabel/links/subuser #
 
 params = JSON.parse('{"username": "test_string"}')
@@ -253,7 +253,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Update a Link Whitelabel #
+# Update a Link Branding #
 # PATCH /whitelabel/links/{id} #
 
 data = JSON.parse('{
@@ -266,7 +266,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve a Link Whitelabel #
+# Retrieve a Link Branding #
 # GET /whitelabel/links/{id} #
 
 id = "test_url_param"
@@ -276,7 +276,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Delete a Link Whitelabel #
+# Delete a Link Branding #
 # DELETE /whitelabel/links/{id} #
 
 id = "test_url_param"
@@ -286,7 +286,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Validate a Link Whitelabel #
+# Validate a Link Branding #
 # POST /whitelabel/links/{id}/validate #
 
 id = "test_url_param"
@@ -296,7 +296,7 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Associate a Link Whitelabel #
+# Associate a Link Branding #
 # POST /whitelabel/links/{link_id}/subuser #
 
 data = JSON.parse('{

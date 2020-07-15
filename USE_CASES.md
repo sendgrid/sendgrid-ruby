@@ -3,14 +3,21 @@ This documentation provides examples for specific use cases. Please [open an iss
 # Table of Contents
 
 * [Transactional Templates](#transactional-templates)
+  * [With Mail Helper Class](#with-mail-helper-class)
+  * [Without Mail Helper Class](#without-mail-helper-class)
 * [Legacy Templates](#legacy-templates)
-* [How to Setup a Domain Whitelabel](#domain-whitelabel)
-* [How to View Email Statistics](#email-statistics)
+  * [With Mail Helper Class](#with-mail-helper-class-1)
+  * [Without Mail Helper Class](#without-mail-helper-class-1)
+  * [Adding Attachments](#adding-attachments)
+* [How to Setup a Domain Authentication](#how-to-setup-a-domain-authentication)
+* [How to View Email Statistics](#how-to-view-email-statistics)
+* [Send an Email With Twilio Email (Pilot)](#send-an-email-with-twilio-email-pilot)
+* [Send an SMS Message](#send-an-sms-message)
 
 <a name="transactional-templates"></a>
 # Transactional Templates
 
-For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
+For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html) in the UI or via the API. Following is the template content we used for testing.
 
 Template ID (replace with your own):
 
@@ -85,7 +92,7 @@ data = JSON.parse('{
       ],
       "dynamic_template_data": {
         "subject": "Testing Templates",
-	"name": "Example User",
+        "name": "Example User",
         "city": "Denver"
       }
     }
@@ -224,19 +231,19 @@ mail.add_attachment(attachment)
 ```
 Attachments must be base64 encoded, using Base64's strict_encode64 where no line feeds are added.
 
-<a name="domain-whitelabel"></a>
-# How to Setup a Domain Whitelabel
+<a name="domain-authentication"></a>
+# How to Setup a Domain Authentication
 
-You can find documentation for how to setup a domain whitelabel via the UI [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/setup_domain_whitelabel.html) and via API [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md#whitelabel).
+You can find documentation for how to setup a domain authentication via the UI [here](https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/) and via API [here](https://github.com/sendgrid/sendgrid-nodejs/blob/master/packages/client/USAGE.md#sender-authentication).
 
-Find more information about all of SendGrid's whitelabeling related documentation [here](https://sendgrid.com/docs/Classroom/Basics/Whitelabel/index.html).
+Find more information about all of SendGrid's authentication related documentation [here](https://sendgrid.com/docs/ui/account-and-settings/).
 
 <a name="email-statistics"></a>
 # How to View Email Statistics
 
 You can find documentation for how to view your email statistics via the UI [here](https://app.sendgrid.com/statistics) and via API [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/USAGE.md#stats).
 
-Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as SendGrid processes your email.
+Alternatively, we can post events to a URL of your choice via our [Event Webhook](https://sendgrid.com/docs/API_Reference/Webhooks/event.html) about events that occur as Twilio SendGrid processes your email.
 
 You can also use the email statistics helper to make it easier to interact with the API.
 
@@ -285,3 +292,114 @@ if !email_stats.error?
 end
 
 ```
+
+# Send an Email With Twilio Email (Pilot)
+
+### 1. Obtain a Free Twilio Account
+
+Sign up for a free Twilio account [here](https://www.twilio.com/try-twilio?source=sendgrid-ruby).
+
+### 2. Set Up Your Environment Variables
+
+The Twilio API allows for authentication using with either an API key/secret or your Account SID/Auth Token. You can create an API key [here](https://twil.io/get-api-key) or obtain your Account SID and Auth Token [here](https://twil.io/console).
+
+Once you have those, follow the steps below based on your operating system.
+
+#### Linux/Mac
+
+```bash
+echo "export TWILIO_API_KEY='YOUR_TWILIO_API_KEY'" > twilio.env
+echo "export TWILIO_API_SECRET='YOUR_TWILIO_API_SECRET'" >> twilio.env
+
+# or
+
+echo "export TWILIO_ACCOUNT_SID='YOUR_TWILIO_ACCOUNT_SID'" > twilio.env
+echo "export TWILIO_AUTH_TOKEN='YOUR_TWILIO_AUTH_TOKEN'" >> twilio.env
+```
+
+Then:
+
+```bash
+echo "twilio.env" >> .gitignore
+source ./twilio.env
+```
+
+#### Windows
+
+Temporarily set the environment variable (accessible only during the current CLI session):
+
+```bash
+set TWILIO_API_KEY=YOUR_TWILIO_API_KEY
+set TWILIO_API_SECRET=YOUR_TWILIO_API_SECRET
+
+: or
+
+set TWILIO_ACCOUNT_SID=YOUR_TWILIO_ACCOUNT_SID
+set TWILIO_AUTH_TOKEN=YOUR_TWILIO_AUTH_TOKEN
+```
+
+Or permanently set the environment variable (accessible in all subsequent CLI sessions):
+
+```bash
+setx TWILIO_API_KEY "YOUR_TWILIO_API_KEY"
+setx TWILIO_API_SECRET "YOUR_TWILIO_API_SECRET"
+
+: or
+
+setx TWILIO_ACCOUNT_SID "YOUR_TWILIO_ACCOUNT_SID"
+setx TWILIO_AUTH_TOKEN "YOUR_TWILIO_AUTH_TOKEN"
+```
+
+### 3. Initialize the Twilio Email Client
+
+```ruby
+mail_client = TwilioEmail::API(username: ENV['TWILIO_API_KEY'], password: ENV['TWILIO_API_SECRET'])
+
+# or
+
+mail_client = TwilioEmail::API(username: ENV['TWILIO_ACCOUNT_SID'], password: ENV['TWILIO_AUTH_TOKEN'])
+```
+
+This client has the same interface as the `SendGrid::API` client.
+
+# Send an SMS Message
+
+First, follow the above steps for creating a Twilio account and setting up environment variables with the proper credentials.
+
+Then, install the Twilio Helper Library. Add this line to your application's Gemfile:
+
+```bash
+gem 'twilio-ruby'
+```
+
+And then execute:
+
+```bash
+bundle
+```
+
+Or install it yourself using:
+
+```bash
+gem install twilio-ruby
+```
+
+Finally, send a message.
+
+```ruby
+require 'twilio-ruby'
+
+# put your own credentials here
+account_sid = ENV['TWILIO_ACCOUNT_SID']
+auth_token = ENV['TWILIO_AUTH_TOKEN']
+
+# set up a client to talk to the Twilio REST API
+@client = Twilio::REST::Client.new account_sid, auth_token
+@client.api.account.messages.create(
+  from: '+14159341234',
+  to: '+16105557069',
+  body: 'Hey there!'
+)
+```
+
+For more information, please visit the [Twilio SMS Ruby documentation](https://www.twilio.com/docs/sms/quickstart/ruby).

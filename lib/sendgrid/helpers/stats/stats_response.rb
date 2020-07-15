@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class StatsResponse
     def initialize(args)

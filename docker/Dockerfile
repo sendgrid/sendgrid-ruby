@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-jessie
+FROM ruby:2.5.1-jessie
 
 # Clone sendgrid-ruby
 WORKDIR /sources

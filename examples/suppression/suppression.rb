@@ -19,9 +19,9 @@ puts response.headers
 # DELETE /suppression/blocks #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
@@ -65,9 +65,9 @@ puts response.headers
 # DELETE /suppression/bounces #
 
 data = JSON.parse('{
-  "delete_all": true, 
+  "delete_all": true,
   "emails": [
-    "example@example.com", 
+    "example@example.com",
     "example2@example.com"
   ]
 }')
@@ -112,9 +112,9 @@ puts response.headers
 # DELETE /suppression/invalid_emails #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
@@ -148,7 +148,7 @@ puts response.headers
 # GET /suppression/spam_report/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).get()
+response = sg.client.suppression.spam_reports._(email).get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -158,7 +158,7 @@ puts response.headers
 # DELETE /suppression/spam_report/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete()
+response = sg.client.suppression.spam_reports._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -178,9 +178,9 @@ puts response.headers
 # DELETE /suppression/spam_reports #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
