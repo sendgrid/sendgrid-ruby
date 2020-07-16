@@ -1,4 +1,3 @@
-require 'json'
 require 'base64'
 
 module SendGrid

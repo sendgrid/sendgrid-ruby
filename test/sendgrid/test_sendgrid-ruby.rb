@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require_relative '../../lib/sendgrid-ruby.rb'
 require 'ruby_http_client'
 require 'minitest/autorun'
@@ -5,34 +7,8 @@ require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
 
-    unless File.exist?('/usr/local/bin/prism') || File.exist?(File.join(Dir.pwd, 'prism/bin/prism'))
-      if RUBY_PLATFORM =~ /mswin|mingw/
-        puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
-      else
-        puts 'Installing Prism'
-        IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
-          out = io.read
-          unless system(out)
-            puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory, #{out}"
-            exit
-          end
-        end
-      end
-    end
-
-    puts 'Activating Prism (~20 seconds)'
-    @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', [:out, :err] => '/dev/null')
-    sleep(15)
-    puts 'Prism started'
-
     def setup
-        host = "http://localhost:4010"
-        @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: host)
-    end
-
-    Minitest.after_run do
-      Process.kill('TERM', @@prism_pid)
-      puts 'Prism shut down'
+        @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY")
     end
 
     def test_init
@@ -51,14 +27,14 @@ class TestAPI < MiniTest::Test
                     "Authorization": "Bearer SENDGRID_API_KEY",
                     "Accept": "application/json",
                     "X-Test": "test",
-                    "User-agent": "' + user_agent + '",
+                    "User-Agent": "' + user_agent + '",
                     "On-Behalf-Of": "' + subuser + '"
                 }
             ')
         assert_equal(test_headers, sg.request_headers)
         assert_equal("v3", sg.version)
         assert_equal(subuser, sg.impersonate_subuser)
-        assert_equal("5.3.0", SendGrid::VERSION)
+        assert_equal("6.3.2", SendGrid::VERSION)
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
@@ -1184,8 +1160,8 @@ class TestAPI < MiniTest::Test
     },
     "footer": {
       "enable": true,
-      "html": "<p>Thanks</br>The SendGrid Team</p>",
-      "text": "Thanks,/n The SendGrid Team"
+      "html": "<p>Thanks</br>The Twilio SendGrid Team</p>",
+      "text": "Thanks,/n The Twilio SendGrid Team"
     },
     "sandbox_mode": {
       "enable": false
@@ -1891,7 +1867,7 @@ class TestAPI < MiniTest::Test
         email = "test_url_param"
         headers = JSON.parse('{"X-Mock": 204}')
 
-        response = @sg.client.suppression.spam_report._(email).delete(request_headers: headers)
+        response = @sg.client.suppression.spam_reports._(email).delete(request_headers: headers)
 
         self.assert_equal('204', response.status_code)
     end
@@ -2676,76 +2652,65 @@ class TestAPI < MiniTest::Test
         self.assert_equal('200', response.status_code)
     end
 
-
-    def test_license_file_correct_year_range
-        if File.exist?('./LICENSE.txt')
-            # get only the first line from the license txt file
-            year_range = File.open('./LICENSE.txt', &:readline).gsub(/[^\d-]/, '')
-            self.assert_equal("2014-#{Time.now.year}", year_range)
-        end
+    def test_license_file_year
+        # Read the third line from the license file
+        year = IO.readlines('./LICENSE.md')[2].gsub(/[^\d]/, '')
+        self.assert_equal("#{Time.now.year}", year)
     end
-
-    def test_docker_exists
-      assert(File.file?('./Docker') || File.file?('./docker/Dockerfile'))
-    end
-
-    # def test_docker_compose_exists
-    #   assert(File.file?('./docker-compose.yml') || File.file?('./docker/docker-compose.yml'))
-    # end
 
     def test_env_sample_exists
-      assert(File.file?('./.env_sample'))
+        assert(File.file?('./.env_sample'))
     end
 
     def test_gitignore_exists
-      assert(File.file?('./.gitignore'))
+        assert(File.file?('./.gitignore'))
     end
 
     def test_travis_exists
-      assert(File.file?('./.travis.yml'))
+        assert(File.file?('./.travis.yml'))
     end
 
     def test_codeclimate_exists
-      assert(File.file?('./.codeclimate.yml'))
+        assert(File.file?('./.codeclimate.yml'))
     end
 
     def test_changelog_exists
-      assert(File.file?('./CHANGELOG.md'))
+        assert(File.file?('./CHANGELOG.md'))
     end
 
     def test_code_of_conduct_exists
-      assert(File.file?('./CODE_OF_CONDUCT.md'))
+        assert(File.file?('./CODE_OF_CONDUCT.md'))
     end
 
     def test_contributing_exists
-      assert(File.file?('./CONTRIBUTING.md'))
+        assert(File.file?('./CONTRIBUTING.md'))
     end
 
     def test_issue_template_exists
-      assert(File.file?('./.github/ISSUE_TEMPLATE'))
+        assert(File.file?('./ISSUE_TEMPLATE.md'))
     end
 
     def test_license_exists
-      assert(File.file?('./LICENSE.txt'))
+        assert(File.file?('./LICENSE.md'))
     end
 
-    def test_pull_request_template_exists
-      assert(File.file?('./.github/PULL_REQUEST_TEMPLATE'))
+    def test_pr_template_exists
+        assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
     end
 
     def test_readme_exists
-      assert(File.file?('./README.md'))
+        assert(File.file?('./README.md'))
     end
 
     def test_troubleshooting_exists
-      assert(File.file?('./TROUBLESHOOTING.md'))
+        assert(File.file?('./TROUBLESHOOTING.md'))
     end
 
     def test_usage_exists
-      assert(File.file?('./USAGE.md'))
+        assert(File.file?('./USAGE.md'))
     end
 
-    def test_use_cases_exists
-      assert(File.file?('./USE_CASES.md'))
+    def test_use_cases_readme_exists
+        assert(File.file?('./use-cases/README.md'))
     end
 end

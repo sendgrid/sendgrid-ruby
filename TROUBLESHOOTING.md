@@ -1,19 +1,22 @@
-If you have a non-library SendGrid issue, please contact our [support team](https://support.sendgrid.com).
+If you have an issue logging into your Twilio SendGrid account, please read this [document](https://sendgrid.com/docs/ui/account-and-settings/troubleshooting-login/). For any questions regarding login issues, please contact our [support team](https://support.sendgrid.com).
+
+If you have a non-library Twilio SendGrid issue, please contact our [support team](https://support.sendgrid.com).
 
 If you can't find a solution below, please open an [issue](https://github.com/sendgrid/sendgrid-ruby/issues).
 
 
 ## Table of Contents
 
-* [Migrating from v2 to v3](#migrating)
-* [Continue Using v2](#v2)
-* [Testing v3 /mail/send Calls Directly](#testing)
-* [Error Messages](#error)
-* [Versions](#versions)
-* [Environment Variables and Your SendGrid API Key](#environment)
-* [Using the Package Manager](#package-manager)
+* [Migrating from v2 to v3](#migrating-from-v2-to-v3)
+* [Continue Using v2](#continue-using-v2)
+* [Testing v3 /mail/send Calls Directly](#testing-v3-mailsend-calls-directly)
+* [Error Messages](#error-messages)
+* [Versioning](#versioning)
+* [Environment Variables and Your Twilio SendGrid API Key](#environment-variables-and-your-twilio-sendgrid-api-key)
+* [Using the Package Manager](#using-the-package-manager)
 * [Rails Specifics](#rails-specifics)
-* [Viewing the Request Body](#request-body)
+* [Ruby Versions](#ruby-versions)
+* [Viewing the Request Body](#viewing-the-request-body)
 
 <a name="migrating"></a>
 ## Migrating from v2 to v3
@@ -52,7 +55,7 @@ Click the "Clone or download" green button in [GitHub](https://github.com/sendgr
 <a name="testing"></a>
 ## Testing v3 /mail/send Calls Directly
 
-[Here](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/curl_examples.html) are some cURL examples for common use cases.
+[Here](https://sendgrid.com/docs/for-developers/sending-email/curl-examples/) are some cURL examples for common use cases.
 
 <a name="error"></a>
 ## Error Messages
@@ -67,17 +70,17 @@ rescue Exception => e
 end
 ```
 
-<a name="versions"></a>
-## Versions
+<a name="versioning"></a>
+## Versioning
 
 We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](https://github.com/sendgrid/sendgrid-ruby/blob/master/CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases) section.
 
 <a name="environment"></a>
-## Environment Variables and Your SendGrid API Key
+## Environment Variables and Your Twilio SendGrid API Key
 
-All of our examples assume you are using [environment variables](https://github.com/sendgrid/sendgrid-ruby#setup-environment-variables) to hold your SendGrid API key.
+All of our examples assume you are using [environment variables](https://github.com/sendgrid/sendgrid-ruby#setup-environment-variables) to hold your Twilio SendGrid API key.
 
-If you choose to add your SendGrid API key directly (not recommended):
+If you choose to add your Twilio SendGrid API key directly (not recommended):
 
 `sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])`
 
@@ -85,7 +88,7 @@ becomes
 
 `sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY')`
 
-In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual SendGrid API Key.
+In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual Twilio SendGrid API Key.
 
 <a name="package-manager"></a>
 ## Using the Package Manager
@@ -119,6 +122,11 @@ gem install sendgrid-ruby -v X.X.X
 
 - Possibility of a namespace collision between the sendgrid class `Email` and your own defined `Email` class. To avoid these issues, you can skip the `include SendGrid` line and use the `SendGrid::` prefix for Email. Please see this [SO answer](https://stackoverflow.com/questions/41508464/rails-model-name-conflict-with-included-gem?noredirect=1#comment70223099_41508464) for specifics.
 
+<a name="ruby-versions"></a>
+## Ruby Versions
+
+This SDK [does not work with ruby version 2.6.0](https://github.com/sendgrid/sendgrid-ruby/issues/378) because of [this bug](https://bugs.ruby-lang.org/issues/15468). Please use any other [supported version](https://github.com/sendgrid/sendgrid-ruby#prerequisites).
+
 <a name="request-body"></a>
 ## Viewing the Request Body
 
@@ -127,5 +135,5 @@ When debugging or testing, it may be useful to examine the raw request header to
 You can do this before `response = sg.client.mail._('send').post(request_body: mail.to_json)` like so:
 
 ```ruby
-puts mail
+puts mail.to_json
 ```

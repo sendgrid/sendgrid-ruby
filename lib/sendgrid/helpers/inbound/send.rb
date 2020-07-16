@@ -1,4 +1,4 @@
-# A module for sending test SendGrid Inbound Parse messages
+# A module for sending test Twilio SendGrid Inbound Parse messages
 # Usage: ruby ./send.rb [path to file containing test data]
 require 'ruby_http_client'
 require 'yaml'
@@ -14,7 +14,7 @@ client = SendGrid::Client.new(host: host)
 File.open(argv[0]) do |file|
   data = file.read
   headers = {
-    'User-Agent' => 'SendGrid-Test',
+    'User-Agent' => 'Twilio-SendGrid-Test',
     'Content-Type' => 'multipart/form-data; boundary=xYzZY'
   }
   response = client.post(

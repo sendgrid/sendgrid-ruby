@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class SubscriptionTracking
     def initialize(enable: nil, text: nil, html: nil, substitution_tag: nil)
