@@ -124,20 +124,13 @@ Tests for the mail send and Web API v3 endpoints.
 
 The Web API v3 client is `sendgrid-ruby.rb`
 
-<a name="testing"></a>
 ## Testing
 
-All PRs require passing tests before the PR will be reviewed.
+All PRs require passing tests before the PR will be reviewed. All test files are in the [`tests`](https://github.com/sendgrid/sendgrid-ruby/tree/master/test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](https://github.com/sendgrid/sendgrid-ruby/blob/master/test/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
 
-All test files are in the [`tests`](https://github.com/sendgrid/sendgrid-ruby/tree/master/test) directory.
+The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 
-For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](https://github.com/sendgrid/sendgrid-ruby/blob/master/test/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
-
-To run the tests:
-
-```bash
-rake
-```
+Once these are available, simply execute the Docker test target to run all tests: `make test-docker`. This command can also be used to open an interactive shell into the container where this library is installed. To start a *bash* shell for example, use this command: `command=bash make test-docker`.
 
 <a name="style-guidelines-and-naming-conventions"></a>
 ## Style Guidelines & Naming Conventions

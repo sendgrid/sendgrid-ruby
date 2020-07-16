@@ -2658,10 +2658,6 @@ class TestAPI < MiniTest::Test
         self.assert_equal("#{Time.now.year}", year)
     end
 
-    def test_docker_exists
-        assert(File.file?('./Docker') || File.file?('./docker/Dockerfile'))
-    end
-
     def test_env_sample_exists
         assert(File.file?('./.env_sample'))
     end
