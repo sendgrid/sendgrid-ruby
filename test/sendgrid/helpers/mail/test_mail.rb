@@ -1,5 +1,5 @@
 require_relative "../../../../lib/sendgrid/helpers/mail/mail"
-require_relative "../../../../lib/sendgrid/client"
+require_relative "../../../../lib/sendgrid/sendgrid"
 include SendGrid
 require "json"
 require 'minitest/autorun'

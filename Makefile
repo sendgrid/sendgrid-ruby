@@ -4,7 +4,7 @@ install:
 	gem install bundler:2.1.2; bundle install
 
 test:
-	bundle exec rake spec
+	bundle exec rake
 
 test-integ: test
 
