@@ -124,6 +124,24 @@ class TestPersonalization < Minitest::Test
     assert_equal @personalization.to_json, expected_json
   end
 
+  def test_add_nil_substitution
+    @personalization = Personalization.new()
+    @personalization.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
+    expected_json = {
+        "substitutions"=>{
+                "%name%"=>"Example User"
+            }
+    }
+    assert_equal @personalization.to_json, expected_json
+    @personalization.add_substitution(Substitution.new(key: '%name 1%', value: nil))
+    expected_json = {
+        "substitutions"=>{
+                "%name%"=>"Example User",
+            }
+    }
+    assert_equal @personalization.to_json, expected_json
+  end
+
   def test_add_custom_arg
     @personalization = Personalization.new()
     @personalization.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))

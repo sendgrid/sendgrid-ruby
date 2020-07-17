@@ -43,6 +43,7 @@ module SendGrid
 
     def add_substitution(substitution)
       substitution = substitution.to_json
+      return if substitution['substitution'].nil?
       @substitutions = @substitutions.merge(substitution['substitution'])
     end
 
