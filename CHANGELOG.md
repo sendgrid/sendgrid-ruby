@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-07-22] Version 6.3.3
+--------------------------
+**Library - Chore**
+- [PR #431](https://github.com/sendgrid/sendgrid-ruby/pull/431): migrate to new default sendgrid-oai branch. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+- [PR #366](https://github.com/sendgrid/sendgrid-ruby/pull/366): add Rubocop configuration file. Thanks to [@RolandBurrows](https://github.com/RolandBurrows)!
+
+**Library - Test**
+- [PR #429](https://github.com/sendgrid/sendgrid-ruby/pull/429): fix the license test and actually run the test scripts. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+**Library - Docs**
+- [PR #273](https://github.com/sendgrid/sendgrid-ruby/pull/273): Create a Use Cases Directory and Associated Files. Thanks to [@alanunruh](https://github.com/alanunruh)!
+
+
 [2020-07-08] Version 6.3.2
 --------------------------
 **Library - Test**
