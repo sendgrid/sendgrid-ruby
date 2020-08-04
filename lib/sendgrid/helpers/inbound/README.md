@@ -17,7 +17,7 @@
 # Installation
 
 In addition to the installation instructions in
-[the main readme](https://github.com/sendgrid/sendgrid-ruby/tree/master/#installation),
+[the main readme](https://github.com/sendgrid/sendgrid-ruby/tree/HEAD/#installation),
 you must also add sinatra to your Gemfile:
 
 ```
@@ -47,7 +47,7 @@ bundle install
 ruby ./lib/sendgrid/helpers/inbound/send.rb ./lib/sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/master/lib/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](https://github.com/sendgrid/sendgrid-ruby/tree/HEAD/lib/sendgrid/helpers/inbound/sample_data).
 
 View the results in the first terminal.
 
@@ -82,11 +82,11 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 
 ## app.rb
 
-This module runs a [Sinatra](http://www.sinatrarb.com/) server, that by default (you can change those settings [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/sendgrid/helpers/inbound/config.yml)), listens for POSTs on http://localhost:9292. When the server receives the POST, it parses and prints the key/value data.
+This module runs a [Sinatra](http://www.sinatrarb.com/) server, that by default (you can change those settings [here](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/sendgrid/helpers/inbound/config.yml)), listens for POSTs on http://localhost:9292. When the server receives the POST, it parses and prints the key/value data.
 
 ## config.yml
 
-This module loads application environment variables (located in [config.yml](https://github.com/sendgrid/sendgrid-ruby/blob/master/sendgrid/helpers/inbound/config.yml)).
+This module loads application environment variables (located in [config.yml](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/sendgrid/helpers/inbound/config.yml)).
 
 ## send.rb & /sample_data
 
@@ -95,4 +95,4 @@ This module is used to send sample test data. It is useful for testing and devel
 <a name="contributing"></a>
 # Contributing
 
-If you would like to contribute to this project, please see our [contributing guide](https://github.com/sendgrid/sendgrid-ruby/blob/master/CONTRIBUTING.md). Thanks!
+If you would like to contribute to this project, please see our [contributing guide](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/CONTRIBUTING.md). Thanks!
