@@ -120,7 +120,7 @@ All notable changes to this project will be documented in this file.
 [2019-06-04] Version 6.0.0
 --------------------------
 ### BREAKING CHANGE
-- [PR #284](https://github.com/sendgrid/sendgrid-ruby/pull/284): The sinatra gem is no longer specified as a dependency of this gem. If you would like to use the inbound processing, please follow the [upgrade guide](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/UPGRADE.md). Big thanks to [@jjb](https://github.com/jjb) for the PR!
+- [PR #284](https://github.com/sendgrid/sendgrid-ruby/pull/284): The sinatra gem is no longer specified as a dependency of this gem. If you would like to use the inbound processing, please follow the [upgrade guide](UPGRADE.md). Big thanks to [@jjb](https://github.com/jjb) for the PR!
 
 ### Added
 - [PR #271](https://github.com/sendgrid/sendgrid-ruby/pull/271): Add ability to impersonate a subuser. Big thanks to [@danilospa](https://github.com/danilospa) for the PR!
@@ -187,7 +187,7 @@ All notable changes to this project will be documented in this file.
 - `mail.headers` becomes `mail.add_header()`
 - `mail.categories` becomes `mail.add_category()`
 - `mail.custom_args` becomes `mail.custom_args()`
-- For a full example of usage, please [see here](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/examples/helpers/mail/example.rb#L21).
+- For a full example of usage, please [see here](examples/helpers/mail/example.rb#L21).
 
 ## [4.3.3] - 2017-5-2
 ### Update
@@ -210,7 +210,7 @@ All notable changes to this project will be documented in this file.
 ## [4.3.0] - 2017-4-12 ##
 ### Added
 - #70: Adds an account settings management helper object
-- See the [helper README](https://github.com/sendgrid/sendgrid-ruby/tree/HEAD/lib/sendgrid/helpers/settings) for details
+- See the [helper README](lib/sendgrid/helpers/settings) for details
 - Thanks to [Kyle Kern](https://github.com/kernkw) for the pull request!
 
 ## [4.2.1] - 2017-4-10 ##
@@ -262,7 +262,7 @@ All notable changes to this project will be documented in this file.
 ## [4.0.3] - 2016-08-24 ##
 ### Added
 - Table of Contents in the README
-- Added a [USE_CASES.md](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/USE_CASES.md) section, with the first use case example for transactional templates
+- Added a [USE_CASES.md](USE_CASES.md) section, with the first use case example for transactional templates
 
 ## [4.0.2] - 2016-07-26 ##
 ### Fixed
@@ -270,7 +270,7 @@ All notable changes to this project will be documented in this file.
 
 ## [4.0.1] - 2016-07-25 ##
 ### Added
-- [Troubleshooting](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/TROUBLESHOOTING.md) section
+- [Troubleshooting](TROUBLESHOOTING.md) section
 
 ## [4.0.0] - 2016-07-23 ##
 ### BREAKING CHANGE
