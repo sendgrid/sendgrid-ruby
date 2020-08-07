@@ -126,7 +126,7 @@ The Web API v3 client is `sendgrid-ruby.rb`
 
 ## Testing
 
-All PRs require passing tests before the PR will be reviewed. All test files are in the [`tests`](test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](test/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
+All PRs require passing tests before the PR will be reviewed. All test files are in the [`tests`](test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](test/sendgrid/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
 
 The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 

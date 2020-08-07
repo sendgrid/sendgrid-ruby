@@ -186,7 +186,7 @@ Please see [our helper](lib/sendgrid/helpers/inbound) for utilizing our Inbound 
 <a name="use_cases"></a>
 # Use Cases
 
-[Examples of common API use cases](USE_CASES.md), such as how to send an email with a transactional template.
+[Examples of common API use cases](use-cases), such as how to send an email with a transactional template.
 
 <a name="announcements"></a>
 # Announcements
