@@ -16,6 +16,6 @@ ratings:
   - "**.rb"
 exclude_paths:
 - examples/
+- gemfiles/
 - spec/
 - test/
-- gemfiles/
