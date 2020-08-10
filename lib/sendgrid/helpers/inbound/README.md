@@ -17,7 +17,7 @@
 # Installation
 
 In addition to the installation instructions in
-[the main readme](#installation),
+[the main readme](../../../../README.md#installation),
 you must also add sinatra to your Gemfile:
 
 ```
@@ -47,7 +47,7 @@ bundle install
 ruby ./lib/sendgrid/helpers/inbound/send.rb ./lib/sendgrid/helpers/inbound/sample_data/default_data.txt
 ```
 
-More sample data can be found [here](lib/sendgrid/helpers/inbound/sample_data).
+More sample data can be found [here](sample_data).
 
 View the results in the first terminal.
 
