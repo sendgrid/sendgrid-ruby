@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Footer
     def initialize(enable: nil, text: nil, html: nil)

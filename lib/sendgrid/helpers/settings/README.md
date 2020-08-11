@@ -1,4 +1,4 @@
-**This module allows you to quickly and easily build a Settings object for retrieving or updating you SendGrid Settings.**
+**This module allows you to quickly and easily build a Settings object for retrieving or updating your Twilio SendGrid Settings.**
 
 # Quick Start
 

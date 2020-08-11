@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - examples/**/*
+    - gemfiles/**/*
+    - spec/**/*
+    - test/**/*
