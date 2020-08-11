@@ -82,11 +82,11 @@ Next, send an email to [anything]@inbound.yourdomain.com, then look at the termi
 
 ## app.rb
 
-This module runs a [Sinatra](http://www.sinatrarb.com/) server, that by default (you can change those settings [here](sendgrid/helpers/inbound/config.yml)), listens for POSTs on http://localhost:9292. When the server receives the POST, it parses and prints the key/value data.
+This module runs a [Sinatra](http://www.sinatrarb.com/) server, that by default (you can change those settings [here](config.yml)), listens for POSTs on http://localhost:9292. When the server receives the POST, it parses and prints the key/value data.
 
 ## config.yml
 
-This module loads application environment variables (located in [config.yml](sendgrid/helpers/inbound/config.yml)).
+This module loads application environment variables (located in [config.yml](config.yml)).
 
 ## send.rb & /sample_data
 
