@@ -95,4 +95,4 @@ This module is used to send sample test data. It is useful for testing and devel
 <a name="contributing"></a>
 # Contributing
 
-If you would like to contribute to this project, please see our [contributing guide](CONTRIBUTING.md). Thanks!
+If you would like to contribute to this project, please see our [contributing guide](../../../../CONTRIBUTING.md). Thanks!
