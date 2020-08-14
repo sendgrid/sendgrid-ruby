@@ -711,7 +711,7 @@ puts response.headers
 <a name="browsers"></a>
 # BROWSERS
 
-## Retrieve email statistics by a browser.
+## Retrieve email statistics by browser.
 
 **This endpoint allows you to retrieve your email statistics segmented by browser type.**
 
