@@ -433,7 +433,7 @@ puts response.headers
 
 **This endpoint allows you to create a new suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -477,7 +477,7 @@ puts response.headers
 
 **This endpoint allows you to update or change a suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -502,7 +502,7 @@ puts response.headers
 
 **This endpoint allows you to retrieve a single suppression group.**
 
-Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
@@ -524,7 +524,7 @@ puts response.headers
 
 You can only delete groups that have not been attached to sent mail in the last 60 days. If a recipient uses the "one-click unsubscribe" option on an email associated with a deleted group, that recipient will be added to the global suppression list.
 
-Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example Daily Newsletters, Invoices, System Alerts.
+Suppression groups, or unsubscribe groups, are specific types or categories of email that you would like your recipients to be able to unsubscribe from. For example: Daily Newsletters, Invoices, System Alerts.
 
 The **name** and **description** of the unsubscribe group will be visible by recipients when they are managing their subscriptions.
 
