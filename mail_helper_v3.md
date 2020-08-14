@@ -233,7 +233,7 @@ msg.set_send_at(1461775052, 1)
 
 msg.set_subject('this subject overrides the Global Subject on the second Personalization', 1)
 
-# The values below this comment are global to entire message
+# The values below this comment are global to the entire message
 
 msg.set_from(SendGrid::Email.new('test0@example.com', 'Example User0'))
 
@@ -347,7 +347,7 @@ Template Body:
 ```html
 <html>
 <head>
-	<title></title>
+    <title></title>
 </head>
 <body>
 Hello -name-,

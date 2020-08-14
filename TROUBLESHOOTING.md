@@ -28,7 +28,7 @@ Please review [our guide](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/
 
 [Here](https://github.com/sendgrid/sendgrid-ruby/tree/0fbf579c0f7ed1dff87adc4957c4dc5a6b257068) is the last working version with v2 support.
 
-Using rubygems:
+Using RubyGems:
 
 Add this line to your application's Gemfile:
 
@@ -73,7 +73,7 @@ end
 <a name="versioning"></a>
 ## Versioning
 
-We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with to your code and never auto-update to the latest version. Especially when there is a MAJOR point release, since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases) section.
+We follow the MAJOR.MINOR.PATCH versioning scheme as described by [SemVer.org](http://semver.org). Therefore, we recommend that you always pin (or vendor) the particular version you are working with your code and never auto-update to the latest version. Especially when there is a MAJOR point release since that is guaranteed to be a breaking change. Changes are documented in the [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases) section.
 
 <a name="environment"></a>
 ## Environment Variables and Your Twilio SendGrid API Key
@@ -88,7 +88,7 @@ becomes
 
 `sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY')`
 
-In the first case SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual Twilio SendGrid API Key.
+In the first case, SENDGRID_API_KEY is in reference to the name of the environment variable, while the second case references the actual Twilio SendGrid API Key.
 
 <a name="package-manager"></a>
 ## Using the Package Manager
@@ -118,9 +118,9 @@ gem install sendgrid-ruby -v X.X.X
 <a name="rails-specifics"></a>
 ## Rails Specifics
 
-- Namespace collision between Rails own `Mail` class and sendgrid class `Mail`. To avoid that issues please use `SendGrid::Mail` instead.
+- Namespace collision between Rails own `Mail` class and sendgrid class `Mail`. To avoid that issues please use `SendGrid:: Mail` instead.
 
-- Possibility of a namespace collision between the sendgrid class `Email` and your own defined `Email` class. To avoid these issues, you can skip the `include SendGrid` line and use the `SendGrid::` prefix for Email. Please see this [SO answer](https://stackoverflow.com/questions/41508464/rails-model-name-conflict-with-included-gem?noredirect=1#comment70223099_41508464) for specifics.
+- The possibility of a namespace collision between the sendgrid class `Email` and your own defined `Email` class. To avoid these issues, you can skip the `include SendGrid` line and use the `SendGrid::` prefix for Email. Please see this [SO answer](https://stackoverflow.com/questions/41508464/rails-model-name-conflict-with-included-gem?noredirect=1#comment70223099_41508464) for specifics.
 
 <a name="ruby-versions"></a>
 ## Ruby Versions
