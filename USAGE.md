@@ -4097,7 +4097,7 @@ puts response.headers
 ```
 ## Retrieve all global suppressions
 
-**This endpoint allows you to retrieve a list of all email address that is globally suppressed.**
+**This endpoint allows you to retrieve a list of all email address that are globally suppressed.**
 
 A global suppression (or global unsubscribe) is an email address of a recipient who does not want to receive any of your messages. A globally suppressed recipient will be removed from any email you send. For more information, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Suppressions/global_unsubscribes.html).
 
