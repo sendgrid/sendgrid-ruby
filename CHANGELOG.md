@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-08-19] Version 6.3.4
+--------------------------
+**Library - Docs**
+- [PR #319](https://github.com/sendgrid/sendgrid-ruby/pull/319): Run all the *.md files through grammar.ly service and update accordingly. Thanks to [@Sarthakagarwal22](https://github.com/Sarthakagarwal22)!
+- [PR #344](https://github.com/sendgrid/sendgrid-ruby/pull/344): Update example.rb. Thanks to [@kylearoberts](https://github.com/kylearoberts)!
+
+**Library - Chore**
+- [PR #432](https://github.com/sendgrid/sendgrid-ruby/pull/432): update GitHub branch references to use HEAD. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+
 [2020-07-22] Version 6.3.3
 --------------------------
 **Library - Chore**
