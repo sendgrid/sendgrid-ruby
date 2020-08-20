@@ -18,7 +18,7 @@ Hello! Thank you for choosing to help contribute to one of the Twilio SendGrid o
 - [Code Reviews](#code-reviews)
 
 <a name="roadmap"></a>
-We use [Milestones](https://github.com/sendgrid/sendgrid-ruby/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions and additional PRs are welcomed and encouraged.
+We use [Milestones](https://github.com/sendgrid/sendgrid-ruby/milestones) to help define current roadmaps, please feel free to grab an issue from the current milestone. Please indicate that you have begun work on it to avoid collisions. Once a PR is made, community review, comments, suggestions, and additional PRs are welcomed and encouraged.
 
 There are a few ways to contribute, which we'll enumerate below:
 
@@ -42,7 +42,7 @@ A software bug is a demonstrable issue in the code base. In order for us to diag
 Before you decide to create a new issue, please try the following:
 
 1. Check the Github issues tab if the identified issue has already been reported, if so, please add a +1 to the existing post.
-2. Update to the latest version of this code and check if issue has already been fixed
+2. Update to the latest version of this code and check if an issue has already been fixed
 3. Copy and fill in the Bug Report Template we have provided below
 
 ### Please use our Bug Report Template
@@ -93,7 +93,7 @@ source ./sendgrid.env
 
 ##### Execute: #####
 
-See the [examples folder](https://github.com/sendgrid/sendgrid-ruby/tree/master/examples) to get started quickly.
+See the [examples folder](examples) to get started quickly.
 
 To run the examples using the local version of this library from the root directory of this repo, please replace:
 
@@ -126,7 +126,7 @@ The Web API v3 client is `sendgrid-ruby.rb`
 
 ## Testing
 
-All PRs require passing tests before the PR will be reviewed. All test files are in the [`tests`](https://github.com/sendgrid/sendgrid-ruby/tree/master/test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](https://github.com/sendgrid/sendgrid-ruby/blob/master/test/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
+All PRs require passing tests before the PR will be reviewed. All test files are in the [`tests`](test) directory. For the purposes of contributing to this repo, please update the [`test_sendgrid-ruby.rb`](test/sendgrid/test_sendgrid-ruby.rb) file with unit tests as you modify the code.
 
 The integration tests require a Twilio SendGrid mock API in order to execute. We've simplified setting this up using Docker to run the tests. You will just need [Docker Desktop](https://docs.docker.com/get-docker/) and `make`.
 
@@ -176,7 +176,7 @@ Please run your code through:
 
 4. Commit your changes in logical chunks. Please adhere to these [git commit
    message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-   or your code is unlikely be merged into the main project. Use Git's
+   or your code is unlikely to be merged into the main project. Use Git's
    [interactive rebase](https://help.github.com/articles/interactive-rebase)
    feature to tidy up your commits before making them public.
 
@@ -187,7 +187,7 @@ Please run your code through:
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream main
    ```
 
 6. Push your topic branch up to your fork:
@@ -197,7 +197,7 @@ Please run your code through:
    ```
 
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
+    with a clear title and description against the `main` branch. All tests must be passing before we will review the PR.
 
 <a name="code-reviews"></a>
 ## Code Reviews
