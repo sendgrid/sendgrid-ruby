@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Substitution
     def initialize(key: nil, value: nil)

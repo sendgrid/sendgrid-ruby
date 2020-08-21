@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class StatsResponse
     def initialize(args)
@@ -22,7 +20,7 @@ module SendGrid
         starting_date = stat['date']
         all_stats_for_date = stat['stats']
 
-        metrics = all_stats_for_date.map do |metric|
+        all_stats_for_date.map do |metric|
           Metrics.new(metric['metrics'].merge('date' => starting_date))
         end
       end

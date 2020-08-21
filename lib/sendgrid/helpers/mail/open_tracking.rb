@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class OpenTracking
     def initialize(enable: nil, substitution_tag: nil)

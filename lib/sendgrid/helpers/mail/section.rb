@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Section
     def initialize(key: nil, value: nil)

@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class SpamCheck
     def initialize(enable: nil, threshold: nil, post_to_url: nil)

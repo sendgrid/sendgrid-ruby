@@ -24,6 +24,19 @@ puts response.body
 puts response.headers
 
 ##################################################
+# Retrieve unassigned IPs #
+# GET /ips #
+
+params = {}
+response = sg.client.ips.get(query_params: params)
+all_ips = JSON.parse(response.body)
+unassigned_ips = all_ips.select {|ip| ip.subusers.empty?}
+puts response.status_code
+puts response.body
+puts unassigned_ips
+puts response.headers
+
+##################################################
 # Create an IP pool. #
 # POST /ips/pools #
 
