@@ -31,7 +31,6 @@ We appreciate your continued support, thank you!
 * [Usage](#usage)
 * [Use Cases](#use_cases)
 * [Announcements](#announcements)
-* [Roadmap](#roadmap)
 * [How to Contribute](#contribute)
 * [Troubleshooting](#troubleshooting)
 * [About](#about)
@@ -194,11 +193,6 @@ Please see [our helper](lib/sendgrid/helpers/inbound) for utilizing our Inbound 
 Please see our announcement regarding [breaking changes](https://github.com/sendgrid/sendgrid-ruby/issues/94). Your support is appreciated!
 
 All updates to this library are documented in our [CHANGELOG](CHANGELOG.md) and [releases](https://github.com/sendgrid/sendgrid-ruby/releases). You may also subscribe to email [release notifications](https://dx.sendgrid.com/newsletter/ruby) for releases and breaking changes.
-
-<a name="roadmap"></a>
-# Roadmap
-
-If you are interested in the future direction of this project, please take a look at our open [issues](https://github.com/sendgrid/sendgrid-ruby/issues) and [pull requests](https://github.com/sendgrid/sendgrid-ruby/pulls). We would love to hear your feedback.
 
 <a name="contribute"></a>
 # How to Contribute
