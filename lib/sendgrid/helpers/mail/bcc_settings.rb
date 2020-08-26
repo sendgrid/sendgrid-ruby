@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class BccSettings
     def initialize(enable: nil, email: nil)
