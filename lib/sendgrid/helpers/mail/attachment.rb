@@ -1,4 +1,4 @@
-require 'json'
+require 'base64'
 
 module SendGrid
   class Attachment
@@ -11,11 +11,18 @@ module SendGrid
     end
 
     def content=(content)
+      @encoded_content = nil
       @content = content
     end
 
     def content
-      @content
+      return @encoded_content if @encoded_content
+
+      if @content.respond_to?(:read)
+        @encoded_content = encode @content
+      else
+        @encoded_content = @content
+      end
     end
 
     def type=(type)
@@ -58,6 +65,21 @@ module SendGrid
         'disposition' => self.disposition,
         'content_id' => self.content_id
       }.delete_if { |_, value| value.to_s.strip == '' }
+    end
+
+    private
+
+    def encode(io)
+      str = io.read
+      # Since the API expects UTF-8, we need to ensure that we're
+      # converting other formats to it so (byte-wise) Base64 encoding
+      # will come through properly on the other side.
+      #
+      # Not much to be done to try to handle encoding for files opened
+      # in binary mode, but at least we can faithfully convey the
+      # bytes.
+      str = str.encode('UTF-8') unless io.respond_to?(:binmode?) && io.binmode?
+      Base64.encode64 str
     end
   end
 end

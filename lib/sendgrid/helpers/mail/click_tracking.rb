@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class ClickTracking
     def initialize(enable: nil, enable_text: nil)
