@@ -14,8 +14,7 @@ script: make test-docker
 
 deploy:
   provider: rubygems
-  api_key:
-    secure: CWlfN170i/fHPrIufHHLWQ0utjuhxf4ELSxKeypIuO2CNTqNMzocDAa2vxMt4XfO6d2wFPV/LC+IHR7i+sp7PKvjRoa4BLUUxjfBNDboc0gGESeUYlAxwsJo0tOVCNmpxgjQKqtPLz/19A/v/xpxLv2Im/9Idqa5ATd06sMDdM8=
+  api_key: $RUBYGEMS_API_KEY
   gem: sendgrid-ruby
   on:
     tags: true
@@ -27,5 +26,4 @@ notifications:
     on_pull_requests: false
     on_success: never
     on_failure: change
-    rooms:
-      - secure: QwoVrGveeA1bo/26fO2A+OQHmUX69NLaC214qd18C1Z8ztYMHkd05/9+k9HFb+PSdPkGLSeYOPWAKJUqJWB7HfGINNGpRGIPFcmfB7vhvvLFnhud/SAdQPRZ+SCeZPdpZcjpVRLYENKv259ucGPBCPFXh1HfJF92R0IrKeW5CII=
+    rooms: $SLACK_TOKEN
