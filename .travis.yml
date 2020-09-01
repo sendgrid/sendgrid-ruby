@@ -26,4 +26,5 @@ notifications:
     on_pull_requests: false
     on_success: never
     on_failure: change
-    rooms: $SLACK_TOKEN
+    rooms:
+      - secure: QwoVrGveeA1bo/26fO2A+OQHmUX69NLaC214qd18C1Z8ztYMHkd05/9+k9HFb+PSdPkGLSeYOPWAKJUqJWB7HfGINNGpRGIPFcmfB7vhvvLFnhud/SAdQPRZ+SCeZPdpZcjpVRLYENKv259ucGPBCPFXh1HfJF92R0IrKeW5CII=
