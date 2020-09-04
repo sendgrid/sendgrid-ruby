@@ -1,15 +1,13 @@
 module SendGrid
   class MailSettings
+    attr_writer :sandbox_mode, :footer, :bcc, :spam_check
+
     def initialize
       @bcc = nil
       @bypass_list_management = nil
       @footer = nil
       @sandbox_mode = nil
       @spam_check = nil
-    end
-
-    def sandbox_mode=(sandbox_mode)
-      @sandbox_mode = sandbox_mode
     end
 
     def sandbox_mode
@@ -24,24 +22,12 @@ module SendGrid
       @bypass_list_management.nil? ? nil : @bypass_list_management.to_json
     end
 
-    def footer=(footer)
-      @footer = footer
-    end
-
     def footer
       @footer.nil? ? nil : @footer.to_json
     end
 
-    def bcc=(bcc)
-      @bcc = bcc
-    end
-
     def bcc
       @bcc.nil? ? nil : @bcc.to_json
-    end
-
-    def spam_check=(spam_check)
-      @spam_check = spam_check
     end
 
     def spam_check

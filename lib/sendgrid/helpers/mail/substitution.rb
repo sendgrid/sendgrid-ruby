@@ -1,16 +1,10 @@
 module SendGrid
   class Substitution
+    attr_accessor :substitution
+
     def initialize(key: nil, value: nil)
       @substitution = {}
       (key.nil? || value.nil?) ? @substitution = nil : @substitution[key] = value
-    end
-
-    def substitution=(substitution)
-      @substitution = substitution
-    end
-
-    def substitution
-      @substitution
     end
 
     def to_json(*)
