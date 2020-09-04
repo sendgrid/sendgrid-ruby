@@ -86,10 +86,6 @@ module SendGrid
       @mail_settings.nil? ? nil : @mail_settings.to_json
     end
 
-    def tracking_settings=(tracking_settings)
-      @tracking_settings = tracking_settings
-    end
-
     def tracking_settings
       @tracking_settings.nil? ? nil : @tracking_settings.to_json
     end
