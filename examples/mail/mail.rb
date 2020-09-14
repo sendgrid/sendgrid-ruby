@@ -26,7 +26,7 @@ puts response.headers
 ##################################################
 # v3 Mail Send #
 # POST /mail/send #
-# This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/master/lib/helpers/mail/README.md).
+# This endpoint has a helper, check it out [here](https://github.com/sendgrid/sendgrid-ruby/blob/HEAD/lib/sendgrid/helpers/mail/README.md).
 
 data = JSON.parse('{
   "asm": {
