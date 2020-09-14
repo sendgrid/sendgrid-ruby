@@ -2,7 +2,7 @@ require 'json'
 
 module SendGrid
   class MailSettings
-    attr_writer :sandbox_mode, :footer, :bcc, :spam_check
+    attr_writer :sandbox_mode, :footer, :bcc, :spam_check, :bypass_list_management
 
     def initialize
       @bcc = nil
