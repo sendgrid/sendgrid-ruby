@@ -2,14 +2,12 @@ require 'json'
 
 module SendGrid
   class Section
+    attr_accessor :section
+
     def initialize(key: nil, value: nil)
       @section = {}
       key.nil? || value.nil? ? @section = nil : @section[key] = value
     end
-
-    attr_writer :section
-
-    attr_reader :section
 
     def to_json(*)
       {

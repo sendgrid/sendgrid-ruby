@@ -1,6 +1,8 @@
 require 'sendgrid-ruby'
 
+
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
 
 ##################################################
 # Retrieve all blocks #
@@ -146,7 +148,7 @@ puts response.headers
 # GET /suppression/spam_report/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).get
+response = sg.client.suppression.spam_report._(email).get()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -156,7 +158,7 @@ puts response.headers
 # DELETE /suppression/spam_report/{email} #
 
 email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete
+response = sg.client.suppression.spam_reports._(email).delete()
 puts response.status_code
 puts response.body
 puts response.headers
@@ -196,3 +198,4 @@ response = sg.client.suppression.unsubscribes.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
+

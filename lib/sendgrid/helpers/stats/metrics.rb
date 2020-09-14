@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Metrics
     attr_reader :blocks, :bounce_drops,

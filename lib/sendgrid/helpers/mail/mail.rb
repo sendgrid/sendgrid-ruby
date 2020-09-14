@@ -4,7 +4,10 @@ require 'json'
 
 module SendGrid
   class Mail
+
+    attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
+    attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
 
     def initialize(from_email = nil, subj = nil, to_email = nil, cont = nil)
       @from = nil
@@ -35,15 +38,9 @@ module SendGrid
       end
     end
 
-    attr_writer :from
-
     def from
       @from.nil? ? nil : @from.to_json
     end
-
-    attr_writer :subject
-
-    attr_reader :subject
 
     def add_personalization(personalization)
       @personalizations << personalization.to_json
@@ -53,6 +50,13 @@ module SendGrid
       @contents << content.to_json
     end
 
+    def check_for_secrets(patterns)
+      contents = @contents.map { |content| content['value'] }.join(' ')
+      patterns.each do |pattern|
+        raise SecurityError.new('Content contains sensitive information.') if contents.match(pattern)
+      end
+    end
+
     def add_attachment(attachment)
       @attachments << attachment.to_json
     end
@@ -60,10 +64,6 @@ module SendGrid
     def add_category(category)
       @categories << category.name
     end
-
-    attr_writer :template_id
-
-    attr_reader :template_id
 
     def add_section(section)
       section = section.to_json
@@ -80,37 +80,17 @@ module SendGrid
       @custom_args = @custom_args.merge(custom_arg['custom_arg'])
     end
 
-    attr_writer :send_at
-
-    attr_reader :send_at
-
-    attr_writer :batch_id
-
-    attr_reader :batch_id
-
-    attr_writer :asm
-
     def asm
       @asm.nil? ? nil : @asm.to_json
     end
-
-    attr_writer :ip_pool_name
-
-    attr_reader :ip_pool_name
-
-    attr_writer :mail_settings
 
     def mail_settings
       @mail_settings.nil? ? nil : @mail_settings.to_json
     end
 
-    attr_writer :tracking_settings
-
     def tracking_settings
       @tracking_settings.nil? ? nil : @tracking_settings.to_json
     end
-
-    attr_writer :reply_to
 
     def reply_to
       @reply_to.nil? ? nil : @reply_to.to_json

@@ -1,6 +1,8 @@
 require 'sendgrid-ruby'
 
+
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
 
 ##################################################
 # Create a batch ID #
@@ -77,8 +79,8 @@ data = JSON.parse('{
     },
     "footer": {
       "enable": true,
-      "html": "<p>Thanks</br>The SendGrid Team</p>",
-      "text": "Thanks,/n The SendGrid Team"
+      "html": "<p>Thanks</br>The Twilio SendGrid Team</p>",
+      "text": "Thanks,/n The Twilio SendGrid Team"
     },
     "sandbox_mode": {
       "enable": false
@@ -168,3 +170,4 @@ response = sg.client.mail._("send").post(request_body: data)
 puts response.status_code
 puts response.body
 puts response.headers
+

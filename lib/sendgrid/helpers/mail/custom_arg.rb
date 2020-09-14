@@ -2,14 +2,12 @@ require 'json'
 
 module SendGrid
   class CustomArg
+    attr_accessor :custom_arg
+
     def initialize(key: nil, value: nil)
       @custom_arg = {}
       key.nil? || value.nil? ? @custom_arg = nil : @custom_arg[key.to_s] = value.to_s
     end
-
-    attr_writer :custom_arg
-
-    attr_reader :custom_arg
 
     def to_json(*)
       {

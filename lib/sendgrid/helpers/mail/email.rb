@@ -2,6 +2,9 @@ require 'json'
 
 module SendGrid
   class Email
+
+    attr_accessor :email, :name
+
     def initialize(email: nil, name: nil)
       if name
         @email = email
@@ -10,14 +13,6 @@ module SendGrid
         @email, @name = split_email(email)
       end
     end
-
-    attr_writer :email
-
-    attr_reader :email
-
-    attr_writer :name
-
-    attr_reader :name
 
     def split_email(email)
       split = /(?:(?<address>.+)\s)?<?(?<email>.+@[^>]+)>?/.match(email)

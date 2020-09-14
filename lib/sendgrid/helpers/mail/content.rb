@@ -2,18 +2,12 @@ require 'json'
 
 module SendGrid
   class Content
+    attr_accessor :type, :value
+
     def initialize(type: nil, value: nil)
       @type = type
       @value = value
     end
-
-    attr_writer :type
-
-    attr_reader :type
-
-    attr_writer :value
-
-    attr_reader :value
 
     def to_json(*)
       {

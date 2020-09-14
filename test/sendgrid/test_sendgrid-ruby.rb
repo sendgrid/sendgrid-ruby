@@ -1,66 +1,51 @@
+require 'simplecov'
+SimpleCov.start
 require_relative '../../lib/sendgrid-ruby.rb'
 require 'ruby_http_client'
 require 'minitest/autorun'
 require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
-  unless File.exist?('/usr/local/bin/prism') || File.exist?(File.join(Dir.pwd, 'prism/bin/prism'))
-    if RUBY_PLATFORM =~ /mswin|mingw/
-      puts 'Please download the Windows binary (https://github.com/stoplightio/prism/releases) and place it in your /usr/local/bin directory'
-    else
-      puts 'Installing Prism'
-      IO.popen(['curl', '-s', 'https://raw.githubusercontent.com/stoplightio/prism/master/install.sh']) do |io|
-        out = io.read
-        unless system(out)
-          puts "Error downloading the prism binary, you can try downloading directly here (https://github.com/stoplightio/prism/releases) and place in your /usr/local/bin directory, #{out}"
-          exit
-        end
-      end
+
+    def setup
+        @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY")
     end
-  end
 
-  puts 'Activating Prism (~20 seconds)'
-  @@prism_pid = spawn('prism run --mock --list --spec https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json', %i[out err] => '/dev/null')
-  sleep(15)
-  puts 'Prism started'
-
-  def setup
-    host = "http://localhost:4010"
-    @sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: host)
-  end
-
-  Minitest.after_run do
-    Process.kill('TERM', @@prism_pid)
-    puts 'Prism shut down'
-  end
-
-  def test_init
-    headers = JSON.parse('
-        {
-            "X-Test": "test"
-        }
-    ')
-    sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3")
-
-    assert_equal("https://api.test.com", sg.host)
-    user_agent = "sendgrid/#{SendGrid::VERSION};ruby"
-    test_headers = JSON.parse('
+    def test_init
+        headers = JSON.parse('
             {
-                "Authorization": "Bearer SENDGRID_API_KEY",
-                "Accept": "application/json",
-                "X-Test": "test",
-                "User-agent": "' + user_agent + '"
+                "X-Test": "test"
             }
         ')
-    assert_equal(test_headers, sg.request_headers)
-    assert_equal("v3", sg.version)
-    assert_equal("5.2.0", SendGrid::VERSION)
-    assert_instance_of(SendGrid::Client, sg.client)
-  end
+        subuser = 'test_user'
+        sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", request_headers: headers, version: "v3", impersonate_subuser: subuser)
 
-  def test_access_settings_activity_get
-    params = JSON.parse('{"limit": 1}')
-    headers = JSON.parse('{"X-Mock": 200}')
+        assert_equal("https://api.test.com", sg.host)
+        user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
+        test_headers = JSON.parse('
+                {
+                    "Authorization": "Bearer SENDGRID_API_KEY",
+                    "Accept": "application/json",
+                    "X-Test": "test",
+                    "User-Agent": "' + user_agent + '",
+                    "On-Behalf-Of": "' + subuser + '"
+                }
+            ')
+        assert_equal(test_headers, sg.request_headers)
+        assert_equal("v3", sg.version)
+        assert_equal(subuser, sg.impersonate_subuser)
+        assert_equal("6.3.4", SendGrid::VERSION)
+        assert_instance_of(SendGrid::Client, sg.client)
+    end
+
+    def test_init_when_impersonate_subuser_is_not_given
+        sg = SendGrid::API.new(api_key: "SENDGRID_API_KEY", host: "https://api.test.com", version: "v3")
+        refute_includes(sg.request_headers, 'On-Behalf-Of')
+    end
+
+    def test_access_settings_activity_get
+        params = JSON.parse('{"limit": 1}')
+        headers = JSON.parse('{"X-Mock": 200}')
 
     response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
 
@@ -1882,7 +1867,7 @@ class TestAPI < MiniTest::Test
     email = "test_url_param"
     headers = JSON.parse('{"X-Mock": 204}')
 
-    response = @sg.client.suppression.spam_report._(email).delete(request_headers: headers)
+        response = @sg.client.suppression.spam_reports._(email).delete(request_headers: headers)
 
     assert_equal('204', response.status_code)
   end

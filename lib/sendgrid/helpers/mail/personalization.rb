@@ -2,8 +2,11 @@ require 'json'
 
 module SendGrid
   class Personalization
+
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
                 :dynamic_template_data
+
+    attr_accessor :send_at, :subject
 
     def initialize
       @tos = []
@@ -29,10 +32,6 @@ module SendGrid
       @bccs << bcc.to_json
     end
 
-    attr_writer :subject
-
-    attr_reader :subject
-
     def add_header(header)
       header = header.to_json
       @headers = @headers.merge(header['header'])
@@ -51,10 +50,6 @@ module SendGrid
     def add_dynamic_template_data(dynamic_template_data)
       @dynamic_template_data.merge!(dynamic_template_data)
     end
-
-    attr_writer :send_at
-
-    attr_reader :send_at
 
     def to_json(*)
       {

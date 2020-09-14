@@ -2,13 +2,11 @@ require 'json'
 
 module SendGrid
   class BypassListManagement
+    attr_accessor :enable
+
     def initialize(enable: nil)
       @enable = enable
     end
-
-    attr_writer :enable
-
-    attr_reader :enable
 
     def to_json(*)
       {
@@ -18,13 +16,11 @@ module SendGrid
   end
 
   class SandBoxMode
+    attr_accessor :enable
+
     def initialize(enable: nil)
       @enable = enable
     end
-
-    attr_writer :enable
-
-    attr_reader :enable
 
     def to_json(*)
       {

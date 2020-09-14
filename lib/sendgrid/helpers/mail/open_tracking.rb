@@ -2,18 +2,12 @@ require 'json'
 
 module SendGrid
   class OpenTracking
+    attr_accessor :enable, :substitution_tag
+
     def initialize(enable: nil, substitution_tag: nil)
       @enable = enable
       @substitution_tag = substitution_tag
     end
-
-    attr_writer :enable
-
-    attr_reader :enable
-
-    attr_writer :substitution_tag
-
-    attr_reader :substitution_tag
 
     def to_json(*)
       {

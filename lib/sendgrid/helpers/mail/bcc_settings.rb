@@ -2,18 +2,12 @@ require 'json'
 
 module SendGrid
   class BccSettings
+    attr_accessor :enable, :email
+
     def initialize(enable: nil, email: nil)
       @enable = enable
       @email = email
     end
-
-    attr_writer :enable
-
-    attr_reader :enable
-
-    attr_writer :email
-
-    attr_reader :email
 
     def to_json(*)
       {

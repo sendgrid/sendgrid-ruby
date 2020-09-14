@@ -2,6 +2,7 @@ require 'json'
 
 module SendGrid
   class TrackingSettings
+    attr_writer :click_tracking, :open_tracking, :subscription_tracking, :ganalytics
     def initialize
       @click_tracking = nil
       @open_tracking = nil
@@ -9,25 +10,17 @@ module SendGrid
       @ganalytics = nil
     end
 
-    attr_writer :click_tracking
-
     def click_tracking
       @click_tracking.nil? ? nil : @click_tracking.to_json
     end
-
-    attr_writer :open_tracking
 
     def open_tracking
       @open_tracking.nil? ? nil : @open_tracking.to_json
     end
 
-    attr_writer :subscription_tracking
-
     def subscription_tracking
       @subscription_tracking.nil? ? nil : @subscription_tracking.to_json
     end
-
-    attr_writer :ganalytics
 
     def ganalytics
       @ganalytics.nil? ? nil : @ganalytics.to_json
