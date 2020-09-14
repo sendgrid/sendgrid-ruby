@@ -2687,7 +2687,7 @@ class TestAPI < MiniTest::Test
   end
 
   def test_issue_template_exists
-    assert(File.file?('./ISSUE_TEMPLATE'))
+    assert(File.file?('./ISSUE_TEMPLATE.md'))
   end
 
   def test_license_exists
@@ -2695,7 +2695,7 @@ class TestAPI < MiniTest::Test
   end
 
   def test_pull_request_template_exists
-    assert(File.file?('./.github/PULL_REQUEST_TEMPLATE.md'))
+    assert(File.file?('./PULL_REQUEST_TEMPLATE.md'))
   end
 
   def test_readme_exists
