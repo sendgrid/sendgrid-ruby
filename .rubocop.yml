@@ -1,6 +1,7 @@
-AllCops:
-  Exclude:
-    - examples/**/*
-    - gemfiles/**/*
-    - spec/**/*
-    - test/**/*
+inherit_from: .rubocop_todo.yml
+
+Metrics/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  Enabled: false

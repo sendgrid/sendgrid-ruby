@@ -5,8 +5,7 @@ require "json"
 require 'minitest/autorun'
 
 class TestMail < Minitest::Test
-  def setup
-  end
+  def setup; end
 
   def test_hello_world
     from = Email.new(email: 'test@example.com')
@@ -94,7 +93,7 @@ class TestMail < Minitest::Test
 
     mail.batch_id = "sendgrid_batch_id"
 
-    mail.asm = ASM.new(group_id: 99, groups_to_display: [4,5,6,7,8])
+    mail.asm = ASM.new(group_id: 99, groups_to_display: [4, 5, 6, 7, 8])
 
     mail.ip_pool_name = "23"
 
@@ -154,17 +153,17 @@ class TestMail < Minitest::Test
     mail = SendGrid::Mail.new
     mail.add_section(Section.new(key: '%section1%', value: 'Substitution Text for Section 1'))
     expected_json = {
-        "sections"=>{
-                "%section1%"=>"Substitution Text for Section 1"
-            }
+      "sections" => {
+        "%section1%" => "Substitution Text for Section 1"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_section(Section.new(key: '%section2%', value: 'Substitution Text for Section 2'))
     expected_json = {
-        "sections"=>{
-                "%section1%"=>"Substitution Text for Section 1",
-                "%section2%"=>"Substitution Text for Section 2"
-            }
+      "sections" => {
+        "%section1%" => "Substitution Text for Section 1",
+        "%section2%" => "Substitution Text for Section 2"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -173,17 +172,17 @@ class TestMail < Minitest::Test
     mail = SendGrid::Mail.new
     mail.add_header(Header.new(key: 'X-Test3', value: 'test3'))
     expected_json = {
-        "headers"=>{
-                "X-Test3"=>"test3"
-            }
+      "headers" => {
+        "X-Test3" => "test3"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_header(Header.new(key: 'X-Test4', value: 'test4'))
     expected_json = {
-        "headers"=>{
-                "X-Test3"=>"test3",
-                "X-Test4"=>"test4"
-            }
+      "headers" => {
+        "X-Test3" => "test3",
+        "X-Test4" => "test4"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -192,17 +191,17 @@ class TestMail < Minitest::Test
     mail = SendGrid::Mail.new
     mail.add_custom_arg(CustomArg.new(key: 'campaign 1', value: 'welcome 1'))
     expected_json = {
-        "custom_args"=>{
-                "campaign 1"=>"welcome 1"
-            }
+      "custom_args" => {
+        "campaign 1" => "welcome 1"
+      }
     }
     assert_equal mail.to_json, expected_json
     mail.add_custom_arg(CustomArg.new(key: 'campaign 2', value: 'welcome 2'))
     expected_json = {
-        "custom_args"=>{
-                "campaign 1"=>"welcome 1",
-                "campaign 2"=>"welcome 2"
-            }
+      "custom_args" => {
+        "campaign 1" => "welcome 1",
+        "campaign 2" => "welcome 2"
+      }
     }
     assert_equal mail.to_json, expected_json
   end
@@ -211,13 +210,13 @@ class TestMail < Minitest::Test
     mail = Mail.new
     mail.add_custom_arg(CustomArg.new(key: "Integer", value: 1))
     mail.add_custom_arg(CustomArg.new(key: "Array", value: [1, "a", true]))
-    mail.add_custom_arg(CustomArg.new(key: "Hash", value: {"a" => 1, "b" => 2}))
+    mail.add_custom_arg(CustomArg.new(key: "Hash", value: { "a" => 1, "b" => 2 }))
     expected_json = {
-        "custom_args"=>{
-                "Integer"=>"1",
-                "Array"=>"[1, \"a\", true]",
-                "Hash"=>"{\"a\"=>1, \"b\"=>2}",
-            }
+      "custom_args" => {
+        "Integer" => "1",
+        "Array" => "[1, \"a\", true]",
+        "Hash" => "{\"a\"=>1, \"b\"=>2}"
+      }
     }
     assert_equal mail.to_json, expected_json
   end

@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class SubscriptionTracking
     attr_accessor :enable, :text, :html, :substitution_tag
@@ -11,10 +13,10 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'text' => self.text,
-        'html' => self.html,
-        'substitution_tag' => self.substitution_tag
+        'enable' => enable,
+        'text' => text,
+        'html' => html,
+        'substitution_tag' => substitution_tag
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

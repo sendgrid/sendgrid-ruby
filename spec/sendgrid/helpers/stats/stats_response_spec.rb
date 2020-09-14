@@ -5,7 +5,7 @@ describe SendGrid::StatsResponse do
     [{
       "date" => "2017-10-01",
       "stats" => [
-        {"metrics" =>
+        { "metrics" =>
           {
             "blocks" => 101,
             "bounce_drops" => 102,
@@ -23,8 +23,7 @@ describe SendGrid::StatsResponse do
             "unique_opens" => 114,
             "unsubscribe_drops" => 115,
             "unsubscribes" => 116
-          }
-        }
+          } }
       ]
     }]
   end

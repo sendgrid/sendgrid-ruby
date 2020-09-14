@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class OpenTracking
     attr_accessor :enable, :substitution_tag
@@ -9,8 +11,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'substitution_tag' => self.substitution_tag
+        'enable' => enable,
+        'substitution_tag' => substitution_tag
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

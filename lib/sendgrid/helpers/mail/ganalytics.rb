@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class Ganalytics
     attr_accessor :enable, :utm_source, :utm_medium, :utm_term, :utm_content, :utm_name, :utm_campaign
@@ -14,12 +16,12 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'utm_source' => self.utm_source,
-        'utm_medium' => self.utm_medium,
-        'utm_term' => self.utm_term,
-        'utm_content' => self.utm_content,
-        'utm_campaign' => self.utm_campaign
+        'enable' => enable,
+        'utm_source' => utm_source,
+        'utm_medium' => utm_medium,
+        'utm_term' => utm_term,
+        'utm_content' => utm_content,
+        'utm_campaign' => utm_campaign
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

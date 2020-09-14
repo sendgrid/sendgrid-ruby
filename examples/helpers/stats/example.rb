@@ -14,7 +14,7 @@ email_stats = stats.by_day(from, to)
 
 email_stats.metrics
 
-if !email_stats.error?
+unless email_stats.error?
   email_stats.metrics.each do |metric|
     puts "Date - #{metric.date}"
     puts "Number of Requests - #{metric.requests}"
@@ -31,7 +31,7 @@ category = 'abcd'
 
 email_stats = stats.by_week(from, to, category)
 
-if !email_stats.error?
+unless email_stats.error?
   email_stats.metrics.each do |metric|
     puts "Date - #{metric.date}"
     puts "Number of Requests - #{metric.requests}"

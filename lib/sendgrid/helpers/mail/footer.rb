@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class Footer
     attr_accessor :enable, :text, :html
@@ -10,9 +12,9 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'text' => self.text,
-        'html' => self.html
+        'enable' => enable,
+        'text' => text,
+        'html' => html
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

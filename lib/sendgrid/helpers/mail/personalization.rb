@@ -1,8 +1,10 @@
+require 'json'
+
 module SendGrid
   class Personalization
 
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
-      :dynamic_template_data
+                :dynamic_template_data
 
     attr_accessor :send_at, :subject
 
@@ -51,16 +53,16 @@ module SendGrid
 
     def to_json(*)
       {
-        'to' => self.tos,
-        'cc' => self.ccs,
-        'bcc' => self.bccs,
-        'subject' => self.subject,
-        'headers' => self.headers,
-        'substitutions' => self.substitutions,
-        'custom_args' => self.custom_args,
-        'dynamic_template_data' => self.dynamic_template_data,
-        'send_at' => self.send_at
-      }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {}}
+        'to' => tos,
+        'cc' => ccs,
+        'bcc' => bccs,
+        'subject' => subject,
+        'headers' => headers,
+        'substitutions' => substitutions,
+        'custom_args' => custom_args,
+        'dynamic_template_data' => dynamic_template_data,
+        'send_at' => send_at
+      }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {} }
     end
   end
 end

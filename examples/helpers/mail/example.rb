@@ -94,7 +94,7 @@ def kitchen_sink
   # This must be a valid [batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
   # mail.batch_id = 'sendgrid_batch_id'
 
-  mail.asm = ASM.new(group_id: 99, groups_to_display: [4,5,6,7,8])
+  mail.asm = ASM.new(group_id: 99, groups_to_display: [4, 5, 6, 7, 8])
 
   mail.ip_pool_name = '23'
 
@@ -131,13 +131,13 @@ def dynamic_template_data_hello_world
   mail.from = Email.new(email: 'test@example.com')
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
-  personalization.add_dynamic_template_data({
+  personalization.add_dynamic_template_data(
     "variable" => [
-      {"foo" => "bar"}, {"foo" => "baz"}
+      { "foo" => "bar" }, { "foo" => "baz" }
     ]
-  })
+  )
   mail.add_personalization(personalization)
-  
+
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
@@ -151,4 +151,3 @@ end
 hello_world
 kitchen_sink
 dynamic_template_data_hello_world
-

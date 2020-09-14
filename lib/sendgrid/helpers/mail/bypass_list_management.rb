@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class BypassListManagement
     attr_accessor :enable
@@ -8,7 +10,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable
+        'enable' => enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
@@ -22,7 +24,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable
+        'enable' => enable
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

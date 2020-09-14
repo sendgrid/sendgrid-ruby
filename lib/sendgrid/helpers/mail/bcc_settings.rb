@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class BccSettings
     attr_accessor :enable, :email
@@ -9,8 +11,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'email' => self.email
+        'enable' => enable,
+        'email' => email
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

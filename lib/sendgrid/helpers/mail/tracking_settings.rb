@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class TrackingSettings
     attr_writer :click_tracking, :open_tracking, :subscription_tracking, :ganalytics
@@ -26,10 +28,10 @@ module SendGrid
 
     def to_json(*)
       {
-        'click_tracking' => self.click_tracking,
-        'open_tracking' => self.open_tracking,
-        'subscription_tracking' => self.subscription_tracking,
-        'ganalytics' => self.ganalytics
+        'click_tracking' => click_tracking,
+        'open_tracking' => open_tracking,
+        'subscription_tracking' => subscription_tracking,
+        'ganalytics' => ganalytics
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

@@ -1,14 +1,12 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Get a user's account information. #
 # GET /user/account #
 
-response = sg.client.user.account.get()
+response = sg.client.user.account.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -17,7 +15,7 @@ puts response.headers
 # Retrieve your credit balance #
 # GET /user/credits #
 
-response = sg.client.user.credits.get()
+response = sg.client.user.credits.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -38,7 +36,7 @@ puts response.headers
 # Retrieve your account email address #
 # GET /user/email #
 
-response = sg.client.user.email.get()
+response = sg.client.user.email.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -48,7 +46,7 @@ puts response.headers
 # PUT /user/password #
 
 data = JSON.parse('{
-  "new_password": "new_password", 
+  "new_password": "new_password",
   "old_password": "old_password"
 }')
 response = sg.client.user.password.put(request_body: data)
@@ -61,8 +59,8 @@ puts response.headers
 # PATCH /user/profile #
 
 data = JSON.parse('{
-  "city": "Orange", 
-  "first_name": "Example", 
+  "city": "Orange",
+  "first_name": "Example",
   "last_name": "User"
 }')
 response = sg.client.user.profile.patch(request_body: data)
@@ -74,7 +72,7 @@ puts response.headers
 # Get a user's profile #
 # GET /user/profile #
 
-response = sg.client.user.profile.get()
+response = sg.client.user.profile.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -84,7 +82,7 @@ puts response.headers
 # POST /user/scheduled_sends #
 
 data = JSON.parse('{
-  "batch_id": "YOUR_BATCH_ID", 
+  "batch_id": "YOUR_BATCH_ID",
   "status": "pause"
 }')
 response = sg.client.user.scheduled_sends.post(request_body: data)
@@ -96,7 +94,7 @@ puts response.headers
 # Retrieve all scheduled sends #
 # GET /user/scheduled_sends #
 
-response = sg.client.user.scheduled_sends.get()
+response = sg.client.user.scheduled_sends.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -119,7 +117,7 @@ puts response.headers
 # GET /user/scheduled_sends/{batch_id} #
 
 batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).get()
+response = sg.client.user.scheduled_sends._(batch_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -129,7 +127,7 @@ puts response.headers
 # DELETE /user/scheduled_sends/{batch_id} #
 
 batch_id = "test_url_param"
-response = sg.client.user.scheduled_sends._(batch_id).delete()
+response = sg.client.user.scheduled_sends._(batch_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -139,7 +137,7 @@ puts response.headers
 # PATCH /user/settings/enforced_tls #
 
 data = JSON.parse('{
-  "require_tls": true, 
+  "require_tls": true,
   "require_valid_cert": false
 }')
 response = sg.client.user.settings.enforced_tls.patch(request_body: data)
@@ -151,7 +149,7 @@ puts response.headers
 # Retrieve current Enforced TLS settings. #
 # GET /user/settings/enforced_tls #
 
-response = sg.client.user.settings.enforced_tls.get()
+response = sg.client.user.settings.enforced_tls.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -172,7 +170,7 @@ puts response.headers
 # Retrieve your username #
 # GET /user/username #
 
-response = sg.client.user.username.get()
+response = sg.client.user.username.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -182,18 +180,18 @@ puts response.headers
 # PATCH /user/webhooks/event/settings #
 
 data = JSON.parse('{
-  "bounce": true, 
-  "click": true, 
-  "deferred": true, 
-  "delivered": true, 
-  "dropped": true, 
-  "enabled": true, 
-  "group_resubscribe": true, 
-  "group_unsubscribe": true, 
-  "open": true, 
-  "processed": true, 
-  "spam_report": true, 
-  "unsubscribe": true, 
+  "bounce": true,
+  "click": true,
+  "deferred": true,
+  "delivered": true,
+  "dropped": true,
+  "enabled": true,
+  "group_resubscribe": true,
+  "group_unsubscribe": true,
+  "open": true,
+  "processed": true,
+  "spam_report": true,
+  "unsubscribe": true,
   "url": "url"
 }')
 response = sg.client.user.webhooks.event.settings.patch(request_body: data)
@@ -205,7 +203,7 @@ puts response.headers
 # Retrieve Event Webhook settings #
 # GET /user/webhooks/event/settings #
 
-response = sg.client.user.webhooks.event.settings.get()
+response = sg.client.user.webhooks.event.settings.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -227,9 +225,9 @@ puts response.headers
 # POST /user/webhooks/parse/settings #
 
 data = JSON.parse('{
-  "hostname": "myhostname.com", 
-  "send_raw": false, 
-  "spam_check": true, 
+  "hostname": "myhostname.com",
+  "send_raw": false,
+  "spam_check": true,
   "url": "http://email.myhosthame.com"
 }')
 response = sg.client.user.webhooks.parse.settings.post(request_body: data)
@@ -241,7 +239,7 @@ puts response.headers
 # Retrieve all parse settings #
 # GET /user/webhooks/parse/settings #
 
-response = sg.client.user.webhooks.parse.settings.get()
+response = sg.client.user.webhooks.parse.settings.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -251,8 +249,8 @@ puts response.headers
 # PATCH /user/webhooks/parse/settings/{hostname} #
 
 data = JSON.parse('{
-  "send_raw": true, 
-  "spam_check": false, 
+  "send_raw": true,
+  "spam_check": false,
   "url": "http://newdomain.com/parse"
 }')
 hostname = "test_url_param"
@@ -266,7 +264,7 @@ puts response.headers
 # GET /user/webhooks/parse/settings/{hostname} #
 
 hostname = "test_url_param"
-response = sg.client.user.webhooks.parse.settings._(hostname).get()
+response = sg.client.user.webhooks.parse.settings._(hostname).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -276,7 +274,7 @@ puts response.headers
 # DELETE /user/webhooks/parse/settings/{hostname} #
 
 hostname = "test_url_param"
-response = sg.client.user.webhooks.parse.settings._(hostname).delete()
+response = sg.client.user.webhooks.parse.settings._(hostname).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -290,4 +288,3 @@ response = sg.client.user.webhooks.parse.stats.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

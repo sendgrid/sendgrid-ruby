@@ -1,3 +1,5 @@
+require 'json'
+
 module SendGrid
   class ClickTracking
     attr_accessor :enable, :enable_text
@@ -9,8 +11,8 @@ module SendGrid
 
     def to_json(*)
       {
-        'enable' => self.enable,
-        'enable_text' => self.enable_text
+        'enable' => enable,
+        'enable_text' => enable_text
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

@@ -1,6 +1,8 @@
+require 'json'
+
 module SendGrid
   class MailSettings
-    attr_writer :sandbox_mode, :footer, :bcc, :spam_check
+    attr_writer :sandbox_mode, :footer, :bcc, :spam_check, :bypass_list_management
 
     def initialize
       @bcc = nil
@@ -14,9 +16,6 @@ module SendGrid
       @sandbox_mode.nil? ? nil : @sandbox_mode.to_json
     end
 
-    def bypass_list_management=(bypass_list_management)
-      @bypass_list_management = bypass_list_management
-    end
 
     def bypass_list_management
       @bypass_list_management.nil? ? nil : @bypass_list_management.to_json
@@ -36,11 +35,11 @@ module SendGrid
 
     def to_json(*)
       {
-        'bcc' => self.bcc,
-        'bypass_list_management' => self.bypass_list_management,
-        'footer' => self.footer,
-        'sandbox_mode' => self.sandbox_mode,
-        'spam_check' => self.spam_check
+        'bcc' => bcc,
+        'bypass_list_management' => bypass_list_management,
+        'footer' => footer,
+        'sandbox_mode' => sandbox_mode,
+        'spam_check' => spam_check
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end
