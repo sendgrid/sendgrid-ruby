@@ -6,51 +6,50 @@ require 'minitest/autorun'
 require 'minitest/unit'
 
 class TestAPI < MiniTest::Test
+  def setup
+    @sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY')
+  end
 
-    def setup
-        @sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY')
-    end
+  def test_init
+    headers = JSON.parse('
+          {
+              "X-Test": "test"
+          }
+      ')
+    subuser = 'test_user'
+    sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', request_headers: headers, version: 'v3', impersonate_subuser: subuser)
 
-    def test_init
-        headers = JSON.parse('
-            {
-                "X-Test": "test"
-            }
-        ')
-        subuser = 'test_user'
-        sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', request_headers: headers, version: 'v3', impersonate_subuser: subuser)
+    assert_equal('https://api.test.com', sg.host)
+    user_agent = "sendgrid/#{SendGrid::VERSION};ruby"
+    test_headers = JSON.parse('
+              {
+                  "Authorization": "Bearer SENDGRID_API_KEY",
+                  "Accept": "application/json",
+                  "X-Test": "test",
+                  "User-Agent": "' + user_agent + '",
+                  "On-Behalf-Of": "' + subuser + '"
+              }
+          ')
+    assert_equal(test_headers, sg.request_headers)
+    assert_equal('v3', sg.version)
+    assert_equal(subuser, sg.impersonate_subuser)
+    assert_equal('6.3.4', SendGrid::VERSION)
+    assert_instance_of(SendGrid::Client, sg.client)
+  end
 
-        assert_equal('https://api.test.com', sg.host)
-        user_agent       = "sendgrid/#{SendGrid::VERSION};ruby"
-        test_headers = JSON.parse('
-                {
-                    "Authorization": "Bearer SENDGRID_API_KEY",
-                    "Accept": "application/json",
-                    "X-Test": "test",
-                    "User-Agent": "' + user_agent + '",
-                    "On-Behalf-Of": "' + subuser + '"
-                }
-            ')
-        assert_equal(test_headers, sg.request_headers)
-        assert_equal('v3', sg.version)
-        assert_equal(subuser, sg.impersonate_subuser)
-        assert_equal('6.3.4', SendGrid::VERSION)
-        assert_instance_of(SendGrid::Client, sg.client)
-    end
+  def test_init_when_impersonate_subuser_is_not_given
+    sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', version: 'v3')
+    refute_includes(sg.request_headers, 'On-Behalf-Of')
+  end
 
-    def test_init_when_impersonate_subuser_is_not_given
-        sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', version: 'v3')
-        refute_includes(sg.request_headers, 'On-Behalf-Of')
-    end
+  def test_access_settings_activity_get
+    params = JSON.parse('{"limit": 1}')
+    headers = JSON.parse('{"X-Mock": 200}')
 
-    def test_access_settings_activity_get
-        params = JSON.parse('{"limit": 1}')
-        headers = JSON.parse('{"X-Mock": 200}')
+    response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
 
-        response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
-
-        assert_equal('200', response.status_code)
-    end
+    assert_equal('200', response.status_code)
+  end
 
   def test_access_settings_whitelist_post
     data = JSON.parse('{
@@ -2655,7 +2654,7 @@ class TestAPI < MiniTest::Test
   def test_license_file_year
     # Read the third line from the license file
     year = IO.readlines('./LICENSE.md')[2].gsub(/[^\d]/, '')
-    self.assert_equal("#{Time.now.year}", year)
+    assert_equal(Time.now.year.to_s, year)
   end
 
   def test_env_sample_exists

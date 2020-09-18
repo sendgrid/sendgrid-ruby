@@ -236,10 +236,8 @@ class TestMail < Minitest::Test
 
   def test_add_more_than_1_valid_category
     mail = SendGrid::Mail.new
-    category_1 = Category.new(name: 'foo')
-    category_2 = Category.new(name: 'bar')
-    mail.add_category(category_1)
-    mail.add_category(category_2)
+    mail.add_category(Category.new(name: 'foo'))
+    mail.add_category(Category.new(name: 'bar'))
     assert_equal(%w[foo bar], mail.categories)
   end
 

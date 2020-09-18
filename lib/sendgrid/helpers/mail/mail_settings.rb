@@ -16,7 +16,6 @@ module SendGrid
       @sandbox_mode.nil? ? nil : @sandbox_mode.to_json
     end
 
-
     def bypass_list_management
       @bypass_list_management.nil? ? nil : @bypass_list_management.to_json
     end

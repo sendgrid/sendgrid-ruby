@@ -14,7 +14,6 @@ puts response.headers
 # Update the name & scopes of an API Key #
 # PUT /api_keys/{api_key_id} #
 
-
 scopes = [
   "user.profile.read",
   "user.profile.update"

@@ -52,7 +52,7 @@ module SendGrid
     def check_for_secrets(patterns)
       contents = @contents.map { |content| content['value'] }.join(' ')
       patterns.each do |pattern|
-        raise SecurityError.new('Content contains sensitive information.') if contents.match(pattern)
+        raise SecurityError, 'Content contains sensitive information.' if contents.match(pattern)
       end
     end
 

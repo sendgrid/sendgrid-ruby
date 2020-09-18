@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Email
-
     attr_accessor :email, :name
 
     def initialize(email: nil, name: nil)

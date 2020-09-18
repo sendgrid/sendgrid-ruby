@@ -71,7 +71,7 @@ describe SendGrid::EventWebhook do
 
     it 'throws an error when using jruby' do
       if skip_jruby
-        expect{ verify(
+        expect { verify(
           Fixtures::EventWebhook::PUBLIC_KEY,
           Fixtures::EventWebhook::PAYLOAD,
           Fixtures::EventWebhook::SIGNATURE, 
