@@ -13,7 +13,7 @@ module TwilioEmail
     #
     def initialize(username:, password:, host: nil, request_headers: nil, version: nil, impersonate_subuser: nil)
       auth = "Basic #{Base64.strict_encode64("#{username}:#{password}")}"
-      host = 'https://email.twilio.com' unless host
+      host ||= 'https://email.twilio.com'
 
       super(auth: auth, host: host, request_headers: request_headers, version: version, impersonate_subuser: impersonate_subuser)
     end

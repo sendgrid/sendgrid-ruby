@@ -28,7 +28,7 @@ puts response.headers
 params = {}
 response = sg.client.ips.get(query_params: params)
 all_ips = JSON.parse(response.body)
-unassigned_ips = all_ips.select {|ip| ip.subusers.empty?}
+unassigned_ips = all_ips.select { |ip| ip.subusers.empty? }
 puts response.status_code
 puts response.body
 puts unassigned_ips
