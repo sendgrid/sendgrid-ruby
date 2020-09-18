@@ -38,17 +38,19 @@ class TestAPI < MiniTest::Test
         assert_instance_of(SendGrid::Client, sg.client)
     end
 
-  def test_init_when_impersonate_subuser_is_not_given
+    def test_init_when_impersonate_subuser_is_not_given
         sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', version: 'v3')
         refute_includes(sg.request_headers, 'On-Behalf-Of')
-    enddef test_access_settings_activity_get
-    params = JSON.parse('{"limit": 1}')
-    headers = JSON.parse('{"X-Mock": 200}')
+    end
 
-    response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
+    def test_access_settings_activity_get
+        params = JSON.parse('{"limit": 1}')
+        headers = JSON.parse('{"X-Mock": 200}')
 
-    assert_equal('200', response.status_code)
-  end
+        response = @sg.client.access_settings.activity.get(query_params: params, request_headers: headers)
+
+        assert_equal('200', response.status_code)
+    end
 
   def test_access_settings_whitelist_post
     data = JSON.parse('{
