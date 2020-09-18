@@ -171,7 +171,7 @@ All notable changes to this project will be documented in this file.
 
 ## [5.2.0] - 2017-10-30 ##
 ### Added
-- PR #234: Helpers for email statistics - global, category, subuser 
+- PR #234: Helpers for email statistics - global, category, subuser
 - Thanks to [Awin Abi](https://github.com/awinabi) for the pull request!
 
 ## [5.1.0] - 2017-9-1 ##

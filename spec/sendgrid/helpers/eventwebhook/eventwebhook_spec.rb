@@ -74,7 +74,7 @@ describe SendGrid::EventWebhook do
         expect { verify(
           Fixtures::EventWebhook::PUBLIC_KEY,
           Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::SIGNATURE, 
+          Fixtures::EventWebhook::SIGNATURE,
           Fixtures::EventWebhook::TIMESTAMP
         )}.to raise_error(SendGrid::EventWebhook::NotSupportedError)
       end
