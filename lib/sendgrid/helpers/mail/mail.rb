@@ -27,14 +27,14 @@ module SendGrid
       @tracking_settings = nil
       @reply_to = nil
 
-      unless from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
-        self.from = from_email
-        self.subject = subj
-        personalization = Personalization.new
-        personalization.add_to(to_email)
-        add_personalization(personalization)
-        add_content(cont)
-      end
+      return if from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
+
+      self.from = from_email
+      self.subject = subj
+      personalization = Personalization.new
+      personalization.add_to(to_email)
+      add_personalization(personalization)
+      add_content(cont)
     end
 
     def from
