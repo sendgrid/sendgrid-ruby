@@ -1,19 +1,17 @@
-# coding: utf-8
 require_relative "../../../../lib/sendgrid/helpers/mail/attachment"
 include SendGrid
 require "json"
 require "minitest/autorun"
 
 class TestAttachment < Minitest::Test
-  SAMPLE_INPUT = """Es blüht so grün wie Blüten blüh'n im Frühling
+  SAMPLE_INPUT = "Es blüht so grün wie Blüten blüh'n im Frühling
 Es blüht so grün wie Blüten blüh'n im Frühling
 Es blüht so grün wie Blüten blüh'n im Frühling
 Es blüht so grün wie Blüten blüh'n im Frühling
 Es blüht so grün wie Blüten blüh'n im Frühling
-""".force_encoding('UTF-8').encode
-  
-  def setup
-  end
+".force_encoding('UTF-8').encode
+
+  def setup; end
 
   def test_io_enocding
     attachment = Attachment.new

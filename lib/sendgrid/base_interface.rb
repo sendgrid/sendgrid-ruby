@@ -17,7 +17,7 @@ class BaseInterface
   def initialize(auth:, host:, request_headers: nil, version: nil, impersonate_subuser: nil)
     @auth = auth
     @host = host
-    @version = version ? version : 'v3'
+    @version = version || 'v3'
     @impersonate_subuser = impersonate_subuser
     @user_agent = "sendgrid/#{SendGrid::VERSION};ruby"
     @request_headers = JSON.parse('

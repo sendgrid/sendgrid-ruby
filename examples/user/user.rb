@@ -106,7 +106,7 @@ puts response.headers
 data = JSON.parse('{
   "status": "pause"
 }')
-batch_id = "test_url_param"
+batch_id = 'test_url_param'
 response = sg.client.user.scheduled_sends._(batch_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -116,7 +116,7 @@ puts response.headers
 # Retrieve scheduled send #
 # GET /user/scheduled_sends/{batch_id} #
 
-batch_id = "test_url_param"
+batch_id = 'test_url_param'
 response = sg.client.user.scheduled_sends._(batch_id).get
 puts response.status_code
 puts response.body
@@ -126,7 +126,7 @@ puts response.headers
 # Delete a cancellation or pause of a scheduled send #
 # DELETE /user/scheduled_sends/{batch_id} #
 
-batch_id = "test_url_param"
+batch_id = 'test_url_param'
 response = sg.client.user.scheduled_sends._(batch_id).delete
 puts response.status_code
 puts response.body
@@ -253,7 +253,7 @@ data = JSON.parse('{
   "spam_check": false,
   "url": "http://newdomain.com/parse"
 }')
-hostname = "test_url_param"
+hostname = 'test_url_param'
 response = sg.client.user.webhooks.parse.settings._(hostname).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -263,7 +263,7 @@ puts response.headers
 # Retrieve a specific parse setting #
 # GET /user/webhooks/parse/settings/{hostname} #
 
-hostname = "test_url_param"
+hostname = 'test_url_param'
 response = sg.client.user.webhooks.parse.settings._(hostname).get
 puts response.status_code
 puts response.body
@@ -273,7 +273,7 @@ puts response.headers
 # Delete a parse setting #
 # DELETE /user/webhooks/parse/settings/{hostname} #
 
-hostname = "test_url_param"
+hostname = 'test_url_param'
 response = sg.client.user.webhooks.parse.settings._(hostname).delete
 puts response.status_code
 puts response.body

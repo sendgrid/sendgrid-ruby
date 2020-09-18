@@ -11,7 +11,7 @@ module SendGrid
 
     def to_json(*)
       {
-        'substitution' => self.substitution
+        'substitution' => substitution
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
   end

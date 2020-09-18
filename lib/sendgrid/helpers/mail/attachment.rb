@@ -20,16 +20,16 @@ module SendGrid
     def content
       return @encoded_content if @encoded_content
 
-      if @content.respond_to?(:read)
-        @encoded_content = encode @content
-      else
-        @encoded_content = @content
-      end
+      @encoded_content = if @content.respond_to?(:read)
+                           encode @content
+                         else
+                           @content
+                         end
     end
 
     def to_json(*)
       {
-        'content' => self.content,
+        'content' => content,
         'type' => type,
         'filename' => filename,
         'disposition' => disposition,

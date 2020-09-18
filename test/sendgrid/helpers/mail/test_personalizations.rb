@@ -9,14 +9,14 @@ class TestPersonalization < Minitest::Test
     @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
     @personalization.add_to(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
-      "to" => [
+      'to' => [
         {
-          "email" => "test1@example.com",
-          "name" => "Example User"
+          'email' => 'test1@example.com',
+          'name' => 'Example User'
         },
         {
-          "email" => "test2@example.com",
-          "name" => "Example User 2"
+          'email' => 'test2@example.com',
+          'name' => 'Example User 2'
         }
       ]
     }
@@ -28,14 +28,14 @@ class TestPersonalization < Minitest::Test
     @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))
     @personalization.add_cc(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
-      "cc" => [
+      'cc' => [
         {
-          "email" => "test1@example.com",
-          "name" => "Example User"
+          'email' => 'test1@example.com',
+          'name' => 'Example User'
         },
         {
-          "email" => "test2@example.com",
-          "name" => "Example User 2"
+          'email' => 'test2@example.com',
+          'name' => 'Example User 2'
         }
       ]
     }
@@ -47,14 +47,14 @@ class TestPersonalization < Minitest::Test
     @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Example User'))
     @personalization.add_bcc(Email.new(email: 'test2@example.com', name: 'Example User 2'))
     expected_json = {
-      "bcc" => [
+      'bcc' => [
         {
-          "email" => "test1@example.com",
-          "name" => "Example User"
+          'email' => 'test1@example.com',
+          'name' => 'Example User'
         },
         {
-          "email" => "test2@example.com",
-          "name" => "Example User 2"
+          'email' => 'test2@example.com',
+          'name' => 'Example User 2'
         }
       ]
     }
@@ -65,16 +65,16 @@ class TestPersonalization < Minitest::Test
     @personalization = Personalization.new
     @personalization.add_header(Header.new(key: 'X-Test', value: 'True'))
     expected_json = {
-      "headers" => {
-        "X-Test" => "True"
+      'headers' => {
+        'X-Test' => 'True'
       }
     }
     assert_equal @personalization.to_json, expected_json
     @personalization.add_header(Header.new(key: 'X-Test 1', value: 'False'))
     expected_json = {
-      "headers" => {
-        "X-Test" => "True",
-        "X-Test 1" => "False"
+      'headers' => {
+        'X-Test' => 'True',
+        'X-Test 1' => 'False'
       }
     }
     assert_equal @personalization.to_json, expected_json
@@ -84,16 +84,16 @@ class TestPersonalization < Minitest::Test
     @personalization = Personalization.new
     @personalization.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
     expected_json = {
-      "substitutions" => {
-        "%name%" => "Example User"
+      'substitutions' => {
+        '%name%' => 'Example User'
       }
     }
     assert_equal @personalization.to_json, expected_json
     @personalization.add_substitution(Substitution.new(key: '%name 1%', value: 'Example User 1'))
     expected_json = {
-      "substitutions" => {
-        "%name%" => "Example User",
-        "%name 1%" => "Example User 1"
+      'substitutions' => {
+        '%name%' => 'Example User',
+        '%name 1%' => 'Example User 1'
       }
     }
     assert_equal @personalization.to_json, expected_json
@@ -103,16 +103,16 @@ class TestPersonalization < Minitest::Test
     @personalization = Personalization.new
     @personalization.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
     expected_json = {
-      "custom_args" => {
-        "user_id" => "343"
+      'custom_args' => {
+        'user_id' => '343'
       }
     }
     assert_equal @personalization.to_json, expected_json
     @personalization.add_custom_arg(CustomArg.new(key: 'city', value: 'denver'))
     expected_json = {
-      "custom_args" => {
-        "user_id" => "343",
-        "city" => "denver"
+      'custom_args' => {
+        'user_id' => '343',
+        'city' => 'denver'
       }
     }
     assert_equal @personalization.to_json, expected_json
@@ -121,13 +121,13 @@ class TestPersonalization < Minitest::Test
   def test_add_dynamic_template_data
     @personalization = Personalization.new
     @personalization.add_dynamic_template_data(
-      "name" => "Example User",
-      "city" => "Denver"
+      'name' => 'Example User',
+      'city' => 'Denver'
     )
     expected_json = {
-      "dynamic_template_data" => {
-        "name" => "Example User",
-        "city" => "Denver"
+      'dynamic_template_data' => {
+        'name' => 'Example User',
+        'city' => 'Denver'
       }
     }
     assert_equal @personalization.to_json, expected_json

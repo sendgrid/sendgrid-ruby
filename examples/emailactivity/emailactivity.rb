@@ -27,7 +27,7 @@ puts response.headers
 # GET /messages/{msg_id} #
 
 msg_id = "test_url_param"
-response = sg.client.messages._(msg_id).get()
+response = sg.client.messages._(msg_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -36,7 +36,7 @@ puts response.headers
 # Request a CSV #
 # POST /messages/download #
 
-response = sg.client.messages.download.post()
+response = sg.client.messages.download.post
 puts response.status_code
 puts response.body
 puts response.headers

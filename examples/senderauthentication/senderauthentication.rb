@@ -68,7 +68,7 @@ data = JSON.parse('{
   "custom_spf": true,
   "default": false
 }')
-domain_id = "test_url_param"
+domain_id = 'test_url_param'
 response = sg.client.whitelabel.domains._(domain_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -78,7 +78,7 @@ puts response.headers
 # Retrieve a domain authentication. #
 # GET /whitelabel/domains/{domain_id} #
 
-domain_id = "test_url_param"
+domain_id = 'test_url_param'
 response = sg.client.whitelabel.domains._(domain_id).get
 puts response.status_code
 puts response.body
@@ -88,7 +88,7 @@ puts response.headers
 # Delete a domain authentication. #
 # DELETE /whitelabel/domains/{domain_id} #
 
-domain_id = "test_url_param"
+domain_id = 'test_url_param'
 response = sg.client.whitelabel.domains._(domain_id).delete
 puts response.status_code
 puts response.body
@@ -101,7 +101,7 @@ puts response.headers
 data = JSON.parse('{
   "username": "jane@example.com"
 }')
-domain_id = "test_url_param"
+domain_id = 'test_url_param'
 response = sg.client.whitelabel.domains._(domain_id).subuser.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -114,7 +114,7 @@ puts response.headers
 data = JSON.parse('{
   "ip": "192.168.0.1"
 }')
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.domains._(id).ips.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -124,8 +124,8 @@ puts response.headers
 # Remove an IP from a domain authentication. #
 # DELETE /whitelabel/domains/{id}/ips/{ip} #
 
-id = "test_url_param"
-ip = "test_url_param"
+id = 'test_url_param'
+ip = 'test_url_param'
 response = sg.client.whitelabel.domains._(id).ips._(ip).delete
 puts response.status_code
 puts response.body
@@ -135,7 +135,7 @@ puts response.headers
 # Validate a domain authentication. #
 # POST /whitelabel/domains/{id}/validate #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.domains._(id).validate.post
 puts response.status_code
 puts response.body
@@ -169,7 +169,7 @@ puts response.headers
 # Retrieve a reverse DNS record #
 # GET /whitelabel/ips/{id} #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.ips._(id).get
 puts response.status_code
 puts response.body
@@ -179,7 +179,7 @@ puts response.headers
 # Delete a reverse DNS record #
 # DELETE /whitelabel/ips/{id} #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.ips._(id).delete
 puts response.status_code
 puts response.body
@@ -189,7 +189,7 @@ puts response.headers
 # Validate a reverse DNS record #
 # POST /whitelabel/ips/{id}/validate #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.ips._(id).validate.post
 puts response.status_code
 puts response.body
@@ -257,7 +257,7 @@ puts response.headers
 data = JSON.parse('{
   "default": true
 }')
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.links._(id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -267,7 +267,7 @@ puts response.headers
 # Retrieve a Link Branding #
 # GET /whitelabel/links/{id} #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.links._(id).get
 puts response.status_code
 puts response.body
@@ -277,7 +277,7 @@ puts response.headers
 # Delete a Link Branding #
 # DELETE /whitelabel/links/{id} #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.links._(id).delete
 puts response.status_code
 puts response.body
@@ -287,7 +287,7 @@ puts response.headers
 # Validate a Link Branding #
 # POST /whitelabel/links/{id}/validate #
 
-id = "test_url_param"
+id = 'test_url_param'
 response = sg.client.whitelabel.links._(id).validate.post
 puts response.status_code
 puts response.body
@@ -300,7 +300,7 @@ puts response.headers
 data = JSON.parse('{
   "username": "jane@example.com"
 }')
-link_id = "test_url_param"
+link_id = 'test_url_param'
 response = sg.client.whitelabel.links._(link_id).subuser.post(request_body: data)
 puts response.status_code
 puts response.body

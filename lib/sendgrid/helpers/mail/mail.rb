@@ -4,7 +4,6 @@ require 'json'
 
 module SendGrid
   class Mail
-
     attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
     attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
@@ -28,14 +27,14 @@ module SendGrid
       @tracking_settings = nil
       @reply_to = nil
 
-      unless from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
-        self.from = from_email
-        self.subject = subj
-        personalization = Personalization.new
-        personalization.add_to(to_email)
-        add_personalization(personalization)
-        add_content(cont)
-      end
+      return if from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
+
+      self.from = from_email
+      self.subject = subj
+      personalization = Personalization.new
+      personalization.add_to(to_email)
+      add_personalization(personalization)
+      add_content(cont)
     end
 
     def from
@@ -53,7 +52,7 @@ module SendGrid
     def check_for_secrets(patterns)
       contents = @contents.map { |content| content['value'] }.join(' ')
       patterns.each do |pattern|
-        raise SecurityError.new('Content contains sensitive information.') if contents.match(pattern)
+        raise SecurityError, 'Content contains sensitive information.' if contents.match(pattern)
       end
     end
 

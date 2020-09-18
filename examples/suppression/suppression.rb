@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve all blocks #
@@ -34,7 +32,7 @@ puts response.headers
 # Retrieve a specific block #
 # GET /suppression/blocks/{email} #
 
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.blocks._(email).get
 puts response.status_code
 puts response.body
@@ -44,7 +42,7 @@ puts response.headers
 # Delete a specific block #
 # DELETE /suppression/blocks/{email} #
 
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.blocks._(email).delete
 puts response.status_code
 puts response.body
@@ -80,7 +78,7 @@ puts response.headers
 # Retrieve a Bounce #
 # GET /suppression/bounces/{email} #
 
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.bounces._(email).get
 puts response.status_code
 puts response.body
@@ -91,7 +89,7 @@ puts response.headers
 # DELETE /suppression/bounces/{email} #
 
 params = JSON.parse('{"email_address": "example@example.com"}')
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.bounces._(email).delete(query_params: params)
 puts response.status_code
 puts response.body
@@ -127,7 +125,7 @@ puts response.headers
 # Retrieve a specific invalid email #
 # GET /suppression/invalid_emails/{email} #
 
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.invalid_emails._(email).get
 puts response.status_code
 puts response.body
@@ -137,7 +135,7 @@ puts response.headers
 # Delete a specific invalid email #
 # DELETE /suppression/invalid_emails/{email} #
 
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.invalid_emails._(email).delete
 puts response.status_code
 puts response.body
@@ -147,8 +145,8 @@ puts response.headers
 # Retrieve a specific spam report #
 # GET /suppression/spam_report/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).get()
+email = 'test_url_param'
+response = sg.client.suppression.spam_report._(email).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -157,8 +155,8 @@ puts response.headers
 # Delete a specific spam report #
 # DELETE /suppression/spam_report/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.spam_reports._(email).delete()
+email = 'test_url_param'
+response = sg.client.suppression.spam_reports._(email).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -198,4 +196,3 @@ response = sg.client.suppression.unsubscribes.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

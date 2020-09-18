@@ -10,5 +10,5 @@ end
 
 RSpec::Core::RakeTask.new(:spec)
 
-desc "Run tests"
+desc 'Run tests'
 task default: %i[spec test]

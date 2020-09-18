@@ -54,7 +54,7 @@ data = JSON.parse('{
   "subject": "New Products for Summer!",
   "title": "May Newsletter"
 }')
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -64,7 +64,7 @@ puts response.headers
 # Retrieve a single campaign #
 # GET /campaigns/{campaign_id} #
 
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).get
 puts response.status_code
 puts response.body
@@ -74,7 +74,7 @@ puts response.headers
 # Delete a Campaign #
 # DELETE /campaigns/{campaign_id} #
 
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).delete
 puts response.status_code
 puts response.body
@@ -87,7 +87,7 @@ puts response.headers
 data = JSON.parse('{
   "send_at": 1489451436
 }')
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -100,7 +100,7 @@ puts response.headers
 data = JSON.parse('{
   "send_at": 1489771528
 }')
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -110,7 +110,7 @@ puts response.headers
 # View Scheduled Time of a Campaign #
 # GET /campaigns/{campaign_id}/schedules #
 
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.get
 puts response.status_code
 puts response.body
@@ -120,7 +120,7 @@ puts response.headers
 # Unschedule a Scheduled Campaign #
 # DELETE /campaigns/{campaign_id}/schedules #
 
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.delete
 puts response.status_code
 puts response.body
@@ -130,7 +130,7 @@ puts response.headers
 # Send a Campaign #
 # POST /campaigns/{campaign_id}/schedules/now #
 
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.now.post
 puts response.status_code
 puts response.body
@@ -143,7 +143,7 @@ puts response.headers
 data = JSON.parse('{
   "to": "your.email@example.com"
 }')
-campaign_id = "test_url_param"
+campaign_id = 'test_url_param'
 response = sg.client.campaigns._(campaign_id).schedules.test.post(request_body: data)
 puts response.status_code
 puts response.body

@@ -2,7 +2,6 @@ require_relative '../../../lib/sendgrid/helpers/permissions/scope'
 require 'minitest/autorun'
 
 class TestCategory < Minitest::Test
-
   include SendGrid
 
   # usecases
@@ -34,5 +33,4 @@ class TestCategory < Minitest::Test
       assert_equal Scope.send("#{endpoint}_full_access_permissions"), @scopes_from_yaml[endpoint].values.flatten
     end
   end
-
 end

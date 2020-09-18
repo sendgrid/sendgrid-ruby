@@ -32,7 +32,7 @@ puts response.headers
 data = JSON.parse('{
   "email_to": "example@example.com"
 }')
-alert_id = "test_url_param"
+alert_id = 'test_url_param'
 response = sg.client.alerts._(alert_id).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -42,7 +42,7 @@ puts response.headers
 # Retrieve a specific alert #
 # GET /alerts/{alert_id} #
 
-alert_id = "test_url_param"
+alert_id = 'test_url_param'
 response = sg.client.alerts._(alert_id).get
 puts response.status_code
 puts response.body
@@ -52,7 +52,7 @@ puts response.headers
 # Delete an alert #
 # DELETE /alerts/{alert_id} #
 
-alert_id = "test_url_param"
+alert_id = 'test_url_param'
 response = sg.client.alerts._(alert_id).delete
 puts response.status_code
 puts response.body

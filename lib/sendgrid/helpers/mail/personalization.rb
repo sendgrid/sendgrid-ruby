@@ -2,7 +2,6 @@ require 'json'
 
 module SendGrid
   class Personalization
-
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
                 :dynamic_template_data
 

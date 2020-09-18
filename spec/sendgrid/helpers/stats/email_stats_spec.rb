@@ -7,26 +7,26 @@ describe SendGrid::EmailStats do
 
   let(:sample_response) do
     [{
-      "date" => "2017-10-01",
-      "stats" => [
-        { "metrics" =>
+      'date' => '2017-10-01',
+      'stats' => [
+        { 'metrics' =>
           {
-            "blocks" => 101,
-            "bounce_drops" => 102,
-            "bounces" => 103,
-            "clicks" => 104,
-            "deferred" => 105,
-            "delivered" => 106,
-            "invalid_emails" => 107,
-            "opens" => 108,
-            "processed" => 109,
-            "requests" => 110,
-            "spam_report_drops" => 111,
-            "spam_reports" => 112,
-            "unique_clicks" => 113,
-            "unique_opens" => 114,
-            "unsubscribe_drops" => 115,
-            "unsubscribes" => 116
+            'blocks' => 101,
+            'bounce_drops' => 102,
+            'bounces' => 103,
+            'clicks' => 104,
+            'deferred' => 105,
+            'delivered' => 106,
+            'invalid_emails' => 107,
+            'opens' => 108,
+            'processed' => 109,
+            'requests' => 110,
+            'spam_report_drops' => 111,
+            'spam_reports' => 112,
+            'unique_clicks' => 113,
+            'unique_opens' => 114,
+            'unsubscribe_drops' => 115,
+            'unsubscribes' => 116
           } }
       ]
     }]
@@ -34,9 +34,9 @@ describe SendGrid::EmailStats do
 
   let(:error_response) do
     {
-      "errors" => [
+      'errors' => [
         {
-          "message" => "end_date should be a YYYY-MM-DD formatted date"
+          'message' => 'end_date should be a YYYY-MM-DD formatted date'
         }
       ]
     }

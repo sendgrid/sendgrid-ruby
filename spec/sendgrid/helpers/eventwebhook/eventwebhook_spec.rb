@@ -6,77 +6,79 @@ describe SendGrid::EventWebhook do
     it 'verifies a valid signature' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::SIGNATURE,
-          Fixtures::EventWebhook::TIMESTAMP
-        )).to be true
+                 Fixtures::EventWebhook::PUBLIC_KEY,
+                 Fixtures::EventWebhook::PAYLOAD,
+                 Fixtures::EventWebhook::SIGNATURE,
+                 Fixtures::EventWebhook::TIMESTAMP
+               )).to be true
       end
     end
 
     it 'rejects a bad key' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::FAILING_PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::SIGNATURE,
-          Fixtures::EventWebhook::TIMESTAMP
-        )).to be false
+                 Fixtures::EventWebhook::FAILING_PUBLIC_KEY,
+                 Fixtures::EventWebhook::PAYLOAD,
+                 Fixtures::EventWebhook::SIGNATURE,
+                 Fixtures::EventWebhook::TIMESTAMP
+               )).to be false
       end
     end
 
     it 'rejects a bad payload' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          'payload',
-          Fixtures::EventWebhook::SIGNATURE,
-          Fixtures::EventWebhook::TIMESTAMP
-        )).to be false
+                 Fixtures::EventWebhook::PUBLIC_KEY,
+                 'payload',
+                 Fixtures::EventWebhook::SIGNATURE,
+                 Fixtures::EventWebhook::TIMESTAMP
+               )).to be false
       end
     end
 
     it 'rejects a bad signature' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::FAILING_SIGNATURE,
-          Fixtures::EventWebhook::TIMESTAMP
-        )).to be false
+                 Fixtures::EventWebhook::PUBLIC_KEY,
+                 Fixtures::EventWebhook::PAYLOAD,
+                 Fixtures::EventWebhook::FAILING_SIGNATURE,
+                 Fixtures::EventWebhook::TIMESTAMP
+               )).to be false
       end
     end
 
     it 'rejects a bad timestamp' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::SIGNATURE,
-          'timestamp'
-        )).to be false
+                 Fixtures::EventWebhook::PUBLIC_KEY,
+                 Fixtures::EventWebhook::PAYLOAD,
+                 Fixtures::EventWebhook::SIGNATURE,
+                 'timestamp'
+               )).to be false
       end
     end
 
     it 'rejects a missing signature' do
       unless skip_jruby
         expect(verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          nil,
-          Fixtures::EventWebhook::TIMESTAMP
-        )).to be false
+                 Fixtures::EventWebhook::PUBLIC_KEY,
+                 Fixtures::EventWebhook::PAYLOAD,
+                 nil,
+                 Fixtures::EventWebhook::TIMESTAMP
+               )).to be false
       end
     end
 
     it 'throws an error when using jruby' do
       if skip_jruby
-        expect{ verify(
-          Fixtures::EventWebhook::PUBLIC_KEY,
-          Fixtures::EventWebhook::PAYLOAD,
-          Fixtures::EventWebhook::SIGNATURE, 
-          Fixtures::EventWebhook::TIMESTAMP
-        )}.to raise_error(SendGrid::EventWebhook::NotSupportedError)
+        expect do
+          verify(
+            Fixtures::EventWebhook::PUBLIC_KEY,
+            Fixtures::EventWebhook::PAYLOAD,
+            Fixtures::EventWebhook::SIGNATURE,
+            Fixtures::EventWebhook::TIMESTAMP
+          )
+        end .to raise_error(SendGrid::EventWebhook::NotSupportedError)
       end
     end
   end
