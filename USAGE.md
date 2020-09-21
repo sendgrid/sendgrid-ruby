@@ -3638,6 +3638,7 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
+
 ## Retrieve email statistics for your subusers.
 
 **This endpoint allows you to retrieve the email statistics for the given subusers.**
@@ -4251,9 +4252,9 @@ Transactional templates are templates created specifically for transactional ema
 
 ### GET /templates
 
-
 ```ruby
-response = sg.client.templates.get()
+params = JSON.parse('{"generations": "legacy,dynamic"}')
+response = sg.client.templates.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers

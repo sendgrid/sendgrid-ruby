@@ -15,10 +15,11 @@ puts response.body
 puts response.headers
 
 ##################################################
-# Retrieve all transactional templates. #
+# Retrieve all transactional templates (legacy & dynamic). #
 # GET /templates #
 
-response = sg.client.templates.get
+params = JSON.parse('{"generations": "legacy,dynamic"}')
+response = sg.client.templates.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
