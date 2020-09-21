@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve all IP addresses #
@@ -18,7 +16,7 @@ puts response.headers
 # Retrieve all assigned IPs #
 # GET /ips/assigned #
 
-response = sg.client.ips.assigned.get()
+response = sg.client.ips.assigned.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -30,7 +28,7 @@ puts response.headers
 params = {}
 response = sg.client.ips.get(query_params: params)
 all_ips = JSON.parse(response.body)
-unassigned_ips = all_ips.select {|ip| ip.subusers.empty?}
+unassigned_ips = all_ips.select { |ip| ip.subusers.empty? }
 puts response.status_code
 puts response.body
 puts unassigned_ips
@@ -52,7 +50,7 @@ puts response.headers
 # Retrieve all IP pools. #
 # GET /ips/pools #
 
-response = sg.client.ips.pools.get()
+response = sg.client.ips.pools.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -64,7 +62,7 @@ puts response.headers
 data = JSON.parse('{
   "name": "new_pool_name"
 }')
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).put(request_body: data)
 puts response.status_code
 puts response.body
@@ -74,8 +72,8 @@ puts response.headers
 # Retrieve all IPs in a specified pool. #
 # GET /ips/pools/{pool_name} #
 
-pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).get()
+pool_name = 'test_url_param'
+response = sg.client.ips.pools._(pool_name).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -84,8 +82,8 @@ puts response.headers
 # Delete an IP pool. #
 # DELETE /ips/pools/{pool_name} #
 
-pool_name = "test_url_param"
-response = sg.client.ips.pools._(pool_name).delete()
+pool_name = 'test_url_param'
+response = sg.client.ips.pools._(pool_name).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -97,7 +95,7 @@ puts response.headers
 data = JSON.parse('{
   "ip": "0.0.0.0"
 }')
-pool_name = "test_url_param"
+pool_name = 'test_url_param'
 response = sg.client.ips.pools._(pool_name).ips.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -107,9 +105,9 @@ puts response.headers
 # Remove an IP address from a pool. #
 # DELETE /ips/pools/{pool_name}/ips/{ip} #
 
-pool_name = "test_url_param"
-ip = "test_url_param"
-response = sg.client.ips.pools._(pool_name).ips._(ip).delete()
+pool_name = 'test_url_param'
+ip = 'test_url_param'
+response = sg.client.ips.pools._(pool_name).ips._(ip).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -130,7 +128,7 @@ puts response.headers
 # Retrieve all IPs currently in warmup #
 # GET /ips/warmup #
 
-response = sg.client.ips.warmup.get()
+response = sg.client.ips.warmup.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -139,8 +137,8 @@ puts response.headers
 # Retrieve warmup status for a specific IP address #
 # GET /ips/warmup/{ip_address} #
 
-ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).get()
+ip_address = 'test_url_param'
+response = sg.client.ips.warmup._(ip_address).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -149,8 +147,8 @@ puts response.headers
 # Remove an IP from warmup #
 # DELETE /ips/warmup/{ip_address} #
 
-ip_address = "test_url_param"
-response = sg.client.ips.warmup._(ip_address).delete()
+ip_address = 'test_url_param'
+response = sg.client.ips.warmup._(ip_address).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -159,9 +157,8 @@ puts response.headers
 # Retrieve all IP pools an IP address belongs to #
 # GET /ips/{ip_address} #
 
-ip_address = "test_url_param"
-response = sg.client.ips._(ip_address).get()
+ip_address = 'test_url_param'
+response = sg.client.ips._(ip_address).get
 puts response.status_code
 puts response.body
 puts response.headers
-

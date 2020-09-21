@@ -263,7 +263,7 @@ attachments = [
                              'base64 encoded content',
                              'image/png',
                              'inline',
-                             'Banner 2'),                             
+                             'Banner 2'),
 ]
 msg.add_attachments(attachments)
 
@@ -279,7 +279,7 @@ msg.set_global_headers(global_headers)
 msg.add_section('%section1%', 'Substitution for Section 1 Tag')
 sections = [
     '%section2%' => 'Substitution for Section 2 Tag',
-    '%section3%' => 'Substitution for Section 3 Tag'    
+    '%section3%' => 'Substitution for Section 3 Tag'
 ]
 msg.add_sections(sections)
 

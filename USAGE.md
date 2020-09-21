@@ -21,6 +21,7 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 * [CLIENTS](#clients)
 * [CONTACTDB](#contactdb)
 * [DEVICES](#devices)
+* [EMAIL ACTIVITY](#email-activity)
 * [GEO](#geo)
 * [IPS](#ips)
 * [MAIL](#mail)
@@ -1754,6 +1755,112 @@ puts response.status_code
 puts response.body
 puts response.headers
 ```
+
+<a name="email-activity"></a>
+# EMAIL ACTIVITY
+
+## Filter all messages
+> In order to gain access to the Email Activity Feed API, you must purchase [additional email activity history](https://app.sendgrid.com/settings/billing/addons/email_activity).
+
+Filter all messages to search your Email Activity.
+
+Queries may need to be [URL encoded](https://meyerweb.com/eric/tools/dencoder/). URL encoding depends on how you're using the API - if you are trying it out here, or using one of the Libraries, we handle the encoding for you. If you are using cURL, or your own implementation, you probably need to encode it.
+
+Queries have this format:
+
+`query={query_type}="{query_content}"`
+
+encoded, this would look like this:
+
+`query=type%3D%22query_content%22`
+
+for example:
+
+Filter by a specific email - `query=to_email%3D%22example%40example.com%22`
+
+Filter by subject line - `query=subject%3d%22A%20Great%20Subject%22`
+
+You can filter by other operators besides `=`. We also accept `!=`, `<`, and `>`.
+
+For a tutorial on how to get started, check out [Getting Started with the Email Activity API](https://sendgrid.com/docs/API_Reference/Web_API_v3/Tutorials/getting_started_email_activity_api.html).
+
+For information about building combined queries, see [Building compound Email Activity queries](https://sendgrid.com/docs/API_Reference/Web_API_v3/Tutorials/getting_started_email_activity_api.html#-Creating-compound-queries).
+
+### GET /messages
+```ruby
+require 'erb'
+
+filter_key = 'to_email'
+filter_operator = ERB::Util.url_encode('=')
+filter_value = 'testing@sendgrid.net'
+filter_value = ERB::Util.url_encode(format('"%s"', filter_value))
+query_params = {}
+query_params['query'] = format("%s%s%s", filter_key, filter_operator, filter_value)
+query_params['limit'] = '1'
+
+params = query_params
+response = sg.client.messages.get(query_params: params)
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+## Filter messages by message ID
+
+> In order to gain access to the Email Activity Feed API, you must purchase [additional email activity history](https://app.sendgrid.com/settings/billing/addons/email_activity).
+
+Get all of the details about the specified message.
+
+### GET /messages/{msg_id}
+
+```ruby
+msg_id = "test_url_param"
+response = sg.client.messages._(msg_id).get()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+
+## Request a CSV
+
+### POST /messages/download
+
+> In order to gain access to the Email Activity Feed API, you must purchase [additional email activity history](https://app.sendgrid.com/settings/billing/addons/email_activity).
+
+This request kicks of a process to generate a CSV file. When the file is generated, the email that is listed as the account owner gets an email that links out to the file that is ready for download. The link expires in 3 days.
+
+The CSV fill contain the last 1 million messages. This endpoint will be rate limited to 1 request every 12 hours.
+
+```ruby
+response = sg.client.messages.download.post()
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+## Download CSV
+
+### GET /messages/download/{download_uuid}
+
+> In order to gain access to the Email Activity Feed API, you must purchase [additional email activity history](https://app.sendgrid.com/settings/billing/addons/email_activity).
+
+Download the CSV that you requested with the POST Request a CSV.
+
+When the file is generated, the email that is listed as the account owner gets an email that links out to the file that is ready for download. The link expires in 3 days.
+
+The CSV fill contain the last 1 million messages. This endpoint will be rate limited to 1 request every 12 hours.
+
+```ruby
+download_uuid = "test_url_param"
+response = sg.client.messages.download._(download_uuid).get
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+
+
 <a name="geo"></a>
 # GEO
 

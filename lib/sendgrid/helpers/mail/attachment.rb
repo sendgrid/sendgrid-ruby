@@ -2,6 +2,8 @@ require 'base64'
 
 module SendGrid
   class Attachment
+    attr_accessor :type, :filename, :disposition, :content_id
+
     def initialize
       @content = nil
       @type = nil
@@ -18,52 +20,20 @@ module SendGrid
     def content
       return @encoded_content if @encoded_content
 
-      if @content.respond_to?(:read)
-        @encoded_content = encode @content
-      else
-        @encoded_content = @content
-      end
-    end
-
-    def type=(type)
-      @type = type
-    end
-
-    def type
-      @type
-    end
-
-    def filename=(filename)
-      @filename = filename
-    end
-
-    def filename
-      @filename
-    end
-
-    def disposition=(disposition)
-      @disposition = disposition
-    end
-
-    def disposition
-      @disposition
-    end
-
-    def content_id=(content_id)
-      @content_id = content_id
-    end
-
-    def content_id
-      @content_id
+      @encoded_content = if @content.respond_to?(:read)
+                           encode @content
+                         else
+                           @content
+                         end
     end
 
     def to_json(*)
       {
-        'content' => self.content,
-        'type' => self.type,
-        'filename' => self.filename,
-        'disposition' => self.disposition,
-        'content_id' => self.content_id
+        'content' => content,
+        'type' => type,
+        'filename' => filename,
+        'disposition' => disposition,
+        'content_id' => content_id
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
 

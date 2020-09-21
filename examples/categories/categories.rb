@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve all categories #
@@ -33,4 +31,3 @@ response = sg.client.categories.stats.sums.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

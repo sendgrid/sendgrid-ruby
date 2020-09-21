@@ -12,7 +12,7 @@ module SendGrid
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
 
-    alias :category :name
-    alias :category= :name=
+    alias category name
+    alias category= name=
   end
 end

@@ -2,7 +2,6 @@ require_relative '../../../../lib/sendgrid/helpers/mail/mail'
 require 'minitest/autorun'
 
 class TestCategory < Minitest::Test
-
   include SendGrid
 
   def setup
@@ -23,5 +22,4 @@ class TestCategory < Minitest::Test
     }
     assert_equal @category.to_json, expected_json
   end
-
 end

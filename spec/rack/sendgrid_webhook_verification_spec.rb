@@ -12,19 +12,19 @@ unless RUBY_PLATFORM == 'java'
     describe 'new' do
       it 'should initialize with an app, public key and a path' do
         expect do
-          Rack::SendGridWebhookVerification.new(@app, 'ABC', /\/email/)
+          Rack::SendGridWebhookVerification.new(@app, 'ABC', %r{/email})
         end.not_to raise_error
       end
 
       it 'should initialize with an app, public key and paths' do
         expect do
-          Rack::SendGridWebhookVerification.new(@app, 'ABC', /\/email/, /\/event/)
+          Rack::SendGridWebhookVerification.new(@app, 'ABC', %r{/email}, %r{/event})
         end.not_to raise_error
       end
     end
 
     describe 'calling against one path' do
-      let(:middleware) { Rack::SendGridWebhookVerification.new(@app, public_key, /\/email/) }
+      let(:middleware) { Rack::SendGridWebhookVerification.new(@app, public_key, %r{/email}) }
 
       it "should not intercept when the path doesn't match" do
         expect(SendGrid::EventWebhook).to_not receive(:new)
@@ -81,7 +81,7 @@ unless RUBY_PLATFORM == 'java'
     end
 
     describe 'calling with multiple paths' do
-      let(:middleware) { Rack::SendGridWebhookVerification.new(@app, public_key, /\/email/, /\/events/) }
+      let(:middleware) { Rack::SendGridWebhookVerification.new(@app, public_key, %r{/email}, %r{/events}) }
 
       it "should not intercept when the path doesn't match" do
         expect(SendGrid::EventWebhook).to_not receive(:new)

@@ -4,7 +4,7 @@ describe SendGrid::MailSettingsDto do
   let(:sendgrid_client) { SendGrid::API.new(api_key: 'fake_key').client }
   let(:mail_settings) { SendGrid::MailSettingsDto }
   let(:setting_name) { 'bcc' }
-  let(:setting_params) { {email: Faker::Internet.email, enabled: rand(1..100).even?} }
+  let(:setting_params) { { email: Faker::Internet.email, enabled: rand(1..100).even? } }
 
   it { should respond_to :bcc }
   it { should respond_to :address_whitelist }

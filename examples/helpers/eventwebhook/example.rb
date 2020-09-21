@@ -8,9 +8,9 @@ def is_valid_signature(request)
   ec_public_key = event_webhook.convert_public_key_to_ecdsa(public_key)
 
   event_webhook.verify_signature(
-      ec_public_key,
-      request.body.read,
-      request.env[SendGrid::EventWebhookHeader::SIGNATURE],
-      request.env[SendGrid::EventWebhookHeader::TIMESTAMP]
+    ec_public_key,
+    request.body.read,
+    request.env[SendGrid::EventWebhookHeader::SIGNATURE],
+    request.env[SendGrid::EventWebhookHeader::TIMESTAMP]
   )
 end

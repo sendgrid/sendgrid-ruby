@@ -8,7 +8,7 @@ module SendGrid
     attr_accessor :sendgrid_client
 
     SETTING_TYPES = [SendGrid::MailSettingsDto, SendGrid::TrackingSettingsDto,
-                     SendGrid::PartnerSettingsDto, SendGrid::UserSettingsDto]
+                     SendGrid::PartnerSettingsDto, SendGrid::UserSettingsDto].freeze
 
     def initialize(sendgrid_client:)
       @sendgrid_client = sendgrid_client

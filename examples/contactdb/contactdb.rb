@@ -1,15 +1,13 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create a Custom Field #
 # POST /contactdb/custom_fields #
 
 data = JSON.parse('{
-  "name": "pet", 
+  "name": "pet",
   "type": "text"
 }')
 response = sg.client.contactdb.custom_fields.post(request_body: data)
@@ -21,7 +19,7 @@ puts response.headers
 # Retrieve all custom fields #
 # GET /contactdb/custom_fields #
 
-response = sg.client.contactdb.custom_fields.get()
+response = sg.client.contactdb.custom_fields.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -30,8 +28,8 @@ puts response.headers
 # Retrieve a Custom Field #
 # GET /contactdb/custom_fields/{custom_field_id} #
 
-custom_field_id = "test_url_param"
-response = sg.client.contactdb.custom_fields._(custom_field_id).get()
+custom_field_id = 'test_url_param'
+response = sg.client.contactdb.custom_fields._(custom_field_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -40,8 +38,8 @@ puts response.headers
 # Delete a Custom Field #
 # DELETE /contactdb/custom_fields/{custom_field_id} #
 
-custom_field_id = "test_url_param"
-response = sg.client.contactdb.custom_fields._(custom_field_id).delete()
+custom_field_id = 'test_url_param'
+response = sg.client.contactdb.custom_fields._(custom_field_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -62,7 +60,7 @@ puts response.headers
 # Retrieve all lists #
 # GET /contactdb/lists #
 
-response = sg.client.contactdb.lists.get()
+response = sg.client.contactdb.lists.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -72,9 +70,9 @@ puts response.headers
 # DELETE /contactdb/lists #
 
 data = JSON.parse('[
-  1, 
-  2, 
-  3, 
+  1,
+  2,
+  3,
   4
 ]')
 response = sg.client.contactdb.lists.delete(request_body: data)
@@ -90,7 +88,7 @@ data = JSON.parse('{
   "name": "newlistname"
 }')
 params = JSON.parse('{"list_id": 1}')
-list_id = "test_url_param"
+list_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).patch(request_body: data, query_params: params)
 puts response.status_code
 puts response.body
@@ -101,7 +99,7 @@ puts response.headers
 # GET /contactdb/lists/{list_id} #
 
 params = JSON.parse('{"list_id": 1}')
-list_id = "test_url_param"
+list_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).get(query_params: params)
 puts response.status_code
 puts response.body
@@ -112,7 +110,7 @@ puts response.headers
 # DELETE /contactdb/lists/{list_id} #
 
 params = JSON.parse('{"delete_contacts": "true"}')
-list_id = "test_url_param"
+list_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).delete(query_params: params)
 puts response.status_code
 puts response.body
@@ -123,10 +121,10 @@ puts response.headers
 # POST /contactdb/lists/{list_id}/recipients #
 
 data = JSON.parse('[
-  "recipient_id1", 
+  "recipient_id1",
   "recipient_id2"
 ]')
-list_id = "test_url_param"
+list_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).recipients.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -137,7 +135,7 @@ puts response.headers
 # GET /contactdb/lists/{list_id}/recipients #
 
 params = JSON.parse('{"page": 1, "page_size": 1, "list_id": 1}')
-list_id = "test_url_param"
+list_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).recipients.get(query_params: params)
 puts response.status_code
 puts response.body
@@ -147,9 +145,9 @@ puts response.headers
 # Add a Single Recipient to a List #
 # POST /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
-list_id = "test_url_param"
-recipient_id = "test_url_param"
-response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post()
+list_id = 'test_url_param'
+recipient_id = 'test_url_param'
+response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).post
 puts response.status_code
 puts response.body
 puts response.headers
@@ -159,8 +157,8 @@ puts response.headers
 # DELETE /contactdb/lists/{list_id}/recipients/{recipient_id} #
 
 params = JSON.parse('{"recipient_id": 1, "list_id": 1}')
-list_id = "test_url_param"
-recipient_id = "test_url_param"
+list_id = 'test_url_param'
+recipient_id = 'test_url_param'
 response = sg.client.contactdb.lists._(list_id).recipients._(recipient_id).delete(query_params: params)
 puts response.status_code
 puts response.body
@@ -172,8 +170,8 @@ puts response.headers
 
 data = JSON.parse('[
   {
-    "email": "jones@example.com", 
-    "first_name": "Guy", 
+    "email": "jones@example.com",
+    "first_name": "Guy",
     "last_name": "Jones"
   }
 ]')
@@ -188,15 +186,15 @@ puts response.headers
 
 data = JSON.parse('[
   {
-    "age": 25, 
-    "email": "example@example.com", 
-    "first_name": "", 
+    "age": 25,
+    "email": "example@example.com",
+    "first_name": "",
     "last_name": "User"
-  }, 
+  },
   {
-    "age": 25, 
-    "email": "example2@example.com", 
-    "first_name": "Example", 
+    "age": 25,
+    "email": "example2@example.com",
+    "first_name": "Example",
     "last_name": "User"
   }
 ]')
@@ -220,7 +218,7 @@ puts response.headers
 # DELETE /contactdb/recipients #
 
 data = JSON.parse('[
-  "recipient_id1", 
+  "recipient_id1",
   "recipient_id2"
 ]')
 response = sg.client.contactdb.recipients.delete(request_body: data)
@@ -232,7 +230,7 @@ puts response.headers
 # Retrieve the count of billable recipients #
 # GET /contactdb/recipients/billable_count #
 
-response = sg.client.contactdb.recipients.billable_count.get()
+response = sg.client.contactdb.recipients.billable_count.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -241,7 +239,7 @@ puts response.headers
 # Retrieve a Count of Recipients #
 # GET /contactdb/recipients/count #
 
-response = sg.client.contactdb.recipients.count.get()
+response = sg.client.contactdb.recipients.count.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -260,8 +258,8 @@ puts response.headers
 # Retrieve a single recipient #
 # GET /contactdb/recipients/{recipient_id} #
 
-recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).get()
+recipient_id = 'test_url_param'
+response = sg.client.contactdb.recipients._(recipient_id).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -270,8 +268,8 @@ puts response.headers
 # Delete a Recipient #
 # DELETE /contactdb/recipients/{recipient_id} #
 
-recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).delete()
+recipient_id = 'test_url_param'
+response = sg.client.contactdb.recipients._(recipient_id).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -280,8 +278,8 @@ puts response.headers
 # Retrieve the lists that a recipient is on #
 # GET /contactdb/recipients/{recipient_id}/lists #
 
-recipient_id = "test_url_param"
-response = sg.client.contactdb.recipients._(recipient_id).lists.get()
+recipient_id = 'test_url_param'
+response = sg.client.contactdb.recipients._(recipient_id).lists.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -290,7 +288,7 @@ puts response.headers
 # Retrieve reserved fields #
 # GET /contactdb/reserved_fields #
 
-response = sg.client.contactdb.reserved_fields.get()
+response = sg.client.contactdb.reserved_fields.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -302,25 +300,25 @@ puts response.headers
 data = JSON.parse('{
   "conditions": [
     {
-      "and_or": "", 
-      "field": "last_name", 
-      "operator": "eq", 
+      "and_or": "",
+      "field": "last_name",
+      "operator": "eq",
       "value": "Miller"
-    }, 
+    },
     {
-      "and_or": "and", 
-      "field": "last_clicked", 
-      "operator": "gt", 
+      "and_or": "and",
+      "field": "last_clicked",
+      "operator": "gt",
       "value": "01/02/2015"
-    }, 
+    },
     {
-      "and_or": "or", 
-      "field": "clicks.campaign_identifier", 
-      "operator": "eq", 
+      "and_or": "or",
+      "field": "clicks.campaign_identifier",
+      "operator": "eq",
       "value": "513"
     }
-  ], 
-  "list_id": 4, 
+  ],
+  "list_id": 4,
   "name": "Last Name Miller"
 }')
 response = sg.client.contactdb.segments.post(request_body: data)
@@ -332,7 +330,7 @@ puts response.headers
 # Retrieve all segments #
 # GET /contactdb/segments #
 
-response = sg.client.contactdb.segments.get()
+response = sg.client.contactdb.segments.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -344,17 +342,17 @@ puts response.headers
 data = JSON.parse('{
   "conditions": [
     {
-      "and_or": "", 
-      "field": "last_name", 
-      "operator": "eq", 
+      "and_or": "",
+      "field": "last_name",
+      "operator": "eq",
       "value": "Miller"
     }
-  ], 
-  "list_id": 5, 
+  ],
+  "list_id": 5,
   "name": "The Millers"
 }')
 params = JSON.parse('{"segment_id": "test_string"}')
-segment_id = "test_url_param"
+segment_id = 'test_url_param'
 response = sg.client.contactdb.segments._(segment_id).patch(request_body: data, query_params: params)
 puts response.status_code
 puts response.body
@@ -365,7 +363,7 @@ puts response.headers
 # GET /contactdb/segments/{segment_id} #
 
 params = JSON.parse('{"segment_id": 1}')
-segment_id = "test_url_param"
+segment_id = 'test_url_param'
 response = sg.client.contactdb.segments._(segment_id).get(query_params: params)
 puts response.status_code
 puts response.body
@@ -376,7 +374,7 @@ puts response.headers
 # DELETE /contactdb/segments/{segment_id} #
 
 params = JSON.parse('{"delete_contacts": "true"}')
-segment_id = "test_url_param"
+segment_id = 'test_url_param'
 response = sg.client.contactdb.segments._(segment_id).delete(query_params: params)
 puts response.status_code
 puts response.body
@@ -387,9 +385,8 @@ puts response.headers
 # GET /contactdb/segments/{segment_id}/recipients #
 
 params = JSON.parse('{"page": 1, "page_size": 1}')
-segment_id = "test_url_param"
+segment_id = 'test_url_param'
 response = sg.client.contactdb.segments._(segment_id).recipients.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

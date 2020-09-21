@@ -27,6 +27,7 @@ module Rack
 
     def call(env)
       return @app.call(env) unless env['PATH_INFO'].match(@path_regex)
+
       request = Rack::Request.new(env)
 
       event_webhook = SendGrid::EventWebhook.new
@@ -39,9 +40,9 @@ module Rack
       )
 
       if verified
-        return @app.call(env)
+        @app.call(env)
       else
-        return [
+        [
           403,
           { 'Content-Type' => 'text/plain' },
           ['SendGrid Request Verification Failed.']

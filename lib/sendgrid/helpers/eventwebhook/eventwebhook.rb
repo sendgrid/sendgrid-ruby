@@ -25,15 +25,13 @@ module SendGrid
       payload_digest = Digest::SHA256.digest(timestamped_playload)
       decoded_signature = Base64.decode64(signature)
       public_key.dsa_verify_asn1(payload_digest, decoded_signature)
-    rescue
+    rescue StandardError
       false
     end
 
     def verify_engine
       # JRuby does not fully support ECDSA: https://github.com/jruby/jruby-openssl/issues/193
-      if RUBY_PLATFORM == "java"
-        raise NotSupportedError, "Event Webhook verification is not supported by JRuby"
-      end
+      raise NotSupportedError, "Event Webhook verification is not supported by JRuby" if RUBY_PLATFORM == "java"
     end
 
     class Error < ::RuntimeError
@@ -46,7 +44,7 @@ module SendGrid
   # This class lists headers that get posted to the webhook. Read the docs for
   # more details: https://sendgrid.com/docs/for-developers/tracking-events/event
   class EventWebhookHeader
-    SIGNATURE = "HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_SIGNATURE"
-    TIMESTAMP = "HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_TIMESTAMP"
+    SIGNATURE = "HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_SIGNATURE".freeze
+    TIMESTAMP = "HTTP_X_TWILIO_EMAIL_EVENT_WEBHOOK_TIMESTAMP".freeze
   end
 end

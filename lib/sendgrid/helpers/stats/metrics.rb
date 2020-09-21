@@ -1,12 +1,12 @@
 module SendGrid
   class Metrics
     attr_reader :blocks, :bounce_drops,
-      :bounces, :clicks, :deferred, :delivered,
-      :invalid_emails, :opens, :processed, :requests,
-      :spam_report_drops, :spam_reports, :unique_clicks,
-      :unique_opens, :unsubscribe_drops, :unsubscribes
+                :bounces, :clicks, :deferred, :delivered,
+                :invalid_emails, :opens, :processed, :requests,
+                :spam_report_drops, :spam_reports, :unique_clicks,
+                :unique_opens, :unsubscribe_drops, :unsubscribes
 
-    def initialize(args={})
+    def initialize(args = {})
       @date = args['date']
       @blocks = args['blocks']
       @bounce_drops = args['bounce_drops']

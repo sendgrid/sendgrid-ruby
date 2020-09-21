@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve email statistics by browser.  #
@@ -13,4 +11,3 @@ response = sg.client.browsers.stats.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-
