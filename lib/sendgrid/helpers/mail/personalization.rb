@@ -20,14 +20,20 @@ module SendGrid
     end
 
     def add_to(to)
+      raise DuplicatePersonalizationError if duplicate?(to)
+
       @tos << to.to_json
     end
 
     def add_cc(cc)
+      raise DuplicatePersonalizationError if duplicate?(cc)
+
       @ccs << cc.to_json
     end
 
     def add_bcc(bcc)
+      raise DuplicatePersonalizationError if duplicate?(bcc)
+
       @bccs << bcc.to_json
     end
 
@@ -63,5 +69,19 @@ module SendGrid
         'send_at' => send_at
       }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {} }
     end
+
+    private
+
+    def duplicate?(addition)
+      additional_email = addition.email.downcase
+
+      [@tos, @ccs, @bccs].flatten.each do |elm|
+        return true if elm&.dig('email') == additional_email
+      end
+
+      false
+    end
   end
+
+  class DuplicatePersonalizationError < StandardError; end
 end

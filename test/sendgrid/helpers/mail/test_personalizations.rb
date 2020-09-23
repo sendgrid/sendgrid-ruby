@@ -23,6 +23,19 @@ class TestPersonalization < Minitest::Test
     assert_equal @personalization.to_json, expected_json
   end
 
+  def test_duplicate_add_to
+    @personalization = Personalization.new
+    @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_to(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
+  end
+
   def test_add_cc
     @personalization = Personalization.new
     @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))
@@ -42,6 +55,19 @@ class TestPersonalization < Minitest::Test
     assert_equal @personalization.to_json, expected_json
   end
 
+  def test_duplicate_add_cc
+    @personalization = Personalization.new
+    @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_cc(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
+  end
+
   def test_add_bcc
     @personalization = Personalization.new
     @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Example User'))
@@ -59,6 +85,19 @@ class TestPersonalization < Minitest::Test
       ]
     }
     assert_equal @personalization.to_json, expected_json
+  end
+
+  def test_duplicate_add_bcc
+    @personalization = Personalization.new
+    @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Example User'))
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_bcc(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
   end
 
   def test_add_header
