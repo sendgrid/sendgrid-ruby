@@ -1,6 +1,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-09-28] Version 6.3.5
+--------------------------
+**Library - Fix**
+- [PR #437](https://github.com/sendgrid/sendgrid-ruby/pull/437): Raise error when adding duplicate email address in Personalizations. Thanks to [@Pranc1ngPegasus](https://github.com/Pranc1ngPegasus)!
+
+**Library - Docs**
+- [PR #322](https://github.com/sendgrid/sendgrid-ruby/pull/322): Update documentation for retrieving a list of all templates. Thanks to [@renshuki](https://github.com/renshuki)!
+- [PR #332](https://github.com/sendgrid/sendgrid-ruby/pull/332): Add Email activity API Documentation. Thanks to [@dhoeric](https://github.com/dhoeric)!
+
+**Library - Test**
+- [PR #315](https://github.com/sendgrid/sendgrid-ruby/pull/315): Add rubocop check to CI. Thanks to [@dipil-saud](https://github.com/dipil-saud)!
+
+**Library - Chore**
+- [PR #339](https://github.com/sendgrid/sendgrid-ruby/pull/339): Added rubocop configs and changed source files with rubocop "offenses". Thanks to [@douglaslise](https://github.com/douglaslise)!
+- [PR #338](https://github.com/sendgrid/sendgrid-ruby/pull/338): Refactor getters and setters to use ruby accessors. Thanks to [@douglaslise](https://github.com/douglaslise)!
+
+
 [2020-08-19] Version 6.3.4
 --------------------------
 **Library - Docs**
