@@ -112,5 +112,31 @@ unless RUBY_PLATFORM == 'java'
         expect(status).to eq(403)
       end
     end
+
+    describe 'request body which passed to an app' do
+      before do
+        @payload = nil
+        @spy_app = lambda do |env|
+          @payload = Rack::Request.new(env).body
+          [200, { 'Content-Type' => 'text/plain' }, ['Hello']]
+        end
+      end
+
+      let(:middleware) { Rack::SendGridWebhookVerification.new(@spy_app, public_key, %r{/email}) }
+
+      it 'keeps orignal reading position' do
+        options = {
+          :input => Fixtures::EventWebhook::PAYLOAD,
+          'Content-Type' => "application/json"
+        }
+        options[SendGrid::EventWebhookHeader::SIGNATURE] = Fixtures::EventWebhook::SIGNATURE
+        options[SendGrid::EventWebhookHeader::TIMESTAMP] = Fixtures::EventWebhook::TIMESTAMP
+        request = Rack::MockRequest.env_for('/email', options)
+        status, headers, body = middleware.call(request)
+        expect(status).to eq(200)
+        expect(@payload).not_to be_nil
+        expect(@payload.pos).to be_zero
+      end
+    end
   end
 end

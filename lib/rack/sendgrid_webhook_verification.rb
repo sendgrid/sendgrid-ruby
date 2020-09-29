@@ -39,6 +39,8 @@ module Rack
         request.env[SendGrid::EventWebhookHeader::TIMESTAMP]
       )
 
+      request.body.rewind
+
       if verified
         @app.call(env)
       else
