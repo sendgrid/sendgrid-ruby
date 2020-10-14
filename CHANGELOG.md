@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-10-14] Version 6.3.6
+--------------------------
+**Library - Fix**
+- [PR #440](https://github.com/sendgrid/sendgrid-ruby/pull/440): reading position of a request body. Thanks to [@snaka](https://github.com/snaka)!
+
+
 [2020-09-28] Version 6.3.5
 --------------------------
 **Library - Fix**
