@@ -2653,7 +2653,7 @@ class TestAPI < MiniTest::Test
 
   def test_license_file_year
     # Read the third line from the license file
-    year = IO.readlines('./LICENSE.md')[2].gsub(/[^\d]/, '')
+    year = IO.readlines('./LICENSE')[2].gsub(/[^\d]/, '')
     assert_equal(Time.now.year.to_s, year)
   end
 
@@ -2690,7 +2690,7 @@ class TestAPI < MiniTest::Test
   end
 
   def test_license_exists
-    assert(File.file?('./LICENSE.md'))
+    assert(File.file?('./LICENSE'))
   end
 
   def test_pull_request_template_exists
