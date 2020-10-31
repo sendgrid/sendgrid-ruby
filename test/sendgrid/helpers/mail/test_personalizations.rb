@@ -26,6 +26,7 @@ class TestPersonalization < Minitest::Test
   def test_duplicate_add_to
     @personalization = Personalization.new
     @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
+    @personalization.add_to(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Example User 2'))
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_to(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
@@ -33,6 +34,14 @@ class TestPersonalization < Minitest::Test
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_to(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_to(Email.new(email: 'test2@example.com', name: 'Duplicate User 2'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_to(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Duplicate User 2'))
     end
   end
 
@@ -58,6 +67,7 @@ class TestPersonalization < Minitest::Test
   def test_duplicate_add_cc
     @personalization = Personalization.new
     @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))
+    @personalization.add_cc(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Example User 2'))
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
@@ -65,6 +75,14 @@ class TestPersonalization < Minitest::Test
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_cc(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_cc(Email.new(email: 'test2@example.com', name: 'Duplicate User 2'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_cc(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Duplicate User 2'))
     end
   end
 
@@ -90,6 +108,7 @@ class TestPersonalization < Minitest::Test
   def test_duplicate_add_bcc
     @personalization = Personalization.new
     @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Example User'))
+    @personalization.add_bcc(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Example User 2'))
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_bcc(Email.new(email: 'test1@example.com', name: 'Duplicate User'))
@@ -97,6 +116,14 @@ class TestPersonalization < Minitest::Test
 
     assert_raises(DuplicatePersonalizationError) do
       @personalization.add_bcc(Email.new(email: 'TEST1@EXAMPLE.COM', name: 'Duplicate User'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_bcc(Email.new(email: 'test2@example.com', name: 'Duplicate User 2'))
+    end
+
+    assert_raises(DuplicatePersonalizationError) do
+      @personalization.add_bcc(Email.new(email: 'TEST2@EXAMPLE.COM', name: 'Duplicate User 2'))
     end
   end
 
