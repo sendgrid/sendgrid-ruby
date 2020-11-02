@@ -18,7 +18,7 @@ require 'yaml'
 class Main < Sinatra::Base
   configure :production, :development do
     enable :logging
-    set :config, YAML.load_file(File.dirname(__FILE__) + '/config.yml')
+    set :config, YAML.load_file("#{File.dirname(__FILE__)}/config.yml")
   end
 
   get '/' do

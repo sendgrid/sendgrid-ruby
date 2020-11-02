@@ -3,7 +3,7 @@ require 'yaml'
 
 module SendGrid
   class Scope
-    SCOPES = YAML.load_file(File.dirname(__FILE__) + '/scopes.yml').freeze
+    SCOPES = YAML.load_file("#{File.dirname(__FILE__)}/scopes.yml").freeze
 
     class << self
       def admin_permissions

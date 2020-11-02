@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start
-require_relative '../../lib/sendgrid-ruby.rb'
+require_relative '../../lib/sendgrid-ruby'
 require 'ruby_http_client'
 require 'minitest/autorun'
 require 'minitest/unit'
