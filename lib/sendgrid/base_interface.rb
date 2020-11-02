@@ -5,6 +5,7 @@ require_relative 'version'
 class BaseInterface
   attr_accessor :client
   attr_reader :request_headers, :host, :version, :impersonate_subuser
+
   # * *Args* :
   #   - +auth+ -> authorization header value
   #   - +host+ -> the base URL for the API

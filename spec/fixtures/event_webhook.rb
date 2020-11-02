@@ -7,7 +7,7 @@ module Fixtures
     SIGNATURE = 'MEUCIGHQVtGj+Y3LkG9fLcxf3qfI10QysgDWmMOVmxG0u6ZUAiEAyBiXDWzM+uOe5W0JuG+luQAbPIqHh89M15TluLtEZtM='.freeze
     FAILING_SIGNATURE = 'MEUCIQCtIHJeH93Y+qpYeWrySphQgpNGNr/U+UyUlBkU6n7RAwIgJTz2C+8a8xonZGi6BpSzoQsbVRamr2nlxFDWYNH3j/0='.freeze
     TIMESTAMP = '1600112502'.freeze
-    PAYLOAD = [
+    PAYLOAD = "#{[
       {
         email: 'hello@world.com',
         event: 'dropped',
@@ -17,6 +17,6 @@ module Fixtures
         'smtp-id': '<LRzXl_NHStOGhQ4kofSm_A@ismtpd0039p1iad1.sendgrid.net>',
         timestamp: 1_600_112_492
       }
-    ].to_json + "\r\n" # Be sure to include the trailing carriage return and newline!
+    ].to_json}\r\n".freeze # Be sure to include the trailing carriage return and newline!
   end
 end

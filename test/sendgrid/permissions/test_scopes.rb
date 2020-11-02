@@ -11,7 +11,7 @@ class TestCategory < Minitest::Test
   # 4. test read only and full access scopes by loading scopes.yaml
 
   def setup
-    @scopes_from_yaml = YAML.load_file(File.dirname(__FILE__) + '/../../../lib/sendgrid/helpers/permissions/scopes.yml').freeze
+    @scopes_from_yaml = YAML.load_file("#{File.dirname(__FILE__)}/../../../lib/sendgrid/helpers/permissions/scopes.yml").freeze
   end
 
   def test_admin_scopes

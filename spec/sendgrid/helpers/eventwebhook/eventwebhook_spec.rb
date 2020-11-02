@@ -78,7 +78,7 @@ describe SendGrid::EventWebhook do
             Fixtures::EventWebhook::SIGNATURE,
             Fixtures::EventWebhook::TIMESTAMP
           )
-        end .to raise_error(SendGrid::EventWebhook::NotSupportedError)
+        end.to raise_error(SendGrid::EventWebhook::NotSupportedError)
       end
     end
   end

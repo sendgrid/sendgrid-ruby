@@ -8,7 +8,7 @@ OPTS = {}.freeze
 opt = OptionParser.new
 opt.on('--host=HOST') { |v| OPTS[:host] = v }
 argv = opt.parse!(ARGV)
-config = YAML.load_file(File.dirname(__FILE__) + '/config.yml')
+config = YAML.load_file("#{File.dirname(__FILE__)}/config.yml")
 host = OPTS[:host] || config['host']
 client = SendGrid::Client.new(host: host)
 File.open(argv[0]) do |file|
