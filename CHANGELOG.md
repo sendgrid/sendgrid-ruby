@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2020-11-05] Version 6.3.7
+--------------------------
+**Library - Chore**
+- [PR #447](https://github.com/sendgrid/sendgrid-ruby/pull/447): fix rubocop styling errors. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2020-10-14] Version 6.3.6
 --------------------------
 **Library - Fix**
