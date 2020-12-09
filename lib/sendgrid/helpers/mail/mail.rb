@@ -8,7 +8,6 @@ module SendGrid
     attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
     attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
 
-
     # We allow for all nil values here to create uninitialized Mail objects
     # (e.g. <project-root>/use-cases/transactional-templates.md)
     def initialize(from_email = nil, subj = nil, to_email = nil, cont = nil) # rubocop:disable Metrics/ParameterLists
