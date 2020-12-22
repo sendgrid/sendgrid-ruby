@@ -1,5 +1,6 @@
 language: ruby
 env:
+  - version=ruby:3.0.0-preview2
   - version=ruby:2.7
   - version=ruby:2.6
   - version=ruby:2.5
