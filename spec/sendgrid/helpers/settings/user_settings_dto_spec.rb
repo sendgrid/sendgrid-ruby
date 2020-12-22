@@ -11,14 +11,14 @@ describe SendGrid::UserSettingsDto do
   describe '.fetch' do
     it 'calls get on sendgrid_client' do
       args = { sendgrid_client: sendgrid_client, name: setting_name, query_params: {} }
-      expect(user_settings.fetch(args)).to be_a SendGrid::Response
+      expect(user_settings.fetch(**args)).to be_a SendGrid::Response
     end
   end
 
   describe '.update' do
     it 'calls patch on sendgrid_client' do
       args = { sendgrid_client: sendgrid_client, name: setting_name, request_body: setting_params }
-      expect(user_settings.update(args)).to be_a SendGrid::Response
+      expect(user_settings.update(**args)).to be_a SendGrid::Response
     end
   end
 end
