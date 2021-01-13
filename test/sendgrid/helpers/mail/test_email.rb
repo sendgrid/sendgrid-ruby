@@ -29,4 +29,14 @@ class TestEmail < Minitest::Test
     }
     assert_equal @email.to_json, expected_json
   end
+
+  def test_mandatory_email_missing
+    assert_raises(ArgumentError) { Email.new(email: nil) }
+    assert_raises(ArgumentError) { Email.new(email: "") }
+  end
+
+  def test_invalid_email
+    assert_raises(ArgumentError) { Email.new(email: "some-invalid-string") }
+  end
+
 end
