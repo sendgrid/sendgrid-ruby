@@ -38,5 +38,4 @@ class TestEmail < Minitest::Test
   def test_invalid_email
     assert_raises(ArgumentError) { Email.new(email: "some-invalid-string") }
   end
-
 end
