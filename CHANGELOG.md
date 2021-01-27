@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-01-27] Version 6.3.9
+--------------------------
+**Library - Fix**
+- [PR #446](https://github.com/sendgrid/sendgrid-ruby/pull/446): Accurate duplicate checking when adding email to Personalizations. Thanks to [@mito5525](https://github.com/mito5525)!
+- [PR #457](https://github.com/sendgrid/sendgrid-ruby/pull/457): email is required. Thanks to [@luk4s](https://github.com/luk4s)!
+
+
 [2020-12-16] Version 6.3.8
 --------------------------
 **Library - Fix**
