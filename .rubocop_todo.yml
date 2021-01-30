@@ -34,6 +34,8 @@ Metrics/BlockLength:
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
   Max: 2006
+  Exclude:
+    - 'test/sendgrid/test_sendgrid-ruby.rb'
 
 # Offense count: 41
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods.

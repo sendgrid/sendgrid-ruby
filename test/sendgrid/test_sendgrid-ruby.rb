@@ -35,11 +35,29 @@ class TestAPI < MiniTest::Test
     assert_equal(subuser, sg.impersonate_subuser)
     assert_equal('6.3.9', SendGrid::VERSION)
     assert_instance_of(SendGrid::Client, sg.client)
+    assert_equal({}, sg.http_options)
   end
 
   def test_init_when_impersonate_subuser_is_not_given
     sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', host: 'https://api.test.com', version: 'v3')
     refute_includes(sg.request_headers, 'On-Behalf-Of')
+  end
+
+  def test_init_when_http_options_is_given
+    params = JSON.parse('{"subuser": "test_string", "ip": "test_string", "limit": 1, "exclude_whitelabels": "true", "offset": 1}')
+    headers = JSON.parse('{"X-Mock": 200}')
+    http_options = {
+      open_timeout: 40,
+      read_timeout: 40
+    }
+
+    sg = SendGrid::API.new(api_key: 'SENDGRID_API_KEY', version: 'v3', http_options: http_options)
+    client = sg.client.ips
+    response = client.get(query_params: params, request_headers: headers)
+
+    assert_equal(40, client.http.open_timeout)
+    assert_equal(40, client.http.read_timeout)
+    assert_equal('200', response.status_code)
   end
 
   def test_access_settings_activity_get
