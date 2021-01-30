@@ -1,3 +1,3 @@
 module SendGrid
-  VERSION = '6.3.8'.freeze
+  VERSION = '6.3.9'.freeze
 end
