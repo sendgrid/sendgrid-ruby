@@ -1,20 +1,18 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Create Subuser #
 # POST /subusers #
 
 data = JSON.parse('{
-  "email": "John@example.com", 
+  "email": "John@example.com",
   "ips": [
-    "1.1.1.1", 
+    "1.1.1.1",
     "2.2.2.2"
-  ], 
-  "password": "johns_password", 
+  ],
+  "password": "johns_password",
   "username": "John@example.com"
 }')
 response = sg.client.subusers.post(request_body: data)
@@ -79,7 +77,7 @@ puts response.headers
 data = JSON.parse('{
   "disabled": false
 }')
-subuser_name = "test_url_param"
+subuser_name = 'test_url_param'
 response = sg.client.subusers._(subuser_name).patch(request_body: data)
 puts response.status_code
 puts response.body
@@ -89,8 +87,8 @@ puts response.headers
 # Delete a subuser #
 # DELETE /subusers/{subuser_name} #
 
-subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).delete()
+subuser_name = 'test_url_param'
+response = sg.client.subusers._(subuser_name).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -102,7 +100,7 @@ puts response.headers
 data = JSON.parse('[
   "127.0.0.1"
 ]')
-subuser_name = "test_url_param"
+subuser_name = 'test_url_param'
 response = sg.client.subusers._(subuser_name).ips.put(request_body: data)
 puts response.status_code
 puts response.body
@@ -113,10 +111,10 @@ puts response.headers
 # PUT /subusers/{subuser_name}/monitor #
 
 data = JSON.parse('{
-  "email": "example@example.com", 
+  "email": "example@example.com",
   "frequency": 500
 }')
-subuser_name = "test_url_param"
+subuser_name = 'test_url_param'
 response = sg.client.subusers._(subuser_name).monitor.put(request_body: data)
 puts response.status_code
 puts response.body
@@ -127,10 +125,10 @@ puts response.headers
 # POST /subusers/{subuser_name}/monitor #
 
 data = JSON.parse('{
-  "email": "example@example.com", 
+  "email": "example@example.com",
   "frequency": 50000
 }')
-subuser_name = "test_url_param"
+subuser_name = 'test_url_param'
 response = sg.client.subusers._(subuser_name).monitor.post(request_body: data)
 puts response.status_code
 puts response.body
@@ -140,8 +138,8 @@ puts response.headers
 # Retrieve monitor settings for a subuser #
 # GET /subusers/{subuser_name}/monitor #
 
-subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.get()
+subuser_name = 'test_url_param'
+response = sg.client.subusers._(subuser_name).monitor.get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -150,8 +148,8 @@ puts response.headers
 # Delete monitor settings #
 # DELETE /subusers/{subuser_name}/monitor #
 
-subuser_name = "test_url_param"
-response = sg.client.subusers._(subuser_name).monitor.delete()
+subuser_name = 'test_url_param'
+response = sg.client.subusers._(subuser_name).monitor.delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -161,9 +159,8 @@ puts response.headers
 # GET /subusers/{subuser_name}/stats/monthly #
 
 params = JSON.parse('{"date": "test_string", "sort_by_direction": "asc", "limit": 1, "sort_by_metric": "test_string", "offset": 1}')
-subuser_name = "test_url_param"
+subuser_name = 'test_url_param'
 response = sg.client.subusers._(subuser_name).stats.monthly.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

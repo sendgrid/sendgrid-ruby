@@ -1,0 +1,8 @@
+inherit_from: .rubocop_todo.yml
+
+Style/StringLiterals:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

@@ -4,7 +4,7 @@ describe SendGrid::PartnerSettingsDto do
   let(:sendgrid_client) { SendGrid::API.new(api_key: 'fake_key').client }
   let(:partner_settings) { SendGrid::PartnerSettingsDto }
   let(:setting_name) { 'new_relic' }
-  let(:setting_params) { {license_key: 'key', enabled: rand(1..100).even?} }
+  let(:setting_params) { { license_key: 'key', enabled: rand(1..100).even? } }
 
   it { should respond_to :new_relic }
 

@@ -4,14 +4,14 @@ require 'json'
 
 def hello_world
   from = Email.new(email: 'test@example.com')
-  subject = 'Hello World from the SendGrid Ruby Library'
+  subject = 'Hello World from the Twilio SendGrid Ruby Library'
   to = Email.new(email: 'test@example.com')
   content = Content.new(type: 'text/plain', value: 'some text here')
   mail = SendGrid::Mail.new(from, subject, to, content)
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
   puts response.body
@@ -21,7 +21,7 @@ end
 def kitchen_sink
   mail = SendGrid::Mail.new
   mail.from = Email.new(email: 'test@example.com')
-  mail.subject = 'Hello World from the SendGrid Ruby Library'
+  mail.subject = 'Hello World from the Twilio SendGrid Ruby Library'
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
   personalization.add_to(Email.new(email: 'test2@example.com', name: 'Example User'))
@@ -29,14 +29,14 @@ def kitchen_sink
   personalization.add_cc(Email.new(email: 'test4@example.com', name: 'Example User'))
   personalization.add_bcc(Email.new(email: 'test5@example.com', name: 'Example User'))
   personalization.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
-  personalization.subject = 'Hello World from the Personalized SendGrid Ruby Library'
+  personalization.subject = 'Hello World from the Personalized Twilio SendGrid Ruby Library'
   personalization.add_header(Header.new(key: 'X-Test', value: 'True'))
   personalization.add_header(Header.new(key: 'X-Mock', value: 'False'))
   personalization.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
   personalization.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
   personalization.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
   personalization.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
-  personalization.send_at = 1443636843
+  personalization.send_at = 1_443_636_843
   mail.add_personalization(personalization)
 
   personalization2 = Personalization.new
@@ -46,14 +46,14 @@ def kitchen_sink
   personalization2.add_cc(Email.new(email: 'test4@example.com', name: 'Example User'))
   personalization2.add_bcc(Email.new(email: 'test5@example.com', name: 'Example User'))
   personalization2.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
-  personalization2.subject = 'Hello World from the Personalized SendGrid Ruby Library'
+  personalization2.subject = 'Hello World from the Personalized Twilio SendGrid Ruby Library'
   personalization2.add_header(Header.new(key: 'X-Test', value: 'True'))
   personalization2.add_header(Header.new(key: 'X-Mock', value: 'False'))
   personalization2.add_substitution(Substitution.new(key: '%name%', value: 'Example User'))
   personalization2.add_substitution(Substitution.new(key: '%city%', value: 'Denver'))
   personalization2.add_custom_arg(CustomArg.new(key: 'user_id', value: '343'))
   personalization2.add_custom_arg(CustomArg.new(key: 'type', value: 'marketing'))
-  personalization2.send_at = 1443636843
+  personalization2.send_at = 1_443_636_843
   mail.add_personalization(personalization2)
 
   mail.add_content(Content.new(type: 'text/plain', value: 'some text here'))
@@ -89,12 +89,12 @@ def kitchen_sink
   mail.add_custom_arg(CustomArg.new(key: 'campaign', value: 'welcome'))
   mail.add_custom_arg(CustomArg.new(key: 'weekday', value: 'morning'))
 
-  mail.send_at = 1443636842
+  mail.send_at = 1_443_636_842
 
   # This must be a valid [batch ID](https://sendgrid.com/docs/API_Reference/SMTP_API/scheduling_parameters.html) to work
   # mail.batch_id = 'sendgrid_batch_id'
 
-  mail.asm = ASM.new(group_id: 99, groups_to_display: [4,5,6,7,8])
+  mail.asm = ASM.new(group_id: 99, groups_to_display: [4, 5, 6, 7, 8])
 
   mail.ip_pool_name = '23'
 
@@ -118,7 +118,7 @@ def kitchen_sink
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
 
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
   response = sg.client.mail._('send').post(request_body: mail.to_json)
   puts response.status_code
   puts response.body
@@ -129,19 +129,25 @@ def dynamic_template_data_hello_world
   mail = Mail.new
   mail.template_id = '' # a non-legacy template id
   mail.from = Email.new(email: 'test@example.com')
-  subject = 'Dynamic Template Data Hello World from the SendGrid Ruby Library'
-  mail.subject = subject
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
-  personalization.add_dynamic_template_data({
-    "variable" => [
-      {"foo" => "bar"}, {"foo" => "baz"}
+  personalization.add_dynamic_template_data(
+    'variable' => [
+      { 'foo' => 'bar' }, { 'foo' => 'baz' }
     ]
-  })
+  )
   mail.add_personalization(personalization)
+
+  # puts JSON.pretty_generate(mail.to_json)
+  puts mail.to_json
+
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+  response = sg.client.mail._('send').post(request_body: mail.to_json)
+  puts response.status_code
+  puts response.body
+  puts response.headers
 end
 
 hello_world
 kitchen_sink
 dynamic_template_data_hello_world
-

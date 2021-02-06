@@ -2,18 +2,18 @@ Hello!
 
 It is now time to implement the final piece of our v2 to v3 migration. Before we dig into writing the code, we would love to get feedback on the following proposed interfaces.
 
-We are starting with the use cases below for the first iteration. (we have completed this work on [our C# library](https://github.com/sendgrid/sendgrid-csharp/blob/master/USE_CASES.md), you can check that out for a sneak peek of where we are heading).
+We are starting with the use cases below for the first iteration. (we have completed this work on [our C# library](https://github.com/sendgrid/sendgrid-csharp/blob/HEAD/USE_CASES.md), you can check that out for a sneak peek of where we are heading).
 
 # Send a Single Email to a Single Recipient
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
 require 'sendgrid-ruby'
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Mail.create(from: from,
@@ -37,7 +37,7 @@ puts response.headers
 
 # Send a Single Email to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
 require 'sendgrid-ruby'
@@ -48,7 +48,7 @@ tos = [
     SendGrid::Email.new('test2@example.com', 'Example User2'),
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Mail.create(from: from,
@@ -72,7 +72,7 @@ puts response.headers
 
 # Send Multiple Emails to Multiple Recipients
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
 require 'sendgrid-ruby'
@@ -84,9 +84,9 @@ tos = [
     SendGrid::Email.new('test3@example.com', 'Example User3')
 ];
 subjects = [
-    'Sending with SendGrid is Fun',
-    'Sending with SendGrid is Super Fun',
-    'Sending with SendGrid is Super Duper Fun'
+    'Sending with Twilio SendGrid is Fun',
+    'Sending with Twilio SendGrid is Super Fun',
+    'Sending with Twilio SendGrid is Super Duper Fun'
 ];
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
@@ -119,14 +119,14 @@ puts response.headers
 
 # Kitchen Sink - an example with all settings used
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
 client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
@@ -233,11 +233,11 @@ msg.set_send_at(1461775052, 1)
 
 msg.set_subject('this subject overrides the Global Subject on the second Personalization', 1)
 
-# The values below this comment are global to entire message
+# The values below this comment are global to the entire message
 
 msg.set_from(SendGrid::Email.new('test0@example.com', 'Example User0'))
 
-msg.set_global_subject('Sending with SendGrid is Fun');
+msg.set_global_subject('Sending with Twilio SendGrid is Fun');
 
 msg.add_content(MimeType::Text, 'and easy to do anywhere, even with Ruby')
 msg.add_content(MimeType::Html, '<strong>and easy to do anywhere, even with Ruby</strong>')
@@ -263,7 +263,7 @@ attachments = [
                              'base64 encoded content',
                              'image/png',
                              'inline',
-                             'Banner 2'),                             
+                             'Banner 2'),
 ]
 msg.add_attachments(attachments)
 
@@ -279,7 +279,7 @@ msg.set_global_headers(global_headers)
 msg.add_section('%section1%', 'Substitution for Section 1 Tag')
 sections = [
     '%section2%' => 'Substitution for Section 2 Tag',
-    '%section3%' => 'Substitution for Section 3 Tag'    
+    '%section3%' => 'Substitution for Section 3 Tag'
 ]
 msg.add_sections(sections)
 
@@ -295,14 +295,14 @@ puts response.headers
 
 # Attachments
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
 ```ruby
 client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)
@@ -326,9 +326,9 @@ puts response.headers
 
 # Transactional Templates
 
-The following code assumes you are storing the API key in an [environment variable (recommended)](https://github.com/sendgrid/sendgrid-ruby/blob/master/TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
+The following code assumes you are storing the API key in an [environment variable (recommended)](TROUBLESHOOTING.md#environment-variables-and-your-sendgrid-api-key). If you don't have your key stored in an environment variable, you can assign it directly to `api_key` for testing purposes.
 
-For this example, we assume you have created a [transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html). Following is the template content we used for testing.
+For this example, we assume you have created a [legacy transactional template](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html) in the UI or via the API. Following is the template content we used for testing.
 
 Template ID (replace with your own):
 
@@ -347,7 +347,7 @@ Template Body:
 ```html
 <html>
 <head>
-	<title></title>
+    <title></title>
 </head>
 <body>
 Hello -name-,
@@ -367,7 +367,7 @@ client = SendGrid::Client.new(api_key: ENV['SENDGRID_API_KEY'])
 
 from = SendGrid::Email.new('test@example.com', 'Example User')
 to = SendGrid::Email.new('test@example.com', 'Example User')
-subject = 'Sending with SendGrid is Fun'
+subject = 'Sending with Twilio SendGrid is Fun'
 plain_text_content = 'and easy to do anywhere, even with Ruby'
 html_content = '<strong>and easy to do anywhere, even with Ruby</strong>'
 msg = SendGrid::Message.new(from, to, subject, plain_text_content, html_content)

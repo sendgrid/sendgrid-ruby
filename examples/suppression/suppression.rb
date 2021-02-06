@@ -1,8 +1,6 @@
 require 'sendgrid-ruby'
 
-
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-
 
 ##################################################
 # Retrieve all blocks #
@@ -19,9 +17,9 @@ puts response.headers
 # DELETE /suppression/blocks #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
@@ -34,8 +32,8 @@ puts response.headers
 # Retrieve a specific block #
 # GET /suppression/blocks/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.blocks._(email).get()
+email = 'test_url_param'
+response = sg.client.suppression.blocks._(email).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -44,8 +42,8 @@ puts response.headers
 # Delete a specific block #
 # DELETE /suppression/blocks/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.blocks._(email).delete()
+email = 'test_url_param'
+response = sg.client.suppression.blocks._(email).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -65,9 +63,9 @@ puts response.headers
 # DELETE /suppression/bounces #
 
 data = JSON.parse('{
-  "delete_all": true, 
+  "delete_all": true,
   "emails": [
-    "example@example.com", 
+    "example@example.com",
     "example2@example.com"
   ]
 }')
@@ -80,8 +78,8 @@ puts response.headers
 # Retrieve a Bounce #
 # GET /suppression/bounces/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.bounces._(email).get()
+email = 'test_url_param'
+response = sg.client.suppression.bounces._(email).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -91,7 +89,7 @@ puts response.headers
 # DELETE /suppression/bounces/{email} #
 
 params = JSON.parse('{"email_address": "example@example.com"}')
-email = "test_url_param"
+email = 'test_url_param'
 response = sg.client.suppression.bounces._(email).delete(query_params: params)
 puts response.status_code
 puts response.body
@@ -112,9 +110,9 @@ puts response.headers
 # DELETE /suppression/invalid_emails #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
@@ -127,8 +125,8 @@ puts response.headers
 # Retrieve a specific invalid email #
 # GET /suppression/invalid_emails/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.invalid_emails._(email).get()
+email = 'test_url_param'
+response = sg.client.suppression.invalid_emails._(email).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -137,8 +135,8 @@ puts response.headers
 # Delete a specific invalid email #
 # DELETE /suppression/invalid_emails/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.invalid_emails._(email).delete()
+email = 'test_url_param'
+response = sg.client.suppression.invalid_emails._(email).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -147,8 +145,8 @@ puts response.headers
 # Retrieve a specific spam report #
 # GET /suppression/spam_report/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).get()
+email = 'test_url_param'
+response = sg.client.suppression.spam_report._(email).get
 puts response.status_code
 puts response.body
 puts response.headers
@@ -157,8 +155,8 @@ puts response.headers
 # Delete a specific spam report #
 # DELETE /suppression/spam_report/{email} #
 
-email = "test_url_param"
-response = sg.client.suppression.spam_report._(email).delete()
+email = 'test_url_param'
+response = sg.client.suppression.spam_reports._(email).delete
 puts response.status_code
 puts response.body
 puts response.headers
@@ -178,9 +176,9 @@ puts response.headers
 # DELETE /suppression/spam_reports #
 
 data = JSON.parse('{
-  "delete_all": false, 
+  "delete_all": false,
   "emails": [
-    "example1@example.com", 
+    "example1@example.com",
     "example2@example.com"
   ]
 }')
@@ -198,4 +196,3 @@ response = sg.client.suppression.unsubscribes.get(query_params: params)
 puts response.status_code
 puts response.body
 puts response.headers
-

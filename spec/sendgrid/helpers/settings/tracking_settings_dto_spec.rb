@@ -4,7 +4,7 @@ describe SendGrid::TrackingSettingsDto do
   let(:sendgrid_client) { SendGrid::API.new(api_key: 'fake_key').client }
   let(:tracking_settings) { SendGrid::TrackingSettingsDto }
   let(:setting_name) { 'open_tracking' }
-  let(:setting_params) { {enabled: rand(1..100).even?} }
+  let(:setting_params) { { enabled: rand(1..100).even? } }
 
   it { should respond_to :open_tracking }
   it { should respond_to :click_tracking }

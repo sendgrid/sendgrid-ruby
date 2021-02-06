@@ -18,7 +18,7 @@ require 'yaml'
 class Main < Sinatra::Base
   configure :production, :development do
     enable :logging
-    set :config, YAML.load_file(File.dirname(__FILE__) + '/config.yml')
+    set :config, YAML.load_file("#{File.dirname(__FILE__)}/config.yml")
   end
 
   get '/' do
@@ -26,7 +26,7 @@ class Main < Sinatra::Base
   end
 
   post settings.config['endpoint'] do
-    filtered = params.select {|k, v| settings.config['keys'].include?(k)}
+    filtered = params.select { |k, _v| settings.config['keys'].include?(k) }
     logger.info JSON.pretty_generate(filtered)
   end
 end

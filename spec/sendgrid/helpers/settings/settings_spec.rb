@@ -18,7 +18,7 @@ describe SendGrid::Settings do
 
   describe '.update_bcc' do
     it 'updates bcc' do
-      bcc_response = settings.update_bcc(enabled: true, email: "email@example.com")
+      bcc_response = settings.update_bcc(enabled: true, email: 'email@example.com')
       expect(bcc_response).to be_a SendGrid::Response
     end
   end

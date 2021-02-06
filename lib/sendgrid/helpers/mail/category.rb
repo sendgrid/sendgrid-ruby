@@ -1,5 +1,3 @@
-require 'json'
-
 module SendGrid
   class Category
     attr_accessor :name
@@ -14,7 +12,7 @@ module SendGrid
       }.delete_if { |_, value| value.to_s.strip == '' }
     end
 
-    alias :category :name
-    alias :category= :name=
+    alias category name
+    alias category= name=
   end
 end
