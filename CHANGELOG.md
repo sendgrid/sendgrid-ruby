@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-02-10] Version 6.4.0
+--------------------------
+**Library - Feature**
+- [PR #455](https://github.com/sendgrid/sendgrid-ruby/pull/455): Add http_options as a param in the SendGrid::API's constructor. Thanks to [@hoangtuanictvn](https://github.com/hoangtuanictvn)!
+
+
 [2021-01-27] Version 6.3.9
 --------------------------
 **Library - Fix**
