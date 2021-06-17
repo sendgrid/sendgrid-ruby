@@ -8,7 +8,9 @@ env:
 gemfile:
 - gemfiles/Sinatra_1.gemfile
 - gemfiles/Sinatra_2.gemfile
-script: make test-docker
+script:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- make test-docker
 deploy:
   provider: rubygems
   api_key: "$RUBYGEMS_API_KEY"
