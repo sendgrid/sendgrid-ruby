@@ -9,7 +9,9 @@ gemfile:
 - gemfiles/Sinatra_1.gemfile
 - gemfiles/Sinatra_2.gemfile
 script:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- if [[ "$TRAVIS_BRANCH" == "main"  ||  "$TRAVIS_BRANCH" == "travis" ]] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin;
+  fi
 - make test-docker
 deploy:
   provider: rubygems
