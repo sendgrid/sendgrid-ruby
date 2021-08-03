@@ -5,10 +5,11 @@ module SendGrid
     attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
                 :dynamic_template_data
 
-    attr_accessor :send_at, :subject
+    attr_accessor :send_at, :subject, :from
 
     def initialize
       @tos = []
+      @from = nil
       @ccs = []
       @bccs = []
       @subject = nil
@@ -59,6 +60,7 @@ module SendGrid
     def to_json(*)
       {
         'to' => tos,
+        'from' => from,
         'cc' => ccs,
         'bcc' => bccs,
         'subject' => subject,
