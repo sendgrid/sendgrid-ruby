@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-08-11] Version 6.5.0
+--------------------------
+**Library - Feature**
+- [PR #466](https://github.com/sendgrid/sendgrid-ruby/pull/466): Add From address to personalization. Thanks to [@grin](https://github.com/grin)!
+
+
 [2021-02-10] Version 6.4.0
 --------------------------
 **Library - Feature**
