@@ -18,6 +18,7 @@ def hello_world
   puts response.headers
 end
 
+# rubocop:disable Metrics/AbcSize
 def kitchen_sink
   mail = SendGrid::Mail.new
   mail.from = Email.new(email: 'test@example.com')
@@ -29,6 +30,9 @@ def kitchen_sink
   personalization.add_cc(Email.new(email: 'test4@example.com', name: 'Example User'))
   personalization.add_bcc(Email.new(email: 'test5@example.com', name: 'Example User'))
   personalization.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
+  # Note, the domain of the from email property specified in any personalization must
+  # match the domain of the from email property specified at root level
+  personalization.from = Email.new(email: 'alias@example.com', name: "My alias")
   personalization.subject = 'Hello World from the Personalized Twilio SendGrid Ruby Library'
   personalization.add_header(Header.new(key: 'X-Test', value: 'True'))
   personalization.add_header(Header.new(key: 'X-Mock', value: 'False'))
@@ -124,6 +128,7 @@ def kitchen_sink
   puts response.body
   puts response.headers
 end
+# rubocop:enable Metrics/AbcSize
 
 def dynamic_template_data_hello_world
   mail = Mail.new
