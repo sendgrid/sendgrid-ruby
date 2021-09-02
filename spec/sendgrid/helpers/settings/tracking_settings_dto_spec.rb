@@ -14,14 +14,14 @@ describe SendGrid::TrackingSettingsDto do
   describe '.fetch' do
     it 'calls get on sendgrid_client' do
       args = { sendgrid_client: sendgrid_client, name: setting_name, query_params: {} }
-      expect(tracking_settings.fetch(args)).to be_a SendGrid::Response
+      expect(tracking_settings.fetch(**args)).to be_a SendGrid::Response
     end
   end
 
   describe '.update' do
     it 'calls patch on sendgrid_client' do
       args = { sendgrid_client: sendgrid_client, name: setting_name, request_body: setting_params }
-      expect(tracking_settings.update(args)).to be_a SendGrid::Response
+      expect(tracking_settings.update(**args)).to be_a SendGrid::Response
     end
   end
 end
