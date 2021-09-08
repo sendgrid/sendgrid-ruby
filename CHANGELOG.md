@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-09-08] Version 6.5.1
+--------------------------
+**Library - Chore**
+- [PR #470](https://github.com/sendgrid/sendgrid-ruby/pull/470): add support for ruby 3.0. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+
+
 [2021-08-11] Version 6.5.0
 --------------------------
 **Library - Feature**
