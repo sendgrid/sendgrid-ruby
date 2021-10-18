@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-10-18] Version 6.5.2
+--------------------------
+**Library - Docs**
+- [PR #472](https://github.com/sendgrid/sendgrid-ruby/pull/472): improve signed webhook event validation docs. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+
+
 [2021-09-08] Version 6.5.1
 --------------------------
 **Library - Chore**
