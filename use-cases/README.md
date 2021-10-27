@@ -5,6 +5,7 @@ Please [open an issue](https://github.com/sendgrid/sendgrid-ruby/issues) or [mak
 # Email Use Cases
 * [Transactional Templates](transactional-templates.md)
 * [Legacy Templates](legacy-templates.md)
+* [Personalizations](personalizations.md)
 
 # Twilio Use Cases
 * [Twilio Setup](twilio-setup.md)

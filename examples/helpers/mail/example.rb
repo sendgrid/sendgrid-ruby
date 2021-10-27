@@ -32,7 +32,7 @@ def kitchen_sink
   personalization.add_bcc(Email.new(email: 'test6@example.com', name: 'Example User'))
   # Note, the domain of the from email property specified in any personalization must
   # match the domain of the from email property specified at root level
-  personalization.from = Email.new(email: 'alias@example.com', name: "My alias")
+  personalization.add_from(Email.new(email: 'alias@example.com', name: "My alias"))
   personalization.subject = 'Hello World from the Personalized Twilio SendGrid Ruby Library'
   personalization.add_header(Header.new(key: 'X-Test', value: 'True'))
   personalization.add_header(Header.new(key: 'X-Mock', value: 'False'))
