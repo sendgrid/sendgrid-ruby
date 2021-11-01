@@ -45,6 +45,19 @@ class TestPersonalization < Minitest::Test
     end
   end
 
+  def test_add_from
+    @personalization = Personalization.new
+    @personalization.add_from(Email.new(email: 'from1@example.com', name: 'Example Sender'))
+    expected_json = {
+      'from' => {
+        'email' => 'from1@example.com',
+        'name' => 'Example Sender'
+      }
+    }
+
+    assert_equal @personalization.to_json, expected_json
+  end
+
   def test_add_cc
     @personalization = Personalization.new
     @personalization.add_cc(Email.new(email: 'test1@example.com', name: 'Example User'))

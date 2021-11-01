@@ -2,10 +2,10 @@ require 'json'
 
 module SendGrid
   class Personalization
-    attr_reader :tos, :ccs, :bccs, :headers, :substitutions, :custom_args,
+    attr_reader :tos, :from, :ccs, :bccs, :headers, :substitutions, :custom_args,
                 :dynamic_template_data
 
-    attr_accessor :send_at, :subject, :from
+    attr_accessor :send_at, :subject
 
     def initialize
       @tos = []
@@ -24,6 +24,10 @@ module SendGrid
       raise DuplicatePersonalizationError if duplicate?(to)
 
       @tos << to.to_json
+    end
+
+    def add_from(from)
+      @from = from.to_json
     end
 
     def add_cc(cc)
