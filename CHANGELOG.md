@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2021-11-03] Version 6.6.0
+--------------------------
+**Library - Feature**
+- [PR #473](https://github.com/sendgrid/sendgrid-ruby/pull/473): update tests, use-cases, examples and implementation for From personalization. Thanks to [@beebzz](https://github.com/beebzz)!
+
+
 [2021-10-18] Version 6.5.2
 --------------------------
 **Library - Docs**
