@@ -7,8 +7,6 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/sendgrid-ruby.svg)](https://github.com/sendgrid/sendgrid-ruby/graphs/contributors)
 [![Open Source Helpers](https://www.codetriage.com/sendgrid/sendgrid-ruby/badges/users.svg)](https://www.codetriage.com/sendgrid/sendgrid-ruby)
 
-**NEW:** Subscribe to email [notifications](https://dx.sendgrid.com/newsletter/ruby) for releases and breaking changes.
-
 **The default branch name for this repository has been changed to `main` as of 07/27/2020.**
 
 **This library allows you to quickly and easily use the Twilio SendGrid Web API v3 via Ruby.**
