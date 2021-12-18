@@ -33,7 +33,7 @@ class TestAPI < MiniTest::Test
     assert_equal(test_headers, sg.request_headers)
     assert_equal('v3', sg.version)
     assert_equal(subuser, sg.impersonate_subuser)
-    assert_equal('6.6.0', SendGrid::VERSION)
+    assert_equal('6.6.1', SendGrid::VERSION)
     assert_instance_of(SendGrid::Client, sg.client)
     assert_equal({}, sg.http_options)
   end
@@ -2683,12 +2683,8 @@ class TestAPI < MiniTest::Test
     assert(File.file?('./.gitignore'))
   end
 
-  def test_travis_exists
-    assert(File.file?('./.travis.yml'))
-  end
-
-  def test_codeclimate_exists
-    assert(File.file?('./.codeclimate.yml'))
+  def test_gh_actions_exists
+    assert(File.file?('./.github/workflows/test-and-deploy.yml'))
   end
 
   def test_changelog_exists
