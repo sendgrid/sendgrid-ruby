@@ -42,7 +42,7 @@ jobs:
         if: ${{ matrix.ruby != '2.4' }}
 
       - name: Run tests
-        run: make test-docker version={{ matrix-ruby }}
+        run: make test-docker
 
   deploy:
     name: Deploy
