@@ -5,7 +5,6 @@ install:
 
 test:
 	bundle exec rake
-	rubocop
 
 test-integ: test
 

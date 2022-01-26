@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov', '~> 0.18.5'
   spec.add_development_dependency 'sinatra', '>= 1.4.7', '< 3'
 end
