@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        ruby: [ 2.4, 2.5, 2.6, 2.7, 3.0, jruby-9.2 ]
+        ruby: [ ruby:2.4, ruby:2.5, ruby:2.6, ruby:2.7, ruby:3.0, jruby:9.2 ]
     env:
       version: ${{ matrix.ruby }}
     steps:
