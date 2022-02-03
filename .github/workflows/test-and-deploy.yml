@@ -64,6 +64,13 @@ jobs:
 
       - run: make install
 
+      - name: Create GitHub Release
+        uses: sendgrid/dx-automator/actions/release@main
+        with:
+          footer: '**[RubyGems](https://rubygems.org/gems/sendgrid-ruby/versions/${version})**'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish to Rubygems
         env:
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
