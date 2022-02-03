@@ -19,8 +19,12 @@ jobs:
       matrix:
         ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0', jruby-9.2 ]
     env:
-      version: ${{ (matrix.ruby && matrix.ruby == 'jruby-9.2' || format('ruby:{0}', matrix.ruby)) }}
+      version: ${{ format('ruby:{0}', matrix.ruby) }}
     steps:
+      - name: Revise env version if necessary
+        run: echo "version=jruby-9.2" >> $GITHUB_ENV
+        if: ${{ matrix.ruby == jruby-9.2 }}
+
       - name: Checkout sendgrid-ruby
         uses: actions/checkout@v2
         with:
