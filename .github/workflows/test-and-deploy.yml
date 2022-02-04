@@ -17,8 +17,14 @@ jobs:
     timeout-minutes: 20
     strategy:
       matrix:
-        ruby: [ 2.4, 2.5, 2.6, 2.7, 3.0, jruby-9.2 ]
+        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0', jruby-9.2 ]
+    env:
+      version: ${{ format('ruby:{0}', matrix.ruby) }}
     steps:
+      - name: Revise env version if necessary
+        run: echo "version=jruby:9.2" >> $GITHUB_ENV
+        if: ${{ matrix.ruby == 'jruby-9.2' }}
+
       - name: Checkout sendgrid-ruby
         uses: actions/checkout@v2
         with:
@@ -29,6 +35,12 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_AUTH_TOKEN }}
 
       - run: make install
 
