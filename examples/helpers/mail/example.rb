@@ -131,7 +131,7 @@ end
 # rubocop:enable Metrics/AbcSize
 
 def dynamic_template_data_hello_world
-  mail = Mail.new
+  mail = SendGrid::Mail.new
   mail.template_id = '' # a non-legacy template id
   mail.from = Email.new(email: 'test@example.com')
   personalization = Personalization.new
