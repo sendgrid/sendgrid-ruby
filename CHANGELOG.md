@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-02-09] Version 6.6.1
+--------------------------
+**Library - Chore**
+- [PR #482](https://github.com/sendgrid/sendgrid-ruby/pull/482): upgrade supported language versions. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #480](https://github.com/sendgrid/sendgrid-ruby/pull/480): add gh release to workflow. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+- [PR #478](https://github.com/sendgrid/sendgrid-ruby/pull/478): migrate to gh actions. Thanks to [@beebzz](https://github.com/beebzz)!
+
+**Library - Fix**
+- [PR #479](https://github.com/sendgrid/sendgrid-ruby/pull/479): set version env var for tests. Thanks to [@beebzz](https://github.com/beebzz)!
+
+
 [2021-11-03] Version 6.6.0
 --------------------------
 **Library - Feature**
