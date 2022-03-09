@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2022-03-09] Version 6.6.2
+--------------------------
+**Library - Chore**
+- [PR #483](https://github.com/sendgrid/sendgrid-ruby/pull/483): push Datadog Release Metric upon deploy success. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2022-02-09] Version 6.6.1
 --------------------------
 **Library - Chore**
