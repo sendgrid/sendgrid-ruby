@@ -1788,14 +1788,32 @@ For information about building combined queries, see [Building compound Email Ac
 
 ### GET /messages
 ```ruby
-require 'erb'
-
 filter_key = 'to_email'
-filter_operator = ERB::Util.url_encode('=')
-filter_value = 'testing@sendgrid.net'
-filter_value = ERB::Util.url_encode(format('"%s"', filter_value))
+filter_operator = '='
+filter_value = "'testing@sendgrid.net'"
 query_params = {}
-query_params['query'] = format("%s%s%s", filter_key, filter_operator, filter_value)
+query_params['query'] = "#{filter_key}#{filter_operator}#{filter_value}"
+query_params['limit'] = '1'
+
+params = query_params
+response = sg.client.messages.get(query_params: params)
+puts response.status_code
+puts response.body
+puts response.headers
+```
+
+### Filter messages by unique arguments
+
+For information about unique arguments, see [Sendgrid Unique Arguments](https://docs.sendgrid.com/for-developers/sending-email/unique-arguments)
+
+For passing unique arguments when sending emails, refer to [Sending Custom Args Example](https://github.com/sendgrid/sendgrid-ruby/blob/main/examples/helpers/mail/example.rb#L41)
+
+```ruby
+filter_key = "unique_args['user_id']"
+filter_operator = '='
+filter_value = "'123456789'"
+query_params = {}
+query_params['query'] = "#{filter_key}#{filter_operator}#{filter_value}"
 query_params['limit'] = '1'
 
 params = query_params

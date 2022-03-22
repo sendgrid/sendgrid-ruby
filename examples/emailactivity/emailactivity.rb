@@ -6,14 +6,28 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 # Filter all messages #
 # GET /messages #
 
-require 'erb'
-
 filter_key = 'to_email'
-filter_operator = ERB::Util.url_encode('=')
-filter_value = 'testing@sendgrid.net'
-filter_value = ERB::Util.url_encode(format('"%s"', filter_value))
+filter_operator = '='
+filter_value = "'testing@sendgrid.net'"
 query_params = {}
-query_params['query'] = format("%s%s%s", filter_key, filter_operator, filter_value)
+query_params['query'] = "#{filter_key}#{filter_operator}#{filter_value}"
+query_params['limit'] = '1'
+
+params = query_params
+response = sg.client.messages.get(query_params: params)
+puts response.status_code
+puts response.body
+puts response.headers
+
+##################################################
+# Filter messages by unique args #
+# GET /messages #
+
+filter_key = "unique_args['user_id']"
+filter_operator = '='
+filter_value = "'123456789'"
+query_params = {}
+query_params['query'] = "#{filter_key}#{filter_operator}#{filter_value}"
 query_params['limit'] = '1'
 
 params = query_params
