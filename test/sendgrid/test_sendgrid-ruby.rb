@@ -2699,10 +2699,6 @@ class TestAPI < MiniTest::Test
     assert(File.file?('./CONTRIBUTING.md'))
   end
 
-  def test_issue_template_exists
-    assert(File.file?('./ISSUE_TEMPLATE.md'))
-  end
-
   def test_license_exists
     assert(File.file?('./LICENSE'))
   end
