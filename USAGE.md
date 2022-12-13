@@ -1784,7 +1784,7 @@ You can filter by other operators besides `=`. We also accept `!=`, `<`, and `>`
 
 For a tutorial on how to get started, check out [Getting Started with the Email Activity API](https://sendgrid.com/docs/API_Reference/Web_API_v3/Tutorials/getting_started_email_activity_api.html).
 
-For information about building combined queries, see [Building compound Email Activity queries](https://sendgrid.com/docs/API_Reference/Web_API_v3/Tutorials/getting_started_email_activity_api.html#-Creating-compound-queries).
+For information about building combined queries, see [Building compound Email Activity queries](https://docs.sendgrid.com/for-developers/sending-email/getting-started-email-activity-api#creating-compound-queries).
 
 ### GET /messages
 ```ruby
