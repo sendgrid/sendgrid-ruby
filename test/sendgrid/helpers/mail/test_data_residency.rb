@@ -65,5 +65,4 @@ class TestDataResidency < Minitest::Test
       sg.data_residency("")
     end
   end
-
 end

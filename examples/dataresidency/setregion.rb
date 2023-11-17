@@ -1,13 +1,10 @@
-# frozen_string_literal: true
-#require '/Users/manisingh/github/sendgrid/sendgrid-ruby'
-require_relative '/Users/manisingh/github/sendgrid/sendgrid-ruby/lib/sendgrid-ruby.rb'
-include SendGrid
+require 'sendgrid-ruby'
 
 # Example 1
 # Sending using "global" data residency
 
-from = SendGrid::Email.new(email: 'manisingh@twilio.com')
-to = SendGrid::Email.new(email: 'manisingh@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
@@ -22,12 +19,12 @@ puts response.headers
 # Example 2
 # Sending using "eu" data residency
 
-from = SendGrid::Email.new(email: 'sburman@twilio.com')
-to = SendGrid::Email.new(email: 'sburman@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY_EU'])
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 sg.data_residency('eu')
 puts sg.host
 response = sg.client.mail._('send').post(request_body: mail.to_json)
@@ -38,8 +35,8 @@ puts response.headers
 # Example 3
 # Sending using no data residency
 
-from = SendGrid::Email.new(email: 'manisingh@twilio.com')
-to = SendGrid::Email.new(email: 'manisingh@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
@@ -53,8 +50,8 @@ puts response.headers
 # Example 4
 # Sending using "global" data residency in constructor
 
-from = SendGrid::Email.new(email: 'manisingh@twilio.com')
-to = SendGrid::Email.new(email: 'manisingh@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
@@ -68,26 +65,24 @@ puts response.headers
 # Example 5
 # Sending using "eu" data residency in constructor
 
-from = SendGrid::Email.new(email: 'sburman@twilio.com')
-to = SendGrid::Email.new(email: 'sburman@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
-sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY_EU'],region: 'eu')
+sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], region: 'eu')
 puts sg.host
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
 puts response.body
 puts response.headers
 
-
-
 # Example 6
 # Sending using "nil" data residency
 # This will throw exception because data residency cannot be null
 
-from = SendGrid::Email.new(email: 'manisingh@twilio.com')
-to = SendGrid::Email.new(email: 'manisingh@twilio.com')
+from = SendGrid::Email.new(email: 'example@abc.com')
+to = SendGrid::Email.new(email: 'example@abc.com')
 subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
