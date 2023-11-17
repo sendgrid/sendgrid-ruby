@@ -37,4 +37,23 @@ class BaseInterface
                                    request_headers: @request_headers,
                                    http_options: @http_options)
   end
+
+  def set_host(host)
+    @host = host
+    @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
+                                   request_headers: @request_headers,
+                                   http_options: @http_options)
+  end
+
+  def set_data_residency(region)
+    region_host_dict = {"eu" => 'https://api.eu.sendgrid.com',"global" => 'https://api.sendgrid.com'}
+    if( region == nil || !region_host_dict.has_key?(region) )
+      raise ArgumentError, "region can only be \"eu\" or \"global\""
+    end
+    @host = region_host_dict[region]
+    @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
+                                   request_headers: @request_headers,
+                                   http_options: @http_options)
+    return region_host_dict[region]
+  end
 end

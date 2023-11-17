@@ -10,12 +10,12 @@ module SendGrid
     #   - +impersonate_subuser+ -> the subuser to impersonate, will be passed
     #                              in the "On-Behalf-Of" header
     #   - +http_options+ -> http options that you want to be globally applied to each request
+    #   - +region+ -> data residency. The values only be either 'eu' or 'global'.
     #
-    def initialize(api_key:, host: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
+    def initialize(api_key:, region: nil, host: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
       auth = "Bearer #{api_key}"
-      host ||= 'https://api.sendgrid.com'
-
-      super(auth: auth, host: host, request_headers: request_headers, version: version, impersonate_subuser: impersonate_subuser, http_options: http_options)
+      host_with_data_residency = host == nil ? ( region == nil ? "https://api.sendgrid.com" : set_data_residency(region) ) : host
+      super(auth: auth, host: host_with_data_residency, request_headers: request_headers, version: version, impersonate_subuser: impersonate_subuser, http_options: http_options)
     end
   end
 end
