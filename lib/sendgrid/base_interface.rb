@@ -51,9 +51,7 @@ class BaseInterface
 
   def data_residency(region)
     region_host_dict = { "eu" => 'https://api.eu.sendgrid.com', "global" => 'https://api.sendgrid.com' }
-    if region.nil? || !region_host_dict.key?(region)
-      raise ArgumentError, "region can only be \"eu\" or \"global\""
-    end
+    raise ArgumentError, "region can only be \"eu\" or \"global\"" if region.nil? || !region_host_dict.key?(region)
 
     @host = region_host_dict[region]
     @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
