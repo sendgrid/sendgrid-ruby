@@ -1,4 +1,4 @@
-require_relative 'sendgrid-ruby'
+require 'sendgrid-ruby'
 
 # Example 1
 # Sending using "global" data residency
@@ -9,7 +9,7 @@ subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-sg.set_data_residency("global")
+sg.data_residency("global")
 puts sg.host
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
@@ -25,7 +25,7 @@ subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-sg.set_data_residency('eu')
+sg.data_residency('eu')
 puts sg.host
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
@@ -87,7 +87,7 @@ subject = 'Sending with Twilio SendGrid is Fun'
 content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = SendGrid::Mail.new(from, subject, to, content)
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-sg.set_data_residency(nil)
+sg.data_residency(nil)
 puts sg.host
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
