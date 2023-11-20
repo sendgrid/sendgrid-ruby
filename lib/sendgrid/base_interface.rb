@@ -50,6 +50,7 @@ class BaseInterface
                                    request_headers: @request_headers,
                                    http_options: @http_options)
   end
+
   def data_residency(region:)
     region_host_dict = { "eu" => 'https://api.eu.sendgrid.com', "global" => 'https://api.sendgrid.com' }
     raise ArgumentError, "region can only be \"eu\" or \"global\"" if region.nil? || !region_host_dict.key?(region)
