@@ -16,12 +16,14 @@ class BaseInterface
   #                              in the "On-Behalf-Of" header
   #   - +http_options+ -> http options that you want to be globally applied to each request
   #
-  def initialize(auth:, host:, region: 'global', request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
+  def initialize(auth:, host: nil, region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
     @auth = auth
-    if !host.nil?
-      update_host(host)
+    if host.nil? && region.nil?
+      @host="https://api.sendgrid.com"
+    elsif !region.nil?
+      data_residency(region: region)
     else
-      data_residency(region)
+      update_host(host: host)
     end
     @version = version || 'v3'
     @impersonate_subuser = impersonate_subuser
@@ -42,14 +44,13 @@ class BaseInterface
                                    http_options: @http_options)
   end
 
-  def update_host(host)
+  def update_host(host:)
     @host = host
     @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
                                    request_headers: @request_headers,
                                    http_options: @http_options)
   end
-
-  def data_residency(region)
+  def data_residency(region:)
     region_host_dict = { "eu" => 'https://api.eu.sendgrid.com', "global" => 'https://api.sendgrid.com' }
     raise ArgumentError, "region can only be \"eu\" or \"global\"" if region.nil? || !region_host_dict.key?(region)
 

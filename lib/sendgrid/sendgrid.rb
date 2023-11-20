@@ -12,7 +12,7 @@ module SendGrid
     #   - +http_options+ -> http options that you want to be globally applied to each request
     #   - +region+ -> data residency. The values only be either 'eu' or 'global'.
     #
-    def initialize(api_key:, host: nil, region: 'global', request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
+    def initialize(api_key:, host: nil, region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
       auth = "Bearer #{api_key}"
       super(auth: auth, host: host, region: region, request_headers: request_headers, version: version, impersonate_subuser: impersonate_subuser, http_options: http_options)
     end
