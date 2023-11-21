@@ -16,7 +16,7 @@ class BaseInterface
   #                              in the "On-Behalf-Of" header
   #   - +http_options+ -> http options that you want to be globally applied to each request
   #
-  def initialize(auth:, host: , region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
+  def initialize(auth:, host:, region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
     @auth = auth
     if host.nil? && region.nil?
       @host = "https://api.sendgrid.com"
