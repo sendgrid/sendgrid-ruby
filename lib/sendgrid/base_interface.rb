@@ -18,9 +18,7 @@ class BaseInterface
   #
   def initialize(auth:, host:, region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
     @auth = auth
-    if host.nil? && region.nil?
-      @host = "https://api.sendgrid.com"
-    elsif !region.nil?
+    if !region.nil?
       data_residency(region: region)
     else
       @host = host
