@@ -42,7 +42,7 @@ class TestDataResidency < Minitest::Test
     end
   end
 
-  def test_with_global_eu_residency
+  def test_with_failure
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     sg.sendgrid_data_residency(region: '')
     assert_equal @eu_email, sg.host

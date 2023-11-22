@@ -51,7 +51,7 @@ class BaseInterface
 
     @host = region_host_dict[region]
     @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
-                  request_headers: @request_headers,
-                  http_options: @http_options)
+                                   request_headers: @request_headers,
+                                   http_options: @http_options)
   end
 end
