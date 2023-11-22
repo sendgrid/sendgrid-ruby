@@ -47,5 +47,4 @@ class TestDataResidency < Minitest::Test
     sg.sendgrid_data_residency(region: '')
     assert_equal @eu_email, sg.host
   end
-
 end
