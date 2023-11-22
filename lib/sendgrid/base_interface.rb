@@ -16,13 +16,9 @@ class BaseInterface
   #                              in the "On-Behalf-Of" header
   #   - +http_options+ -> http options that you want to be globally applied to each request
   #
-  def initialize(auth:, host:, region: nil, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
+  def initialize(auth:, host:, request_headers: nil, version: nil, impersonate_subuser: nil, http_options: {})
     @auth = auth
-    if !region.nil?
-      data_residency(region: region)
-    else
-      @host = host
-    end
+    @host = host
     @version = version || 'v3'
     @impersonate_subuser = impersonate_subuser
     @user_agent = "sendgrid/#{SendGrid::VERSION};ruby"
@@ -42,20 +38,20 @@ class BaseInterface
                                    http_options: @http_options)
   end
 
-  def update_host(host:)
-    @host = host
-    @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
-                                   request_headers: @request_headers,
-                                   http_options: @http_options)
-  end
-
-  def data_residency(region:)
+  # Client libraries contain setters for specifying region/edge.
+  # This supports global and eu regions only. This set will likely expand in the future.
+  # Global is the default residency (or region)
+  # Global region means the message will be sent through https://api.sendgrid.com
+  # EU region means the message will be sent through https://api.eu.sendgrid.com
+  # Parameters:
+  # - region(String) : specify the region. Currently supports "global" and "eu"
+  def sendgrid_data_residency(region:)
     region_host_dict = { "eu" => 'https://api.eu.sendgrid.com', "global" => 'https://api.sendgrid.com' }
     raise ArgumentError, "region can only be \"eu\" or \"global\"" if region.nil? || !region_host_dict.key?(region)
 
     @host = region_host_dict[region]
     @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
-                                   request_headers: @request_headers,
-                                   http_options: @http_options)
+                  request_headers: @request_headers,
+                  http_options: @http_options)
   end
 end
