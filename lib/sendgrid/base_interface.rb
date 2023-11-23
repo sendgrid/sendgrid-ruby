@@ -37,4 +37,21 @@ class BaseInterface
                                    request_headers: @request_headers,
                                    http_options: @http_options)
   end
+
+  # Client libraries contain setters for specifying region/edge.
+  # This supports global and eu regions only. This set will likely expand in the future.
+  # Global is the default residency (or region)
+  # Global region means the message will be sent through https://api.sendgrid.com
+  # EU region means the message will be sent through https://api.eu.sendgrid.com
+  # Parameters:
+  # - region(String) : specify the region. Currently supports "global" and "eu"
+  def sendgrid_data_residency(region:)
+    region_host_dict = { "eu" => 'https://api.eu.sendgrid.com', "global" => 'https://api.sendgrid.com' }
+    raise ArgumentError, "region can only be \"eu\" or \"global\"" if region.nil? || !region_host_dict.key?(region)
+
+    @host = region_host_dict[region]
+    @client = SendGrid::Client.new(host: "#{@host}/#{@version}",
+                                   request_headers: @request_headers,
+                                   http_options: @http_options)
+  end
 end
