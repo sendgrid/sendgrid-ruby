@@ -9,11 +9,10 @@ sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 require 'erb'
 
 filter_key = 'to_email'
-filter_operator = ERB::Util.url_encode('=')
-filter_value = 'testing@sendgrid.net'
-filter_value = ERB::Util.url_encode(format('"%s"', filter_value))
+filter_operator = '='
+filter_value = '\"testing@sendgrid.net\"'
 query_params = {}
-query_params['query'] = format("%s%s%s", filter_key, filter_operator, filter_value)
+query_params['query'] = [filter_key, filter_operator, filter_value].join
 query_params['limit'] = '1'
 
 params = query_params
