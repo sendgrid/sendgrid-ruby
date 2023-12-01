@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+[2023-12-01] Version 6.7.0
+--------------------------
+**Library - Feature**
+- [PR #496](https://github.com/sendgrid/sendgrid-ruby/pull/496): geolocation setter in sendgrid-ruby for GDPR compliance. Thanks to [@manisha1997](https://github.com/manisha1997)!
+
+**Library - Test**
+- [PR #488](https://github.com/sendgrid/sendgrid-ruby/pull/488): Adding misc as PR type. Thanks to [@rakatyal](https://github.com/rakatyal)!
+
+**Library - Docs**
+- [PR #486](https://github.com/sendgrid/sendgrid-ruby/pull/486): Modify README. Thanks to [@garethpaul](https://github.com/garethpaul)!
+
+
 [2022-03-09] Version 6.6.2
 --------------------------
 **Library - Chore**
