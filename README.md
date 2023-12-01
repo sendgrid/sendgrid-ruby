@@ -84,6 +84,7 @@ The following is the minimum needed code to send an email with the [/mail/send H
 require 'sendgrid-ruby'
 include SendGrid
 
+# replace 'test@example.com' with your verified Sender Identity
 from = SendGrid::Email.new(email: 'test@example.com')
 to = SendGrid::Email.new(email: 'test@example.com')
 subject = 'Sending with Twilio SendGrid is Fun'
