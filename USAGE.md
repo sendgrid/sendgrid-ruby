@@ -4229,6 +4229,10 @@ puts response.headers
 Each user can create up to 300 different transactional templates. Transactional templates are specific to accounts and subusers. Templates created on a parent account will not be accessible from the subuser accounts.
 
 Transactional templates are templates created specifically for transactional email and are not to be confused with [Marketing Campaigns templates](https://sendgrid.com/docs/User_Guide/Marketing_Campaigns/templates.html). For more information about transactional templates, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html).
+> These two links are broken, but I can't open an issue in this repo and I don't know what the new links should be. Here's a screenshot showing them both resolving to the same 404 page. Could y'all kindly fix or advise how I can open an issue?
+
+<img width="783" alt="CleanShot 2022-07-19 at 07 19 51@2x" src="https://user-images.githubusercontent.com/6170077/179748902-b1a3bdca-91d1-494c-9e8c-9caab5cf80a1.png">
+
 
 ### POST /templates
 
