@@ -2,10 +2,11 @@ require 'json'
 
 module SendGrid
   class MailSettings
-    attr_writer :sandbox_mode, :footer, :bcc, :spam_check, :bypass_list_management, :bypass_spam_management
+    attr_writer :sandbox_mode, :footer, :bcc, :spam_check, :bypass_list_management, :bypass_spam_management, :bypass_bounce_management
 
     def initialize
       @bcc = nil
+      @bypass_bounce_management = nil
       @bypass_list_management = nil
       @bypass_spam_management = nil
       @footer = nil
@@ -25,6 +26,10 @@ module SendGrid
       @bypass_spam_management.nil? ? nil : @bypass_spam_management.to_json
     end
 
+    def bypass_bounce_management
+      @bypass_bounce_management.nil? ? nil : @bypass_bounce_management.to_json
+    end
+
     def footer
       @footer.nil? ? nil : @footer.to_json
     end
@@ -40,6 +45,7 @@ module SendGrid
     def to_json(*)
       {
         'bcc' => bcc,
+        'bypass_bounce_management' => bypass_bounce_management,
         'bypass_list_management' => bypass_list_management,
         'bypass_spam_management' => bypass_spam_management,
         'footer' => footer,

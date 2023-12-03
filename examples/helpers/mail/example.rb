@@ -104,6 +104,7 @@ def kitchen_sink
 
   mail_settings = MailSettings.new
   mail_settings.bcc = BccSettings.new(enable: true, email: 'test@example.com')
+  mail_settings.bypass_bounce_management = BypassBounceManagement.new(enable: true)
   mail_settings.bypass_list_management = BypassListManagement.new(enable: true)
   mail_settings.bypass_spam_management = BypassSpamManagement.new(enable: true)
   mail_settings.footer = Footer.new(enable: true, text: 'Footer Text', html: '<html><body>Footer Text</body></html>')
