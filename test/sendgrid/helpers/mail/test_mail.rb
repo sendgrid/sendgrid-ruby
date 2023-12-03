@@ -100,6 +100,7 @@ class TestMail < Minitest::Test
     mail_settings = MailSettings.new
     mail_settings.bcc = BccSettings.new(enable: true, email: 'test@example.com')
     mail_settings.bypass_list_management = BypassListManagement.new(enable: true)
+    mail_settings.bypass_spam_management = BypassSpamManagement.new(enable: true)
     mail_settings.footer = Footer.new(enable: true, text: 'Footer Text', html: '<html><body>Footer Text</body></html>')
     mail_settings.sandbox_mode = SandBoxMode.new(enable: true)
     mail_settings.spam_check = SpamCheck.new(enable: true, threshold: 1, post_to_url: 'https://spamcatcher.sendgrid.com')

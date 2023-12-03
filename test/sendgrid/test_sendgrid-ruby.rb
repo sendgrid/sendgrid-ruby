@@ -1175,6 +1175,9 @@ class TestAPI < MiniTest::Test
 "bypass_list_management": {
   "enable": true
 },
+"bypass_spam_management": {
+  "enable": true
+},
 "footer": {
   "enable": true,
   "html": "<p>Thanks</br>The SendGrid Team</p>",

@@ -75,6 +75,9 @@ data = JSON.parse('{
     "bypass_list_management": {
       "enable": true
     },
+    "bypass_spam_management": {
+      "enable": true
+    },
     "footer": {
       "enable": true,
       "html": "<p>Thanks</br>The Twilio SendGrid Team</p>",
