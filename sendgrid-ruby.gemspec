@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
   spec.add_dependency 'ruby_http_client', '~> 3.4'
+  spec.add_dependency 'base64'
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'minitest', '~> 5.9'
   spec.add_development_dependency 'pry'
