@@ -5,8 +5,8 @@ require 'json'
 module SendGrid
   class Mail
     attr_accessor :subject, :ip_pool_name, :template_id, :send_at, :batch_id
-    attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args
-    attr_writer :from, :asm, :mail_settings, :tracking_settings, :reply_to
+    attr_reader :personalizations, :contents, :attachments, :categories, :sections, :headers, :custom_args, :reply_to_list
+    attr_writer :from, :asm, :mail_settings, :tracking_settings
 
     # We allow for all nil values here to create uninitialized Mail objects
     # (e.g. <project-root>/use-cases/transactional-templates.md)
@@ -28,6 +28,7 @@ module SendGrid
       @mail_settings = nil
       @tracking_settings = nil
       @reply_to = nil
+      @reply_to_list = []
 
       return if from_email.nil? && subj.nil? && to_email.nil? && cont.nil?
 
@@ -93,6 +94,16 @@ module SendGrid
       @tracking_settings.nil? ? nil : @tracking_settings.to_json
     end
 
+    def reply_to=(email)
+      @reply_to = email
+      verify_reply_options
+    end
+
+    def reply_to_list=(emails)
+      @reply_to_list = emails.uniq(&:email)
+      verify_reply_options
+    end
+
     def reply_to
       @reply_to.nil? ? nil : @reply_to.to_json
     end
@@ -114,9 +125,26 @@ module SendGrid
         'asm' => asm,
         'ip_pool_name' => ip_pool_name,
         'mail_settings' => mail_settings,
-        'tracking_settings' => tracking_settings,
-        'reply_to' => reply_to
-      }.delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {} }
+        'tracking_settings' => tracking_settings
+      }.merge(reply_options).delete_if { |_, value| value.to_s.strip == '' || value == [] || value == {} }
+    end
+
+    private
+
+    def reply_options
+      if !@reply_to.nil?
+        { 'reply_to' => reply_to }
+      elsif !@reply_to_list.size.zero?
+        'reply_to_list' => reply_to_list
+      else
+        {}
+      end
+    end
+
+    def verify_reply_options
+      if !@reply_to.nil? && !@reply_to_list.size.zero?
+        raise ArgumentError, 'You can either choose to use "reply_to" field or "reply_to_list" but not both.'
+      end
     end
   end
 end
