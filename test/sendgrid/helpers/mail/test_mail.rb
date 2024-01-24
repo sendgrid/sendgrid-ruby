@@ -119,6 +119,17 @@ class TestMail < Minitest::Test
     # rubocop:enable all
   end
 
+  def test_reply_to_options
+    mail = SendGrid::Mail.new
+    mail.reply_to = Email.new(email: 'test@example.com')
+    assert_raises(ArgumentError) { mail.reply_to_list = [Email.new(email: 'test@example.com')] }
+    assert_equal(mail.to_json, '{}')
+    mail2 = SendGrid::Mail.new
+    mail2.reply_to_list = [Email.new(email: 'test@example.com')]
+    assert_raises(ArgumentError) { mail2.reply_to = Email.new(email: 'test@example.com') }
+    assert_equal(mail.to_json, '{}')
+  end
+
   def test_that_personalizations_is_empty_initially
     mail = SendGrid::Mail.new
     assert_equal([], mail.personalizations)
