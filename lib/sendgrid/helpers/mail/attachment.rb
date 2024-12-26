@@ -49,7 +49,7 @@ module SendGrid
       # in binary mode, but at least we can faithfully convey the
       # bytes.
       str = str.encode('UTF-8') unless io.respond_to?(:binmode?) && io.binmode?
-      Base64.encode64 str
+      Base64.strict_encode64 str
     end
   end
 end
