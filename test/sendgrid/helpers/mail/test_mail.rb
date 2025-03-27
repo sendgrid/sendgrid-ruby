@@ -8,10 +8,10 @@ class TestMail < Minitest::Test
   def setup; end
 
   def test_hello_world
-    from = Email.new(email: 'test@example.com')
-    to = Email.new(email: 'test@example.com')
+    from = SendGrid::Email.new(email: 'test@example.com')
+    to = SendGrid::Email.new(email: 'test@example.com')
     subject = 'Sending with Twilio SendGrid is Fun'
-    content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+    content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
     mail = SendGrid::Mail.new(from, subject, to, content)
 
     assert_equal(mail.to_json, JSON.parse('{"from":{"email":"test@example.com"}, "subject":"Sending with Twilio SendGrid is Fun", "personalizations":[{"to":[{"email":"test@example.com"}]}], "content":[{"type":"text/plain", "value":"and easy to do anywhere, even with Ruby"}]}'))
@@ -19,7 +19,7 @@ class TestMail < Minitest::Test
 
   def test_kitchen_sink
     mail = SendGrid::Mail.new
-    mail.from = Email.new(email: 'test@example.com')
+    mail.from = SendGrid::Email.new(email: 'test@example.com')
     mail.subject = 'Hello World from the Twilio SendGrid Ruby Library'
     personalization = Personalization.new
     personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User 1'))
@@ -112,7 +112,7 @@ class TestMail < Minitest::Test
     tracking_settings.ganalytics = Ganalytics.new(enable: true, utm_source: 'some source', utm_medium: 'some medium', utm_term: 'some term', utm_content: 'some content', utm_campaign: 'some campaign')
     mail.tracking_settings = tracking_settings
 
-    mail.reply_to = Email.new(email: 'test@example.com')
+    mail.reply_to = SendGrid::Email.new(email: 'test@example.com')
 
     # rubocop:disable Layout/LineLength
     assert_equal(mail.to_json, JSON.parse('{"asm":{"group_id":99,"groups_to_display":[4,5,6,7,8]},"attachments":[{"content":"TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gQ3JhcyBwdW12","content_id":"Balance Sheet","disposition":"attachment","filename":"balance_001.pdf","type":"application/pdf"},{"content":"BwdW","content_id":"Banner","disposition":"inline","filename":"banner.png","type":"image/png"}],"batch_id":"sendgrid_batch_id","categories":["May","2016"],"content":[{"type":"text/plain","value":"some text here"},{"type":"text/html","value":"<html><body>some text here</body></html>"}],"custom_args":{"campaign":"welcome","weekday":"morning"},"from":{"email":"test@example.com"},"headers":{"X-Test3":"test3","X-Test4":"test4"},"ip_pool_name":"23","mail_settings":{"bcc":{"email":"test@example.com","enable":true},"bypass_list_management":{"enable":true},"footer":{"enable":true,"html":"<html><body>Footer Text</body></html>","text":"Footer Text"},"sandbox_mode":{"enable":true},"spam_check":{"enable":true,"post_to_url":"https://spamcatcher.sendgrid.com","threshold":1}},"personalizations":[{"bcc":[{"email":"test5@example.com","name":"Example User 5"},{"email":"test6@example.com","name":"Example User 6"}],"cc":[{"email":"test3@example.com","name":"Example User 3"},{"email":"test4@example.com","name":"Example User 4"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized Twilio SendGrid Ruby Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test1@example.com","name":"Example User 1"},{"email":"test2@example.com","name":"Example User 2"}]},{"bcc":[{"email":"test5@example.com","name":"Example User 5"},{"email":"test6@example.com","name":"Example User 6"}],"cc":[{"email":"test3@example.com","name":"Example User 3"},{"email":"test4@example.com","name":"Example User 4"}],"custom_args":{"type":"marketing","user_id":"343"},"headers":{"X-Mock":"False","X-Test":"True"},"send_at":1443636843,"subject":"Hello World from the Personalized Twilio SendGrid Ruby Library","substitutions":{"%city%":"Denver","%name%":"Example User"},"to":[{"email":"test1@example.com","name":"Example User 1"},{"email":"test2@example.com","name":"Example User 2"}]}],"reply_to":{"email":"test@example.com"},"sections":{"%section1%":"Substitution Text for Section 1","%section2%":"Substitution Text for Section 2"},"send_at":1443636842,"subject":"Hello World from the Twilio SendGrid Ruby Library","template_id":"13b8f94f-bcae-4ec6-b752-70d6cb59f932","tracking_settings":{"click_tracking":{"enable":false,"enable_text":false},"ganalytics":{"enable":true,"utm_campaign":"some campaign","utm_content":"some content","utm_medium":"some medium","utm_source":"some source","utm_term":"some term"},"open_tracking":{"enable":true,"substitution_tag":"Optional tag to replace with the open image in the body of the message"},"subscription_tracking":{"enable":true,"html":"html to insert into the text/html portion of the message","substitution_tag":"Optional tag to replace with the open image in the body of the message","text":"text to insert into the text/plain portion of the message"}}}'))
@@ -209,7 +209,7 @@ class TestMail < Minitest::Test
   end
 
   def test_add_non_string_custom_arg
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_custom_arg(CustomArg.new(key: 'Integer', value: 1))
     mail.add_custom_arg(CustomArg.new(key: 'Array', value: [1, 'a', true]))
     mail.add_custom_arg(CustomArg.new(key: 'Hash', value: { 'a' => 1, 'b' => 2 }))
@@ -251,7 +251,7 @@ class TestMail < Minitest::Test
   end
 
   def test_check_for_secrets
-    mail = Mail.new
+    mail = SendGrid::Mail.new
     mail.add_content(Content.new(type: 'text/plain', value: 'Sensitive information: SG.a123b456'))
     assert_raises(SecurityError) do
       mail.check_for_secrets([/SG.[a-zA-Z0-9_-]*/])

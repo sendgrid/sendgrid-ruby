@@ -7,8 +7,8 @@ require 'sendgrid-ruby'
 include SendGrid
 
 # Note that the domain for all From addresses must match
-mail = Mail.new
-mail.from = Email.new(email: 'test@example.com')
+mail = SendGrid::Mail.new
+mail.from = SendGrid::Email.new(email: 'test@example.com')
 mail.add_content(Content.new(type: 'text/plain', value: 'Some test text'))
 mail.subject = 'Personalized Test Email'
 

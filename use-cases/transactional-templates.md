@@ -34,8 +34,8 @@ Template Body:
 require 'sendgrid-ruby'
 include SendGrid
 
-mail = Mail.new
-mail.from = Email.new(email: 'test@example.com')
+mail = SendGrid::Mail.new
+mail.from = SendGrid::Email.new(email: 'test@example.com')
 personalization = Personalization.new
 personalization.add_to(Email.new(email: 'test@example.com'))
 personalization.add_dynamic_template_data({

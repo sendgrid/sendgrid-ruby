@@ -3,10 +3,10 @@ include SendGrid
 require 'json'
 
 def hello_world
-  from = Email.new(email: 'test@example.com')
+  from = SendGrid::Email.new(email: 'test@example.com')
   subject = 'Hello World from the Twilio SendGrid Ruby Library'
-  to = Email.new(email: 'test@example.com')
-  content = Content.new(type: 'text/plain', value: 'some text here')
+  to = SendGrid::Email.new(email: 'test@example.com')
+  content = SendGrid::Content.new(type: 'text/plain', value: 'some text here')
   mail = SendGrid::Mail.new(from, subject, to, content)
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
@@ -21,7 +21,7 @@ end
 # rubocop:disable Metrics/AbcSize
 def kitchen_sink
   mail = SendGrid::Mail.new
-  mail.from = Email.new(email: 'test@example.com')
+  mail.from = SendGrid::Email.new(email: 'test@example.com')
   mail.subject = 'Hello World from the Twilio SendGrid Ruby Library'
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
@@ -117,7 +117,7 @@ def kitchen_sink
   tracking_settings.ganalytics = Ganalytics.new(enable: true, utm_source: 'some source', utm_medium: 'some medium', utm_term: 'some term', utm_content: 'some content', utm_campaign: 'some campaign')
   mail.tracking_settings = tracking_settings
 
-  mail.reply_to = Email.new(email: 'test@example.com')
+  mail.reply_to = SendGrid::Email.new(email: 'test@example.com')
 
   # puts JSON.pretty_generate(mail.to_json)
   puts mail.to_json
@@ -131,9 +131,9 @@ end
 # rubocop:enable Metrics/AbcSize
 
 def dynamic_template_data_hello_world
-  mail = Mail.new
+  mail = SendGrid::Mail.new
   mail.template_id = '' # a non-legacy template id
-  mail.from = Email.new(email: 'test@example.com')
+  mail.from = SendGrid::Email.new(email: 'test@example.com')
   personalization = Personalization.new
   personalization.add_to(Email.new(email: 'test1@example.com', name: 'Example User'))
   personalization.add_dynamic_template_data(
