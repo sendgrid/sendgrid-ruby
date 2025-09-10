@@ -124,7 +124,7 @@ unless RUBY_PLATFORM == 'java'
 
       let(:middleware) { Rack::SendGridWebhookVerification.new(@spy_app, public_key, %r{/email}) }
 
-      it 'keeps orignal reading position' do
+      it 'keeps original reading position' do
         options = {
           :input => Fixtures::EventWebhook::PAYLOAD,
           'Content-Type' => "application/json"

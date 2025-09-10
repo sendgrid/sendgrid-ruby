@@ -1,4 +1,4 @@
-require 'sengrid-ruby'
+require 'sendgrid-ruby'
 include SendGrid
 
 def is_valid_signature(request)

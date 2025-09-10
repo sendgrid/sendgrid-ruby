@@ -2,8 +2,8 @@ begin
   require 'sinatra'
 rescue LoadError
   puts <<-NOTE
-    As of sengrid verison 6, sinatra is no longer specified as a dependency of
-    the sendgrid gem. All the functionality of the inbound server is still the same
+    As of sendgrid version 6, sinatra is no longer specified as a dependency of
+    the sendgrid gem. All the functionality of the Inbound server is still the same
     and fully supported, but you just need to include the sinatra dependency in your gemfile
     yourself, like so:
 
