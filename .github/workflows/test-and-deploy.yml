@@ -10,36 +10,33 @@ on:
     - cron: '0 15 * * 1-5'
   workflow_dispatch:
 
+env:
+  ARTIFACTORY_URL: ${{ vars.ARTIFACTORY_URL }}
+
 jobs:
   test:
-    name: Test
-    runs-on: ubuntu-latest
+    name: Test - Ruby ${{ matrix.ruby }}
+    runs-on: ubuntu-x64
+    if: github.repository_owner == 'sendgrid'
     timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
     strategy:
+      fail-fast: false
       matrix:
-        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0', '3.1', 'jruby-9.2' ]
-    env:
-      version: ${{ format('ruby:{0}', matrix.ruby) }}
-      DOCKER_LOGIN: ${{ secrets.DOCKER_USERNAME && secrets.DOCKER_AUTH_TOKEN }}
+        ruby: [ '3.1', '3.2', '3.3', '3.4' ]
     steps:
-      - name: Revise env version if necessary
-        run: echo "version=jruby:9.2" >> $GITHUB_ENV
-        if: ${{ matrix.ruby == 'jruby-9.2' }}
-
       - name: Checkout sendgrid-ruby
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - name: Login to Docker Hub
-        if: env.DOCKER_LOGIN
-        uses: docker/login-action@v1
+      - name: Artifactory OIDC Auth
+        uses: twilio/sdk-actions/artifactory-oidc@0375437914d535a5fb178bdbfdb5d51bdde2616e # v1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_AUTH_TOKEN }}
+          ecosystem: ruby
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
@@ -48,73 +45,81 @@ jobs:
 
       - name: Set up linter
         run: bundle add rubocop --version "~> 1.24.1" --group "development" --skip-install
-        if: ${{ matrix.ruby != '2.4' }}
 
       - run: bundle install --with development
 
       - name: Run linter
         run: bundle exec rubocop
-        if: ${{ matrix.ruby != '2.4' }}
 
       - name: Run tests
-        run: make test-docker
+        run: make test-docker version=ruby:${{ matrix.ruby }}
 
   deploy:
     name: Deploy
-    if: success() && github.ref_type == 'tag'
+    if: success() && github.ref_type == 'tag' && github.repository_owner == 'sendgrid'
     needs: [ test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-x64
+    environment:
+      name: production
+      url: https://rubygems.org/gems/sendgrid-ruby
+    permissions:
+      contents: write          # required for creating GitHub Release
+      id-token: write
     steps:
       - name: Checkout sendgrid-ruby
-        uses: actions/checkout@v2
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
+          # The release action verifies refs/tags/<tag> in the local clone.
           fetch-depth: 0
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Artifactory OIDC Auth
+        uses: twilio/sdk-actions/artifactory-oidc@0375437914d535a5fb178bdbfdb5d51bdde2616e # v1
         with:
-          ruby-version: 3.1
+          ecosystem: ruby
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
+        with:
+          ruby-version: '3.3'
           bundler-cache: true
 
       - run: make install
 
       - name: Create GitHub Release
-        uses: sendgrid/dx-automator/actions/release@main
+        uses: twilio/sdk-actions/github-release@9b1c3222c9ffe38aadedb11c5b9f5a172b5e9951 # v1
         with:
-          footer: '**[RubyGems](https://rubygems.org/gems/sendgrid-ruby/versions/${version})**'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          changelog-file: CHANGELOG.md
+          footer: '**[RubyGems](https://rubygems.org/gems/sendgrid-ruby/versions/${{ github.ref_name }})**'
 
-      - name: Publish to Rubygems
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
+      # RubyGems trusted publishing (OIDC) - no API key. A trusted publisher must be
+      # configured on rubygems.org for this gem, repo and workflow.
+      - name: Configure RubyGems credentials
+        uses: rubygems/configure-rubygems-credentials@dc5a8d8553e6ee01fc26761a49e99e733d17954a # v2.1.0
+
+      - name: Publish to RubyGems
         run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
           gem build *.gemspec
           gem push *.gem
 
-      - name: Submit metric to Datadog
-        uses: sendgrid/dx-automator/actions/datadog-release-metric@main
-        env:
-          DD_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+#      - name: Submit metric to Datadog
+#        uses: sendgrid/dx-automator/actions/datadog-release-metric@08b601b726671445abc798ed59881766ec8fefc6 # main
+#        env:
+#          DD_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
-  notify-on-failure:
-    name: Slack notify on failure
-    if: failure() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
-    needs: [ test, deploy ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_COLOR: failure
-          SLACK_ICON_EMOJI: ':github:'
-          SLACK_MESSAGE: ${{ format('Test *{0}*, Deploy *{1}*, {2}/{3}/actions/runs/{4}', needs.test.result, needs.deploy.result, github.server_url, github.repository, github.run_id) }}
-          SLACK_TITLE: Action Failure - ${{ github.repository }}
-          SLACK_USERNAME: GitHub Actions
-          SLACK_MSG_AUTHOR: twilio-dx
-          SLACK_FOOTER: Posted automatically using GitHub Actions
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          MSG_MINIMAL: true
+#  notify-on-failure:
+#    name: Slack notify on failure
+#    if: failure() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
+#    needs: [ test, deploy ]
+#    runs-on: ubuntu-x64
+#    steps:
+#      - uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2.3.3
+#        env:
+#          SLACK_COLOR: failure
+#          SLACK_ICON_EMOJI: ':github:'
+#          SLACK_MESSAGE: ${{ format('Test *{0}*, Deploy *{1}*, {2}/{3}/actions/runs/{4}', needs.test.result, needs.deploy.result, github.server_url, github.repository, github.run_id) }}
+#          SLACK_TITLE: Action Failure - ${{ github.repository }}
+#          SLACK_USERNAME: GitHub Actions
+#          SLACK_MSG_AUTHOR: twilio-dx
+#          SLACK_FOOTER: Posted automatically using GitHub Actions
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#          MSG_MINIMAL: true
